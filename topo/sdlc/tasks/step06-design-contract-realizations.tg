@@ -1,0 +1,16 @@
+task task_step06_design_contract_realizations {
+  name "Step 06 Design Contract Realizations"
+  description "Add operations design contracts and widget-first realization sets across web, iOS, and Android, then prove design review states through coverage/report/slice artifacts."
+  satisfies [req_operations_ui_work_map_proof]
+  acceptance_refs [ac_step06_design_realizations_valid]
+  verification_refs [verification_step06_design_realizations]
+  affects [cap_monitor_operations_dashboard cap_triage_incoming_work cap_assign_field_work cap_review_incident cap_resolve_incident cap_manage_field_teams]
+  blocked_by []
+  disposition active
+  risk_class medium
+  change_type ui
+  priority high
+  work_type implementation
+  claimed_by [actor_coding_agent]
+  status done
+}

@@ -1,0 +1,615 @@
+design_realization_set realization_set_operations_control_room_widgets {
+  name "Operations Control Room Widget Realizations"
+  description "Maps operations semantic widgets to platform component refs across web, iOS, and Android."
+  design_contract design_operations_product_ui
+  related_terms [term_design_contract term_design_realization_set term_component_ref term_widget]
+  domain dom_ui_work_map_proof
+  status active
+
+  widget_realization {
+    id command_toolbar_web_wide
+    widget widget_command_toolbar
+    platform web
+    viewport wide
+    component_ref "ops.commandToolbar.desktop"
+    pattern action_bar
+    density compact
+    state_coverage [loading empty error]
+    role_contexts [operator manager]
+    theme_contexts [light dark]
+    locale_contexts [default_locale]
+    status rendered
+    behaviors_rendered [bulk_action keyboard_navigation]
+  }
+
+  widget_realization {
+    id command_toolbar_web_narrow
+    widget widget_command_toolbar
+    platform web
+    viewport narrow
+    component_ref "ops.commandToolbar.overflow"
+    pattern action_bar
+    density compact
+    state_coverage [loading empty error]
+    role_contexts [operator]
+    theme_contexts [light dark]
+    locale_contexts [default_locale]
+    status rendered
+    behaviors_rendered [keyboard_navigation]
+    behaviors_contract_only [bulk_action]
+  }
+
+  widget_realization {
+    id command_toolbar_ios
+    widget widget_command_toolbar
+    platform ios
+    viewport any
+    component_ref "ops.ios.commandBar"
+    pattern action_bar
+    density comfortable
+    state_coverage [loading empty error]
+    role_contexts [operator]
+    theme_contexts [system]
+    locale_contexts [default_locale]
+    status implementation_owned
+    behaviors_rendered [keyboard_navigation]
+    behaviors_implementation_owned [bulk_action]
+  }
+
+  widget_realization {
+    id command_toolbar_android
+    widget widget_command_toolbar
+    platform android
+    viewport any
+    component_ref "ops.android.actionRow"
+    pattern action_bar
+    density comfortable
+    state_coverage [loading empty error]
+    role_contexts [operator]
+    theme_contexts [system]
+    locale_contexts [default_locale]
+    status implementation_owned
+    behaviors_rendered [keyboard_navigation]
+    behaviors_implementation_owned [bulk_action]
+  }
+
+  widget_realization {
+    id kpi_cards_web_wide
+    widget widget_kpi_summary_cards
+    platform web
+    viewport wide
+    component_ref "ops.kpi.summaryGrid"
+    pattern data_grid_view
+    density comfortable
+    state_coverage [loading empty error]
+    role_contexts [manager]
+    theme_contexts [light dark]
+    locale_contexts [default_locale]
+    status rendered
+    behaviors_rendered [selection]
+  }
+
+  widget_realization {
+    id kpi_cards_web_narrow
+    widget widget_kpi_summary_cards
+    platform web
+    viewport narrow
+    component_ref "ops.kpi.summaryCarousel"
+    pattern data_grid_view
+    density comfortable
+    state_coverage [loading empty]
+    role_contexts [manager]
+    theme_contexts [light dark]
+    locale_contexts [default_locale]
+    review_notes "Narrow KPI presentation still needs error-state proof."
+    status contract_only
+    behaviors_contract_only [selection]
+  }
+
+  widget_realization {
+    id kpi_cards_ios
+    widget widget_kpi_summary_cards
+    platform ios
+    viewport any
+    component_ref "ops.ios.metricCards"
+    pattern data_grid_view
+    density comfortable
+    state_coverage [loading empty error]
+    role_contexts [manager]
+    theme_contexts [system]
+    locale_contexts [default_locale]
+    status implementation_owned
+    behaviors_rendered [selection]
+  }
+
+  widget_realization {
+    id card_list_web_wide
+    widget widget_card_list
+    platform web
+    viewport wide
+    component_ref "ops.queue.priorityCards"
+    pattern resource_cards
+    density comfortable
+    state_coverage [loading empty error]
+    role_contexts [dispatcher]
+    theme_contexts [light dark]
+    locale_contexts [default_locale]
+    status rendered
+    behaviors_rendered [selection filtering]
+  }
+
+  widget_realization {
+    id card_list_web_narrow
+    widget widget_card_list
+    platform web
+    viewport narrow
+    component_ref "ops.queue.mobileCards"
+    pattern resource_cards
+    density comfortable
+    state_coverage [loading empty]
+    role_contexts [dispatcher]
+    theme_contexts [light dark]
+    locale_contexts [default_locale]
+    review_notes "Narrow queue cards carry the contract but need error-state proof."
+    status contract_only
+    behaviors_rendered [selection]
+    behaviors_contract_only [filtering]
+  }
+
+  widget_realization {
+    id card_list_ios
+    widget widget_card_list
+    platform ios
+    viewport any
+    component_ref "ops.ios.queueList"
+    pattern resource_cards
+    density comfortable
+    state_coverage [loading empty error]
+    role_contexts [dispatcher]
+    theme_contexts [system]
+    locale_contexts [default_locale]
+    status implementation_owned
+    behaviors_rendered [selection]
+    behaviors_implementation_owned [filtering]
+  }
+
+  widget_realization {
+    id card_list_android
+    widget widget_card_list
+    platform android
+    viewport any
+    component_ref "ops.android.queueCards"
+    pattern resource_cards
+    density comfortable
+    state_coverage [loading empty]
+    role_contexts [dispatcher]
+    theme_contexts [system]
+    locale_contexts [default_locale]
+    review_notes "Android queue filtering is intentionally unsupported for this proof."
+    status unsupported
+    behaviors_rendered [selection]
+    behaviors_unsupported [filtering]
+  }
+
+  widget_realization {
+    id data_grid_web_wide
+    widget widget_data_grid
+    platform web
+    viewport wide
+    component_ref "ops.table.dataGrid"
+    pattern data_grid_view
+    density compact
+    state_coverage [loading empty error]
+    role_contexts [dispatcher manager]
+    theme_contexts [light dark]
+    locale_contexts [default_locale]
+    status rendered
+    behaviors_rendered [selection sorting filtering keyboard_navigation]
+  }
+
+  widget_realization {
+    id data_grid_web_narrow
+    widget widget_data_grid
+    platform web
+    viewport narrow
+    component_ref "ops.table.cardFallback"
+    pattern data_grid_view
+    density comfortable
+    state_coverage [loading empty]
+    role_contexts [dispatcher]
+    theme_contexts [light]
+    locale_contexts [default_locale]
+    review_notes "Narrow data-grid fallback needs sorting and keyboard proof."
+    status contract_only
+    behaviors_rendered [selection]
+    behaviors_contract_only [sorting filtering keyboard_navigation]
+  }
+
+  widget_realization {
+    id filter_panel_web_wide
+    widget widget_filter_panel
+    platform web
+    viewport wide
+    component_ref "ops.filters.rail"
+    pattern filter_panel
+    density compact
+    state_coverage [loading empty error]
+    role_contexts [dispatcher manager]
+    theme_contexts [light dark]
+    locale_contexts [default_locale]
+    status rendered
+    behaviors_rendered [filtering search]
+  }
+
+  widget_realization {
+    id filter_panel_web_narrow
+    widget widget_filter_panel
+    platform web
+    viewport narrow
+    component_ref "ops.filters.sheet"
+    pattern filter_panel
+    density comfortable
+    state_coverage [loading empty]
+    role_contexts [dispatcher]
+    theme_contexts [light dark]
+    locale_contexts [default_locale]
+    status contract_only
+    behaviors_contract_only [filtering search]
+  }
+
+  widget_realization {
+    id filter_panel_ios
+    widget widget_filter_panel
+    platform ios
+    viewport any
+    component_ref "ops.ios.filterSheet"
+    pattern filter_panel
+    density comfortable
+    state_coverage [loading empty error]
+    role_contexts [dispatcher]
+    theme_contexts [system]
+    locale_contexts [default_locale]
+    status implementation_owned
+    behaviors_implementation_owned [filtering search]
+  }
+
+  widget_realization {
+    id detail_panel_web_wide
+    widget widget_detail_panel
+    platform web
+    viewport wide
+    component_ref "ops.detail.summaryPanel"
+    pattern detail_panel
+    density comfortable
+    state_coverage [loading empty error]
+    role_contexts [dispatcher manager]
+    theme_contexts [light dark]
+    locale_contexts [default_locale]
+    status rendered
+  }
+
+  widget_realization {
+    id detail_panel_web_inspector
+    widget widget_detail_panel
+    platform web
+    viewport wide
+    component_ref "ops.detail.inspector"
+    pattern inspector_pane
+    density compact
+    state_coverage [loading empty error]
+    role_contexts [dispatcher]
+    theme_contexts [light dark]
+    locale_contexts [default_locale]
+    status rendered
+  }
+
+  widget_realization {
+    id detail_panel_web_settings
+    widget widget_detail_panel
+    platform web
+    viewport wide
+    component_ref "ops.settings.sectionPanel"
+    pattern settings_section
+    density comfortable
+    state_coverage [loading empty]
+    role_contexts [manager]
+    theme_contexts [light dark]
+    locale_contexts [default_locale]
+    status contract_only
+  }
+
+  widget_realization {
+    id detail_panel_ios
+    widget widget_detail_panel
+    platform ios
+    viewport any
+    component_ref "ops.ios.detailSheet"
+    pattern detail_panel
+    density comfortable
+    state_coverage [loading empty error]
+    role_contexts [dispatcher manager]
+    theme_contexts [system]
+    locale_contexts [default_locale]
+    status implementation_owned
+  }
+
+  widget_realization {
+    id detail_panel_android
+    widget widget_detail_panel
+    platform android
+    viewport any
+    component_ref "ops.android.detailSheet"
+    pattern detail_panel
+    density comfortable
+    state_coverage [loading empty error]
+    role_contexts [dispatcher manager]
+    theme_contexts [system]
+    locale_contexts [default_locale]
+    status implementation_owned
+  }
+
+  widget_realization {
+    id status_board_web_wide
+    widget widget_status_board
+    platform web
+    viewport wide
+    component_ref "ops.board.statusLanes"
+    pattern board_view
+    density compact
+    state_coverage [loading empty error]
+    role_contexts [dispatcher]
+    theme_contexts [light dark]
+    locale_contexts [default_locale]
+    status rendered
+    behaviors_rendered [selection drag_drop]
+  }
+
+  widget_realization {
+    id status_board_ios
+    widget widget_status_board
+    platform ios
+    viewport any
+    component_ref "ops.ios.statusBoard"
+    pattern board_view
+    density comfortable
+    state_coverage [loading empty]
+    role_contexts [dispatcher]
+    theme_contexts [system]
+    locale_contexts [default_locale]
+    status implementation_owned
+    behaviors_rendered [selection]
+    behaviors_implementation_owned [drag_drop]
+  }
+
+  widget_realization {
+    id timeline_web_wide
+    widget widget_activity_timeline
+    platform web
+    viewport wide
+    component_ref "ops.timeline.auditTrail"
+    pattern timeline_view
+    density comfortable
+    state_coverage [loading empty error]
+    role_contexts [auditor manager]
+    theme_contexts [light dark]
+    locale_contexts [default_locale]
+    status rendered
+  }
+
+  widget_realization {
+    id timeline_ios
+    widget widget_activity_timeline
+    platform ios
+    viewport any
+    component_ref "ops.ios.timeline"
+    pattern timeline_view
+    density comfortable
+    state_coverage [loading empty error]
+    role_contexts [auditor]
+    theme_contexts [system]
+    locale_contexts [default_locale]
+    status implementation_owned
+  }
+
+  widget_realization {
+    id calendar_web_wide
+    widget widget_schedule_calendar
+    platform web
+    viewport wide
+    component_ref "ops.calendar.scheduleBoard"
+    pattern calendar_view
+    density comfortable
+    state_coverage [loading empty error]
+    role_contexts [dispatcher]
+    theme_contexts [light dark]
+    locale_contexts [default_locale]
+    status rendered
+    behaviors_rendered [selection]
+  }
+
+  widget_realization {
+    id calendar_web_narrow
+    widget widget_schedule_calendar
+    platform web
+    viewport narrow
+    component_ref "ops.calendar.agendaList"
+    pattern calendar_view
+    density comfortable
+    state_coverage [loading]
+    role_contexts [dispatcher]
+    theme_contexts [light]
+    locale_contexts [default_locale]
+    status unsupported
+    behaviors_unsupported [selection]
+  }
+
+  widget_realization {
+    id calendar_ios
+    widget widget_schedule_calendar
+    platform ios
+    viewport any
+    component_ref "ops.ios.scheduleCalendar"
+    pattern calendar_view
+    density comfortable
+    state_coverage [loading empty error]
+    role_contexts [dispatcher]
+    theme_contexts [system]
+    locale_contexts [default_locale]
+    status implementation_owned
+    behaviors_rendered [selection]
+  }
+
+  widget_realization {
+    id calendar_android
+    widget widget_schedule_calendar
+    platform android
+    viewport any
+    component_ref "ops.android.scheduleCalendar"
+    pattern calendar_view
+    density comfortable
+    state_coverage [loading empty error]
+    role_contexts [dispatcher]
+    theme_contexts [system]
+    locale_contexts [default_locale]
+    status implementation_owned
+    behaviors_rendered [selection]
+  }
+
+  widget_realization {
+    id assignment_form_web_wide
+    widget widget_assignment_form
+    platform web
+    viewport wide
+    component_ref "ops.forms.assignmentDrawer"
+    pattern footer_bar
+    density comfortable
+    state_coverage [loading empty error]
+    role_contexts [dispatcher manager]
+    theme_contexts [light dark]
+    locale_contexts [default_locale]
+    status rendered
+    behaviors_rendered [optimistic_update keyboard_navigation]
+  }
+
+  widget_realization {
+    id assignment_form_web_narrow
+    widget widget_assignment_form
+    platform web
+    viewport narrow
+    component_ref "ops.forms.assignmentSheet"
+    pattern footer_bar
+    density comfortable
+    state_coverage [loading empty]
+    role_contexts [dispatcher]
+    theme_contexts [light dark]
+    locale_contexts [default_locale]
+    status contract_only
+    behaviors_contract_only [optimistic_update keyboard_navigation]
+  }
+
+  widget_realization {
+    id assignment_form_ios
+    widget widget_assignment_form
+    platform ios
+    viewport any
+    component_ref "ops.ios.assignmentSheet"
+    pattern footer_bar
+    density comfortable
+    state_coverage [loading empty error]
+    role_contexts [dispatcher]
+    theme_contexts [system]
+    locale_contexts [default_locale]
+    status implementation_owned
+    behaviors_implementation_owned [optimistic_update keyboard_navigation]
+  }
+
+  widget_realization {
+    id assignment_form_android
+    widget widget_assignment_form
+    platform android
+    viewport any
+    component_ref "ops.android.assignmentSheet"
+    pattern footer_bar
+    density comfortable
+    state_coverage [loading empty error]
+    role_contexts [dispatcher]
+    theme_contexts [system]
+    locale_contexts [default_locale]
+    status implementation_owned
+    behaviors_implementation_owned [optimistic_update keyboard_navigation]
+  }
+
+  widget_realization {
+    id alert_banner_web_wide
+    widget widget_alert_banner
+    platform web
+    viewport wide
+    component_ref "ops.alerts.liveBanner"
+    pattern activity_feed
+    density compact
+    state_coverage [loading empty error]
+    role_contexts [operator manager]
+    theme_contexts [light dark]
+    locale_contexts [default_locale]
+    status rendered
+    behaviors_rendered [realtime_update]
+  }
+
+  widget_realization {
+    id alert_banner_ios
+    widget widget_alert_banner
+    platform ios
+    viewport any
+    component_ref "ops.ios.liveAlert"
+    pattern activity_feed
+    density compact
+    state_coverage [loading empty]
+    role_contexts [operator]
+    theme_contexts [system]
+    locale_contexts [default_locale]
+    status implementation_owned
+    behaviors_implementation_owned [realtime_update]
+  }
+
+  widget_realization {
+    id alert_banner_android
+    widget widget_alert_banner
+    platform android
+    viewport any
+    component_ref "ops.android.liveAlert"
+    pattern activity_feed
+    density compact
+    state_coverage [loading]
+    role_contexts [operator]
+    theme_contexts [system]
+    locale_contexts [default_locale]
+    status unsupported
+    behaviors_unsupported [realtime_update]
+  }
+}
+
+design_realization_set realization_set_operations_review_gap_probe {
+  name "Operations Review Gap Probe Realizations"
+  description "Intentionally incomplete design mapping used by the proof to show missing token diagnostics."
+  design_contract design_operations_review_gap_probe
+  related_terms [term_design_contract term_design_realization_set term_component_ref]
+  domain dom_ui_work_map_proof
+  status proposed
+
+  widget_realization {
+    id alert_banner_gap_probe
+    widget widget_alert_banner
+    platform web
+    viewport wide
+    component_ref "ops.reviewGap.liveAlert"
+    pattern activity_feed
+    density compact
+    state_coverage [loading]
+    role_contexts [operator]
+    theme_contexts [light]
+    locale_contexts [default_locale]
+    review_notes "Intentional Step 06 review row: this design contract has no token mappings."
+    status contract_only
+    behaviors_contract_only [realtime_update]
+  }
+}

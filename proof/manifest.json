@@ -1,6 +1,6 @@
 {
   "cliVersion": "0.3.112",
-  "currentStep": "proof-05-widgets-and-bindings",
+  "currentStep": "proof-06-design-contract-realizations",
   "expectedTags": [
     "proof-01-domain-and-app-shell",
     "proof-02-semantic-regions",
@@ -102,8 +102,36 @@
       "contains": ["# Step 05 Widget Catalog", "widget_card_list", "intake_queue", "widget_data_grid"]
     },
     {
+      "path": "proof/artifacts/step-06-design-contract-realizations/check.json",
+      "json": true,
+      "requiredKeys": ["ok", "topogram"]
+    },
+    {
+      "path": "proof/artifacts/step-06-design-contract-realizations/ui-design-coverage.json",
+      "json": true,
+      "requiredKeys": ["type", "summary", "design_matrix"]
+    },
+    {
+      "path": "proof/artifacts/step-06-design-contract-realizations/ui-design-coverage.md",
+      "contains": ["# UI Design Coverage", "widget_card_list", "contract_only", "unsupported"]
+    },
+    {
+      "path": "proof/artifacts/step-06-design-contract-realizations/ui-realization-report.json",
+      "json": true,
+      "requiredKeys": ["type", "summary"]
+    },
+    {
+      "path": "proof/artifacts/step-06-design-contract-realizations/design-matrix.md",
+      "contains": ["# Step 06 Design Matrix", "design_operations_product_ui", "missing_platform", "missing_i18n"]
+    },
+    {
+      "path": "proof/artifacts/step-06-design-contract-realizations/widget-slice.json",
+      "json": true,
+      "requiredKeys": ["type", "focus", "ui_agent_packet"]
+    },
+    {
       "path": "proof/STEP.md",
-      "contains": ["Step 05", "Widgets And Bindings"]
+      "contains": ["Step 06", "Design Contract Realizations"]
     }
   ]
 }

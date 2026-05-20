@@ -49,3 +49,19 @@ term term_design_realization_set {
   domain dom_ui_work_map_proof
   status active
 }
+
+term term_design_contract {
+  name "Design Contract"
+  description "A design-system scope record that names supported platforms, packages, and semantic token mappings before widgets are realized by platform components."
+  category design
+  domain dom_ui_work_map_proof
+  status active
+}
+
+term term_component_ref {
+  name "Component Ref"
+  description "A stable design-system component identity used in Topogram instead of framework import paths or source file paths."
+  category design
+  domain dom_ui_work_map_proof
+  status active
+}

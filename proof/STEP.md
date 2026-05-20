@@ -1,19 +1,19 @@
-# Step 05: Widgets And Bindings
+# Step 06: Design Contract Realizations
 
-> This checkpoint binds reusable semantic widgets into inherited layout regions.
+> This checkpoint maps semantic widgets to platform component refs through design contracts and realization sets.
 
 Status: current
 
 Audience: reviewers following the proof step by step.
 
-Use when: you want to inspect how screens, layout regions, and widgets work together before design realization mappings are added.
+Use when: you want to inspect how semantic widgets become reviewable design-system implementation work across web, iOS, and Android.
 
 ## What Changed
 
-- Added eleven semantic widgets for KPI cards, grids, card lists, filters, command bars, detail panels, boards, timelines, calendars, assignment forms, and alerts.
-- Bound widgets into inherited layout regions such as `command_bar`, `queue`, `board`, `calendar`, `activity`, and `footer_actions`.
-- Added one explicit screen-region override for the team directory table to show overrides remain possible without restating the whole layout.
-- Added Step 05 widget catalog plus screen and widget slice artifacts so reviewers can inspect reusable widget placement.
+- Added the `design_operations_product_ui` contract for web, iOS, and Android platform scope plus semantic token mappings.
+- Added widget-first realization sets that map operations widgets to stable component refs, not import paths.
+- Included rendered, contract-only, implementation-owned, unsupported, missing-platform, missing-state, missing-token, missing-a11y, and missing-i18n review cases.
+- Added Step 06 design coverage, realization report, design matrix, and focused widget slice artifacts.
 
 ## Verification
 
@@ -21,4 +21,4 @@ Use when: you want to inspect how screens, layout regions, and widgets work toge
 npm run verify
 ```
 
-The current step proves widget bindings can target inherited layout regions and explicit region overrides. It does not yet include design realization contracts.
+The current step proves design mapping is reviewable work. It does not yet add authored message keys or accessibility obligations; those arrive in Step 07.

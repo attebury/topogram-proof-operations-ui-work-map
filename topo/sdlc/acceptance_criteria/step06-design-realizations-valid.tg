@@ -1,0 +1,6 @@
+acceptance_criterion ac_step06_design_realizations_valid {
+  name "Step 06 Design Realizations Valid"
+  description "Given semantic widgets are bound to reusable layout regions, when npm run verify is executed at Step 06, then design contracts, widget-first realization sets, coverage reports, realization reports, and focused slices expose mapped, contract-only, unsupported, missing-platform, and design review states."
+  requirement req_operations_ui_work_map_proof
+  status approved
+}

@@ -1,0 +1,2430 @@
+{
+  "agent_guidance": {
+    "completion_command": "topogram sdlc prep commit . --json",
+    "mode": "implementation",
+    "next_commands": [
+      "topogram query slice ./topo --mode implementation --widget widget_card_list --json",
+      "topogram query single-agent-plan ./topo --mode implementation --widget widget_card_list --json",
+      "topogram query sdlc-proof-gaps ./topo --json",
+      "topogram check . --json",
+      "topogram sdlc check . --strict",
+      "topogram sdlc prep commit . --json"
+    ],
+    "next_queries": [
+      "topogram query slice ./topo --mode implementation --widget widget_card_list --json",
+      "topogram query single-agent-plan ./topo --mode implementation --widget widget_card_list --json"
+    ],
+    "proof_commands": [
+      "topogram check . --json",
+      "topogram sdlc check . --strict",
+      "topogram sdlc prep commit . --json"
+    ],
+    "read_first": [
+      "focus",
+      "summary",
+      "agent_guidance",
+      "review_boundary",
+      "ownership_boundary",
+      "write_scope",
+      "ui_agent_packet"
+    ],
+    "read_order": [
+      "focus",
+      "summary",
+      "agent_guidance",
+      "review_boundary",
+      "ownership_boundary",
+      "write_scope",
+      "ui_agent_packet"
+    ],
+    "required_commands": [
+      "topogram query sdlc-proof-gaps ./topo --json",
+      "topogram check . --json",
+      "topogram sdlc check . --strict",
+      "topogram sdlc prep commit . --json"
+    ],
+    "warnings": [],
+    "write_scope_summary": "Edit the canonical Topogram source and project-owned files only; generated-owned outputs should be regenerated."
+  },
+  "depends_on": {
+    "capabilities": [],
+    "entities": [],
+    "projections": [
+      "proj_operations_ui_contract",
+      "proj_operations_web_surface"
+    ],
+    "shapes": [
+      "shape_work_queue_item"
+    ],
+    "verifications": [],
+    "widgets": []
+  },
+  "detail_level": "standard",
+  "focus": {
+    "id": "widget_card_list",
+    "kind": "widget"
+  },
+  "ownership_boundary": {
+    "canonical_topogram": {
+      "agent_mode": "propose_review_adopt",
+      "owner": "human"
+    },
+    "generated_artifacts": {
+      "agent_mode": "regenerate_or_compare",
+      "owner": "engine"
+    },
+    "maintained_code": {
+      "agent_mode": "bounded_edit_only",
+      "owner": "human"
+    },
+    "proposal_surfaces": {
+      "agent_mode": "stage_map_customize_reject",
+      "owner": "human"
+    }
+  },
+  "related": {
+    "capabilities": [],
+    "entities": [],
+    "projections": [
+      {
+        "dbTables": [],
+        "description": "Shared UI contract for the operations-dashboard proof with reusable layouts, screens, navigation, and semantic widget bindings.",
+        "httpCapabilities": [],
+        "id": "proj_operations_ui_contract",
+        "kind": "projection",
+        "name": "Operations UI Contract",
+        "outputs": [
+          "ui_contract"
+        ],
+        "ownership_boundary": {
+          "canonical_topogram": {
+            "agent_mode": "propose_review_adopt",
+            "owner": "human"
+          },
+          "generated_artifacts": {
+            "agent_mode": "regenerate_or_compare",
+            "owner": "engine"
+          },
+          "maintained_code": {
+            "agent_mode": "bounded_edit_only",
+            "owner": "human"
+          },
+          "proposal_surfaces": {
+            "agent_mode": "stage_map_customize_reject",
+            "owner": "human"
+          }
+        },
+        "realizes": [
+          "cap_assign_field_work",
+          "cap_manage_field_teams",
+          "cap_monitor_operations_dashboard",
+          "cap_resolve_incident",
+          "cap_review_incident",
+          "cap_triage_incoming_work"
+        ],
+        "reviewBoundary": {
+          "automation_class": "manual_decision",
+          "reasons": [
+            "ui_surface"
+          ]
+        },
+        "type": "ui_contract",
+        "uiScreens": [
+          "assignment_board",
+          "audit_timeline",
+          "field_team_directory",
+          "incident_detail",
+          "intake_queue",
+          "operations_dashboard",
+          "schedule_calendar",
+          "settings_preferences"
+        ],
+        "widgetBindings": [
+          "widget_activity_timeline",
+          "widget_alert_banner",
+          "widget_assignment_form",
+          "widget_card_list",
+          "widget_command_toolbar",
+          "widget_data_grid",
+          "widget_detail_panel",
+          "widget_filter_panel",
+          "widget_kpi_summary_cards",
+          "widget_schedule_calendar",
+          "widget_status_board"
+        ]
+      },
+      {
+        "dbTables": [],
+        "description": "Concrete web route surface for the operations-dashboard UI contract.",
+        "httpCapabilities": [],
+        "id": "proj_operations_web_surface",
+        "kind": "projection",
+        "name": "Operations Web Surface",
+        "outputs": [
+          "ui_contract",
+          "web_app"
+        ],
+        "ownership_boundary": {
+          "canonical_topogram": {
+            "agent_mode": "propose_review_adopt",
+            "owner": "human"
+          },
+          "generated_artifacts": {
+            "agent_mode": "regenerate_or_compare",
+            "owner": "engine"
+          },
+          "maintained_code": {
+            "agent_mode": "bounded_edit_only",
+            "owner": "human"
+          },
+          "proposal_surfaces": {
+            "agent_mode": "stage_map_customize_reject",
+            "owner": "human"
+          }
+        },
+        "realizes": [
+          "cap_assign_field_work",
+          "cap_manage_field_teams",
+          "cap_monitor_operations_dashboard",
+          "cap_resolve_incident",
+          "cap_review_incident",
+          "cap_triage_incoming_work",
+          "proj_operations_ui_contract"
+        ],
+        "reviewBoundary": {
+          "automation_class": "safe",
+          "reasons": [
+            "metadata_only"
+          ]
+        },
+        "type": "web_surface",
+        "uiScreens": [],
+        "widgetBindings": []
+      }
+    ],
+    "shapes": [
+      {
+        "derivedFrom": [],
+        "description": "Compact queue row or card for triage and assignment screens.",
+        "exclude": [],
+        "fields": [
+          {
+            "defaultValue": null,
+            "name": "id",
+            "requiredness": "required",
+            "type": "string"
+          },
+          {
+            "defaultValue": null,
+            "name": "title",
+            "requiredness": "required",
+            "type": "string"
+          },
+          {
+            "defaultValue": null,
+            "name": "priority",
+            "requiredness": "required",
+            "type": "string"
+          },
+          {
+            "defaultValue": null,
+            "name": "status",
+            "requiredness": "required",
+            "type": "string"
+          },
+          {
+            "defaultValue": null,
+            "name": "owner",
+            "requiredness": "optional",
+            "type": "string"
+          },
+          {
+            "defaultValue": null,
+            "name": "due_at",
+            "requiredness": "optional",
+            "type": "datetime"
+          },
+          {
+            "defaultValue": null,
+            "name": "location",
+            "requiredness": "optional",
+            "type": "string"
+          }
+        ],
+        "id": "shape_work_queue_item",
+        "include": [],
+        "kind": "shape",
+        "name": "Work Queue Item",
+        "ownership_boundary": {
+          "canonical_topogram": {
+            "agent_mode": "propose_review_adopt",
+            "owner": "human"
+          },
+          "generated_artifacts": {
+            "agent_mode": "regenerate_or_compare",
+            "owner": "engine"
+          },
+          "maintained_code": {
+            "agent_mode": "bounded_edit_only",
+            "owner": "human"
+          },
+          "proposal_surfaces": {
+            "agent_mode": "stage_map_customize_reject",
+            "owner": "human"
+          }
+        }
+      }
+    ],
+    "widgets": []
+  },
+  "review_boundary": {
+    "automation_class": "review_required",
+    "reasons": [
+      "widget_surface"
+    ]
+  },
+  "slice_manifest": {
+    "detail_level": "standard",
+    "note": "Read must_read sections first; use reference sections only as needed; run proof commands before completing work.",
+    "proof_sections": [
+      "verification_targets"
+    ],
+    "read_order": [
+      "focus",
+      "summary",
+      "agent_guidance",
+      "review_boundary",
+      "ownership_boundary",
+      "write_scope",
+      "ui_agent_packet"
+    ],
+    "sections": [
+      {
+        "field": "focus",
+        "id": "focus",
+        "item_count": 2,
+        "reason": "The selected graph surface this packet is scoped to.",
+        "tier": "must_read",
+        "title": "Focus"
+      },
+      {
+        "field": "summary",
+        "id": "summary",
+        "item_count": 18,
+        "reason": "The shortest human-readable description of the selected work or surface.",
+        "tier": "must_read",
+        "title": "Summary"
+      },
+      {
+        "field": "agent_guidance",
+        "id": "agent_guidance",
+        "item_count": 10,
+        "reason": "Mode, read order, follow-up queries, and required proof commands.",
+        "tier": "must_read",
+        "title": "Agent Guidance"
+      },
+      {
+        "field": "review_boundary",
+        "id": "review_boundary",
+        "item_count": 2,
+        "reason": "Automation and human-review expectations for this scope.",
+        "tier": "must_read",
+        "title": "Review Boundary"
+      },
+      {
+        "field": "ownership_boundary",
+        "id": "ownership_boundary",
+        "item_count": 4,
+        "reason": "Generated, maintained, and human-owned boundaries that constrain edits.",
+        "tier": "must_read",
+        "title": "Ownership Boundary"
+      },
+      {
+        "field": "write_scope",
+        "id": "write_scope",
+        "item_count": 4,
+        "reason": "Files and surfaces that are safe, risky, or out of bounds to edit.",
+        "tier": "must_read",
+        "title": "Write Scope"
+      },
+      {
+        "field": "ui_agent_packet",
+        "id": "ui_agent_packet",
+        "item_count": 11,
+        "reason": "Screen, layout, region, widget, accessibility, i18n, design-token, and UI proof context for UI slices.",
+        "tier": "must_read",
+        "title": "UI Agent Packet"
+      },
+      {
+        "field": "depends_on",
+        "id": "depends_on",
+        "item_count": 6,
+        "reason": "IDs that define the semantic closure without embedding every full record.",
+        "tier": "reference",
+        "title": "Depends On"
+      },
+      {
+        "field": "related",
+        "id": "related",
+        "item_count": 5,
+        "reason": "Summaries for directly related graph records.",
+        "tier": "reference",
+        "title": "Related Records"
+      },
+      {
+        "field": "verification_targets",
+        "id": "verification_targets",
+        "item_count": 4,
+        "reason": "Smallest verification set recommended for this change.",
+        "tier": "proof",
+        "title": "Verification Targets"
+      }
+    ]
+  },
+  "standing_rules": [],
+  "summary": {
+    "approvals": [],
+    "behavior": [
+      "filtering",
+      "selection"
+    ],
+    "behaviors": [
+      {
+        "directives": {
+          "emits": "item_select",
+          "mode": "single",
+          "state": "selected_ids"
+        },
+        "kind": "selection",
+        "source": "structured"
+      },
+      {
+        "directives": {
+          "fields": [
+            "priority",
+            "status",
+            "owner",
+            "location"
+          ]
+        },
+        "kind": "filtering",
+        "source": "structured"
+      }
+    ],
+    "category": "collection",
+    "dependencies": [],
+    "description": "Prioritized card list for queue-style operational work.",
+    "events": [
+      {
+        "id": "item_select",
+        "shape": "shape_work_queue_item"
+      }
+    ],
+    "id": "widget_card_list",
+    "kind": "widget",
+    "lookups": [],
+    "name": "Card List",
+    "ownership_boundary": {
+      "canonical_topogram": {
+        "agent_mode": "propose_review_adopt",
+        "owner": "human"
+      },
+      "generated_artifacts": {
+        "agent_mode": "regenerate_or_compare",
+        "owner": "engine"
+      },
+      "maintained_code": {
+        "agent_mode": "bounded_edit_only",
+        "owner": "human"
+      },
+      "proposal_surfaces": {
+        "agent_mode": "stage_map_customize_reject",
+        "owner": "human"
+      }
+    },
+    "patterns": [
+      "resource_cards",
+      "search_results"
+    ],
+    "props": [
+      {
+        "defaultValue": null,
+        "name": "items",
+        "requiredness": "required",
+        "type": "array"
+      },
+      {
+        "defaultValue": [],
+        "name": "selected_ids",
+        "requiredness": "optional",
+        "type": "array"
+      },
+      {
+        "defaultValue": false,
+        "name": "loading",
+        "requiredness": "optional",
+        "type": "boolean"
+      }
+    ],
+    "regions": [
+      "results"
+    ],
+    "slots": [],
+    "status": "active",
+    "version": "1.0"
+  },
+  "type": "context_slice",
+  "ui_agent_packet": {
+    "accessibility": {
+      "authoredObligations": [],
+      "currentSignals": {
+        "authoredContract": null,
+        "designTokens": null
+      },
+      "decisions": [
+        {
+          "found": false,
+          "id": "decision_aria_attributes_are_implementation_evidence",
+          "kind": null,
+          "name": "decision_aria_attributes_are_implementation_evidence",
+          "status": null
+        }
+      ],
+      "diagnostics": [
+        "No authored accessibility obligation DSL block exists yet; use the linked terms, decision, and draft requirement as implementation guidance."
+      ],
+      "obligations": [
+        "Prefer semantic role, accessible-name source, keyboard model, focus behavior, live-region need, and proof command over raw aria-* snapshots.",
+        "Treat raw aria-* attributes as generated or maintained implementation evidence, not the contract source."
+      ],
+      "proofCommands": [
+        "topogram widget check --json",
+        "topogram widget behavior --json"
+      ],
+      "requirements": [
+        {
+          "found": false,
+          "id": "req_aria_accessibility_contract_v1",
+          "kind": null,
+          "name": "req_aria_accessibility_contract_v1",
+          "status": null
+        }
+      ],
+      "scope": {
+        "projectionId": null,
+        "screenId": null,
+        "widgetId": "widget_card_list"
+      },
+      "source": "topo terms, decisions, draft requirements, and design-token evidence",
+      "status": "semantic_context_only",
+      "terms": [
+        {
+          "found": false,
+          "id": "term_accessibility_obligation",
+          "kind": null,
+          "name": "term_accessibility_obligation",
+          "status": null
+        },
+        {
+          "found": false,
+          "id": "term_accessible_name",
+          "kind": null,
+          "name": "term_accessible_name",
+          "status": null
+        },
+        {
+          "found": false,
+          "id": "term_semantic_role",
+          "kind": null,
+          "name": "term_semantic_role",
+          "status": null
+        },
+        {
+          "found": false,
+          "id": "term_keyboard_interaction",
+          "kind": null,
+          "name": "term_keyboard_interaction",
+          "status": null
+        },
+        {
+          "found": false,
+          "id": "term_live_region",
+          "kind": null,
+          "name": "term_live_region",
+          "status": null
+        }
+      ]
+    },
+    "designContracts": {
+      "contracts": [
+        {
+          "behaviorSupport": [
+            {
+              "behavior": "selection",
+              "density": "comfortable",
+              "designRealizationSet": {
+                "id": "realization_set_operations_control_room_widgets",
+                "name": "Operations Control Room Widget Realizations"
+              },
+              "loc": {
+                "end": {
+                  "column": 4,
+                  "line": 139,
+                  "offset": 4020
+                },
+                "file": "topo/design/operations-realization-sets.tg",
+                "start": {
+                  "column": 3,
+                  "line": 125,
+                  "offset": 3606
+                }
+              },
+              "localeContexts": [
+                "default_locale"
+              ],
+              "platform": "web",
+              "roleContexts": [
+                "dispatcher"
+              ],
+              "stateCoverage": [
+                "loading",
+                "empty",
+                "error"
+              ],
+              "status": "rendered",
+              "themeContexts": [
+                "light",
+                "dark"
+              ],
+              "type": "design_realization_behavior_support",
+              "viewport": "wide",
+              "widget": {
+                "id": "widget_card_list",
+                "kind": "widget",
+                "target": {
+                  "id": "widget_card_list",
+                  "kind": "widget"
+                }
+              }
+            },
+            {
+              "behavior": "filtering",
+              "density": "comfortable",
+              "designRealizationSet": {
+                "id": "realization_set_operations_control_room_widgets",
+                "name": "Operations Control Room Widget Realizations"
+              },
+              "loc": {
+                "end": {
+                  "column": 4,
+                  "line": 139,
+                  "offset": 4020
+                },
+                "file": "topo/design/operations-realization-sets.tg",
+                "start": {
+                  "column": 3,
+                  "line": 125,
+                  "offset": 3606
+                }
+              },
+              "localeContexts": [
+                "default_locale"
+              ],
+              "platform": "web",
+              "roleContexts": [
+                "dispatcher"
+              ],
+              "stateCoverage": [
+                "loading",
+                "empty",
+                "error"
+              ],
+              "status": "rendered",
+              "themeContexts": [
+                "light",
+                "dark"
+              ],
+              "type": "design_realization_behavior_support",
+              "viewport": "wide",
+              "widget": {
+                "id": "widget_card_list",
+                "kind": "widget",
+                "target": {
+                  "id": "widget_card_list",
+                  "kind": "widget"
+                }
+              }
+            },
+            {
+              "behavior": "selection",
+              "density": "comfortable",
+              "designRealizationSet": {
+                "id": "realization_set_operations_control_room_widgets",
+                "name": "Operations Control Room Widget Realizations"
+              },
+              "loc": {
+                "end": {
+                  "column": 4,
+                  "line": 157,
+                  "offset": 4554
+                },
+                "file": "topo/design/operations-realization-sets.tg",
+                "start": {
+                  "column": 3,
+                  "line": 141,
+                  "offset": 4024
+                }
+              },
+              "localeContexts": [
+                "default_locale"
+              ],
+              "platform": "web",
+              "roleContexts": [
+                "dispatcher"
+              ],
+              "stateCoverage": [
+                "loading",
+                "empty"
+              ],
+              "status": "rendered",
+              "themeContexts": [
+                "light",
+                "dark"
+              ],
+              "type": "design_realization_behavior_support",
+              "viewport": "narrow",
+              "widget": {
+                "id": "widget_card_list",
+                "kind": "widget",
+                "target": {
+                  "id": "widget_card_list",
+                  "kind": "widget"
+                }
+              }
+            },
+            {
+              "behavior": "filtering",
+              "density": "comfortable",
+              "designRealizationSet": {
+                "id": "realization_set_operations_control_room_widgets",
+                "name": "Operations Control Room Widget Realizations"
+              },
+              "loc": {
+                "end": {
+                  "column": 4,
+                  "line": 157,
+                  "offset": 4554
+                },
+                "file": "topo/design/operations-realization-sets.tg",
+                "start": {
+                  "column": 3,
+                  "line": 141,
+                  "offset": 4024
+                }
+              },
+              "localeContexts": [
+                "default_locale"
+              ],
+              "platform": "web",
+              "roleContexts": [
+                "dispatcher"
+              ],
+              "stateCoverage": [
+                "loading",
+                "empty"
+              ],
+              "status": "contract_only",
+              "themeContexts": [
+                "light",
+                "dark"
+              ],
+              "type": "design_realization_behavior_support",
+              "viewport": "narrow",
+              "widget": {
+                "id": "widget_card_list",
+                "kind": "widget",
+                "target": {
+                  "id": "widget_card_list",
+                  "kind": "widget"
+                }
+              }
+            },
+            {
+              "behavior": "selection",
+              "density": "comfortable",
+              "designRealizationSet": {
+                "id": "realization_set_operations_control_room_widgets",
+                "name": "Operations Control Room Widget Realizations"
+              },
+              "loc": {
+                "end": {
+                  "column": 4,
+                  "line": 174,
+                  "offset": 5005
+                },
+                "file": "topo/design/operations-realization-sets.tg",
+                "start": {
+                  "column": 3,
+                  "line": 159,
+                  "offset": 4558
+                }
+              },
+              "localeContexts": [
+                "default_locale"
+              ],
+              "platform": "ios",
+              "roleContexts": [
+                "dispatcher"
+              ],
+              "stateCoverage": [
+                "loading",
+                "empty",
+                "error"
+              ],
+              "status": "rendered",
+              "themeContexts": [
+                "system"
+              ],
+              "type": "design_realization_behavior_support",
+              "viewport": "any",
+              "widget": {
+                "id": "widget_card_list",
+                "kind": "widget",
+                "target": {
+                  "id": "widget_card_list",
+                  "kind": "widget"
+                }
+              }
+            },
+            {
+              "behavior": "filtering",
+              "density": "comfortable",
+              "designRealizationSet": {
+                "id": "realization_set_operations_control_room_widgets",
+                "name": "Operations Control Room Widget Realizations"
+              },
+              "loc": {
+                "end": {
+                  "column": 4,
+                  "line": 174,
+                  "offset": 5005
+                },
+                "file": "topo/design/operations-realization-sets.tg",
+                "start": {
+                  "column": 3,
+                  "line": 159,
+                  "offset": 4558
+                }
+              },
+              "localeContexts": [
+                "default_locale"
+              ],
+              "platform": "ios",
+              "roleContexts": [
+                "dispatcher"
+              ],
+              "stateCoverage": [
+                "loading",
+                "empty",
+                "error"
+              ],
+              "status": "implementation_owned",
+              "themeContexts": [
+                "system"
+              ],
+              "type": "design_realization_behavior_support",
+              "viewport": "any",
+              "widget": {
+                "id": "widget_card_list",
+                "kind": "widget",
+                "target": {
+                  "id": "widget_card_list",
+                  "kind": "widget"
+                }
+              }
+            },
+            {
+              "behavior": "selection",
+              "density": "comfortable",
+              "designRealizationSet": {
+                "id": "realization_set_operations_control_room_widgets",
+                "name": "Operations Control Room Widget Realizations"
+              },
+              "loc": {
+                "end": {
+                  "column": 4,
+                  "line": 192,
+                  "offset": 5533
+                },
+                "file": "topo/design/operations-realization-sets.tg",
+                "start": {
+                  "column": 3,
+                  "line": 176,
+                  "offset": 5009
+                }
+              },
+              "localeContexts": [
+                "default_locale"
+              ],
+              "platform": "android",
+              "roleContexts": [
+                "dispatcher"
+              ],
+              "stateCoverage": [
+                "loading",
+                "empty"
+              ],
+              "status": "rendered",
+              "themeContexts": [
+                "system"
+              ],
+              "type": "design_realization_behavior_support",
+              "viewport": "any",
+              "widget": {
+                "id": "widget_card_list",
+                "kind": "widget",
+                "target": {
+                  "id": "widget_card_list",
+                  "kind": "widget"
+                }
+              }
+            },
+            {
+              "behavior": "filtering",
+              "density": "comfortable",
+              "designRealizationSet": {
+                "id": "realization_set_operations_control_room_widgets",
+                "name": "Operations Control Room Widget Realizations"
+              },
+              "loc": {
+                "end": {
+                  "column": 4,
+                  "line": 192,
+                  "offset": 5533
+                },
+                "file": "topo/design/operations-realization-sets.tg",
+                "start": {
+                  "column": 3,
+                  "line": 176,
+                  "offset": 5009
+                }
+              },
+              "localeContexts": [
+                "default_locale"
+              ],
+              "platform": "android",
+              "roleContexts": [
+                "dispatcher"
+              ],
+              "stateCoverage": [
+                "loading",
+                "empty"
+              ],
+              "status": "unsupported",
+              "themeContexts": [
+                "system"
+              ],
+              "type": "design_realization_behavior_support",
+              "viewport": "any",
+              "widget": {
+                "id": "widget_card_list",
+                "kind": "widget",
+                "target": {
+                  "id": "widget_card_list",
+                  "kind": "widget"
+                }
+              }
+            }
+          ],
+          "components": [
+            {
+              "density": "comfortable",
+              "designRealizationSet": {
+                "id": "realization_set_operations_control_room_widgets",
+                "name": "Operations Control Room Widget Realizations"
+              },
+              "id": "card_list_web_wide",
+              "loc": {
+                "end": {
+                  "column": 4,
+                  "line": 139,
+                  "offset": 4020
+                },
+                "file": "topo/design/operations-realization-sets.tg",
+                "start": {
+                  "column": 3,
+                  "line": 125,
+                  "offset": 3606
+                }
+              },
+              "localeContexts": [
+                "default_locale"
+              ],
+              "pattern": "resource_cards",
+              "platform": "web",
+              "realizes": {
+                "id": "widget_card_list",
+                "kind": "widget",
+                "target": {
+                  "id": "widget_card_list",
+                  "kind": "widget"
+                }
+              },
+              "ref": "ops.queue.priorityCards",
+              "reviewNotes": null,
+              "roleContexts": [
+                "dispatcher"
+              ],
+              "stateCoverage": [
+                "loading",
+                "empty",
+                "error"
+              ],
+              "status": "rendered",
+              "themeContexts": [
+                "light",
+                "dark"
+              ],
+              "type": "design_realization_component",
+              "viewport": "wide"
+            },
+            {
+              "density": "comfortable",
+              "designRealizationSet": {
+                "id": "realization_set_operations_control_room_widgets",
+                "name": "Operations Control Room Widget Realizations"
+              },
+              "id": "card_list_web_narrow",
+              "loc": {
+                "end": {
+                  "column": 4,
+                  "line": 157,
+                  "offset": 4554
+                },
+                "file": "topo/design/operations-realization-sets.tg",
+                "start": {
+                  "column": 3,
+                  "line": 141,
+                  "offset": 4024
+                }
+              },
+              "localeContexts": [
+                "default_locale"
+              ],
+              "pattern": "resource_cards",
+              "platform": "web",
+              "realizes": {
+                "id": "widget_card_list",
+                "kind": "widget",
+                "target": {
+                  "id": "widget_card_list",
+                  "kind": "widget"
+                }
+              },
+              "ref": "ops.queue.mobileCards",
+              "reviewNotes": "Narrow queue cards carry the contract but need error-state proof.",
+              "roleContexts": [
+                "dispatcher"
+              ],
+              "stateCoverage": [
+                "loading",
+                "empty"
+              ],
+              "status": "contract_only",
+              "themeContexts": [
+                "light",
+                "dark"
+              ],
+              "type": "design_realization_component",
+              "viewport": "narrow"
+            },
+            {
+              "density": "comfortable",
+              "designRealizationSet": {
+                "id": "realization_set_operations_control_room_widgets",
+                "name": "Operations Control Room Widget Realizations"
+              },
+              "id": "card_list_ios",
+              "loc": {
+                "end": {
+                  "column": 4,
+                  "line": 174,
+                  "offset": 5005
+                },
+                "file": "topo/design/operations-realization-sets.tg",
+                "start": {
+                  "column": 3,
+                  "line": 159,
+                  "offset": 4558
+                }
+              },
+              "localeContexts": [
+                "default_locale"
+              ],
+              "pattern": "resource_cards",
+              "platform": "ios",
+              "realizes": {
+                "id": "widget_card_list",
+                "kind": "widget",
+                "target": {
+                  "id": "widget_card_list",
+                  "kind": "widget"
+                }
+              },
+              "ref": "ops.ios.queueList",
+              "reviewNotes": null,
+              "roleContexts": [
+                "dispatcher"
+              ],
+              "stateCoverage": [
+                "loading",
+                "empty",
+                "error"
+              ],
+              "status": "implementation_owned",
+              "themeContexts": [
+                "system"
+              ],
+              "type": "design_realization_component",
+              "viewport": "any"
+            },
+            {
+              "density": "comfortable",
+              "designRealizationSet": {
+                "id": "realization_set_operations_control_room_widgets",
+                "name": "Operations Control Room Widget Realizations"
+              },
+              "id": "card_list_android",
+              "loc": {
+                "end": {
+                  "column": 4,
+                  "line": 192,
+                  "offset": 5533
+                },
+                "file": "topo/design/operations-realization-sets.tg",
+                "start": {
+                  "column": 3,
+                  "line": 176,
+                  "offset": 5009
+                }
+              },
+              "localeContexts": [
+                "default_locale"
+              ],
+              "pattern": "resource_cards",
+              "platform": "android",
+              "realizes": {
+                "id": "widget_card_list",
+                "kind": "widget",
+                "target": {
+                  "id": "widget_card_list",
+                  "kind": "widget"
+                }
+              },
+              "ref": "ops.android.queueCards",
+              "reviewNotes": "Android queue filtering is intentionally unsupported for this proof.",
+              "roleContexts": [
+                "dispatcher"
+              ],
+              "stateCoverage": [
+                "loading",
+                "empty"
+              ],
+              "status": "unsupported",
+              "themeContexts": [
+                "system"
+              ],
+              "type": "design_realization_component",
+              "viewport": "any"
+            }
+          ],
+          "id": "design_operations_product_ui",
+          "library": "operations_product_ui",
+          "name": "Operations Product UI",
+          "packageName": "@operations/product-ui",
+          "platforms": [
+            "web",
+            "ios",
+            "android"
+          ],
+          "realizationSets": [
+            {
+              "id": "realization_set_operations_control_room_widgets",
+              "name": "Operations Control Room Widget Realizations",
+              "status": "active",
+              "widgetRealizations": [
+                {
+                  "behaviorsContractOnly": [],
+                  "behaviorsImplementationOwned": [],
+                  "behaviorsRendered": [
+                    "selection",
+                    "filtering"
+                  ],
+                  "behaviorsUnsupported": [],
+                  "componentRef": "ops.queue.priorityCards",
+                  "density": "comfortable",
+                  "id": "card_list_web_wide",
+                  "loc": {
+                    "end": {
+                      "column": 4,
+                      "line": 139,
+                      "offset": 4020
+                    },
+                    "file": "topo/design/operations-realization-sets.tg",
+                    "start": {
+                      "column": 3,
+                      "line": 125,
+                      "offset": 3606
+                    }
+                  },
+                  "localeContexts": [
+                    "default_locale"
+                  ],
+                  "pattern": "resource_cards",
+                  "platform": "web",
+                  "reviewNotes": null,
+                  "roleContexts": [
+                    "dispatcher"
+                  ],
+                  "stateCoverage": [
+                    "loading",
+                    "empty",
+                    "error"
+                  ],
+                  "status": "rendered",
+                  "themeContexts": [
+                    "light",
+                    "dark"
+                  ],
+                  "type": "widget_realization",
+                  "viewport": "wide",
+                  "widget": {
+                    "id": "widget_card_list",
+                    "kind": "widget",
+                    "target": {
+                      "id": "widget_card_list",
+                      "kind": "widget"
+                    }
+                  }
+                },
+                {
+                  "behaviorsContractOnly": [
+                    "filtering"
+                  ],
+                  "behaviorsImplementationOwned": [],
+                  "behaviorsRendered": [
+                    "selection"
+                  ],
+                  "behaviorsUnsupported": [],
+                  "componentRef": "ops.queue.mobileCards",
+                  "density": "comfortable",
+                  "id": "card_list_web_narrow",
+                  "loc": {
+                    "end": {
+                      "column": 4,
+                      "line": 157,
+                      "offset": 4554
+                    },
+                    "file": "topo/design/operations-realization-sets.tg",
+                    "start": {
+                      "column": 3,
+                      "line": 141,
+                      "offset": 4024
+                    }
+                  },
+                  "localeContexts": [
+                    "default_locale"
+                  ],
+                  "pattern": "resource_cards",
+                  "platform": "web",
+                  "reviewNotes": "Narrow queue cards carry the contract but need error-state proof.",
+                  "roleContexts": [
+                    "dispatcher"
+                  ],
+                  "stateCoverage": [
+                    "loading",
+                    "empty"
+                  ],
+                  "status": "contract_only",
+                  "themeContexts": [
+                    "light",
+                    "dark"
+                  ],
+                  "type": "widget_realization",
+                  "viewport": "narrow",
+                  "widget": {
+                    "id": "widget_card_list",
+                    "kind": "widget",
+                    "target": {
+                      "id": "widget_card_list",
+                      "kind": "widget"
+                    }
+                  }
+                },
+                {
+                  "behaviorsContractOnly": [],
+                  "behaviorsImplementationOwned": [
+                    "filtering"
+                  ],
+                  "behaviorsRendered": [
+                    "selection"
+                  ],
+                  "behaviorsUnsupported": [],
+                  "componentRef": "ops.ios.queueList",
+                  "density": "comfortable",
+                  "id": "card_list_ios",
+                  "loc": {
+                    "end": {
+                      "column": 4,
+                      "line": 174,
+                      "offset": 5005
+                    },
+                    "file": "topo/design/operations-realization-sets.tg",
+                    "start": {
+                      "column": 3,
+                      "line": 159,
+                      "offset": 4558
+                    }
+                  },
+                  "localeContexts": [
+                    "default_locale"
+                  ],
+                  "pattern": "resource_cards",
+                  "platform": "ios",
+                  "reviewNotes": null,
+                  "roleContexts": [
+                    "dispatcher"
+                  ],
+                  "stateCoverage": [
+                    "loading",
+                    "empty",
+                    "error"
+                  ],
+                  "status": "implementation_owned",
+                  "themeContexts": [
+                    "system"
+                  ],
+                  "type": "widget_realization",
+                  "viewport": "any",
+                  "widget": {
+                    "id": "widget_card_list",
+                    "kind": "widget",
+                    "target": {
+                      "id": "widget_card_list",
+                      "kind": "widget"
+                    }
+                  }
+                },
+                {
+                  "behaviorsContractOnly": [],
+                  "behaviorsImplementationOwned": [],
+                  "behaviorsRendered": [
+                    "selection"
+                  ],
+                  "behaviorsUnsupported": [
+                    "filtering"
+                  ],
+                  "componentRef": "ops.android.queueCards",
+                  "density": "comfortable",
+                  "id": "card_list_android",
+                  "loc": {
+                    "end": {
+                      "column": 4,
+                      "line": 192,
+                      "offset": 5533
+                    },
+                    "file": "topo/design/operations-realization-sets.tg",
+                    "start": {
+                      "column": 3,
+                      "line": 176,
+                      "offset": 5009
+                    }
+                  },
+                  "localeContexts": [
+                    "default_locale"
+                  ],
+                  "pattern": "resource_cards",
+                  "platform": "android",
+                  "reviewNotes": "Android queue filtering is intentionally unsupported for this proof.",
+                  "roleContexts": [
+                    "dispatcher"
+                  ],
+                  "stateCoverage": [
+                    "loading",
+                    "empty"
+                  ],
+                  "status": "unsupported",
+                  "themeContexts": [
+                    "system"
+                  ],
+                  "type": "widget_realization",
+                  "viewport": "any",
+                  "widget": {
+                    "id": "widget_card_list",
+                    "kind": "widget",
+                    "target": {
+                      "id": "widget_card_list",
+                      "kind": "widget"
+                    }
+                  }
+                }
+              ]
+            }
+          ],
+          "status": "active",
+          "surfaces": [
+            "proj_operations_web_surface"
+          ],
+          "tokenMappings": [
+            {
+              "loc": {
+                "end": {
+                  "column": 55,
+                  "line": 12,
+                  "offset": 529
+                },
+                "file": "topo/design/operations-design-contract.tg",
+                "start": {
+                  "column": 5,
+                  "line": 12,
+                  "offset": 479
+                }
+              },
+              "platform": null,
+              "raw": [
+                "color_role",
+                "primary",
+                "token",
+                "ops.color.brand.primary"
+              ],
+              "role": "primary",
+              "roleKind": "color_role",
+              "token": "ops.color.brand.primary",
+              "type": "design_contract_token_mapping"
+            },
+            {
+              "loc": {
+                "end": {
+                  "column": 57,
+                  "line": 13,
+                  "offset": 586
+                },
+                "file": "topo/design/operations-design-contract.tg",
+                "start": {
+                  "column": 5,
+                  "line": 13,
+                  "offset": 534
+                }
+              },
+              "platform": null,
+              "raw": [
+                "color_role",
+                "surface",
+                "token",
+                "ops.color.surface.default"
+              ],
+              "role": "surface",
+              "roleKind": "color_role",
+              "token": "ops.color.surface.default",
+              "type": "design_contract_token_mapping"
+            },
+            {
+              "loc": {
+                "end": {
+                  "column": 51,
+                  "line": 14,
+                  "offset": 637
+                },
+                "file": "topo/design/operations-design-contract.tg",
+                "start": {
+                  "column": 5,
+                  "line": 14,
+                  "offset": 591
+                }
+              },
+              "platform": null,
+              "raw": [
+                "color_role",
+                "text",
+                "token",
+                "ops.color.text.default"
+              ],
+              "role": "text",
+              "roleKind": "color_role",
+              "token": "ops.color.text.default",
+              "type": "design_contract_token_mapping"
+            },
+            {
+              "loc": {
+                "end": {
+                  "column": 50,
+                  "line": 15,
+                  "offset": 687
+                },
+                "file": "topo/design/operations-design-contract.tg",
+                "start": {
+                  "column": 5,
+                  "line": 15,
+                  "offset": 642
+                }
+              },
+              "platform": null,
+              "raw": [
+                "color_role",
+                "muted",
+                "token",
+                "ops.color.text.muted"
+              ],
+              "role": "muted",
+              "roleKind": "color_role",
+              "token": "ops.color.text.muted",
+              "type": "design_contract_token_mapping"
+            },
+            {
+              "loc": {
+                "end": {
+                  "column": 54,
+                  "line": 16,
+                  "offset": 741
+                },
+                "file": "topo/design/operations-design-contract.tg",
+                "start": {
+                  "column": 5,
+                  "line": 16,
+                  "offset": 692
+                }
+              },
+              "platform": null,
+              "raw": [
+                "color_role",
+                "danger",
+                "token",
+                "ops.color.status.danger"
+              ],
+              "role": "danger",
+              "roleKind": "color_role",
+              "token": "ops.color.status.danger",
+              "type": "design_contract_token_mapping"
+            },
+            {
+              "loc": {
+                "end": {
+                  "column": 56,
+                  "line": 17,
+                  "offset": 797
+                },
+                "file": "topo/design/operations-design-contract.tg",
+                "start": {
+                  "column": 5,
+                  "line": 17,
+                  "offset": 746
+                }
+              },
+              "platform": null,
+              "raw": [
+                "color_role",
+                "success",
+                "token",
+                "ops.color.status.success"
+              ],
+              "role": "success",
+              "roleKind": "color_role",
+              "token": "ops.color.status.success",
+              "type": "design_contract_token_mapping"
+            },
+            {
+              "loc": {
+                "end": {
+                  "column": 56,
+                  "line": 18,
+                  "offset": 853
+                },
+                "file": "topo/design/operations-design-contract.tg",
+                "start": {
+                  "column": 5,
+                  "line": 18,
+                  "offset": 802
+                }
+              },
+              "platform": null,
+              "raw": [
+                "color_role",
+                "warning",
+                "token",
+                "ops.color.status.warning"
+              ],
+              "role": "warning",
+              "roleKind": "color_role",
+              "token": "ops.color.status.warning",
+              "type": "design_contract_token_mapping"
+            },
+            {
+              "loc": {
+                "end": {
+                  "column": 50,
+                  "line": 19,
+                  "offset": 903
+                },
+                "file": "topo/design/operations-design-contract.tg",
+                "start": {
+                  "column": 5,
+                  "line": 19,
+                  "offset": 858
+                }
+              },
+              "platform": null,
+              "raw": [
+                "color_role",
+                "info",
+                "token",
+                "ops.color.status.info"
+              ],
+              "role": "info",
+              "roleKind": "color_role",
+              "token": "ops.color.status.info",
+              "type": "design_contract_token_mapping"
+            },
+            {
+              "loc": {
+                "end": {
+                  "column": 53,
+                  "line": 20,
+                  "offset": 956
+                },
+                "file": "topo/design/operations-design-contract.tg",
+                "start": {
+                  "column": 5,
+                  "line": 20,
+                  "offset": 908
+                }
+              },
+              "platform": null,
+              "raw": [
+                "typography_role",
+                "heading",
+                "token",
+                "ops.type.heading"
+              ],
+              "role": "heading",
+              "roleKind": "typography_role",
+              "token": "ops.type.heading",
+              "type": "design_contract_token_mapping"
+            },
+            {
+              "loc": {
+                "end": {
+                  "column": 47,
+                  "line": 21,
+                  "offset": 1003
+                },
+                "file": "topo/design/operations-design-contract.tg",
+                "start": {
+                  "column": 5,
+                  "line": 21,
+                  "offset": 961
+                }
+              },
+              "platform": null,
+              "raw": [
+                "typography_role",
+                "body",
+                "token",
+                "ops.type.body"
+              ],
+              "role": "body",
+              "roleKind": "typography_role",
+              "token": "ops.type.body",
+              "type": "design_contract_token_mapping"
+            },
+            {
+              "loc": {
+                "end": {
+                  "column": 49,
+                  "line": 22,
+                  "offset": 1052
+                },
+                "file": "topo/design/operations-design-contract.tg",
+                "start": {
+                  "column": 5,
+                  "line": 22,
+                  "offset": 1008
+                }
+              },
+              "platform": null,
+              "raw": [
+                "typography_role",
+                "label",
+                "token",
+                "ops.type.label"
+              ],
+              "role": "label",
+              "roleKind": "typography_role",
+              "token": "ops.type.label",
+              "type": "design_contract_token_mapping"
+            },
+            {
+              "loc": {
+                "end": {
+                  "column": 53,
+                  "line": 23,
+                  "offset": 1105
+                },
+                "file": "topo/design/operations-design-contract.tg",
+                "start": {
+                  "column": 5,
+                  "line": 23,
+                  "offset": 1057
+                }
+              },
+              "platform": null,
+              "raw": [
+                "typography_role",
+                "numeric",
+                "token",
+                "ops.type.numeric"
+              ],
+              "role": "numeric",
+              "roleKind": "typography_role",
+              "token": "ops.type.numeric",
+              "type": "design_contract_token_mapping"
+            },
+            {
+              "loc": {
+                "end": {
+                  "column": 51,
+                  "line": 24,
+                  "offset": 1156
+                },
+                "file": "topo/design/operations-design-contract.tg",
+                "start": {
+                  "column": 5,
+                  "line": 24,
+                  "offset": 1110
+                }
+              },
+              "platform": null,
+              "raw": [
+                "action_role",
+                "primary",
+                "token",
+                "ops.action.primary"
+              ],
+              "role": "primary",
+              "roleKind": "action_role",
+              "token": "ops.action.primary",
+              "type": "design_contract_token_mapping"
+            },
+            {
+              "loc": {
+                "end": {
+                  "column": 55,
+                  "line": 25,
+                  "offset": 1211
+                },
+                "file": "topo/design/operations-design-contract.tg",
+                "start": {
+                  "column": 5,
+                  "line": 25,
+                  "offset": 1161
+                }
+              },
+              "platform": null,
+              "raw": [
+                "action_role",
+                "secondary",
+                "token",
+                "ops.action.secondary"
+              ],
+              "role": "secondary",
+              "roleKind": "action_role",
+              "token": "ops.action.secondary",
+              "type": "design_contract_token_mapping"
+            },
+            {
+              "loc": {
+                "end": {
+                  "column": 59,
+                  "line": 26,
+                  "offset": 1270
+                },
+                "file": "topo/design/operations-design-contract.tg",
+                "start": {
+                  "column": 5,
+                  "line": 26,
+                  "offset": 1216
+                }
+              },
+              "platform": null,
+              "raw": [
+                "action_role",
+                "destructive",
+                "token",
+                "ops.action.destructive"
+              ],
+              "role": "destructive",
+              "roleKind": "action_role",
+              "token": "ops.action.destructive",
+              "type": "design_contract_token_mapping"
+            },
+            {
+              "loc": {
+                "end": {
+                  "column": 45,
+                  "line": 27,
+                  "offset": 1315
+                },
+                "file": "topo/design/operations-design-contract.tg",
+                "start": {
+                  "column": 5,
+                  "line": 27,
+                  "offset": 1275
+                }
+              },
+              "platform": null,
+              "raw": [
+                "action_role",
+                "bulk",
+                "token",
+                "ops.action.bulk"
+              ],
+              "role": "bulk",
+              "roleKind": "action_role",
+              "token": "ops.action.bulk",
+              "type": "design_contract_token_mapping"
+            },
+            {
+              "loc": {
+                "end": {
+                  "column": 56,
+                  "line": 28,
+                  "offset": 1371
+                },
+                "file": "topo/design/operations-design-contract.tg",
+                "start": {
+                  "column": 5,
+                  "line": 28,
+                  "offset": 1320
+                }
+              },
+              "platform": null,
+              "raw": [
+                "accessibility",
+                "contrast",
+                "token",
+                "ops.a11y.contrast.aa"
+              ],
+              "role": "contrast",
+              "roleKind": "accessibility",
+              "token": "ops.a11y.contrast.aa",
+              "type": "design_contract_token_mapping"
+            },
+            {
+              "loc": {
+                "end": {
+                  "column": 55,
+                  "line": 29,
+                  "offset": 1426
+                },
+                "file": "topo/design/operations-design-contract.tg",
+                "start": {
+                  "column": 5,
+                  "line": 29,
+                  "offset": 1376
+                }
+              },
+              "platform": null,
+              "raw": [
+                "accessibility",
+                "focus",
+                "token",
+                "ops.a11y.focus.visible"
+              ],
+              "role": "focus",
+              "roleKind": "accessibility",
+              "token": "ops.a11y.focus.visible",
+              "type": "design_contract_token_mapping"
+            },
+            {
+              "loc": {
+                "end": {
+                  "column": 70,
+                  "line": 30,
+                  "offset": 1496
+                },
+                "file": "topo/design/operations-design-contract.tg",
+                "start": {
+                  "column": 5,
+                  "line": 30,
+                  "offset": 1431
+                }
+              },
+              "platform": null,
+              "raw": [
+                "accessibility",
+                "min_touch_target",
+                "token",
+                "ops.a11y.touch.comfortable"
+              ],
+              "role": "min_touch_target",
+              "roleKind": "accessibility",
+              "token": "ops.a11y.touch.comfortable",
+              "type": "design_contract_token_mapping"
+            }
+          ]
+        }
+      ],
+      "diagnostics": [],
+      "proofCommands": [
+        "topogram query slice ./topo --widget widget_card_list --json"
+      ],
+      "scope": {
+        "projectionId": null,
+        "screenId": null,
+        "widgetId": "widget_card_list"
+      },
+      "source": "design_contract records own design-system scope and token mappings; design_realization_set records map semantic widgets to platform component refs and behavior support.",
+      "status": "mapped"
+    },
+    "designReview": {
+      "diagnostics": [
+        "Behavior 'filtering' is 'unsupported'.",
+        "Widget 'widget_card_list' has no authored accessibility obligation.",
+        "Widget 'widget_card_list' has no authored message key.",
+        "Realization 'card_list_android' does not declare 'error' state coverage.",
+        "Realization 'card_list_android' is 'unsupported'.",
+        "Widget 'widget_card_list' has no authored accessibility obligation.",
+        "Widget 'widget_card_list' has no authored message key.",
+        "Behavior 'filtering' is 'contract_only'.",
+        "Widget 'widget_card_list' has no authored accessibility obligation.",
+        "Widget 'widget_card_list' has no authored accessibility obligation.",
+        "Widget 'widget_card_list' has no authored message key.",
+        "Widget 'widget_card_list' has no authored message key.",
+        "Realization 'card_list_web_narrow' does not declare 'error' state coverage.",
+        "Realization 'card_list_web_narrow' is 'contract_only'."
+      ],
+      "gaps": {
+        "behavior_review_items": 4,
+        "missing_accessibility": 4,
+        "missing_i18n": 4,
+        "missing_platforms": 0,
+        "missing_states": 2,
+        "missing_token_mappings": 0
+      },
+      "matrix": {
+        "review_rows": [
+          {
+            "code": "design_behavior_review_required",
+            "component_ref": "ops.android.queueCards",
+            "message": "Behavior 'filtering' is 'unsupported'.",
+            "platform": "android",
+            "status": "unsupported",
+            "viewport": "any",
+            "widget": "widget_card_list"
+          },
+          {
+            "code": "design_missing_accessibility",
+            "component_ref": "ops.android.queueCards",
+            "message": "Widget 'widget_card_list' has no authored accessibility obligation.",
+            "platform": "android",
+            "status": "missing_accessibility",
+            "viewport": "any",
+            "widget": "widget_card_list"
+          },
+          {
+            "code": "design_missing_i18n",
+            "component_ref": "ops.android.queueCards",
+            "message": "Widget 'widget_card_list' has no authored message key.",
+            "platform": "android",
+            "status": "missing_i18n",
+            "viewport": "any",
+            "widget": "widget_card_list"
+          },
+          {
+            "code": "design_missing_state",
+            "component_ref": "ops.android.queueCards",
+            "message": "Realization 'card_list_android' does not declare 'error' state coverage.",
+            "platform": "android",
+            "status": "missing_state",
+            "viewport": "any",
+            "widget": "widget_card_list"
+          },
+          {
+            "code": "design_realization_status_review",
+            "component_ref": "ops.android.queueCards",
+            "message": "Realization 'card_list_android' is 'unsupported'.",
+            "platform": "android",
+            "status": "unsupported",
+            "viewport": "any",
+            "widget": "widget_card_list"
+          },
+          {
+            "code": "design_missing_accessibility",
+            "component_ref": "ops.ios.queueList",
+            "message": "Widget 'widget_card_list' has no authored accessibility obligation.",
+            "platform": "ios",
+            "status": "missing_accessibility",
+            "viewport": "any",
+            "widget": "widget_card_list"
+          },
+          {
+            "code": "design_missing_i18n",
+            "component_ref": "ops.ios.queueList",
+            "message": "Widget 'widget_card_list' has no authored message key.",
+            "platform": "ios",
+            "status": "missing_i18n",
+            "viewport": "any",
+            "widget": "widget_card_list"
+          },
+          {
+            "code": "design_behavior_review_required",
+            "component_ref": "ops.queue.mobileCards",
+            "message": "Behavior 'filtering' is 'contract_only'.",
+            "platform": "web",
+            "status": "contract_only",
+            "viewport": "narrow",
+            "widget": "widget_card_list"
+          },
+          {
+            "code": "design_missing_accessibility",
+            "component_ref": "ops.queue.mobileCards",
+            "message": "Widget 'widget_card_list' has no authored accessibility obligation.",
+            "platform": "web",
+            "status": "missing_accessibility",
+            "viewport": "narrow",
+            "widget": "widget_card_list"
+          },
+          {
+            "code": "design_missing_accessibility",
+            "component_ref": "ops.queue.priorityCards",
+            "message": "Widget 'widget_card_list' has no authored accessibility obligation.",
+            "platform": "web",
+            "status": "missing_accessibility",
+            "viewport": "wide",
+            "widget": "widget_card_list"
+          },
+          {
+            "code": "design_missing_i18n",
+            "component_ref": "ops.queue.mobileCards",
+            "message": "Widget 'widget_card_list' has no authored message key.",
+            "platform": "web",
+            "status": "missing_i18n",
+            "viewport": "narrow",
+            "widget": "widget_card_list"
+          },
+          {
+            "code": "design_missing_i18n",
+            "component_ref": "ops.queue.priorityCards",
+            "message": "Widget 'widget_card_list' has no authored message key.",
+            "platform": "web",
+            "status": "missing_i18n",
+            "viewport": "wide",
+            "widget": "widget_card_list"
+          },
+          {
+            "code": "design_missing_state",
+            "component_ref": "ops.queue.mobileCards",
+            "message": "Realization 'card_list_web_narrow' does not declare 'error' state coverage.",
+            "platform": "web",
+            "status": "missing_state",
+            "viewport": "narrow",
+            "widget": "widget_card_list"
+          },
+          {
+            "code": "design_realization_status_review",
+            "component_ref": "ops.queue.mobileCards",
+            "message": "Realization 'card_list_web_narrow' is 'contract_only'.",
+            "platform": "web",
+            "status": "contract_only",
+            "viewport": "narrow",
+            "widget": "widget_card_list"
+          }
+        ],
+        "rows": [
+          {
+            "accessibility_status": "missing",
+            "behavior_statuses": [
+              {
+                "behavior": "filtering",
+                "status": "unsupported"
+              },
+              {
+                "behavior": "selection",
+                "status": "rendered"
+              }
+            ],
+            "component_ref": "ops.android.queueCards",
+            "density": "comfortable",
+            "i18n_status": "missing",
+            "missing_states": [
+              "error"
+            ],
+            "pattern": "resource_cards",
+            "platform": "android",
+            "review_status": "review_required",
+            "state_coverage": [
+              "loading",
+              "empty"
+            ],
+            "status": "unsupported",
+            "token_status": "mapped",
+            "viewport": "any",
+            "widget": "widget_card_list"
+          },
+          {
+            "accessibility_status": "missing",
+            "behavior_statuses": [
+              {
+                "behavior": "filtering",
+                "status": "implementation_owned"
+              },
+              {
+                "behavior": "selection",
+                "status": "rendered"
+              }
+            ],
+            "component_ref": "ops.ios.queueList",
+            "density": "comfortable",
+            "i18n_status": "missing",
+            "missing_states": [],
+            "pattern": "resource_cards",
+            "platform": "ios",
+            "review_status": "review_required",
+            "state_coverage": [
+              "loading",
+              "empty",
+              "error"
+            ],
+            "status": "implementation_owned",
+            "token_status": "mapped",
+            "viewport": "any",
+            "widget": "widget_card_list"
+          },
+          {
+            "accessibility_status": "missing",
+            "behavior_statuses": [
+              {
+                "behavior": "filtering",
+                "status": "contract_only"
+              },
+              {
+                "behavior": "selection",
+                "status": "rendered"
+              }
+            ],
+            "component_ref": "ops.queue.mobileCards",
+            "density": "comfortable",
+            "i18n_status": "missing",
+            "missing_states": [
+              "error"
+            ],
+            "pattern": "resource_cards",
+            "platform": "web",
+            "review_status": "review_required",
+            "state_coverage": [
+              "loading",
+              "empty"
+            ],
+            "status": "contract_only",
+            "token_status": "mapped",
+            "viewport": "narrow",
+            "widget": "widget_card_list"
+          },
+          {
+            "accessibility_status": "missing",
+            "behavior_statuses": [
+              {
+                "behavior": "filtering",
+                "status": "rendered"
+              },
+              {
+                "behavior": "selection",
+                "status": "rendered"
+              }
+            ],
+            "component_ref": "ops.queue.priorityCards",
+            "density": "comfortable",
+            "i18n_status": "missing",
+            "missing_states": [],
+            "pattern": "resource_cards",
+            "platform": "web",
+            "review_status": "review_required",
+            "state_coverage": [
+              "loading",
+              "empty",
+              "error"
+            ],
+            "status": "rendered",
+            "token_status": "mapped",
+            "viewport": "wide",
+            "widget": "widget_card_list"
+          }
+        ]
+      },
+      "proofCommands": [
+        "topogram query ui-design-coverage ./topo --widget widget_card_list --json",
+        "topogram query ui-design-coverage ./topo --widget widget_card_list --format markdown"
+      ],
+      "scope": {
+        "projectionId": null,
+        "screenId": null,
+        "widgetId": "widget_card_list"
+      },
+      "source": "ui-design-coverage design_matrix rows from design_contract and design_realization_set records",
+      "status": "review_required"
+    },
+    "inheritedBy": [
+      "proj_operations_web_surface"
+    ],
+    "internationalization": {
+      "currentSignals": {
+        "authoredContract": null,
+        "localePolicy": null,
+        "messageKeys": []
+      },
+      "decisions": [
+        {
+          "found": false,
+          "id": "decision_i18n_messages_are_separate_from_glossary_terms",
+          "kind": null,
+          "name": "decision_i18n_messages_are_separate_from_glossary_terms",
+          "status": null
+        }
+      ],
+      "diagnostics": [
+        "No authored i18n message contract block exists yet; use linked terms, decision, and draft requirement as implementation guidance."
+      ],
+      "messages": [],
+      "obligations": [
+        "Use glossary terms for canonical meaning and message keys for translated wording.",
+        "Keep concrete locale catalogs in generated or maintained app code until a message contract DSL exists."
+      ],
+      "proofCommands": [
+        "topogram emit glossary ./topo --json"
+      ],
+      "requirements": [
+        {
+          "found": false,
+          "id": "req_i18n_message_contract_v1",
+          "kind": null,
+          "name": "req_i18n_message_contract_v1",
+          "status": null
+        }
+      ],
+      "scope": {
+        "projectionId": null,
+        "screenId": null,
+        "widgetId": "widget_card_list"
+      },
+      "source": "topo terms, decisions, and draft requirements",
+      "status": "semantic_context_only",
+      "terms": [
+        {
+          "found": false,
+          "id": "term_translatable_message",
+          "kind": null,
+          "name": "term_translatable_message",
+          "status": null
+        },
+        {
+          "found": false,
+          "id": "term_message_key",
+          "kind": null,
+          "name": "term_message_key",
+          "status": null
+        },
+        {
+          "found": false,
+          "id": "term_locale_policy",
+          "kind": null,
+          "name": "term_locale_policy",
+          "status": null
+        },
+        {
+          "found": false,
+          "id": "term_source_text",
+          "kind": null,
+          "name": "term_source_text",
+          "status": null
+        }
+      ]
+    },
+    "ownership": {
+      "concreteSurfacesInherit": true,
+      "widgetContract": "widget",
+      "widgetPlacement": "ui_contract"
+    },
+    "requiredGates": [
+      {
+        "command": "topogram check",
+        "reason": "Validate shared UI ownership, taxonomy, references, and topology."
+      },
+      {
+        "command": "topogram widget check --widget widget_card_list",
+        "reason": "Validate widget placement, props, events, regions, and patterns."
+      },
+      {
+        "command": "topogram widget behavior --widget widget_card_list",
+        "reason": "Inspect behavior realizations and partial bindings before code changes."
+      },
+      {
+        "command": "topogram emit ui-realization-report --json",
+        "reason": "Confirm screens, regions, widgets, display fields, behavior, and design tokens are realizable by the web generator."
+      }
+    ],
+    "sourceUsages": [
+      {
+        "designTokens": [],
+        "projection": {
+          "id": "proj_operations_ui_contract",
+          "ownership": "owner",
+          "type": "ui_contract"
+        },
+        "usage": {
+          "behaviorRealizations": [],
+          "dataBindings": [
+            {
+              "prop": "items",
+              "source": "cap_triage_incoming_work"
+            }
+          ],
+          "display": null,
+          "displayFields": [],
+          "eventBindings": [
+            {
+              "action": "navigate",
+              "event": "item_select",
+              "target": "incident_detail"
+            }
+          ],
+          "region": "queue",
+          "regionContract": {
+            "accessibilityObligations": [
+              "labelled_region",
+              "keyboard_collection_navigation",
+              "status_announcements"
+            ],
+            "allowedWidgetPatterns": [
+              "resource_cards",
+              "data_grid_view",
+              "status_badge",
+              "empty_state_panel"
+            ],
+            "density": "comfortable",
+            "i18nObligations": [
+              "queue_title",
+              "priority_labels",
+              "empty_state"
+            ],
+            "kind": "results",
+            "layoutId": "layout_queue_workspace",
+            "name": "queue",
+            "pattern": "resource_cards",
+            "placement": "primary",
+            "regionContractId": "region_work_queue",
+            "source": "layout",
+            "state": null,
+            "styleIntent": [
+              "prioritized",
+              "actionable",
+              "queue_focused"
+            ],
+            "title": "Work Queue",
+            "variant": null
+          },
+          "route": null,
+          "screen": {
+            "id": "intake_queue",
+            "kind": "inbox",
+            "layout": {
+              "appShell": null,
+              "fills": "content",
+              "id": "layout_queue_workspace",
+              "inherited": [
+                {
+                  "appShell": "workspace",
+                  "fills": null,
+                  "id": "layout_standard_app_shell",
+                  "name": "Standard App Shell"
+                },
+                {
+                  "appShell": null,
+                  "fills": "content",
+                  "id": "layout_queue_workspace",
+                  "name": "Queue Workspace Layout"
+                }
+              ],
+              "name": "Queue Workspace Layout"
+            },
+            "title": "Intake Queue"
+          },
+          "screenId": "intake_queue",
+          "widgetId": "widget_card_list"
+        }
+      }
+    ],
+    "type": "ui_agent_packet",
+    "version": 1,
+    "widget": {
+      "behaviors": [
+        {
+          "directives": {
+            "emits": "item_select",
+            "mode": "single",
+            "state": "selected_ids"
+          },
+          "kind": "selection",
+          "source": "structured"
+        },
+        {
+          "directives": {
+            "fields": [
+              "priority",
+              "status",
+              "owner",
+              "location"
+            ]
+          },
+          "kind": "filtering",
+          "source": "structured"
+        }
+      ],
+      "category": "collection",
+      "id": "widget_card_list",
+      "name": "Card List",
+      "patterns": [
+        "resource_cards",
+        "search_results"
+      ],
+      "regions": [
+        "results"
+      ]
+    }
+  },
+  "verification": [],
+  "verification_targets": {
+    "generated_checks": [
+      "compile-check"
+    ],
+    "maintained_app_checks": [],
+    "rationale": "Widget changes affect every related projection, so verification should follow the widget contract closure.",
+    "verification_ids": []
+  },
+  "version": 1,
+  "write_scope": {
+    "generator_owned": [
+      "artifacts/**",
+      "apps/**"
+    ],
+    "human_owned_review_required": [
+      "examples/maintained/proof-app/**"
+    ],
+    "out_of_bounds": [
+      ".git/**",
+      "node_modules/**"
+    ],
+    "safe_to_edit": [
+      "topo/**",
+      "candidates/**"
+    ]
+  }
+}

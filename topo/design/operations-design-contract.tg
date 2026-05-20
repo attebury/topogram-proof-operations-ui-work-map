@@ -1,0 +1,46 @@
+design_contract design_operations_product_ui {
+  name "Operations Product UI"
+  description "Semantic design-system contract for the operations control room across web, iOS, and Android."
+  platforms [web ios android]
+  surfaces [proj_operations_web_surface]
+  library operations_product_ui
+  package "@operations/product-ui"
+  related_terms [term_design_contract term_design_realization_set term_component_ref term_widget]
+  domain dom_ui_work_map_proof
+
+  token_mappings {
+    color_role primary token "ops.color.brand.primary"
+    color_role surface token "ops.color.surface.default"
+    color_role text token "ops.color.text.default"
+    color_role muted token "ops.color.text.muted"
+    color_role danger token "ops.color.status.danger"
+    color_role success token "ops.color.status.success"
+    color_role warning token "ops.color.status.warning"
+    color_role info token "ops.color.status.info"
+    typography_role heading token "ops.type.heading"
+    typography_role body token "ops.type.body"
+    typography_role label token "ops.type.label"
+    typography_role numeric token "ops.type.numeric"
+    action_role primary token "ops.action.primary"
+    action_role secondary token "ops.action.secondary"
+    action_role destructive token "ops.action.destructive"
+    action_role bulk token "ops.action.bulk"
+    accessibility contrast token "ops.a11y.contrast.aa"
+    accessibility focus token "ops.a11y.focus.visible"
+    accessibility min_touch_target token "ops.a11y.touch.comfortable"
+  }
+
+  status active
+}
+
+design_contract design_operations_review_gap_probe {
+  name "Operations Review Gap Probe"
+  description "Intentional proof-only design contract with no token mappings so coverage reports show missing-token review work."
+  platforms [web]
+  surfaces [proj_operations_web_surface]
+  library operations_review_gap_probe
+  package "@operations/review-gap-probe"
+  related_terms [term_design_contract term_design_realization_set term_component_ref]
+  domain dom_ui_work_map_proof
+  status proposed
+}
