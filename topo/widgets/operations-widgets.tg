@@ -1,0 +1,263 @@
+widget widget_kpi_summary_cards {
+  name "KPI Summary Cards"
+  description "Reusable operational health cards for counts, trends, and service-level risk."
+  category collection
+
+  props {
+    items array required
+    selected_ids array optional default []
+    loading boolean optional default false
+  }
+
+  events {
+    card_select shape_operation_summary_card
+  }
+
+  behavior [selection]
+  behaviors {
+    selection mode single state selected_ids emits card_select
+  }
+  patterns [summary_stats resource_cards data_grid_view]
+  regions [results content]
+  version "1.0"
+  status active
+}
+
+widget widget_data_grid {
+  name "Data Grid"
+  description "Tabular operational collection for high-density team and incident review."
+  category collection
+
+  props {
+    rows array required
+    selected_ids array optional default []
+    loading boolean optional default false
+  }
+
+  events {
+    row_select shape_work_queue_item
+  }
+
+  behavior [selection sorting filtering keyboard_navigation]
+  behaviors {
+    selection mode single state selected_ids emits row_select
+    sorting fields [priority status due_at owner] default [priority desc]
+    filtering fields [priority status owner location]
+    keyboard_navigation scope collection shortcuts [enter open escape clear]
+  }
+  patterns [resource_table data_grid_view]
+  regions [results]
+  version "1.0"
+  status active
+}
+
+widget widget_card_list {
+  name "Card List"
+  description "Prioritized card list for queue-style operational work."
+  category collection
+
+  props {
+    items array required
+    selected_ids array optional default []
+    loading boolean optional default false
+  }
+
+  events {
+    item_select shape_work_queue_item
+  }
+
+  behavior [selection filtering]
+  behaviors {
+    selection mode single state selected_ids emits item_select
+    filtering fields [priority status owner location]
+  }
+  patterns [resource_cards search_results]
+  regions [results]
+  version "1.0"
+  status active
+}
+
+widget widget_filter_panel {
+  name "Filter Panel"
+  description "Filter and search controls for operational queues, boards, calendars, and directories."
+  category lookup
+
+  props {
+    filters array required
+    active_filters array optional default []
+  }
+
+  events {
+    filter_change shape_work_queue_item
+  }
+
+  behavior [filtering search]
+  behaviors {
+    filtering fields [priority status owner team location due_at]
+    search fields [title location owner team]
+  }
+  patterns [filter_panel lookup_select search_results primary_navigation]
+  regions [filters search]
+  version "1.0"
+  status active
+}
+
+widget widget_command_toolbar {
+  name "Command Toolbar"
+  description "Compact screen command surface for assignment, refresh, export, and escalation actions."
+  category navigation
+
+  props {
+    actions array required
+    selected_ids array optional default []
+  }
+
+  events {
+    primary_action shape_work_queue_item
+  }
+
+  behavior [bulk_action keyboard_navigation]
+  behaviors {
+    bulk_action actions [primary_action] state selected_ids emits primary_action
+    keyboard_navigation scope toolbar shortcuts [tab enter escape]
+  }
+  patterns [action_bar status_badge]
+  regions [toolbar footer_actions]
+  version "1.0"
+  status active
+}
+
+widget widget_detail_panel {
+  name "Detail Panel"
+  description "Readable selected-record summary for incident, team, settings, and inspector contexts."
+  category display
+
+  props {
+    item object required
+    loading boolean optional default false
+  }
+
+  events {
+    edit_requested shape_incident_detail
+  }
+
+  patterns [detail_panel inspector_pane settings_section]
+  regions [summary aside results]
+  version "1.0"
+  status active
+}
+
+widget widget_status_board {
+  name "Status Board"
+  description "Board-style status lanes for assigned field work and escalations."
+  category collection
+
+  props {
+    columns array required
+    selected_ids array optional default []
+    loading boolean optional default false
+  }
+
+  events {
+    item_select shape_work_queue_item
+  }
+
+  behavior [selection drag_drop]
+  behaviors {
+    selection mode single state selected_ids emits item_select
+    drag_drop axis both reorder true
+  }
+  patterns [board_view status_badge]
+  regions [results]
+  version "1.0"
+  status active
+}
+
+widget widget_activity_timeline {
+  name "Activity Timeline"
+  description "Chronological activity, handoff, status-change, and audit event trail."
+  category display
+
+  props {
+    timeline_items array required
+    loading boolean optional default false
+  }
+
+  patterns [timeline_view activity_feed audit_log]
+  regions [timeline activity]
+  version "1.0"
+  status active
+}
+
+widget widget_schedule_calendar {
+  name "Schedule Calendar"
+  description "Calendar view for field work due dates, assignments, and capacity windows."
+  category collection
+
+  props {
+    items array required
+    selected_ids array optional default []
+    loading boolean optional default false
+  }
+
+  events {
+    item_select shape_work_queue_item
+  }
+
+  behavior [selection]
+  behaviors {
+    selection mode single state selected_ids emits item_select
+  }
+  patterns [calendar_view]
+  regions [results]
+  version "1.0"
+  status active
+}
+
+widget widget_assignment_form {
+  name "Assignment Form"
+  description "Focused assignment or resolution form for terminal operational decisions."
+  category form
+
+  props {
+    value object required
+    options array optional default []
+  }
+
+  events {
+    submit shape_incident_detail
+  }
+
+  behavior [optimistic_update keyboard_navigation]
+  behaviors {
+    optimistic_update actions [submit] rollback true
+    keyboard_navigation scope form shortcuts [tab enter escape]
+  }
+  patterns [edit_form footer_bar action_bar]
+  regions [footer_actions toolbar summary]
+  version "1.0"
+  status active
+}
+
+widget widget_alert_banner {
+  name "Alert Banner"
+  description "Time-sensitive operational alerts and live update summaries."
+  category feedback
+
+  props {
+    alerts array required
+  }
+
+  events {
+    alert_select shape_work_queue_item
+  }
+
+  behavior [realtime_update]
+  behaviors {
+    realtime_update source cap_monitor_operations_dashboard merge append
+  }
+  patterns [activity_feed status_badge empty_state_panel]
+  regions [header activity]
+  version "1.0"
+  status active
+}

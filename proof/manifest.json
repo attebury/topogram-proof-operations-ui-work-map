@@ -1,6 +1,6 @@
 {
   "cliVersion": "0.3.112",
-  "currentStep": "proof-04-screens-and-navigation",
+  "currentStep": "proof-05-widgets-and-bindings",
   "expectedTags": [
     "proof-01-domain-and-app-shell",
     "proof-02-semantic-regions",
@@ -79,8 +79,31 @@
       "contains": ["# Step 04 Screen Catalog", "intake_queue", "layout_queue_workspace", "incident_detail"]
     },
     {
+      "path": "proof/artifacts/step-05-widgets-and-bindings/check.json",
+      "json": true,
+      "requiredKeys": ["ok", "topogram"]
+    },
+    {
+      "path": "proof/artifacts/step-05-widgets-and-bindings/screen-slice.json",
+      "json": true,
+      "requiredKeys": ["type", "focus"]
+    },
+    {
+      "path": "proof/artifacts/step-05-widgets-and-bindings/screen-slice.md",
+      "contains": ["# Context Slice", "intake_queue", "widget_card_list"]
+    },
+    {
+      "path": "proof/artifacts/step-05-widgets-and-bindings/widget-slice.json",
+      "json": true,
+      "requiredKeys": ["type", "focus"]
+    },
+    {
+      "path": "proof/artifacts/step-05-widgets-and-bindings/widget-catalog.md",
+      "contains": ["# Step 05 Widget Catalog", "widget_card_list", "intake_queue", "widget_data_grid"]
+    },
+    {
       "path": "proof/STEP.md",
-      "contains": ["Step 04", "Screens And Navigation"]
+      "contains": ["Step 05", "Widgets And Bindings"]
     }
   ]
 }

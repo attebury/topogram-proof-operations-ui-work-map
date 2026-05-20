@@ -1,6 +1,6 @@
 projection proj_operations_ui_contract {
   name "Operations UI Contract"
-  description "Shared UI contract for the operations-dashboard proof before widget bindings and design realizations are added."
+  description "Shared UI contract for the operations-dashboard proof with reusable layouts, screens, navigation, and semantic widget bindings."
 
   type ui_contract
   realizes [
@@ -53,7 +53,34 @@ projection proj_operations_ui_contract {
     screen operations_dashboard region live_updates pattern activity_feed placement supporting title "Live Updates"
     screen intake_queue region inspector pattern inspector_pane placement supporting title "Selected Work"
     screen incident_detail region footer_actions pattern footer_bar placement secondary title "Resolution Actions"
+    screen field_team_directory region queue pattern data_grid_view placement primary title "Team Results"
     screen settings_preferences region settings pattern settings_section placement primary title "Settings Sections"
+  }
+
+  widget_bindings {
+    screen operations_dashboard region command_bar widget widget_command_toolbar data actions from cap_monitor_operations_dashboard event primary_action action cap_triage_incoming_work
+    screen operations_dashboard region results widget widget_kpi_summary_cards data items from cap_monitor_operations_dashboard event card_select navigate intake_queue
+    screen operations_dashboard region live_updates widget widget_alert_banner data alerts from cap_monitor_operations_dashboard event alert_select navigate incident_detail
+    screen intake_queue region command_bar widget widget_command_toolbar data actions from cap_triage_incoming_work event primary_action action cap_assign_field_work
+    screen intake_queue region filters widget widget_filter_panel data filters from cap_triage_incoming_work event filter_change action cap_triage_incoming_work
+    screen intake_queue region queue widget widget_card_list data items from cap_triage_incoming_work event item_select navigate incident_detail
+    screen intake_queue region inspector widget widget_detail_panel data item from cap_review_incident event edit_requested action cap_assign_field_work
+    screen incident_detail region summary widget widget_detail_panel data item from cap_review_incident event edit_requested action cap_resolve_incident
+    screen incident_detail region activity widget widget_activity_timeline data timeline_items from cap_review_incident
+    screen incident_detail region footer_actions widget widget_assignment_form data value from cap_resolve_incident event submit action cap_resolve_incident
+    screen assignment_board region command_bar widget widget_command_toolbar data actions from cap_assign_field_work event primary_action action cap_assign_field_work
+    screen assignment_board region filters widget widget_filter_panel data filters from cap_assign_field_work event filter_change action cap_assign_field_work
+    screen assignment_board region board widget widget_status_board data columns from cap_assign_field_work event item_select navigate incident_detail
+    screen schedule_calendar region command_bar widget widget_command_toolbar data actions from cap_assign_field_work event primary_action action cap_assign_field_work
+    screen schedule_calendar region filters widget widget_filter_panel data filters from cap_assign_field_work event filter_change action cap_assign_field_work
+    screen schedule_calendar region calendar widget widget_schedule_calendar data items from cap_assign_field_work event item_select navigate incident_detail
+    screen field_team_directory region command_bar widget widget_command_toolbar data actions from cap_manage_field_teams event primary_action action cap_manage_field_teams
+    screen field_team_directory region filters widget widget_filter_panel data filters from cap_manage_field_teams event filter_change action cap_manage_field_teams
+    screen field_team_directory region queue widget widget_data_grid data rows from cap_manage_field_teams event row_select action cap_manage_field_teams
+    screen audit_timeline region summary widget widget_detail_panel data item from cap_review_incident event edit_requested action cap_review_incident
+    screen audit_timeline region activity widget widget_activity_timeline data timeline_items from cap_review_incident
+    screen settings_preferences region filters widget widget_filter_panel data filters from cap_manage_field_teams event filter_change action cap_manage_field_teams
+    screen settings_preferences region settings widget widget_detail_panel data item from cap_manage_field_teams event edit_requested action cap_manage_field_teams
   }
 
   status active

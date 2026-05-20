@@ -1,0 +1,16 @@
+task task_step05_widgets_and_bindings {
+  name "Step 05 Widgets And Bindings"
+  description "Add semantic operations widgets and bind them into inherited layout regions so reviewers can inspect widget placement without per-screen region duplication."
+  satisfies [req_operations_ui_work_map_proof]
+  acceptance_refs [ac_step05_widgets_bindings_valid]
+  verification_refs [verification_step05_widgets_bindings]
+  affects [cap_monitor_operations_dashboard cap_triage_incoming_work cap_assign_field_work cap_review_incident cap_resolve_incident cap_manage_field_teams]
+  blocked_by []
+  disposition active
+  risk_class low
+  change_type ui
+  priority high
+  work_type implementation
+  claimed_by [actor_coding_agent]
+  status done
+}

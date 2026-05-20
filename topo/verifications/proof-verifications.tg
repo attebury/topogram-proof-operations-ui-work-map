@@ -37,3 +37,13 @@ verification verification_step04_screens_navigation {
   domain dom_ui_work_map_proof
   status active
 }
+
+verification verification_step05_widgets_bindings {
+  name "Step 05 Widgets And Bindings Verification"
+  description "Runs proof path hygiene, proof audit, Topogram check, strict SDLC check, screen and widget slice generation, widget catalog review, and clean-worktree verification for the semantic widget binding checkpoint."
+  validates [cap_monitor_operations_dashboard cap_triage_incoming_work cap_assign_field_work cap_review_incident cap_resolve_incident cap_manage_field_teams]
+  method runtime
+  scenarios [npm_run_verify_step_05]
+  domain dom_ui_work_map_proof
+  status active
+}

@@ -1,19 +1,19 @@
-# Step 04: Screens And Navigation
+# Step 05: Widgets And Bindings
 
-> This checkpoint maps a substantial operations screen set onto the reusable layouts.
+> This checkpoint binds reusable semantic widgets into inherited layout regions.
 
 Status: current
 
 Audience: reviewers following the proof step by step.
 
-Use when: you want to inspect how screens, navigation, and web routes inherit reusable layouts and regions.
+Use when: you want to inspect how screens, layout regions, and widgets work together before design realization mappings are added.
 
 ## What Changed
 
-- Added a shared `ui_contract` projection for the operations dashboard.
-- Added eight screens: dashboard, intake queue, incident detail, assignment board, schedule calendar, field team directory, audit timeline, and settings/preferences.
-- Added navigation groups, concrete web routes, and screen support shapes.
-- Added Step 04 screen catalog and screen slice artifacts so reviewers can inspect screen-to-layout mapping.
+- Added eleven semantic widgets for KPI cards, grids, card lists, filters, command bars, detail panels, boards, timelines, calendars, assignment forms, and alerts.
+- Bound widgets into inherited layout regions such as `command_bar`, `queue`, `board`, `calendar`, `activity`, and `footer_actions`.
+- Added one explicit screen-region override for the team directory table to show overrides remain possible without restating the whole layout.
+- Added Step 05 widget catalog plus screen and widget slice artifacts so reviewers can inspect reusable widget placement.
 
 ## Verification
 
@@ -21,4 +21,4 @@ Use when: you want to inspect how screens, navigation, and web routes inherit re
 npm run verify
 ```
 
-The current step proves screens can inherit reusable layouts and expose route/navigation context. It does not yet include widget bindings or design realization contracts.
+The current step proves widget bindings can target inherited layout regions and explicit region overrides. It does not yet include design realization contracts.
