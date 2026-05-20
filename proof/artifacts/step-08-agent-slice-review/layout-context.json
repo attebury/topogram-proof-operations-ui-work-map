@@ -1,0 +1,23 @@
+{
+  "type": "agent_slice_context_card",
+  "target_kind": "layout_contract",
+  "target_id": "layout_queue_workspace",
+  "direct_selector_supported": false,
+  "usable_source_artifacts": [
+    "projection-slice.json",
+    "screen-slice.json"
+  ],
+  "summary": "Queue/list workspace with command bar, filter rail, prioritized queue, and inspector panel.",
+  "screens_using_layout": [
+    "intake_queue",
+    "field_team_directory"
+  ],
+  "regions": [
+    "command_bar",
+    "filters",
+    "queue",
+    "inspector"
+  ],
+  "useful_for_agent": true,
+  "limitation": "The agent must currently ask for a screen or projection slice; there is no direct --layout selector."
+}

@@ -1,0 +1,16 @@
+task task_step08_agent_slice_review {
+  name "Step 08 Agent Slice Review"
+  description "Capture and review agent-facing slices for screen, widget, projection, layout, region, and design realization contexts, then record what is useful and what remains a Topogram follow-up."
+  satisfies [req_operations_ui_work_map_proof]
+  acceptance_refs [ac_step08_agent_slice_review_valid]
+  verification_refs [verification_step08_agent_slice_review]
+  affects [cap_monitor_operations_dashboard cap_triage_incoming_work cap_assign_field_work cap_review_incident cap_resolve_incident cap_manage_field_teams]
+  blocked_by []
+  disposition active
+  risk_class medium
+  change_type ui
+  priority high
+  work_type implementation
+  claimed_by [actor_coding_agent]
+  status done
+}

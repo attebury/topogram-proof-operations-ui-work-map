@@ -1,0 +1,28 @@
+{
+  "type": "agent_slice_context_card",
+  "target_kind": "design_realization_set",
+  "target_id": "realization_set_operations_control_room_widgets",
+  "direct_selector_supported": false,
+  "usable_source_artifacts": [
+    "ui-design-coverage.json",
+    "projection-slice.json",
+    "widget-slice.json"
+  ],
+  "summary": "Maps operations semantic widgets to platform component refs across web, iOS, and Android.",
+  "example_widget": "widget_alert_banner",
+  "example_component_refs": [
+    "ops.alerts.liveBanner",
+    "ops.ios.liveAlert",
+    "ops.android.liveAlert"
+  ],
+  "review_states_visible": [
+    "rendered",
+    "contract_only",
+    "implementation_owned",
+    "unsupported",
+    "missing_state",
+    "missing_token_mapping"
+  ],
+  "useful_for_agent": true,
+  "limitation": "Design realization data is visible through coverage/report/widget slices, but there is no direct realization-set selector."
+}

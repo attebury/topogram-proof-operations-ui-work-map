@@ -1,0 +1,99 @@
+{
+  "changedFiles": [
+    "proof/STEP.md",
+    "proof/manifest.json",
+    "topo/verifications/proof-verifications.tg",
+    "proof/artifacts/step-08-agent-slice-review/agent-brief.json",
+    "proof/artifacts/step-08-agent-slice-review/agent-slice-review.md",
+    "proof/artifacts/step-08-agent-slice-review/check.json",
+    "proof/artifacts/step-08-agent-slice-review/design-realization-set-context.json",
+    "proof/artifacts/step-08-agent-slice-review/design-realization-set-context.md",
+    "proof/artifacts/step-08-agent-slice-review/layout-context.json",
+    "proof/artifacts/step-08-agent-slice-review/layout-context.md",
+    "proof/artifacts/step-08-agent-slice-review/projection-slice.json",
+    "proof/artifacts/step-08-agent-slice-review/projection-slice.md",
+    "proof/artifacts/step-08-agent-slice-review/region-context.json",
+    "proof/artifacts/step-08-agent-slice-review/region-context.md",
+    "proof/artifacts/step-08-agent-slice-review/screen-slice.json",
+    "proof/artifacts/step-08-agent-slice-review/screen-slice.md",
+    "proof/artifacts/step-08-agent-slice-review/sdlc-check.json",
+    "proof/artifacts/step-08-agent-slice-review/sdlc-prep-commit.json",
+    "proof/artifacts/step-08-agent-slice-review/selector-attempts.json",
+    "proof/artifacts/step-08-agent-slice-review/ui-design-coverage.json",
+    "proof/artifacts/step-08-agent-slice-review/ui-design-coverage.md",
+    "proof/artifacts/step-08-agent-slice-review/ui-realization-report.json",
+    "proof/artifacts/step-08-agent-slice-review/widget-slice.json",
+    "proof/artifacts/step-08-agent-slice-review/widget-slice.md",
+    "topo/sdlc/acceptance_criteria/step08-agent-slice-review-valid.tg",
+    "topo/sdlc/tasks/step08-agent-slice-review.tg"
+  ],
+  "changedTasks": [
+    {
+      "change_type": "ui",
+      "disposition": "active",
+      "explicitDisposition": true,
+      "file": "topo/sdlc/tasks/step08-agent-slice-review.tg",
+      "id": "task_step08_agent_slice_review",
+      "latest_verification_runs": [
+        {
+          "latest": null,
+          "verification_id": "verification_step08_agent_slice_review"
+        }
+      ],
+      "priority": "high",
+      "proof_learning_review": null,
+      "requiresDisposition": false,
+      "risk_class": "medium",
+      "status": "done"
+    }
+  ],
+  "errors": [],
+  "nextCommands": [
+    "topogram sdlc explain <task-id> --json",
+    "topogram query slice ./topo --task <task-id> --json",
+    "topogram sdlc gate . --base <ref> --head <ref> --require-adopted"
+  ],
+  "ok": true,
+  "openTasks": [],
+  "projectRoot": "<repo>",
+  "staleWork": {
+    "breaches": [],
+    "nextCommands": [
+      "topogram query sdlc-claimed ./topo --json",
+      "topogram query sdlc-proof-gaps ./topo --json",
+      "topogram sdlc prep commit . --json"
+    ],
+    "now": "2026-05-20T23:59:00.978Z",
+    "ok": true,
+    "policy": {
+      "configured": false,
+      "staleWork": {
+        "claimedDays": null,
+        "inProgressDays": null
+      },
+      "wipLimits": {
+        "maxClaimedTasksPerActor": null,
+        "maxInProgressTasks": null
+      }
+    },
+    "stale": {
+      "claimed": [],
+      "in_progress": [],
+      "missing_history": []
+    },
+    "type": "sdlc_stale_work_query",
+    "version": 1,
+    "wip": {
+      "by_actor": [],
+      "claimed_count": 0,
+      "in_progress_count": 0
+    }
+  },
+  "taskFiles": [
+    "topo/sdlc/tasks/step08-agent-slice-review.tg"
+  ],
+  "topogramRoot": "<workspace>",
+  "type": "sdlc_commit_prep",
+  "version": "1",
+  "warnings": []
+}

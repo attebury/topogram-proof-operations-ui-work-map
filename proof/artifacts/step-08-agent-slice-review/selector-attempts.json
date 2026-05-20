@@ -1,0 +1,62 @@
+{
+  "type": "selector_attempts",
+  "attempts": [
+    {
+      "id": "layout_queue_workspace",
+      "kind": "layout_contract",
+      "args": [
+        "query",
+        "slice",
+        "./topo",
+        "--layout",
+        "layout_queue_workspace",
+        "--detail",
+        "standard",
+        "--json"
+      ],
+      "command": "topogram query slice ./topo --layout layout_queue_workspace --detail standard --json",
+      "direct_selector_supported": false,
+      "exitCode": 1,
+      "stdout": "",
+      "stderr": "Context selection requires exactly one of --capability, --workflow, --projection, --widget, --entity, --journey, --surface, --domain, --pitch, --requirement, --acceptance, --task, --plan, --bug, or --document"
+    },
+    {
+      "id": "region_work_queue",
+      "kind": "region_contract",
+      "args": [
+        "query",
+        "slice",
+        "./topo",
+        "--region",
+        "region_work_queue",
+        "--detail",
+        "standard",
+        "--json"
+      ],
+      "command": "topogram query slice ./topo --region region_work_queue --detail standard --json",
+      "direct_selector_supported": false,
+      "exitCode": 1,
+      "stdout": "",
+      "stderr": "Context selection requires exactly one of --capability, --workflow, --projection, --widget, --entity, --journey, --surface, --domain, --pitch, --requirement, --acceptance, --task, --plan, --bug, or --document"
+    },
+    {
+      "id": "realization_set_operations_control_room_widgets",
+      "kind": "design_realization_set",
+      "args": [
+        "query",
+        "slice",
+        "./topo",
+        "--design-realization-set",
+        "realization_set_operations_control_room_widgets",
+        "--detail",
+        "standard",
+        "--json"
+      ],
+      "command": "topogram query slice ./topo --design-realization-set realization_set_operations_control_room_widgets --detail standard --json",
+      "direct_selector_supported": false,
+      "exitCode": 1,
+      "stdout": "",
+      "stderr": "Context selection requires exactly one of --capability, --workflow, --projection, --widget, --entity, --journey, --surface, --domain, --pitch, --requirement, --acceptance, --task, --plan, --bug, or --document"
+    }
+  ]
+}

@@ -1,0 +1,37 @@
+{
+  "type": "agent_slice_context_card",
+  "target_kind": "region_contract",
+  "target_id": "region_work_queue",
+  "direct_selector_supported": false,
+  "usable_source_artifacts": [
+    "screen-slice.json",
+    "projection-slice.json"
+  ],
+  "summary": "Prioritized review area for incoming or active work that needs triage, assignment, escalation, or resolution.",
+  "appears_as_region_ids": [
+    "queue"
+  ],
+  "style_intent": [
+    "prioritized",
+    "actionable",
+    "queue_focused"
+  ],
+  "accessibility_obligations": [
+    "labelled_region",
+    "keyboard_collection_navigation",
+    "status_announcements"
+  ],
+  "i18n_obligations": [
+    "queue_title",
+    "priority_labels",
+    "empty_state"
+  ],
+  "allowed_widget_patterns": [
+    "resource_cards",
+    "data_grid_view",
+    "status_badge",
+    "empty_state_panel"
+  ],
+  "useful_for_agent": true,
+  "limitation": "The region is visible through resolved screen regions, but not directly selectable as a slice."
+}

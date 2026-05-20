@@ -1,19 +1,19 @@
-# Step 07: i18n, ARIA, And States
+# Step 08: Agent Slice Review
 
-> This checkpoint adds translatable message keys, locale policy, accessibility obligations, and state labels to the operations UI work map.
+> This checkpoint reviews whether the operations UI work map gives agents enough focused context to make UI changes without reading the whole repo.
 
 Status: current
 
 Audience: reviewers following the proof step by step.
 
-Use when: you want to inspect how UI text and accessibility intent become reviewable contract evidence for agents and designers.
+Use when: you want to inspect the actual slices and review artifacts an agent would use for screen, widget, layout, region, and design work.
 
 ## What Changed
 
-- Added `messages` for screen titles, empty states, widget labels, action labels, status labels, and alert labels.
-- Added a locale policy for `en-US` with left-to-right direction.
-- Added accessibility obligations for screens, widgets, and actions: roles, accessible names, keyboard models, focus models, and live-region behavior.
-- Added Step 07 coverage/report/slice artifacts showing i18n and ARIA obligations alongside the existing design review rows.
+- Captured JSON and Markdown screen, widget, and projection slices.
+- Captured layout, region, and design-realization context cards from the projection/screen slice evidence.
+- Captured selector-attempt artifacts showing that layout, region, and design-realization-set slices are not yet first-class selectors.
+- Added an agent slice review artifact with useful signals, confusing gaps, and follow-up recommendations.
 
 ## Verification
 
@@ -21,4 +21,4 @@ Use when: you want to inspect how UI text and accessibility intent become review
 npm run verify
 ```
 
-The current step proves that i18n and accessibility obligations are visible in reports and slices. It does not run a translation catalog, axe, Playwright, or native accessibility audit.
+The current step proves that screen and widget slices are useful, but it also records a real product gap: layout, region, and design realization sets need first-class slice selectors before this UI work-map story is as agent-friendly as it should be.

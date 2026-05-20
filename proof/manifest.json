@@ -1,6 +1,6 @@
 {
   "cliVersion": "0.3.112",
-  "currentStep": "proof-07-i18n-aria-states",
+  "currentStep": "proof-08-agent-slice-review",
   "expectedTags": [
     "proof-01-domain-and-app-shell",
     "proof-02-semantic-regions",
@@ -168,8 +168,69 @@
       "contains": ["# Step 07 i18n and ARIA Summary", "msg_widget_alert_banner_label", "Accessibility examples"]
     },
     {
+      "path": "proof/artifacts/step-08-agent-slice-review/check.json",
+      "json": true,
+      "requiredKeys": ["ok", "topogram"]
+    },
+    {
+      "path": "proof/artifacts/step-08-agent-slice-review/sdlc-check.json",
+      "json": true,
+      "requiredKeys": ["ok"]
+    },
+    {
+      "path": "proof/artifacts/step-08-agent-slice-review/projection-slice.json",
+      "json": true,
+      "requiredKeys": ["type", "focus", "ui_agent_packet"]
+    },
+    {
+      "path": "proof/artifacts/step-08-agent-slice-review/projection-slice.md",
+      "contains": ["# Context Slice", "proj_operations_ui_contract", "UI Agent Packet"]
+    },
+    {
+      "path": "proof/artifacts/step-08-agent-slice-review/screen-slice.json",
+      "json": true,
+      "requiredKeys": ["type", "focus", "ui_agent_packet"]
+    },
+    {
+      "path": "proof/artifacts/step-08-agent-slice-review/screen-slice.md",
+      "contains": ["# Context Slice", "intake_queue", "widget_card_list"]
+    },
+    {
+      "path": "proof/artifacts/step-08-agent-slice-review/widget-slice.json",
+      "json": true,
+      "requiredKeys": ["type", "focus", "ui_agent_packet"]
+    },
+    {
+      "path": "proof/artifacts/step-08-agent-slice-review/widget-slice.md",
+      "contains": ["# Context Slice", "widget_alert_banner", "UI Agent Packet"]
+    },
+    {
+      "path": "proof/artifacts/step-08-agent-slice-review/layout-context.json",
+      "json": true,
+      "requiredKeys": ["type", "target_kind", "target_id"]
+    },
+    {
+      "path": "proof/artifacts/step-08-agent-slice-review/region-context.json",
+      "json": true,
+      "requiredKeys": ["type", "target_kind", "target_id"]
+    },
+    {
+      "path": "proof/artifacts/step-08-agent-slice-review/design-realization-set-context.json",
+      "json": true,
+      "requiredKeys": ["type", "target_kind", "target_id"]
+    },
+    {
+      "path": "proof/artifacts/step-08-agent-slice-review/selector-attempts.json",
+      "json": true,
+      "requiredKeys": ["type", "attempts"]
+    },
+    {
+      "path": "proof/artifacts/step-08-agent-slice-review/agent-slice-review.md",
+      "contains": ["# Step 08 Agent Slice Review", "Useful Enough", "Dedicated Selector Gap", "first-class context-slice selectors"]
+    },
+    {
       "path": "proof/STEP.md",
-      "contains": ["Step 07", "i18n, ARIA, And States"]
+      "contains": ["Step 08", "Agent Slice Review"]
     }
   ]
 }

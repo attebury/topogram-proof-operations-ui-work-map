@@ -67,3 +67,13 @@ verification verification_step07_i18n_aria_states {
   domain dom_ui_work_map_proof
   status active
 }
+
+verification verification_step08_agent_slice_review {
+  name "Step 08 Agent Slice Review Verification"
+  description "Runs proof path hygiene, proof audit, Topogram check, strict SDLC check, focused screen/widget/projection slice generation, slice usefulness review, and clean-worktree verification for the final agent slice checkpoint."
+  validates [cap_monitor_operations_dashboard cap_triage_incoming_work cap_assign_field_work cap_review_incident cap_resolve_incident cap_manage_field_teams]
+  method runtime
+  scenarios [npm_run_verify_step_08]
+  domain dom_ui_work_map_proof
+  status active
+}
