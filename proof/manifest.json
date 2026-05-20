@@ -1,0 +1,40 @@
+{
+  "cliVersion": "0.3.112",
+  "currentStep": "proof-01-domain-and-app-shell",
+  "expectedTags": [
+    "proof-01-domain-and-app-shell",
+    "proof-02-semantic-regions",
+    "proof-03-reusable-layouts",
+    "proof-04-screens-and-navigation",
+    "proof-05-widgets-and-bindings",
+    "proof-06-design-contract-realizations",
+    "proof-07-i18n-aria-states",
+    "proof-08-agent-slice-review"
+  ],
+  "requiredArtifacts": [
+    {
+      "path": "proof/artifacts/step-01-domain-and-app-shell/check.json",
+      "json": true,
+      "requiredKeys": ["ok", "topogram"]
+    },
+    {
+      "path": "proof/artifacts/step-01-domain-and-app-shell/sdlc-check.json",
+      "json": true,
+      "requiredKeys": ["ok"]
+    },
+    {
+      "path": "proof/artifacts/step-01-domain-and-app-shell/agent-brief.json",
+      "json": true,
+      "requiredKeys": ["type"]
+    },
+    {
+      "path": "proof/artifacts/step-01-domain-and-app-shell/sdlc-prep-commit.json",
+      "json": true,
+      "requiredKeys": ["ok"]
+    },
+    {
+      "path": "proof/STEP.md",
+      "contains": ["Step 01", "Domain And App Shell"]
+    }
+  ]
+}

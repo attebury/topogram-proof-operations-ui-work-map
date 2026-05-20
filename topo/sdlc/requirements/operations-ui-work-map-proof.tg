@@ -1,0 +1,10 @@
+requirement req_operations_ui_work_map_proof {
+  name "Operations UI Work Map Proof"
+  description "The proof repo must show the operations-dashboard UI graph growing step by step from domain shell to regions, layouts, screens, widgets, design realization, i18n/ARIA, and agent slice review."
+  affects [cap_monitor_operations_dashboard cap_triage_incoming_work cap_assign_field_work cap_review_incident cap_resolve_incident cap_manage_field_teams]
+  introduces_rules []
+  respects_rules [rule_ui_graph_is_work_map rule_agents_start_ui_changes_from_slices]
+  domain dom_ui_work_map_proof
+  priority high
+  status approved
+}

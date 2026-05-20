@@ -1,0 +1,9 @@
+{
+  "version": "1",
+  "status": "adopted",
+  "mode": "enforced",
+  "protectedPaths": ["topo/**", "proof/**", "scripts/**", ".github/**", "README.md", "package.json", "topogram.project.json"],
+  "requiredItemKinds": ["task", "bug", "requirement", "pitch"],
+  "allowExemptions": true,
+  "releaseNotes": false
+}

@@ -1,0 +1,6 @@
+acceptance_criterion ac_step01_domain_shell_valid {
+  name "Step 01 Domain Shell Valid"
+  description "Given the proof repo is at Step 01, when npm run verify is executed, then path hygiene, proof audit, Topogram check, strict SDLC check, agent brief, commit prep, and clean-worktree verification all pass."
+  requirement req_operations_ui_work_map_proof
+  status approved
+}

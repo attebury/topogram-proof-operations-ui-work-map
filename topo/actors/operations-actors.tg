@@ -1,0 +1,29 @@
+actor actor_operations_manager {
+  name "Operations Manager"
+  description "Human accountable for the state of active operations and escalations."
+  status active
+}
+
+actor actor_dispatch_coordinator {
+  name "Dispatch Coordinator"
+  description "Human who triages incoming work and assigns field teams."
+  status active
+}
+
+actor actor_field_operator {
+  name "Field Operator"
+  description "Human who completes assigned work and reports status from the field."
+  status active
+}
+
+actor actor_design_lead {
+  name "Design Lead"
+  description "Human responsible for design-system semantics, component mappings, and review gaps."
+  status active
+}
+
+actor actor_coding_agent {
+  name "Coding Agent"
+  description "AI agent using Topogram slices and proof commands to make bounded UI changes."
+  status active
+}

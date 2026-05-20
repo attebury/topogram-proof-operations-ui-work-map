@@ -1,0 +1,8 @@
+decision decision_graph_is_work_map_not_render_tree {
+  name "Graph Is Work Map Not Render Tree"
+  description "Topogram UI structure describes where product work belongs and what must be proven; it does not model a platform render tree."
+  context ["The proof must help agents understand layout, region, widget, and design responsibilities without binding those concepts to DOM, native view hierarchy, or CSS details."]
+  consequences ["Screens can inherit reusable layouts." "Widgets can be realized differently per platform." "Agents should use focused slices and proof commands before editing UI code."]
+  domain dom_ui_work_map_proof
+  status accepted
+}

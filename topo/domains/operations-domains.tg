@@ -1,0 +1,11 @@
+domain dom_operations_control_room {
+  name "Operations Control Room"
+  description "The business app domain for intake, triage, assignment, incident review, field coordination, and operational resolution."
+  status active
+}
+
+domain dom_ui_work_map_proof {
+  name "UI Work Map Proof"
+  description "Proof domain for showing how Topogram layouts, regions, screens, widgets, design contracts, and agent slices compose into a usable UI work map."
+  status active
+}

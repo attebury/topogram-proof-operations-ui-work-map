@@ -1,0 +1,51 @@
+term term_operations_control_room {
+  name "Operations Control Room"
+  description "A coordination app for monitoring intake, triage, assignment, active field work, incident review, and resolution."
+  category operations
+  domain dom_operations_control_room
+  status active
+}
+
+term term_work_map {
+  name "Work Map"
+  description "A graph that tells humans and agents where product work belongs without pretending to be a framework render tree."
+  category ui_structure
+  domain dom_ui_work_map_proof
+  aliases [app_map]
+  status active
+}
+
+term term_layout_contract {
+  name "Layout Contract"
+  description "A reusable semantic template that composes regions for screens without prescribing DOM, SwiftUI, Android, or CSS layout code."
+  category ui_structure
+  domain dom_ui_work_map_proof
+  aliases [semantic_layout]
+  status active
+}
+
+term term_region_contract {
+  name "Region Contract"
+  description "A reusable semantic work area such as command bar, filter rail, results, detail summary, timeline, inspector, or footer actions."
+  category ui_structure
+  domain dom_ui_work_map_proof
+  aliases [work_area]
+  status active
+}
+
+term term_widget {
+  name "Widget"
+  description "A reusable semantic UI contract that can be realized by different platform components while keeping one product meaning."
+  category ui_structure
+  domain dom_ui_work_map_proof
+  aliases [semantic_component]
+  status active
+}
+
+term term_design_realization_set {
+  name "Design Realization Set"
+  description "A widget-first mapping from semantic widgets to platform component refs and behavior support for a design contract."
+  category design
+  domain dom_ui_work_map_proof
+  status active
+}

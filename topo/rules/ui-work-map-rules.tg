@@ -1,0 +1,20 @@
+rule rule_ui_graph_is_work_map {
+  name "UI Graph Is Work Map"
+  description "Proof UI records must describe semantic work areas, product meaning, and proof obligations, not framework render trees or source import paths."
+  applies_to [cap_monitor_operations_dashboard cap_triage_incoming_work cap_assign_field_work cap_review_incident cap_resolve_incident cap_manage_field_teams]
+  severity error
+  source_of_truth [decision_graph_is_work_map_not_render_tree]
+  domain dom_ui_work_map_proof
+  status enforced
+}
+
+rule rule_agents_start_ui_changes_from_slices {
+  name "Agents Start UI Changes From Slices"
+  description "Agent-facing UI work should start from a focused Topogram slice that shows screen, layout, region, widget, design, i18n, ARIA, gaps, and proof command context."
+  applies_to [cap_monitor_operations_dashboard cap_triage_incoming_work cap_assign_field_work cap_review_incident cap_resolve_incident cap_manage_field_teams]
+  severity error
+  source_of_truth [decision_graph_is_work_map_not_render_tree]
+  related_terms [term_work_map term_layout_contract term_region_contract term_widget term_design_realization_set]
+  domain dom_ui_work_map_proof
+  status enforced
+}

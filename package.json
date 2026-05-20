@@ -1,0 +1,15 @@
+{
+  "name": "topogram-proof-operations-ui-work-map",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Substantial Topogram proof for operations-dashboard UI work-map semantics.",
+  "scripts": {
+    "test": "npm run verify",
+    "verify": "node ./scripts/verify.mjs",
+    "proof:audit": "node ./scripts/proof-audit.mjs",
+    "proof:check-paths": "node ./scripts/check-paths.mjs"
+  },
+  "devDependencies": {
+    "@topogram/cli": "0.3.112"
+  }
+}

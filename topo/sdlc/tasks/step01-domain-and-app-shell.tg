@@ -1,0 +1,16 @@
+task task_step01_domain_and_app_shell {
+  name "Step 01 Domain And App Shell"
+  description "Establish the operations-dashboard proof repo with domain, actors, glossary terms, core capabilities, rules, SDLC policy, verification scripts, and Step 01 artifacts before adding UI structure."
+  satisfies [req_operations_ui_work_map_proof]
+  acceptance_refs [ac_step01_domain_shell_valid]
+  verification_refs [verification_step01_domain_app_shell]
+  affects [cap_monitor_operations_dashboard cap_triage_incoming_work cap_assign_field_work cap_review_incident cap_resolve_incident cap_manage_field_teams]
+  blocked_by []
+  disposition active
+  risk_class low
+  change_type workflow
+  priority high
+  work_type implementation
+  claimed_by [actor_coding_agent]
+  status done
+}

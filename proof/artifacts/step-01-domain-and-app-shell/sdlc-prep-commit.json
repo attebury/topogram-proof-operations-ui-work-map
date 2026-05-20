@@ -1,0 +1,100 @@
+{
+  "changedFiles": [
+    ".github/workflows/proof-verification.yml",
+    ".gitignore",
+    "README.md",
+    "package-lock.json",
+    "package.json",
+    "proof/README.md",
+    "proof/STEP.md",
+    "proof/artifacts/step-01-domain-and-app-shell/agent-brief.json",
+    "proof/artifacts/step-01-domain-and-app-shell/check.json",
+    "proof/artifacts/step-01-domain-and-app-shell/sdlc-check.json",
+    "proof/manifest.json",
+    "scripts/check-paths.mjs",
+    "scripts/proof-audit.mjs",
+    "scripts/verify.mjs",
+    "topo/README.md",
+    "topo/actors/operations-actors.tg",
+    "topo/capabilities/operations-capabilities.tg",
+    "topo/decisions/ui-work-map-decisions.tg",
+    "topo/domains/operations-domains.tg",
+    "topo/rules/ui-work-map-rules.tg",
+    "topo/sdlc/acceptance_criteria/step01-domain-shell-valid.tg",
+    "topo/sdlc/requirements/operations-ui-work-map-proof.tg",
+    "topo/sdlc/tasks/step01-domain-and-app-shell.tg",
+    "topo/terms/ui-work-map-terms.tg",
+    "topo/verifications/proof-verifications.tg",
+    "topogram.project.json",
+    "topogram.sdlc-policy.json"
+  ],
+  "changedTasks": [
+    {
+      "change_type": "workflow",
+      "disposition": "active",
+      "explicitDisposition": true,
+      "file": "topo/sdlc/tasks/step01-domain-and-app-shell.tg",
+      "id": "task_step01_domain_and_app_shell",
+      "latest_verification_runs": [
+        {
+          "latest": null,
+          "verification_id": "verification_step01_domain_app_shell"
+        }
+      ],
+      "priority": "high",
+      "proof_learning_review": null,
+      "requiresDisposition": false,
+      "risk_class": "low",
+      "status": "done"
+    }
+  ],
+  "errors": [],
+  "nextCommands": [
+    "topogram sdlc explain <task-id> --json",
+    "topogram query slice ./topo --task <task-id> --json",
+    "topogram sdlc gate . --base <ref> --head <ref> --require-adopted"
+  ],
+  "ok": true,
+  "openTasks": [],
+  "projectRoot": "<repo>",
+  "staleWork": {
+    "breaches": [],
+    "nextCommands": [
+      "topogram query sdlc-claimed ./topo --json",
+      "topogram query sdlc-proof-gaps ./topo --json",
+      "topogram sdlc prep commit . --json"
+    ],
+    "now": "2026-05-20T22:37:07.596Z",
+    "ok": true,
+    "policy": {
+      "configured": false,
+      "staleWork": {
+        "claimedDays": null,
+        "inProgressDays": null
+      },
+      "wipLimits": {
+        "maxClaimedTasksPerActor": null,
+        "maxInProgressTasks": null
+      }
+    },
+    "stale": {
+      "claimed": [],
+      "in_progress": [],
+      "missing_history": []
+    },
+    "type": "sdlc_stale_work_query",
+    "version": 1,
+    "wip": {
+      "by_actor": [],
+      "claimed_count": 0,
+      "in_progress_count": 0
+    }
+  },
+  "taskFiles": [
+    "topo/sdlc/tasks/step01-domain-and-app-shell.tg"
+  ],
+  "topogramRoot": "<workspace>",
+  "type": "sdlc_commit_prep",
+  "version": "1",
+  "warnings": []
+}

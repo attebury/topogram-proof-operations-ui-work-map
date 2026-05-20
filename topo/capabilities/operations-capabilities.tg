@@ -1,0 +1,53 @@
+capability cap_monitor_operations_dashboard {
+  name "Monitor Operations Dashboard"
+  description "View active operational health, urgent work, team load, and service-level risk."
+  actors [actor_operations_manager actor_dispatch_coordinator actor_coding_agent]
+  domain dom_operations_control_room
+  related_terms [term_operations_control_room term_work_map]
+  status active
+}
+
+capability cap_triage_incoming_work {
+  name "Triage Incoming Work"
+  description "Review incoming work, classify priority, request missing details, and move ready work into assignment."
+  actors [actor_dispatch_coordinator actor_coding_agent]
+  domain dom_operations_control_room
+  related_terms [term_region_contract term_widget]
+  status active
+}
+
+capability cap_assign_field_work {
+  name "Assign Field Work"
+  description "Match work items to available field operators based on urgency, location, and capacity."
+  actors [actor_dispatch_coordinator actor_field_operator actor_coding_agent]
+  domain dom_operations_control_room
+  related_terms [term_widget]
+  status active
+}
+
+capability cap_review_incident {
+  name "Review Incident"
+  description "Inspect an incident, its activity timeline, related work, status changes, and next available actions."
+  actors [actor_operations_manager actor_dispatch_coordinator actor_coding_agent]
+  domain dom_operations_control_room
+  related_terms [term_layout_contract term_region_contract]
+  status active
+}
+
+capability cap_resolve_incident {
+  name "Resolve Incident"
+  description "Record resolution details, close out follow-up actions, and make the final status visible to operations."
+  actors [actor_operations_manager actor_field_operator actor_coding_agent]
+  domain dom_operations_control_room
+  related_terms [term_widget]
+  status active
+}
+
+capability cap_manage_field_teams {
+  name "Manage Field Teams"
+  description "Review team rosters, assignment load, availability, and operational coverage."
+  actors [actor_operations_manager actor_dispatch_coordinator actor_coding_agent]
+  domain dom_operations_control_room
+  related_terms [term_widget]
+  status active
+}
