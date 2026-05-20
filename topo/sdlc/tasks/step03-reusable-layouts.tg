@@ -1,0 +1,16 @@
+task task_step03_reusable_layouts {
+  name "Step 03 Reusable Layouts"
+  description "Add reusable layout contracts that compose semantic region contracts into app shell, dashboard, queue, detail, board, calendar, modal task-flow, and settings workspace templates."
+  satisfies [req_operations_ui_work_map_proof]
+  acceptance_refs [ac_step03_reusable_layouts_valid]
+  verification_refs [verification_step03_reusable_layouts]
+  affects [cap_monitor_operations_dashboard cap_triage_incoming_work cap_assign_field_work cap_review_incident cap_resolve_incident cap_manage_field_teams]
+  blocked_by []
+  disposition active
+  risk_class low
+  change_type workflow
+  priority high
+  work_type implementation
+  claimed_by [actor_coding_agent]
+  status done
+}

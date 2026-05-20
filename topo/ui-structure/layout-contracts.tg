@@ -1,0 +1,295 @@
+layout_contract layout_standard_app_shell {
+  name "Standard App Shell"
+  description "Persistent operations app shell with header, global navigation, content slot, and live operational updates."
+  app_shell workspace
+  platforms [web ios android]
+  viewports [wide narrow]
+  domain dom_ui_work_map_proof
+  status active
+
+  region {
+    id header
+    uses region_app_header
+    viewport any
+    placement top
+  }
+
+  region {
+    id nav
+    uses region_global_navigation
+    viewport any
+    placement shell
+  }
+
+  region {
+    id content
+    uses region_results
+    slot true
+    viewport any
+    placement primary
+    pattern content_region
+  }
+
+  region {
+    id live_updates
+    uses region_live_updates
+    viewport wide
+    placement supporting
+  }
+}
+
+layout_contract layout_dashboard_overview {
+  name "Dashboard Overview Layout"
+  description "Operations overview layout with command access, primary KPI/results content, and live updates."
+  parent layout_standard_app_shell
+  fills content
+  platforms [web ios android]
+  viewports [wide narrow]
+  domain dom_ui_work_map_proof
+  status active
+
+  region {
+    id command_bar
+    uses region_command_bar
+    viewport any
+    placement secondary
+  }
+
+  region {
+    id results
+    uses region_results
+    slot true
+    viewport any
+    placement primary
+    style_intent [dashboard_summary]
+  }
+
+  region {
+    id live_updates
+    uses region_live_updates
+    viewport any
+    placement supporting
+  }
+}
+
+layout_contract layout_queue_workspace {
+  name "Queue Workspace Layout"
+  description "Queue/list workspace with command bar, filter rail, prioritized queue, and inspector panel."
+  parent layout_standard_app_shell
+  fills content
+  platforms [web ios android]
+  viewports [wide narrow]
+  domain dom_ui_work_map_proof
+  status active
+
+  region {
+    id command_bar
+    uses region_command_bar
+    viewport any
+    placement secondary
+  }
+
+  region {
+    id filters
+    uses region_filter_rail
+    viewport wide
+    placement start
+  }
+
+  region {
+    id queue
+    uses region_work_queue
+    slot true
+    viewport any
+    placement primary
+  }
+
+  region {
+    id inspector
+    uses region_inspector_panel
+    viewport wide
+    placement end
+  }
+}
+
+layout_contract layout_split_detail {
+  name "Split Detail Layout"
+  description "Detail workspace with summary, activity timeline, contextual inspector, and footer actions."
+  parent layout_standard_app_shell
+  fills content
+  platforms [web ios android]
+  viewports [wide narrow]
+  domain dom_ui_work_map_proof
+  status active
+
+  region {
+    id summary
+    uses region_detail_summary
+    slot true
+    viewport any
+    placement primary
+  }
+
+  region {
+    id activity
+    uses region_activity_timeline
+    viewport any
+    placement supporting
+  }
+
+  region {
+    id inspector
+    uses region_inspector_panel
+    viewport wide
+    placement end
+  }
+
+  region {
+    id footer_actions
+    uses region_footer_actions
+    viewport any
+    placement bottom
+  }
+}
+
+layout_contract layout_board_workspace {
+  name "Board Workspace Layout"
+  description "Board-style operations workspace with commands, filters, board results, and optional inspector."
+  parent layout_standard_app_shell
+  fills content
+  platforms [web ios android]
+  viewports [wide narrow]
+  domain dom_ui_work_map_proof
+  status active
+
+  region {
+    id command_bar
+    uses region_command_bar
+    viewport any
+    placement secondary
+  }
+
+  region {
+    id filters
+    uses region_filter_rail
+    viewport wide
+    placement start
+  }
+
+  region {
+    id board
+    uses region_results
+    slot true
+    viewport any
+    placement primary
+    pattern board_view
+  }
+
+  region {
+    id inspector
+    uses region_inspector_panel
+    viewport wide
+    placement end
+  }
+}
+
+layout_contract layout_calendar_workspace {
+  name "Calendar Workspace Layout"
+  description "Schedule workspace with commands, filters, calendar results, and live update support."
+  parent layout_standard_app_shell
+  fills content
+  platforms [web ios android]
+  viewports [wide narrow]
+  domain dom_ui_work_map_proof
+  status active
+
+  region {
+    id command_bar
+    uses region_command_bar
+    viewport any
+    placement secondary
+  }
+
+  region {
+    id filters
+    uses region_filter_rail
+    viewport wide
+    placement start
+  }
+
+  region {
+    id calendar
+    uses region_results
+    slot true
+    viewport any
+    placement primary
+    pattern calendar_view
+  }
+}
+
+layout_contract layout_modal_task_flow {
+  name "Modal Task Flow Layout"
+  description "Focused task-flow layout for assignment, escalation, and resolution actions."
+  app_shell wizard
+  platforms [web ios android]
+  viewports [wide narrow]
+  domain dom_ui_work_map_proof
+  status active
+
+  region {
+    id summary
+    uses region_detail_summary
+    viewport any
+    placement primary
+  }
+
+  region {
+    id command_bar
+    uses region_command_bar
+    slot true
+    viewport any
+    placement secondary
+  }
+
+  region {
+    id footer_actions
+    uses region_footer_actions
+    viewport any
+    placement bottom
+  }
+}
+
+layout_contract layout_settings_workspace {
+  name "Settings Workspace Layout"
+  description "Settings layout with navigation, settings sections, and contextual detail panels."
+  parent layout_standard_app_shell
+  fills content
+  platforms [web ios android]
+  viewports [wide narrow]
+  domain dom_ui_work_map_proof
+  status active
+
+  region {
+    id filters
+    uses region_filter_rail
+    viewport wide
+    placement start
+    pattern primary_navigation
+  }
+
+  region {
+    id settings
+    uses region_results
+    slot true
+    viewport any
+    placement primary
+    pattern settings_section
+  }
+
+  region {
+    id inspector
+    uses region_inspector_panel
+    viewport wide
+    placement end
+  }
+}

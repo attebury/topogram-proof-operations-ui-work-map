@@ -1,6 +1,6 @@
 {
   "cliVersion": "0.3.112",
-  "currentStep": "proof-02-semantic-regions",
+  "currentStep": "proof-03-reusable-layouts",
   "expectedTags": [
     "proof-01-domain-and-app-shell",
     "proof-02-semantic-regions",
@@ -47,8 +47,22 @@
       "contains": ["# Step 02 Region Catalog", "region_results", "region_live_updates"]
     },
     {
+      "path": "proof/artifacts/step-03-reusable-layouts/check.json",
+      "json": true,
+      "requiredKeys": ["ok", "topogram"]
+    },
+    {
+      "path": "proof/artifacts/step-03-reusable-layouts/domain-slice.json",
+      "json": true,
+      "requiredKeys": ["type", "focus"]
+    },
+    {
+      "path": "proof/artifacts/step-03-reusable-layouts/layout-catalog.md",
+      "contains": ["# Step 03 Layout Catalog", "layout_queue_workspace", "layout_split_detail"]
+    },
+    {
       "path": "proof/STEP.md",
-      "contains": ["Step 02", "Semantic Regions"]
+      "contains": ["Step 03", "Reusable Layouts"]
     }
   ]
 }

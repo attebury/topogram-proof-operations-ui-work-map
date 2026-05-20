@@ -1,18 +1,18 @@
-# Step 02: Semantic Regions
+# Step 03: Reusable Layouts
 
-> This checkpoint adds reusable semantic work areas before layouts, screens, and widgets are introduced.
+> This checkpoint composes reusable semantic regions into layouts before screens and widgets are introduced.
 
 Status: current
 
 Audience: reviewers following the proof step by step.
 
-Use when: you want to understand the reusable region vocabulary that later layouts and screens inherit.
+Use when: you want to see how screens will inherit reusable work areas instead of restating scattered screen regions.
 
 ## What Changed
 
-- Added reusable `region_contract` records for app shell, navigation, commands, filters, results, queues, detail, timeline, inspector, footer actions, and live updates.
-- Captured state expectations, density, style intent, accessibility obligations, i18n obligations, and allowed widget patterns for each region.
-- Added a Step 02 region catalog artifact so reviewers can inspect the semantic vocabulary before layout composition begins.
+- Added `layout_contract` records for the standard app shell, dashboard overview, queue workspace, split detail, board workspace, calendar workspace, modal task flow, and settings workspace.
+- Each layout composes Step 02 region contracts and marks slots/fills for future screens.
+- Added a Step 03 layout catalog artifact showing parent relationships, fills, and region composition.
 
 ## Verification
 
@@ -20,4 +20,4 @@ Use when: you want to understand the reusable region vocabulary that later layou
 npm run verify
 ```
 
-The current step proves region contracts validate independently. It does not yet include reusable layout composition, screens, widget bindings, or design realization contracts.
+The current step proves layouts can compose semantic regions. It does not yet include screens, widget bindings, or design realization contracts.

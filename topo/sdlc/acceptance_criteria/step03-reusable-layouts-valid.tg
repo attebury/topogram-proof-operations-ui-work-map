@@ -1,0 +1,6 @@
+acceptance_criterion ac_step03_reusable_layouts_valid {
+  name "Step 03 Reusable Layouts Valid"
+  description "Given semantic regions already exist, when npm run verify is executed at Step 03, then reusable layout contracts validate, compose inherited regions, and produce a layout catalog ready for screen mapping."
+  requirement req_operations_ui_work_map_proof
+  status approved
+}

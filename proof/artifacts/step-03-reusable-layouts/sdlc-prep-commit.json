@@ -1,0 +1,83 @@
+{
+  "changedFiles": [
+    "proof/README.md",
+    "proof/STEP.md",
+    "proof/manifest.json",
+    "topo/verifications/proof-verifications.tg",
+    "proof/artifacts/step-03-reusable-layouts/agent-brief.json",
+    "proof/artifacts/step-03-reusable-layouts/check.json",
+    "proof/artifacts/step-03-reusable-layouts/sdlc-check.json",
+    "topo/sdlc/acceptance_criteria/step03-reusable-layouts-valid.tg",
+    "topo/sdlc/tasks/step03-reusable-layouts.tg",
+    "topo/ui-structure/layout-contracts.tg"
+  ],
+  "changedTasks": [
+    {
+      "change_type": "workflow",
+      "disposition": "active",
+      "explicitDisposition": true,
+      "file": "topo/sdlc/tasks/step03-reusable-layouts.tg",
+      "id": "task_step03_reusable_layouts",
+      "latest_verification_runs": [
+        {
+          "latest": null,
+          "verification_id": "verification_step03_reusable_layouts"
+        }
+      ],
+      "priority": "high",
+      "proof_learning_review": null,
+      "requiresDisposition": false,
+      "risk_class": "low",
+      "status": "done"
+    }
+  ],
+  "errors": [],
+  "nextCommands": [
+    "topogram sdlc explain <task-id> --json",
+    "topogram query slice ./topo --task <task-id> --json",
+    "topogram sdlc gate . --base <ref> --head <ref> --require-adopted"
+  ],
+  "ok": true,
+  "openTasks": [],
+  "projectRoot": "<repo>",
+  "staleWork": {
+    "breaches": [],
+    "nextCommands": [
+      "topogram query sdlc-claimed ./topo --json",
+      "topogram query sdlc-proof-gaps ./topo --json",
+      "topogram sdlc prep commit . --json"
+    ],
+    "now": "2026-05-20T23:05:59.106Z",
+    "ok": true,
+    "policy": {
+      "configured": false,
+      "staleWork": {
+        "claimedDays": null,
+        "inProgressDays": null
+      },
+      "wipLimits": {
+        "maxClaimedTasksPerActor": null,
+        "maxInProgressTasks": null
+      }
+    },
+    "stale": {
+      "claimed": [],
+      "in_progress": [],
+      "missing_history": []
+    },
+    "type": "sdlc_stale_work_query",
+    "version": 1,
+    "wip": {
+      "by_actor": [],
+      "claimed_count": 0,
+      "in_progress_count": 0
+    }
+  },
+  "taskFiles": [
+    "topo/sdlc/tasks/step03-reusable-layouts.tg"
+  ],
+  "topogramRoot": "<workspace>",
+  "type": "sdlc_commit_prep",
+  "version": "1",
+  "warnings": []
+}

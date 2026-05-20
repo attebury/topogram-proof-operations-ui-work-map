@@ -17,3 +17,13 @@ verification verification_step02_semantic_regions {
   domain dom_ui_work_map_proof
   status active
 }
+
+verification verification_step03_reusable_layouts {
+  name "Step 03 Reusable Layouts Verification"
+  description "Runs proof path hygiene, proof audit, Topogram check, strict SDLC check, domain slice generation, layout catalog review, and clean-worktree verification for the reusable layout checkpoint."
+  validates [cap_monitor_operations_dashboard cap_triage_incoming_work cap_assign_field_work cap_review_incident cap_resolve_incident cap_manage_field_teams]
+  method runtime
+  scenarios [npm_run_verify_step_03]
+  domain dom_ui_work_map_proof
+  status active
+}
