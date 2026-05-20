@@ -1,0 +1,6 @@
+acceptance_criterion ac_step07_i18n_aria_states_valid {
+  name "Step 07 i18n ARIA And States Valid"
+  description "Given screens and widgets use reusable layouts and design realization sets, when npm run verify is executed at Step 07, then message keys, locale policy, accessibility obligations, state labels, UI realization reports, design coverage, and focused slices expose realized, contract-only, and missing review states."
+  requirement req_operations_ui_work_map_proof
+  status approved
+}

@@ -1,0 +1,5394 @@
+{
+  "agent_guidance": {
+    "completion_command": "topogram sdlc prep commit . --json",
+    "mode": "implementation",
+    "next_commands": [
+      "topogram query slice ./topo --mode implementation --projection proj_operations_ui_contract --screen incident_detail --json",
+      "topogram query single-agent-plan ./topo --mode implementation --projection proj_operations_ui_contract --screen incident_detail --json",
+      "topogram query sdlc-proof-gaps ./topo --json",
+      "topogram check . --json",
+      "topogram sdlc check . --strict",
+      "topogram sdlc prep commit . --json"
+    ],
+    "next_queries": [
+      "topogram query slice ./topo --mode implementation --projection proj_operations_ui_contract --screen incident_detail --json",
+      "topogram query single-agent-plan ./topo --mode implementation --projection proj_operations_ui_contract --screen incident_detail --json"
+    ],
+    "proof_commands": [
+      "topogram check . --json",
+      "topogram sdlc check . --strict",
+      "topogram sdlc prep commit . --json"
+    ],
+    "read_first": [
+      "focus",
+      "summary",
+      "agent_guidance",
+      "terms",
+      "review_boundary",
+      "ownership_boundary",
+      "write_scope",
+      "ui_agent_packet"
+    ],
+    "read_order": [
+      "focus",
+      "summary",
+      "agent_guidance",
+      "terms",
+      "review_boundary",
+      "ownership_boundary",
+      "write_scope",
+      "ui_agent_packet"
+    ],
+    "required_commands": [
+      "topogram query sdlc-proof-gaps ./topo --json",
+      "topogram check . --json",
+      "topogram sdlc check . --strict",
+      "topogram sdlc prep commit . --json"
+    ],
+    "warnings": [],
+    "write_scope_summary": "Edit the canonical Topogram source and project-owned files only; generated-owned outputs should be regenerated."
+  },
+  "depends_on": {
+    "capabilities": [
+      "cap_assign_field_work",
+      "cap_resolve_incident",
+      "cap_review_incident"
+    ],
+    "projections": [
+      "proj_operations_ui_contract"
+    ],
+    "shapes": [
+      "shape_incident_detail"
+    ],
+    "terms": [
+      "term_layout_contract",
+      "term_region_contract",
+      "term_widget"
+    ],
+    "verifications": [
+      "verification_step01_domain_app_shell",
+      "verification_step02_semantic_regions",
+      "verification_step03_reusable_layouts",
+      "verification_step04_screens_navigation",
+      "verification_step05_widgets_bindings",
+      "verification_step06_design_realizations",
+      "verification_step07_i18n_aria_states"
+    ],
+    "widgets": [
+      "widget_activity_timeline",
+      "widget_assignment_form",
+      "widget_detail_panel"
+    ]
+  },
+  "detail_level": "standard",
+  "focus": {
+    "id": "incident_detail",
+    "kind": "screen",
+    "projectionId": "proj_operations_ui_contract"
+  },
+  "ownership_boundary": {
+    "canonical_topogram": {
+      "agent_mode": "propose_review_adopt",
+      "owner": "human"
+    },
+    "generated_artifacts": {
+      "agent_mode": "regenerate_or_compare",
+      "owner": "engine"
+    },
+    "maintained_code": {
+      "agent_mode": "bounded_edit_only",
+      "owner": "human"
+    },
+    "proposal_surfaces": {
+      "agent_mode": "stage_map_customize_reject",
+      "owner": "human"
+    }
+  },
+  "related": {
+    "capabilities": [
+      {
+        "actors": [
+          "actor_coding_agent",
+          "actor_dispatch_coordinator",
+          "actor_field_operator"
+        ],
+        "creates": [],
+        "deletes": [],
+        "description": "Match work items to available field operators based on urgency, location, and capacity.",
+        "id": "cap_assign_field_work",
+        "input": [],
+        "kind": "capability",
+        "name": "Assign Field Work",
+        "output": [],
+        "ownership_boundary": {
+          "canonical_topogram": {
+            "agent_mode": "propose_review_adopt",
+            "owner": "human"
+          },
+          "generated_artifacts": {
+            "agent_mode": "regenerate_or_compare",
+            "owner": "engine"
+          },
+          "maintained_code": {
+            "agent_mode": "bounded_edit_only",
+            "owner": "human"
+          },
+          "proposal_surfaces": {
+            "agent_mode": "stage_map_customize_reject",
+            "owner": "human"
+          }
+        },
+        "reads": [],
+        "reviewBoundary": {
+          "automation_class": "safe",
+          "reasons": [
+            "read_only_surface"
+          ]
+        },
+        "roles": [],
+        "updates": []
+      },
+      {
+        "actors": [
+          "actor_coding_agent",
+          "actor_field_operator",
+          "actor_operations_manager"
+        ],
+        "creates": [],
+        "deletes": [],
+        "description": "Record resolution details, close out follow-up actions, and make the final status visible to operations.",
+        "id": "cap_resolve_incident",
+        "input": [],
+        "kind": "capability",
+        "name": "Resolve Incident",
+        "output": [],
+        "ownership_boundary": {
+          "canonical_topogram": {
+            "agent_mode": "propose_review_adopt",
+            "owner": "human"
+          },
+          "generated_artifacts": {
+            "agent_mode": "regenerate_or_compare",
+            "owner": "engine"
+          },
+          "maintained_code": {
+            "agent_mode": "bounded_edit_only",
+            "owner": "human"
+          },
+          "proposal_surfaces": {
+            "agent_mode": "stage_map_customize_reject",
+            "owner": "human"
+          }
+        },
+        "reads": [],
+        "reviewBoundary": {
+          "automation_class": "safe",
+          "reasons": [
+            "read_only_surface"
+          ]
+        },
+        "roles": [],
+        "updates": []
+      },
+      {
+        "actors": [
+          "actor_coding_agent",
+          "actor_dispatch_coordinator",
+          "actor_operations_manager"
+        ],
+        "creates": [],
+        "deletes": [],
+        "description": "Inspect an incident, its activity timeline, related work, status changes, and next available actions.",
+        "id": "cap_review_incident",
+        "input": [],
+        "kind": "capability",
+        "name": "Review Incident",
+        "output": [],
+        "ownership_boundary": {
+          "canonical_topogram": {
+            "agent_mode": "propose_review_adopt",
+            "owner": "human"
+          },
+          "generated_artifacts": {
+            "agent_mode": "regenerate_or_compare",
+            "owner": "engine"
+          },
+          "maintained_code": {
+            "agent_mode": "bounded_edit_only",
+            "owner": "human"
+          },
+          "proposal_surfaces": {
+            "agent_mode": "stage_map_customize_reject",
+            "owner": "human"
+          }
+        },
+        "reads": [],
+        "reviewBoundary": {
+          "automation_class": "safe",
+          "reasons": [
+            "read_only_surface"
+          ]
+        },
+        "roles": [],
+        "updates": []
+      }
+    ],
+    "projections": [
+      {
+        "dbTables": [],
+        "description": "Shared UI contract for the operations-dashboard proof with reusable layouts, screens, navigation, and semantic widget bindings.",
+        "httpCapabilities": [],
+        "id": "proj_operations_ui_contract",
+        "kind": "projection",
+        "name": "Operations UI Contract",
+        "outputs": [
+          "ui_contract"
+        ],
+        "ownership_boundary": {
+          "canonical_topogram": {
+            "agent_mode": "propose_review_adopt",
+            "owner": "human"
+          },
+          "generated_artifacts": {
+            "agent_mode": "regenerate_or_compare",
+            "owner": "engine"
+          },
+          "maintained_code": {
+            "agent_mode": "bounded_edit_only",
+            "owner": "human"
+          },
+          "proposal_surfaces": {
+            "agent_mode": "stage_map_customize_reject",
+            "owner": "human"
+          }
+        },
+        "realizes": [
+          "cap_assign_field_work",
+          "cap_manage_field_teams",
+          "cap_monitor_operations_dashboard",
+          "cap_resolve_incident",
+          "cap_review_incident",
+          "cap_triage_incoming_work"
+        ],
+        "reviewBoundary": {
+          "automation_class": "manual_decision",
+          "reasons": [
+            "ui_surface"
+          ]
+        },
+        "type": "ui_contract",
+        "uiScreens": [
+          "assignment_board",
+          "audit_timeline",
+          "field_team_directory",
+          "incident_detail",
+          "intake_queue",
+          "operations_dashboard",
+          "schedule_calendar",
+          "settings_preferences"
+        ],
+        "widgetBindings": [
+          "widget_activity_timeline",
+          "widget_alert_banner",
+          "widget_assignment_form",
+          "widget_card_list",
+          "widget_command_toolbar",
+          "widget_data_grid",
+          "widget_detail_panel",
+          "widget_filter_panel",
+          "widget_kpi_summary_cards",
+          "widget_schedule_calendar",
+          "widget_status_board"
+        ]
+      }
+    ],
+    "shapes": [
+      {
+        "derivedFrom": [],
+        "description": "Detailed incident payload for review and resolution screens.",
+        "exclude": [],
+        "fields": [
+          {
+            "defaultValue": null,
+            "name": "id",
+            "requiredness": "required",
+            "type": "string"
+          },
+          {
+            "defaultValue": null,
+            "name": "title",
+            "requiredness": "required",
+            "type": "string"
+          },
+          {
+            "defaultValue": null,
+            "name": "summary",
+            "requiredness": "required",
+            "type": "text"
+          },
+          {
+            "defaultValue": null,
+            "name": "priority",
+            "requiredness": "required",
+            "type": "string"
+          },
+          {
+            "defaultValue": null,
+            "name": "status",
+            "requiredness": "required",
+            "type": "string"
+          },
+          {
+            "defaultValue": null,
+            "name": "assigned_team",
+            "requiredness": "optional",
+            "type": "string"
+          },
+          {
+            "defaultValue": null,
+            "name": "opened_at",
+            "requiredness": "required",
+            "type": "datetime"
+          },
+          {
+            "defaultValue": null,
+            "name": "updated_at",
+            "requiredness": "required",
+            "type": "datetime"
+          },
+          {
+            "defaultValue": null,
+            "name": "resolution",
+            "requiredness": "optional",
+            "type": "string"
+          }
+        ],
+        "id": "shape_incident_detail",
+        "include": [],
+        "kind": "shape",
+        "name": "Incident Detail",
+        "ownership_boundary": {
+          "canonical_topogram": {
+            "agent_mode": "propose_review_adopt",
+            "owner": "human"
+          },
+          "generated_artifacts": {
+            "agent_mode": "regenerate_or_compare",
+            "owner": "engine"
+          },
+          "maintained_code": {
+            "agent_mode": "bounded_edit_only",
+            "owner": "human"
+          },
+          "proposal_surfaces": {
+            "agent_mode": "stage_map_customize_reject",
+            "owner": "human"
+          }
+        }
+      }
+    ],
+    "terms": [
+      {
+        "aliases": [
+          "semantic_layout"
+        ],
+        "category": "ui_structure",
+        "description": "A reusable semantic template that composes regions for screens without prescribing DOM, SwiftUI, Android, or CSS layout code.",
+        "excludes": [],
+        "id": "term_layout_contract",
+        "kind": "term",
+        "name": "Layout Contract",
+        "ownership_boundary": {
+          "canonical_topogram": {
+            "agent_mode": "propose_review_adopt",
+            "owner": "human"
+          },
+          "generated_artifacts": {
+            "agent_mode": "regenerate_or_compare",
+            "owner": "engine"
+          },
+          "maintained_code": {
+            "agent_mode": "bounded_edit_only",
+            "owner": "human"
+          },
+          "proposal_surfaces": {
+            "agent_mode": "stage_map_customize_reject",
+            "owner": "human"
+          }
+        },
+        "relatedTerms": [],
+        "status": "active"
+      },
+      {
+        "aliases": [
+          "work_area"
+        ],
+        "category": "ui_structure",
+        "description": "A reusable semantic work area such as command bar, filter rail, results, detail summary, timeline, inspector, or footer actions.",
+        "excludes": [],
+        "id": "term_region_contract",
+        "kind": "term",
+        "name": "Region Contract",
+        "ownership_boundary": {
+          "canonical_topogram": {
+            "agent_mode": "propose_review_adopt",
+            "owner": "human"
+          },
+          "generated_artifacts": {
+            "agent_mode": "regenerate_or_compare",
+            "owner": "engine"
+          },
+          "maintained_code": {
+            "agent_mode": "bounded_edit_only",
+            "owner": "human"
+          },
+          "proposal_surfaces": {
+            "agent_mode": "stage_map_customize_reject",
+            "owner": "human"
+          }
+        },
+        "relatedTerms": [],
+        "status": "active"
+      },
+      {
+        "aliases": [
+          "semantic_component"
+        ],
+        "category": "ui_structure",
+        "description": "A reusable semantic UI contract that can be realized by different platform components while keeping one product meaning.",
+        "excludes": [],
+        "id": "term_widget",
+        "kind": "term",
+        "name": "Widget",
+        "ownership_boundary": {
+          "canonical_topogram": {
+            "agent_mode": "propose_review_adopt",
+            "owner": "human"
+          },
+          "generated_artifacts": {
+            "agent_mode": "regenerate_or_compare",
+            "owner": "engine"
+          },
+          "maintained_code": {
+            "agent_mode": "bounded_edit_only",
+            "owner": "human"
+          },
+          "proposal_surfaces": {
+            "agent_mode": "stage_map_customize_reject",
+            "owner": "human"
+          }
+        },
+        "relatedTerms": [],
+        "status": "active"
+      }
+    ],
+    "widgets": [
+      {
+        "approvals": [],
+        "behavior": [],
+        "behaviors": [],
+        "category": "display",
+        "dependencies": [],
+        "description": "Chronological activity, handoff, status-change, and audit event trail.",
+        "events": [],
+        "id": "widget_activity_timeline",
+        "kind": "widget",
+        "lookups": [],
+        "name": "Activity Timeline",
+        "ownership_boundary": {
+          "canonical_topogram": {
+            "agent_mode": "propose_review_adopt",
+            "owner": "human"
+          },
+          "generated_artifacts": {
+            "agent_mode": "regenerate_or_compare",
+            "owner": "engine"
+          },
+          "maintained_code": {
+            "agent_mode": "bounded_edit_only",
+            "owner": "human"
+          },
+          "proposal_surfaces": {
+            "agent_mode": "stage_map_customize_reject",
+            "owner": "human"
+          }
+        },
+        "patterns": [
+          "activity_feed",
+          "audit_log",
+          "timeline_view"
+        ],
+        "props": [
+          {
+            "defaultValue": null,
+            "name": "timeline_items",
+            "requiredness": "required",
+            "type": "array"
+          },
+          {
+            "defaultValue": false,
+            "name": "loading",
+            "requiredness": "optional",
+            "type": "boolean"
+          }
+        ],
+        "regions": [
+          "activity",
+          "timeline"
+        ],
+        "slots": [],
+        "status": "active",
+        "version": "1.0"
+      },
+      {
+        "approvals": [],
+        "behavior": [
+          "keyboard_navigation",
+          "optimistic_update"
+        ],
+        "behaviors": [
+          {
+            "directives": {
+              "actions": [
+                "submit"
+              ],
+              "rollback": true
+            },
+            "kind": "optimistic_update",
+            "source": "structured"
+          },
+          {
+            "directives": {
+              "scope": "form",
+              "shortcuts": [
+                "tab",
+                "enter",
+                "escape"
+              ]
+            },
+            "kind": "keyboard_navigation",
+            "source": "structured"
+          }
+        ],
+        "category": "form",
+        "dependencies": [],
+        "description": "Focused assignment or resolution form for terminal operational decisions.",
+        "events": [
+          {
+            "id": "submit",
+            "shape": "shape_incident_detail"
+          }
+        ],
+        "id": "widget_assignment_form",
+        "kind": "widget",
+        "lookups": [],
+        "name": "Assignment Form",
+        "ownership_boundary": {
+          "canonical_topogram": {
+            "agent_mode": "propose_review_adopt",
+            "owner": "human"
+          },
+          "generated_artifacts": {
+            "agent_mode": "regenerate_or_compare",
+            "owner": "engine"
+          },
+          "maintained_code": {
+            "agent_mode": "bounded_edit_only",
+            "owner": "human"
+          },
+          "proposal_surfaces": {
+            "agent_mode": "stage_map_customize_reject",
+            "owner": "human"
+          }
+        },
+        "patterns": [
+          "action_bar",
+          "edit_form",
+          "footer_bar"
+        ],
+        "props": [
+          {
+            "defaultValue": null,
+            "name": "value",
+            "requiredness": "required",
+            "type": "object"
+          },
+          {
+            "defaultValue": [],
+            "name": "options",
+            "requiredness": "optional",
+            "type": "array"
+          }
+        ],
+        "regions": [
+          "footer_actions",
+          "summary",
+          "toolbar"
+        ],
+        "slots": [],
+        "status": "active",
+        "version": "1.0"
+      },
+      {
+        "approvals": [],
+        "behavior": [],
+        "behaviors": [],
+        "category": "display",
+        "dependencies": [],
+        "description": "Readable selected-record summary for incident, team, settings, and inspector contexts.",
+        "events": [
+          {
+            "id": "edit_requested",
+            "shape": "shape_incident_detail"
+          }
+        ],
+        "id": "widget_detail_panel",
+        "kind": "widget",
+        "lookups": [],
+        "name": "Detail Panel",
+        "ownership_boundary": {
+          "canonical_topogram": {
+            "agent_mode": "propose_review_adopt",
+            "owner": "human"
+          },
+          "generated_artifacts": {
+            "agent_mode": "regenerate_or_compare",
+            "owner": "engine"
+          },
+          "maintained_code": {
+            "agent_mode": "bounded_edit_only",
+            "owner": "human"
+          },
+          "proposal_surfaces": {
+            "agent_mode": "stage_map_customize_reject",
+            "owner": "human"
+          }
+        },
+        "patterns": [
+          "detail_panel",
+          "inspector_pane",
+          "settings_section"
+        ],
+        "props": [
+          {
+            "defaultValue": null,
+            "name": "item",
+            "requiredness": "required",
+            "type": "object"
+          },
+          {
+            "defaultValue": false,
+            "name": "loading",
+            "requiredness": "optional",
+            "type": "boolean"
+          }
+        ],
+        "regions": [
+          "aside",
+          "results",
+          "summary"
+        ],
+        "slots": [],
+        "status": "active",
+        "version": "1.0"
+      }
+    ]
+  },
+  "review_boundary": {
+    "automation_class": "review_required",
+    "reasons": [
+      "ui_screen_surface"
+    ]
+  },
+  "slice_manifest": {
+    "detail_level": "standard",
+    "note": "Read must_read sections first; use reference sections only as needed; run proof commands before completing work.",
+    "proof_sections": [
+      "verification_targets",
+      "verification"
+    ],
+    "read_order": [
+      "focus",
+      "summary",
+      "agent_guidance",
+      "terms",
+      "review_boundary",
+      "ownership_boundary",
+      "write_scope",
+      "ui_agent_packet"
+    ],
+    "sections": [
+      {
+        "field": "focus",
+        "id": "focus",
+        "item_count": 3,
+        "reason": "The selected graph surface this packet is scoped to.",
+        "tier": "must_read",
+        "title": "Focus"
+      },
+      {
+        "field": "summary",
+        "id": "summary",
+        "item_count": 4,
+        "reason": "The shortest human-readable description of the selected work or surface.",
+        "tier": "must_read",
+        "title": "Summary"
+      },
+      {
+        "field": "agent_guidance",
+        "id": "agent_guidance",
+        "item_count": 10,
+        "reason": "Mode, read order, follow-up queries, and required proof commands.",
+        "tier": "must_read",
+        "title": "Agent Guidance"
+      },
+      {
+        "field": "related.terms",
+        "id": "terms",
+        "item_count": 3,
+        "reason": "Canonical vocabulary needed to interpret this slice.",
+        "tier": "must_read",
+        "title": "Glossary Terms"
+      },
+      {
+        "field": "review_boundary",
+        "id": "review_boundary",
+        "item_count": 2,
+        "reason": "Automation and human-review expectations for this scope.",
+        "tier": "must_read",
+        "title": "Review Boundary"
+      },
+      {
+        "field": "ownership_boundary",
+        "id": "ownership_boundary",
+        "item_count": 4,
+        "reason": "Generated, maintained, and human-owned boundaries that constrain edits.",
+        "tier": "must_read",
+        "title": "Ownership Boundary"
+      },
+      {
+        "field": "write_scope",
+        "id": "write_scope",
+        "item_count": 4,
+        "reason": "Files and surfaces that are safe, risky, or out of bounds to edit.",
+        "tier": "must_read",
+        "title": "Write Scope"
+      },
+      {
+        "field": "ui_agent_packet",
+        "id": "ui_agent_packet",
+        "item_count": 20,
+        "reason": "Screen, layout, region, widget, accessibility, i18n, design-token, and UI proof context for UI slices.",
+        "tier": "must_read",
+        "title": "UI Agent Packet"
+      },
+      {
+        "field": "depends_on",
+        "id": "depends_on",
+        "item_count": 6,
+        "reason": "IDs that define the semantic closure without embedding every full record.",
+        "tier": "reference",
+        "title": "Depends On"
+      },
+      {
+        "field": "related",
+        "id": "related",
+        "item_count": 5,
+        "reason": "Summaries for directly related graph records.",
+        "tier": "reference",
+        "title": "Related Records"
+      },
+      {
+        "field": "verification_targets",
+        "id": "verification_targets",
+        "item_count": 4,
+        "reason": "Smallest verification set recommended for this change.",
+        "tier": "proof",
+        "title": "Verification Targets"
+      },
+      {
+        "field": "verification",
+        "id": "verification",
+        "item_count": 7,
+        "reason": "Verification records directly linked to this slice.",
+        "tier": "proof",
+        "title": "Verification Records"
+      }
+    ]
+  },
+  "standing_rules": [],
+  "summary": {
+    "description": "UI screen 'incident_detail' in projection 'proj_operations_ui_contract'.",
+    "id": "incident_detail",
+    "kind": "detail",
+    "name": "Incident Detail"
+  },
+  "type": "context_slice",
+  "ui_agent_packet": {
+    "accessibility": {
+      "authoredObligations": [
+        {
+          "focus": "visible",
+          "keyboard": "standard",
+          "live": "off",
+          "nameFrom": {
+            "source": "message",
+            "value": "msg_incident_detail_title"
+          },
+          "role": "main",
+          "targetId": "incident_detail",
+          "targetKind": "screen"
+        },
+        {
+          "focus": "visible",
+          "keyboard": "standard",
+          "live": "off",
+          "nameFrom": {
+            "source": "message",
+            "value": "msg_widget_detail_panel_label"
+          },
+          "role": "region",
+          "targetId": "widget_detail_panel",
+          "targetKind": "widget"
+        },
+        {
+          "focus": "visible",
+          "keyboard": "standard",
+          "live": "off",
+          "nameFrom": {
+            "source": "message",
+            "value": "msg_widget_activity_timeline_label"
+          },
+          "role": "list",
+          "targetId": "widget_activity_timeline",
+          "targetKind": "widget"
+        },
+        {
+          "focus": "managed",
+          "keyboard": "form",
+          "live": "off",
+          "nameFrom": {
+            "source": "message",
+            "value": "msg_widget_assignment_form_label"
+          },
+          "role": "form",
+          "targetId": "widget_assignment_form",
+          "targetKind": "widget"
+        },
+        {
+          "focus": "visible",
+          "keyboard": "button",
+          "live": "off",
+          "nameFrom": {
+            "source": "message",
+            "value": "msg_action_assign_field_work_label"
+          },
+          "role": "button",
+          "targetId": "cap_assign_field_work",
+          "targetKind": "action"
+        },
+        {
+          "focus": "visible",
+          "keyboard": "button",
+          "live": "off",
+          "nameFrom": {
+            "source": "message",
+            "value": "msg_action_resolve_incident_label"
+          },
+          "role": "button",
+          "targetId": "cap_resolve_incident",
+          "targetKind": "action"
+        }
+      ],
+      "currentSignals": {
+        "authoredContract": {
+          "obligations": [
+            {
+              "focus": "visible",
+              "keyboard": "standard",
+              "live": "off",
+              "nameFrom": {
+                "source": "message",
+                "value": "msg_incident_detail_title"
+              },
+              "role": "main",
+              "targetId": "incident_detail",
+              "targetKind": "screen"
+            },
+            {
+              "focus": "visible",
+              "keyboard": "standard",
+              "live": "off",
+              "nameFrom": {
+                "source": "message",
+                "value": "msg_widget_detail_panel_label"
+              },
+              "role": "region",
+              "targetId": "widget_detail_panel",
+              "targetKind": "widget"
+            },
+            {
+              "focus": "visible",
+              "keyboard": "standard",
+              "live": "off",
+              "nameFrom": {
+                "source": "message",
+                "value": "msg_widget_activity_timeline_label"
+              },
+              "role": "list",
+              "targetId": "widget_activity_timeline",
+              "targetKind": "widget"
+            },
+            {
+              "focus": "managed",
+              "keyboard": "form",
+              "live": "off",
+              "nameFrom": {
+                "source": "message",
+                "value": "msg_widget_assignment_form_label"
+              },
+              "role": "form",
+              "targetId": "widget_assignment_form",
+              "targetKind": "widget"
+            },
+            {
+              "focus": "visible",
+              "keyboard": "button",
+              "live": "off",
+              "nameFrom": {
+                "source": "message",
+                "value": "msg_action_assign_field_work_label"
+              },
+              "role": "button",
+              "targetId": "cap_assign_field_work",
+              "targetKind": "action"
+            },
+            {
+              "focus": "visible",
+              "keyboard": "button",
+              "live": "off",
+              "nameFrom": {
+                "source": "message",
+                "value": "msg_action_resolve_incident_label"
+              },
+              "role": "button",
+              "targetId": "cap_resolve_incident",
+              "targetKind": "action"
+            }
+          ],
+          "totalObligations": 24
+        },
+        "designTokens": {}
+      },
+      "decisions": [
+        {
+          "found": false,
+          "id": "decision_aria_attributes_are_implementation_evidence",
+          "kind": null,
+          "name": "decision_aria_attributes_are_implementation_evidence",
+          "status": null
+        }
+      ],
+      "diagnostics": [],
+      "obligations": [
+        "Prefer semantic role, accessible-name source, keyboard model, focus behavior, live-region need, and proof command over raw aria-* snapshots.",
+        "Treat raw aria-* attributes as generated or maintained implementation evidence, not the contract source."
+      ],
+      "proofCommands": [
+        "topogram widget check --json",
+        "topogram widget behavior --json",
+        "topogram emit ui-realization-report --projection proj_operations_ui_contract --json"
+      ],
+      "requirements": [
+        {
+          "found": false,
+          "id": "req_aria_accessibility_contract_v1",
+          "kind": null,
+          "name": "req_aria_accessibility_contract_v1",
+          "status": null
+        }
+      ],
+      "scope": {
+        "projectionId": "proj_operations_ui_contract",
+        "screenId": "incident_detail",
+        "widgetId": null
+      },
+      "source": "ui_contract accessibility block, design-token evidence, terms, decisions, and requirements",
+      "status": "authored_contract",
+      "terms": [
+        {
+          "found": true,
+          "id": "term_accessibility_obligation",
+          "kind": "term",
+          "name": "Accessibility Obligation",
+          "status": "active"
+        },
+        {
+          "found": true,
+          "id": "term_accessible_name",
+          "kind": "term",
+          "name": "Accessible Name",
+          "status": "active"
+        },
+        {
+          "found": true,
+          "id": "term_semantic_role",
+          "kind": "term",
+          "name": "Semantic Role",
+          "status": "active"
+        },
+        {
+          "found": true,
+          "id": "term_keyboard_interaction",
+          "kind": "term",
+          "name": "Keyboard Interaction",
+          "status": "active"
+        },
+        {
+          "found": true,
+          "id": "term_live_region",
+          "kind": "term",
+          "name": "Live Region",
+          "status": "active"
+        }
+      ]
+    },
+    "behaviorRealizations": [
+      {
+        "actions": [
+          {
+            "bindings": [
+              {
+                "action": "action",
+                "event": "submit",
+                "target": {
+                  "id": "cap_resolve_incident",
+                  "kind": "capability"
+                }
+              }
+            ],
+            "bound": true,
+            "effects": [
+              {
+                "capability": {
+                  "id": "cap_resolve_incident",
+                  "kind": "capability"
+                },
+                "event": "submit",
+                "type": "command"
+              }
+            ],
+            "event": "submit"
+          }
+        ],
+        "dataDependencies": [
+          {
+            "prop": "value",
+            "source": {
+              "id": "cap_resolve_incident",
+              "kind": "capability"
+            }
+          }
+        ],
+        "directives": {
+          "actions": [
+            "submit"
+          ],
+          "rollback": true
+        },
+        "effects": [
+          {
+            "capability": {
+              "id": "cap_resolve_incident",
+              "kind": "capability"
+            },
+            "event": "submit",
+            "type": "command"
+          }
+        ],
+        "emits": [],
+        "kind": "optimistic_update",
+        "source": "structured",
+        "state": null,
+        "status": "realized"
+      },
+      {
+        "actions": [],
+        "dataDependencies": [
+          {
+            "prop": "value",
+            "source": {
+              "id": "cap_resolve_incident",
+              "kind": "capability"
+            }
+          }
+        ],
+        "directives": {
+          "scope": "form",
+          "shortcuts": [
+            "tab",
+            "enter",
+            "escape"
+          ]
+        },
+        "effects": [],
+        "emits": [],
+        "kind": "keyboard_navigation",
+        "source": "structured",
+        "state": null,
+        "status": "realized"
+      }
+    ],
+    "designContracts": {
+      "contracts": [],
+      "diagnostics": [
+        "No design_contract mapping matches this focused UI scope; unsupported or custom component realization is developer/agent review work."
+      ],
+      "proofCommands": [
+        "topogram emit ui-realization-report --projection proj_operations_ui_contract --json"
+      ],
+      "scope": {
+        "projectionId": "proj_operations_ui_contract",
+        "screenId": "incident_detail",
+        "widgetId": null
+      },
+      "source": "design_contract records own design-system scope and token mappings; design_realization_set records map semantic widgets to platform component refs and behavior support.",
+      "status": "unmapped"
+    },
+    "designReview": {
+      "diagnostics": [
+        "Widget 'widget_activity_timeline' has no android design realization in 'design_operations_product_ui'.",
+        "Widget 'widget_activity_timeline' has no authored accessibility obligation.",
+        "Widget 'widget_activity_timeline' has no authored message key.",
+        "Widget 'widget_activity_timeline' has no authored accessibility obligation.",
+        "Widget 'widget_activity_timeline' has no authored message key.",
+        "Widget 'widget_assignment_form' has no authored accessibility obligation.",
+        "Widget 'widget_assignment_form' has no authored message key.",
+        "Widget 'widget_assignment_form' has no authored accessibility obligation.",
+        "Widget 'widget_assignment_form' has no authored message key.",
+        "Behavior 'keyboard_navigation' is 'contract_only'.",
+        "Behavior 'optimistic_update' is 'contract_only'.",
+        "Widget 'widget_assignment_form' has no authored accessibility obligation.",
+        "Widget 'widget_assignment_form' has no authored accessibility obligation.",
+        "Widget 'widget_assignment_form' has no authored message key.",
+        "Widget 'widget_assignment_form' has no authored message key.",
+        "Realization 'assignment_form_web_narrow' does not declare 'error' state coverage.",
+        "Realization 'assignment_form_web_narrow' is 'contract_only'.",
+        "Widget 'widget_detail_panel' has no authored accessibility obligation.",
+        "Widget 'widget_detail_panel' has no authored message key.",
+        "Widget 'widget_detail_panel' has no authored accessibility obligation.",
+        "Widget 'widget_detail_panel' has no authored message key.",
+        "Widget 'widget_detail_panel' has no authored accessibility obligation.",
+        "Widget 'widget_detail_panel' has no authored accessibility obligation.",
+        "Widget 'widget_detail_panel' has no authored accessibility obligation.",
+        "Widget 'widget_detail_panel' has no authored message key.",
+        "Widget 'widget_detail_panel' has no authored message key.",
+        "Widget 'widget_detail_panel' has no authored message key.",
+        "Realization 'detail_panel_web_settings' does not declare 'error' state coverage.",
+        "Realization 'detail_panel_web_settings' is 'contract_only'."
+      ],
+      "gaps": {
+        "behavior_review_items": 4,
+        "missing_accessibility": 11,
+        "missing_i18n": 11,
+        "missing_platforms": 1,
+        "missing_states": 2,
+        "missing_token_mappings": 0
+      },
+      "matrix": {
+        "review_rows": [
+          {
+            "code": "design_missing_platform",
+            "message": "Widget 'widget_activity_timeline' has no android design realization in 'design_operations_product_ui'.",
+            "platform": "android",
+            "widget": "widget_activity_timeline"
+          },
+          {
+            "code": "design_missing_accessibility",
+            "component_ref": "ops.ios.timeline",
+            "message": "Widget 'widget_activity_timeline' has no authored accessibility obligation.",
+            "platform": "ios",
+            "status": "missing_accessibility",
+            "viewport": "any",
+            "widget": "widget_activity_timeline"
+          },
+          {
+            "code": "design_missing_i18n",
+            "component_ref": "ops.ios.timeline",
+            "message": "Widget 'widget_activity_timeline' has no authored message key.",
+            "platform": "ios",
+            "status": "missing_i18n",
+            "viewport": "any",
+            "widget": "widget_activity_timeline"
+          },
+          {
+            "code": "design_missing_accessibility",
+            "component_ref": "ops.timeline.auditTrail",
+            "message": "Widget 'widget_activity_timeline' has no authored accessibility obligation.",
+            "platform": "web",
+            "status": "missing_accessibility",
+            "viewport": "wide",
+            "widget": "widget_activity_timeline"
+          },
+          {
+            "code": "design_missing_i18n",
+            "component_ref": "ops.timeline.auditTrail",
+            "message": "Widget 'widget_activity_timeline' has no authored message key.",
+            "platform": "web",
+            "status": "missing_i18n",
+            "viewport": "wide",
+            "widget": "widget_activity_timeline"
+          },
+          {
+            "code": "design_missing_accessibility",
+            "component_ref": "ops.android.assignmentSheet",
+            "message": "Widget 'widget_assignment_form' has no authored accessibility obligation.",
+            "platform": "android",
+            "status": "missing_accessibility",
+            "viewport": "any",
+            "widget": "widget_assignment_form"
+          },
+          {
+            "code": "design_missing_i18n",
+            "component_ref": "ops.android.assignmentSheet",
+            "message": "Widget 'widget_assignment_form' has no authored message key.",
+            "platform": "android",
+            "status": "missing_i18n",
+            "viewport": "any",
+            "widget": "widget_assignment_form"
+          },
+          {
+            "code": "design_missing_accessibility",
+            "component_ref": "ops.ios.assignmentSheet",
+            "message": "Widget 'widget_assignment_form' has no authored accessibility obligation.",
+            "platform": "ios",
+            "status": "missing_accessibility",
+            "viewport": "any",
+            "widget": "widget_assignment_form"
+          },
+          {
+            "code": "design_missing_i18n",
+            "component_ref": "ops.ios.assignmentSheet",
+            "message": "Widget 'widget_assignment_form' has no authored message key.",
+            "platform": "ios",
+            "status": "missing_i18n",
+            "viewport": "any",
+            "widget": "widget_assignment_form"
+          },
+          {
+            "code": "design_behavior_review_required",
+            "component_ref": "ops.forms.assignmentSheet",
+            "message": "Behavior 'keyboard_navigation' is 'contract_only'.",
+            "platform": "web",
+            "status": "contract_only",
+            "viewport": "narrow",
+            "widget": "widget_assignment_form"
+          },
+          {
+            "code": "design_behavior_review_required",
+            "component_ref": "ops.forms.assignmentSheet",
+            "message": "Behavior 'optimistic_update' is 'contract_only'.",
+            "platform": "web",
+            "status": "contract_only",
+            "viewport": "narrow",
+            "widget": "widget_assignment_form"
+          },
+          {
+            "code": "design_missing_accessibility",
+            "component_ref": "ops.forms.assignmentSheet",
+            "message": "Widget 'widget_assignment_form' has no authored accessibility obligation.",
+            "platform": "web",
+            "status": "missing_accessibility",
+            "viewport": "narrow",
+            "widget": "widget_assignment_form"
+          },
+          {
+            "code": "design_missing_accessibility",
+            "component_ref": "ops.forms.assignmentDrawer",
+            "message": "Widget 'widget_assignment_form' has no authored accessibility obligation.",
+            "platform": "web",
+            "status": "missing_accessibility",
+            "viewport": "wide",
+            "widget": "widget_assignment_form"
+          },
+          {
+            "code": "design_missing_i18n",
+            "component_ref": "ops.forms.assignmentSheet",
+            "message": "Widget 'widget_assignment_form' has no authored message key.",
+            "platform": "web",
+            "status": "missing_i18n",
+            "viewport": "narrow",
+            "widget": "widget_assignment_form"
+          },
+          {
+            "code": "design_missing_i18n",
+            "component_ref": "ops.forms.assignmentDrawer",
+            "message": "Widget 'widget_assignment_form' has no authored message key.",
+            "platform": "web",
+            "status": "missing_i18n",
+            "viewport": "wide",
+            "widget": "widget_assignment_form"
+          },
+          {
+            "code": "design_missing_state",
+            "component_ref": "ops.forms.assignmentSheet",
+            "message": "Realization 'assignment_form_web_narrow' does not declare 'error' state coverage.",
+            "platform": "web",
+            "status": "missing_state",
+            "viewport": "narrow",
+            "widget": "widget_assignment_form"
+          },
+          {
+            "code": "design_realization_status_review",
+            "component_ref": "ops.forms.assignmentSheet",
+            "message": "Realization 'assignment_form_web_narrow' is 'contract_only'.",
+            "platform": "web",
+            "status": "contract_only",
+            "viewport": "narrow",
+            "widget": "widget_assignment_form"
+          },
+          {
+            "code": "design_missing_accessibility",
+            "component_ref": "ops.android.detailSheet",
+            "message": "Widget 'widget_detail_panel' has no authored accessibility obligation.",
+            "platform": "android",
+            "status": "missing_accessibility",
+            "viewport": "any",
+            "widget": "widget_detail_panel"
+          },
+          {
+            "code": "design_missing_i18n",
+            "component_ref": "ops.android.detailSheet",
+            "message": "Widget 'widget_detail_panel' has no authored message key.",
+            "platform": "android",
+            "status": "missing_i18n",
+            "viewport": "any",
+            "widget": "widget_detail_panel"
+          },
+          {
+            "code": "design_missing_accessibility",
+            "component_ref": "ops.ios.detailSheet",
+            "message": "Widget 'widget_detail_panel' has no authored accessibility obligation.",
+            "platform": "ios",
+            "status": "missing_accessibility",
+            "viewport": "any",
+            "widget": "widget_detail_panel"
+          },
+          {
+            "code": "design_missing_i18n",
+            "component_ref": "ops.ios.detailSheet",
+            "message": "Widget 'widget_detail_panel' has no authored message key.",
+            "platform": "ios",
+            "status": "missing_i18n",
+            "viewport": "any",
+            "widget": "widget_detail_panel"
+          },
+          {
+            "code": "design_missing_accessibility",
+            "component_ref": "ops.detail.inspector",
+            "message": "Widget 'widget_detail_panel' has no authored accessibility obligation.",
+            "platform": "web",
+            "status": "missing_accessibility",
+            "viewport": "wide",
+            "widget": "widget_detail_panel"
+          },
+          {
+            "code": "design_missing_accessibility",
+            "component_ref": "ops.settings.sectionPanel",
+            "message": "Widget 'widget_detail_panel' has no authored accessibility obligation.",
+            "platform": "web",
+            "status": "missing_accessibility",
+            "viewport": "wide",
+            "widget": "widget_detail_panel"
+          },
+          {
+            "code": "design_missing_accessibility",
+            "component_ref": "ops.detail.summaryPanel",
+            "message": "Widget 'widget_detail_panel' has no authored accessibility obligation.",
+            "platform": "web",
+            "status": "missing_accessibility",
+            "viewport": "wide",
+            "widget": "widget_detail_panel"
+          },
+          {
+            "code": "design_missing_i18n",
+            "component_ref": "ops.detail.inspector",
+            "message": "Widget 'widget_detail_panel' has no authored message key.",
+            "platform": "web",
+            "status": "missing_i18n",
+            "viewport": "wide",
+            "widget": "widget_detail_panel"
+          },
+          {
+            "code": "design_missing_i18n",
+            "component_ref": "ops.settings.sectionPanel",
+            "message": "Widget 'widget_detail_panel' has no authored message key.",
+            "platform": "web",
+            "status": "missing_i18n",
+            "viewport": "wide",
+            "widget": "widget_detail_panel"
+          },
+          {
+            "code": "design_missing_i18n",
+            "component_ref": "ops.detail.summaryPanel",
+            "message": "Widget 'widget_detail_panel' has no authored message key.",
+            "platform": "web",
+            "status": "missing_i18n",
+            "viewport": "wide",
+            "widget": "widget_detail_panel"
+          },
+          {
+            "code": "design_missing_state",
+            "component_ref": "ops.settings.sectionPanel",
+            "message": "Realization 'detail_panel_web_settings' does not declare 'error' state coverage.",
+            "platform": "web",
+            "status": "missing_state",
+            "viewport": "wide",
+            "widget": "widget_detail_panel"
+          },
+          {
+            "code": "design_realization_status_review",
+            "component_ref": "ops.settings.sectionPanel",
+            "message": "Realization 'detail_panel_web_settings' is 'contract_only'.",
+            "platform": "web",
+            "status": "contract_only",
+            "viewport": "wide",
+            "widget": "widget_detail_panel"
+          }
+        ],
+        "rows": [
+          {
+            "accessibility_status": "missing",
+            "behavior_statuses": [],
+            "component_ref": null,
+            "density": "unspecified",
+            "i18n_status": "missing",
+            "missing_states": [
+              "loading",
+              "empty",
+              "error"
+            ],
+            "pattern": null,
+            "platform": "android",
+            "review_status": "review_required",
+            "state_coverage": [],
+            "status": "missing_platform",
+            "token_status": "mapped",
+            "viewport": "any",
+            "widget": "widget_activity_timeline"
+          },
+          {
+            "accessibility_status": "missing",
+            "behavior_statuses": [],
+            "component_ref": "ops.ios.timeline",
+            "density": "comfortable",
+            "i18n_status": "missing",
+            "missing_states": [],
+            "pattern": "timeline_view",
+            "platform": "ios",
+            "review_status": "review_required",
+            "state_coverage": [
+              "loading",
+              "empty",
+              "error"
+            ],
+            "status": "implementation_owned",
+            "token_status": "mapped",
+            "viewport": "any",
+            "widget": "widget_activity_timeline"
+          },
+          {
+            "accessibility_status": "missing",
+            "behavior_statuses": [],
+            "component_ref": "ops.timeline.auditTrail",
+            "density": "comfortable",
+            "i18n_status": "missing",
+            "missing_states": [],
+            "pattern": "timeline_view",
+            "platform": "web",
+            "review_status": "review_required",
+            "state_coverage": [
+              "loading",
+              "empty",
+              "error"
+            ],
+            "status": "rendered",
+            "token_status": "mapped",
+            "viewport": "wide",
+            "widget": "widget_activity_timeline"
+          },
+          {
+            "accessibility_status": "missing",
+            "behavior_statuses": [
+              {
+                "behavior": "keyboard_navigation",
+                "status": "implementation_owned"
+              },
+              {
+                "behavior": "optimistic_update",
+                "status": "implementation_owned"
+              }
+            ],
+            "component_ref": "ops.android.assignmentSheet",
+            "density": "comfortable",
+            "i18n_status": "missing",
+            "missing_states": [],
+            "pattern": "footer_bar",
+            "platform": "android",
+            "review_status": "review_required",
+            "state_coverage": [
+              "loading",
+              "empty",
+              "error"
+            ],
+            "status": "implementation_owned",
+            "token_status": "mapped",
+            "viewport": "any",
+            "widget": "widget_assignment_form"
+          },
+          {
+            "accessibility_status": "missing",
+            "behavior_statuses": [
+              {
+                "behavior": "keyboard_navigation",
+                "status": "implementation_owned"
+              },
+              {
+                "behavior": "optimistic_update",
+                "status": "implementation_owned"
+              }
+            ],
+            "component_ref": "ops.ios.assignmentSheet",
+            "density": "comfortable",
+            "i18n_status": "missing",
+            "missing_states": [],
+            "pattern": "footer_bar",
+            "platform": "ios",
+            "review_status": "review_required",
+            "state_coverage": [
+              "loading",
+              "empty",
+              "error"
+            ],
+            "status": "implementation_owned",
+            "token_status": "mapped",
+            "viewport": "any",
+            "widget": "widget_assignment_form"
+          },
+          {
+            "accessibility_status": "missing",
+            "behavior_statuses": [
+              {
+                "behavior": "keyboard_navigation",
+                "status": "contract_only"
+              },
+              {
+                "behavior": "optimistic_update",
+                "status": "contract_only"
+              }
+            ],
+            "component_ref": "ops.forms.assignmentSheet",
+            "density": "comfortable",
+            "i18n_status": "missing",
+            "missing_states": [
+              "error"
+            ],
+            "pattern": "footer_bar",
+            "platform": "web",
+            "review_status": "review_required",
+            "state_coverage": [
+              "loading",
+              "empty"
+            ],
+            "status": "contract_only",
+            "token_status": "mapped",
+            "viewport": "narrow",
+            "widget": "widget_assignment_form"
+          },
+          {
+            "accessibility_status": "missing",
+            "behavior_statuses": [
+              {
+                "behavior": "keyboard_navigation",
+                "status": "rendered"
+              },
+              {
+                "behavior": "optimistic_update",
+                "status": "rendered"
+              }
+            ],
+            "component_ref": "ops.forms.assignmentDrawer",
+            "density": "comfortable",
+            "i18n_status": "missing",
+            "missing_states": [],
+            "pattern": "footer_bar",
+            "platform": "web",
+            "review_status": "review_required",
+            "state_coverage": [
+              "loading",
+              "empty",
+              "error"
+            ],
+            "status": "rendered",
+            "token_status": "mapped",
+            "viewport": "wide",
+            "widget": "widget_assignment_form"
+          },
+          {
+            "accessibility_status": "missing",
+            "behavior_statuses": [],
+            "component_ref": "ops.android.detailSheet",
+            "density": "comfortable",
+            "i18n_status": "missing",
+            "missing_states": [],
+            "pattern": "detail_panel",
+            "platform": "android",
+            "review_status": "review_required",
+            "state_coverage": [
+              "loading",
+              "empty",
+              "error"
+            ],
+            "status": "implementation_owned",
+            "token_status": "mapped",
+            "viewport": "any",
+            "widget": "widget_detail_panel"
+          },
+          {
+            "accessibility_status": "missing",
+            "behavior_statuses": [],
+            "component_ref": "ops.ios.detailSheet",
+            "density": "comfortable",
+            "i18n_status": "missing",
+            "missing_states": [],
+            "pattern": "detail_panel",
+            "platform": "ios",
+            "review_status": "review_required",
+            "state_coverage": [
+              "loading",
+              "empty",
+              "error"
+            ],
+            "status": "implementation_owned",
+            "token_status": "mapped",
+            "viewport": "any",
+            "widget": "widget_detail_panel"
+          },
+          {
+            "accessibility_status": "missing",
+            "behavior_statuses": [],
+            "component_ref": "ops.settings.sectionPanel",
+            "density": "comfortable",
+            "i18n_status": "missing",
+            "missing_states": [
+              "error"
+            ],
+            "pattern": "settings_section",
+            "platform": "web",
+            "review_status": "review_required",
+            "state_coverage": [
+              "loading",
+              "empty"
+            ],
+            "status": "contract_only",
+            "token_status": "mapped",
+            "viewport": "wide",
+            "widget": "widget_detail_panel"
+          },
+          {
+            "accessibility_status": "missing",
+            "behavior_statuses": [],
+            "component_ref": "ops.detail.summaryPanel",
+            "density": "comfortable",
+            "i18n_status": "missing",
+            "missing_states": [],
+            "pattern": "detail_panel",
+            "platform": "web",
+            "review_status": "review_required",
+            "state_coverage": [
+              "loading",
+              "empty",
+              "error"
+            ],
+            "status": "rendered",
+            "token_status": "mapped",
+            "viewport": "wide",
+            "widget": "widget_detail_panel"
+          },
+          {
+            "accessibility_status": "missing",
+            "behavior_statuses": [],
+            "component_ref": "ops.detail.inspector",
+            "density": "compact",
+            "i18n_status": "missing",
+            "missing_states": [],
+            "pattern": "inspector_pane",
+            "platform": "web",
+            "review_status": "review_required",
+            "state_coverage": [
+              "loading",
+              "empty",
+              "error"
+            ],
+            "status": "rendered",
+            "token_status": "mapped",
+            "viewport": "wide",
+            "widget": "widget_detail_panel"
+          }
+        ]
+      },
+      "proofCommands": [
+        "topogram query ui-design-coverage ./topo --projection proj_operations_ui_contract --json",
+        "topogram query ui-design-coverage ./topo --projection proj_operations_ui_contract --format markdown",
+        "topogram emit ui-realization-report ./topo --projection proj_operations_ui_contract --json"
+      ],
+      "scope": {
+        "projectionId": "proj_operations_ui_contract",
+        "screenId": "incident_detail",
+        "widgetId": null
+      },
+      "source": "ui-design-coverage design_matrix rows from design_contract and design_realization_set records",
+      "status": "review_required"
+    },
+    "designTokens": {
+      "accessibility": {},
+      "actionRoles": {},
+      "colorRoles": {},
+      "density": "comfortable",
+      "radiusScale": "medium",
+      "tone": "operational",
+      "typographyRoles": {}
+    },
+    "displayFields": [
+      {
+        "label": "Id",
+        "name": "id",
+        "required": true,
+        "requiredness": "required",
+        "role": "identifier",
+        "sourceName": "id",
+        "type": "string"
+      },
+      {
+        "label": "Title",
+        "name": "title",
+        "required": true,
+        "requiredness": "required",
+        "role": "primary",
+        "sourceName": "title",
+        "type": "string"
+      },
+      {
+        "label": "Summary",
+        "name": "summary",
+        "required": true,
+        "requiredness": "required",
+        "role": "metadata",
+        "sourceName": "summary",
+        "type": "text"
+      },
+      {
+        "label": "Priority",
+        "name": "priority",
+        "required": true,
+        "requiredness": "required",
+        "role": "metadata",
+        "sourceName": "priority",
+        "type": "string"
+      },
+      {
+        "label": "Status",
+        "name": "status",
+        "required": true,
+        "requiredness": "required",
+        "role": "metadata",
+        "sourceName": "status",
+        "type": "string"
+      },
+      {
+        "label": "Assigned Team",
+        "name": "assigned_team",
+        "required": false,
+        "requiredness": "optional",
+        "role": "metadata",
+        "sourceName": "assigned_team",
+        "type": "string"
+      },
+      {
+        "label": "Opened At",
+        "name": "opened_at",
+        "required": true,
+        "requiredness": "required",
+        "role": "date",
+        "sourceName": "opened_at",
+        "type": "datetime"
+      },
+      {
+        "label": "Updated At",
+        "name": "updated_at",
+        "required": true,
+        "requiredness": "required",
+        "role": "date",
+        "sourceName": "updated_at",
+        "type": "datetime"
+      },
+      {
+        "label": "Resolution",
+        "name": "resolution",
+        "required": false,
+        "requiredness": "optional",
+        "role": "metadata",
+        "sourceName": "resolution",
+        "type": "string"
+      }
+    ],
+    "internationalization": {
+      "currentSignals": {
+        "authoredContract": {
+          "messages": [
+            {
+              "actionId": null,
+              "context": "screen_title",
+              "defaultText": "Incident Detail",
+              "id": "msg_incident_detail_title",
+              "key": "operations.incident.title",
+              "screenId": "incident_detail",
+              "terms": [],
+              "variables": [],
+              "widgetId": null
+            },
+            {
+              "actionId": null,
+              "context": "widget_label",
+              "defaultText": "Selected work detail",
+              "id": "msg_widget_detail_panel_label",
+              "key": "operations.widgets.detail_panel.label",
+              "screenId": null,
+              "terms": [],
+              "variables": [],
+              "widgetId": "widget_detail_panel"
+            },
+            {
+              "actionId": null,
+              "context": "widget_label",
+              "defaultText": "Activity timeline",
+              "id": "msg_widget_activity_timeline_label",
+              "key": "operations.widgets.activity_timeline.label",
+              "screenId": null,
+              "terms": [],
+              "variables": [],
+              "widgetId": "widget_activity_timeline"
+            },
+            {
+              "actionId": null,
+              "context": "widget_label",
+              "defaultText": "Assignment form",
+              "id": "msg_widget_assignment_form_label",
+              "key": "operations.widgets.assignment_form.label",
+              "screenId": null,
+              "terms": [],
+              "variables": [],
+              "widgetId": "widget_assignment_form"
+            },
+            {
+              "actionId": "cap_assign_field_work",
+              "context": "action_label",
+              "defaultText": "Assign field work",
+              "id": "msg_action_assign_field_work_label",
+              "key": "operations.actions.assign_field_work",
+              "screenId": null,
+              "terms": [],
+              "variables": [],
+              "widgetId": null
+            },
+            {
+              "actionId": "cap_resolve_incident",
+              "context": "action_label",
+              "defaultText": "Resolve incident",
+              "id": "msg_action_resolve_incident_label",
+              "key": "operations.actions.resolve_incident",
+              "screenId": null,
+              "terms": [],
+              "variables": [],
+              "widgetId": null
+            },
+            {
+              "actionId": null,
+              "context": "status",
+              "defaultText": "Resolved",
+              "id": "msg_status_resolved",
+              "key": "operations.status.resolved",
+              "screenId": null,
+              "terms": [],
+              "variables": [],
+              "widgetId": "widget_detail_panel"
+            }
+          ],
+          "totalMessages": 36
+        },
+        "localePolicy": {
+          "defaultLocale": "en-US",
+          "direction": "ltr",
+          "fallbackLocale": "en-US",
+          "supportedLocales": [
+            "en-US"
+          ]
+        },
+        "messageKeys": [
+          "operations.incident.title",
+          "operations.widgets.detail_panel.label",
+          "operations.widgets.activity_timeline.label",
+          "operations.widgets.assignment_form.label",
+          "operations.actions.assign_field_work",
+          "operations.actions.resolve_incident",
+          "operations.status.resolved"
+        ]
+      },
+      "decisions": [
+        {
+          "found": false,
+          "id": "decision_i18n_messages_are_separate_from_glossary_terms",
+          "kind": null,
+          "name": "decision_i18n_messages_are_separate_from_glossary_terms",
+          "status": null
+        }
+      ],
+      "diagnostics": [],
+      "messages": [
+        {
+          "actionId": null,
+          "context": "screen_title",
+          "defaultText": "Incident Detail",
+          "id": "msg_incident_detail_title",
+          "key": "operations.incident.title",
+          "screenId": "incident_detail",
+          "terms": [],
+          "variables": [],
+          "widgetId": null
+        },
+        {
+          "actionId": null,
+          "context": "widget_label",
+          "defaultText": "Selected work detail",
+          "id": "msg_widget_detail_panel_label",
+          "key": "operations.widgets.detail_panel.label",
+          "screenId": null,
+          "terms": [],
+          "variables": [],
+          "widgetId": "widget_detail_panel"
+        },
+        {
+          "actionId": null,
+          "context": "widget_label",
+          "defaultText": "Activity timeline",
+          "id": "msg_widget_activity_timeline_label",
+          "key": "operations.widgets.activity_timeline.label",
+          "screenId": null,
+          "terms": [],
+          "variables": [],
+          "widgetId": "widget_activity_timeline"
+        },
+        {
+          "actionId": null,
+          "context": "widget_label",
+          "defaultText": "Assignment form",
+          "id": "msg_widget_assignment_form_label",
+          "key": "operations.widgets.assignment_form.label",
+          "screenId": null,
+          "terms": [],
+          "variables": [],
+          "widgetId": "widget_assignment_form"
+        },
+        {
+          "actionId": "cap_assign_field_work",
+          "context": "action_label",
+          "defaultText": "Assign field work",
+          "id": "msg_action_assign_field_work_label",
+          "key": "operations.actions.assign_field_work",
+          "screenId": null,
+          "terms": [],
+          "variables": [],
+          "widgetId": null
+        },
+        {
+          "actionId": "cap_resolve_incident",
+          "context": "action_label",
+          "defaultText": "Resolve incident",
+          "id": "msg_action_resolve_incident_label",
+          "key": "operations.actions.resolve_incident",
+          "screenId": null,
+          "terms": [],
+          "variables": [],
+          "widgetId": null
+        },
+        {
+          "actionId": null,
+          "context": "status",
+          "defaultText": "Resolved",
+          "id": "msg_status_resolved",
+          "key": "operations.status.resolved",
+          "screenId": null,
+          "terms": [],
+          "variables": [],
+          "widgetId": "widget_detail_panel"
+        }
+      ],
+      "obligations": [
+        "Use glossary terms for canonical meaning and message keys for translated wording.",
+        "Keep concrete locale catalogs in generated or maintained app code until a message contract DSL exists."
+      ],
+      "proofCommands": [
+        "topogram emit glossary ./topo --json",
+        "topogram query slice ./topo --screen incident_detail --projection proj_operations_ui_contract --json"
+      ],
+      "requirements": [
+        {
+          "found": false,
+          "id": "req_i18n_message_contract_v1",
+          "kind": null,
+          "name": "req_i18n_message_contract_v1",
+          "status": null
+        }
+      ],
+      "scope": {
+        "projectionId": "proj_operations_ui_contract",
+        "screenId": "incident_detail",
+        "widgetId": null
+      },
+      "source": "ui_contract messages block, glossary terms, decisions, and requirements",
+      "status": "authored_contract",
+      "terms": [
+        {
+          "found": true,
+          "id": "term_translatable_message",
+          "kind": "term",
+          "name": "Translatable Message",
+          "status": "active"
+        },
+        {
+          "found": true,
+          "id": "term_message_key",
+          "kind": "term",
+          "name": "Message Key",
+          "status": "active"
+        },
+        {
+          "found": true,
+          "id": "term_locale_policy",
+          "kind": "term",
+          "name": "Locale Policy",
+          "status": "active"
+        },
+        {
+          "found": true,
+          "id": "term_source_text",
+          "kind": "term",
+          "name": "Source Text",
+          "status": "active"
+        }
+      ]
+    },
+    "ownership": {
+      "concreteSurfaceOwns": [
+        "screen_routes",
+        "surface_hints"
+      ],
+      "designIntent": "ui_contract",
+      "widgetPlacement": "ui_contract"
+    },
+    "projection": {
+      "id": "proj_operations_ui_contract",
+      "name": "Operations UI Contract",
+      "type": "ui_contract"
+    },
+    "regions": [
+      {
+        "accessibilityObligations": [
+          "landmark_banner",
+          "visible_focus",
+          "account_menu_label"
+        ],
+        "allowedWidgetPatterns": [
+          "app_header",
+          "action_bar",
+          "status_badge"
+        ],
+        "density": "compact",
+        "i18nObligations": [
+          "brand_label",
+          "account_action_labels"
+        ],
+        "kind": "header",
+        "layoutId": "layout_standard_app_shell",
+        "name": "header",
+        "pattern": "app_header",
+        "placement": "top",
+        "region": "header",
+        "regionContractId": "region_app_header",
+        "slot": false,
+        "source": "layout",
+        "state": null,
+        "styleIntent": [
+          "persistent",
+          "brand",
+          "operational"
+        ],
+        "title": "App Header",
+        "variant": null,
+        "viewport": "any"
+      },
+      {
+        "accessibilityObligations": [
+          "landmark_navigation",
+          "keyboard_navigation",
+          "current_page_marker"
+        ],
+        "allowedWidgetPatterns": [
+          "primary_navigation",
+          "hamburger_drawer"
+        ],
+        "density": "comfortable",
+        "i18nObligations": [
+          "navigation_labels",
+          "section_labels"
+        ],
+        "kind": "navigation",
+        "layoutId": "layout_standard_app_shell",
+        "name": "nav",
+        "pattern": "primary_navigation",
+        "placement": "shell",
+        "region": "nav",
+        "regionContractId": "region_global_navigation",
+        "slot": false,
+        "source": "layout",
+        "state": null,
+        "styleIntent": [
+          "persistent",
+          "orienting",
+          "scannable"
+        ],
+        "title": "Global Navigation",
+        "variant": null,
+        "viewport": "any"
+      },
+      {
+        "accessibilityObligations": [
+          "labelled_region",
+          "keyboard_collection_navigation",
+          "row_action_labels"
+        ],
+        "allowedWidgetPatterns": [
+          "resource_table",
+          "data_grid_view",
+          "resource_cards",
+          "board_view",
+          "calendar_view",
+          "search_results",
+          "empty_state_panel"
+        ],
+        "density": "comfortable",
+        "i18nObligations": [
+          "title",
+          "empty_state",
+          "loading_state",
+          "error_state"
+        ],
+        "kind": "results",
+        "layoutId": "layout_standard_app_shell",
+        "name": "content",
+        "pattern": "content_region",
+        "placement": "primary",
+        "region": "content",
+        "regionContractId": "region_results",
+        "slot": true,
+        "source": "layout",
+        "state": null,
+        "styleIntent": [
+          "primary",
+          "scannable",
+          "structured",
+          "responsive"
+        ],
+        "title": "Results Region",
+        "variant": null,
+        "viewport": "any"
+      },
+      {
+        "accessibilityObligations": [
+          "live_region",
+          "polite_announcements",
+          "pause_updates"
+        ],
+        "allowedWidgetPatterns": [
+          "activity_feed",
+          "status_badge",
+          "empty_state_panel"
+        ],
+        "density": "compact",
+        "i18nObligations": [
+          "alert_labels",
+          "relative_time_labels"
+        ],
+        "kind": "activity",
+        "layoutId": "layout_standard_app_shell",
+        "name": "live_updates",
+        "pattern": "activity_feed",
+        "placement": "supporting",
+        "region": "live_updates",
+        "regionContractId": "region_live_updates",
+        "slot": false,
+        "source": "layout",
+        "state": null,
+        "styleIntent": [
+          "time_sensitive",
+          "noticeable",
+          "non_blocking"
+        ],
+        "title": "Live Updates",
+        "variant": null,
+        "viewport": "wide"
+      },
+      {
+        "accessibilityObligations": [
+          "labelled_region",
+          "heading_order",
+          "focus_entry"
+        ],
+        "allowedWidgetPatterns": [
+          "detail_panel",
+          "status_badge",
+          "edit_form"
+        ],
+        "density": "comfortable",
+        "i18nObligations": [
+          "field_labels",
+          "status_labels",
+          "not_found_state"
+        ],
+        "kind": "summary",
+        "layoutId": "layout_split_detail",
+        "name": "summary",
+        "pattern": "detail_panel",
+        "placement": "primary",
+        "region": "summary",
+        "regionContractId": "region_detail_summary",
+        "slot": true,
+        "source": "layout",
+        "state": null,
+        "styleIntent": [
+          "focused",
+          "readable",
+          "decision_support"
+        ],
+        "title": "Detail Summary",
+        "variant": null,
+        "viewport": "any"
+      },
+      {
+        "accessibilityObligations": [
+          "labelled_region",
+          "chronological_order"
+        ],
+        "allowedWidgetPatterns": [
+          "timeline_view",
+          "activity_feed",
+          "comment_thread",
+          "audit_log"
+        ],
+        "density": "comfortable",
+        "i18nObligations": [
+          "timestamp_labels",
+          "event_labels",
+          "empty_state"
+        ],
+        "kind": "timeline",
+        "layoutId": "layout_split_detail",
+        "name": "activity",
+        "pattern": "timeline_view",
+        "placement": "supporting",
+        "region": "activity",
+        "regionContractId": "region_activity_timeline",
+        "slot": false,
+        "source": "layout",
+        "state": null,
+        "styleIntent": [
+          "chronological",
+          "secondary",
+          "audit_friendly"
+        ],
+        "title": "Activity Timeline",
+        "variant": null,
+        "viewport": "any"
+      },
+      {
+        "accessibilityObligations": [
+          "labelled_region",
+          "focus_return"
+        ],
+        "allowedWidgetPatterns": [
+          "inspector_pane",
+          "detail_panel",
+          "lookup_select"
+        ],
+        "density": "compact",
+        "i18nObligations": [
+          "panel_title",
+          "field_labels",
+          "empty_state"
+        ],
+        "kind": "aside",
+        "layoutId": "layout_split_detail",
+        "name": "inspector",
+        "pattern": "inspector_pane",
+        "placement": "end",
+        "region": "inspector",
+        "regionContractId": "region_inspector_panel",
+        "slot": false,
+        "source": "layout",
+        "state": null,
+        "styleIntent": [
+          "contextual",
+          "secondary",
+          "collapsible"
+        ],
+        "title": "Inspector Panel",
+        "variant": null,
+        "viewport": "wide"
+      },
+      {
+        "accessibilityObligations": [
+          "toolbar_label",
+          "visible_focus",
+          "destructive_action_warning"
+        ],
+        "allowedWidgetPatterns": [
+          "action_bar",
+          "footer_bar"
+        ],
+        "density": "compact",
+        "i18nObligations": [
+          "action_labels",
+          "confirmation_labels"
+        ],
+        "kind": "footer_actions",
+        "layoutId": "layout_split_detail",
+        "name": "footer_actions",
+        "pattern": "footer_bar",
+        "placement": "secondary",
+        "region": "footer_actions",
+        "regionContractId": "region_footer_actions",
+        "slot": false,
+        "source": "screen_override",
+        "state": null,
+        "styleIntent": [
+          "persistent",
+          "terminal_action",
+          "safe_destructive"
+        ],
+        "title": "Resolution Actions",
+        "variant": null,
+        "viewport": "any"
+      }
+    ],
+    "related": {
+      "capabilities": [
+        "cap_assign_field_work",
+        "cap_resolve_incident",
+        "cap_review_incident"
+      ],
+      "shapes": [
+        "shape_incident_detail"
+      ],
+      "widgets": [
+        "widget_activity_timeline",
+        "widget_assignment_form",
+        "widget_detail_panel"
+      ]
+    },
+    "requiredGates": [
+      {
+        "command": "topogram check",
+        "reason": "Validate shared UI ownership, taxonomy, references, and topology."
+      },
+      {
+        "command": "topogram widget check --projection proj_operations_ui_contract",
+        "reason": "Validate widget placement, props, events, regions, and patterns."
+      },
+      {
+        "command": "topogram widget behavior --projection proj_operations_ui_contract",
+        "reason": "Inspect behavior realizations and partial bindings before code changes."
+      },
+      {
+        "command": "topogram emit ui-realization-report --projection proj_operations_ui_contract --json",
+        "reason": "Confirm screens, regions, widgets, display fields, behavior, and design tokens are realizable by the web generator."
+      }
+    ],
+    "route": null,
+    "screen": {
+      "accessibility": [
+        {
+          "focus": "visible",
+          "keyboard": "standard",
+          "live": "off",
+          "nameFrom": {
+            "source": "message",
+            "value": "msg_incident_detail_title"
+          },
+          "role": "main",
+          "targetId": "incident_detail",
+          "targetKind": "screen"
+        },
+        {
+          "focus": "visible",
+          "keyboard": "standard",
+          "live": "off",
+          "nameFrom": {
+            "source": "message",
+            "value": "msg_widget_detail_panel_label"
+          },
+          "role": "region",
+          "targetId": "widget_detail_panel",
+          "targetKind": "widget"
+        },
+        {
+          "focus": "visible",
+          "keyboard": "standard",
+          "live": "off",
+          "nameFrom": {
+            "source": "message",
+            "value": "msg_widget_activity_timeline_label"
+          },
+          "role": "list",
+          "targetId": "widget_activity_timeline",
+          "targetKind": "widget"
+        },
+        {
+          "focus": "managed",
+          "keyboard": "form",
+          "live": "off",
+          "nameFrom": {
+            "source": "message",
+            "value": "msg_widget_assignment_form_label"
+          },
+          "role": "form",
+          "targetId": "widget_assignment_form",
+          "targetKind": "widget"
+        },
+        {
+          "focus": "visible",
+          "keyboard": "button",
+          "live": "off",
+          "nameFrom": {
+            "source": "message",
+            "value": "msg_action_assign_field_work_label"
+          },
+          "role": "button",
+          "targetId": "cap_assign_field_work",
+          "targetKind": "action"
+        },
+        {
+          "focus": "visible",
+          "keyboard": "button",
+          "live": "off",
+          "nameFrom": {
+            "source": "message",
+            "value": "msg_action_resolve_incident_label"
+          },
+          "role": "button",
+          "targetId": "cap_resolve_incident",
+          "targetKind": "action"
+        }
+      ],
+      "actions": {
+        "destructive": null,
+        "primary": {
+          "id": "cap_resolve_incident",
+          "kind": "capability"
+        },
+        "screen": [],
+        "secondary": {
+          "id": "cap_assign_field_work",
+          "kind": "capability"
+        },
+        "terminal": null
+      },
+      "collection": {
+        "filters": [],
+        "groupBy": [],
+        "pagination": null,
+        "refresh": "manual",
+        "search": [],
+        "sort": [],
+        "views": []
+      },
+      "detailCapability": null,
+      "display": {
+        "fields": [
+          {
+            "label": "Id",
+            "name": "id",
+            "required": true,
+            "requiredness": "required",
+            "role": "identifier",
+            "sourceName": "id",
+            "type": "string"
+          },
+          {
+            "label": "Title",
+            "name": "title",
+            "required": true,
+            "requiredness": "required",
+            "role": "primary",
+            "sourceName": "title",
+            "type": "string"
+          },
+          {
+            "label": "Summary",
+            "name": "summary",
+            "required": true,
+            "requiredness": "required",
+            "role": "metadata",
+            "sourceName": "summary",
+            "type": "text"
+          },
+          {
+            "label": "Priority",
+            "name": "priority",
+            "required": true,
+            "requiredness": "required",
+            "role": "metadata",
+            "sourceName": "priority",
+            "type": "string"
+          },
+          {
+            "label": "Status",
+            "name": "status",
+            "required": true,
+            "requiredness": "required",
+            "role": "metadata",
+            "sourceName": "status",
+            "type": "string"
+          },
+          {
+            "label": "Assigned Team",
+            "name": "assigned_team",
+            "required": false,
+            "requiredness": "optional",
+            "role": "metadata",
+            "sourceName": "assigned_team",
+            "type": "string"
+          },
+          {
+            "label": "Opened At",
+            "name": "opened_at",
+            "required": true,
+            "requiredness": "required",
+            "role": "date",
+            "sourceName": "opened_at",
+            "type": "datetime"
+          },
+          {
+            "label": "Updated At",
+            "name": "updated_at",
+            "required": true,
+            "requiredness": "required",
+            "role": "date",
+            "sourceName": "updated_at",
+            "type": "datetime"
+          },
+          {
+            "label": "Resolution",
+            "name": "resolution",
+            "required": false,
+            "requiredness": "optional",
+            "role": "metadata",
+            "sourceName": "resolution",
+            "type": "string"
+          }
+        ],
+        "source": {
+          "id": "shape_incident_detail",
+          "kind": "shape"
+        }
+      },
+      "displayFields": [
+        {
+          "label": "Id",
+          "name": "id",
+          "required": true,
+          "requiredness": "required",
+          "role": "identifier",
+          "sourceName": "id",
+          "type": "string"
+        },
+        {
+          "label": "Title",
+          "name": "title",
+          "required": true,
+          "requiredness": "required",
+          "role": "primary",
+          "sourceName": "title",
+          "type": "string"
+        },
+        {
+          "label": "Summary",
+          "name": "summary",
+          "required": true,
+          "requiredness": "required",
+          "role": "metadata",
+          "sourceName": "summary",
+          "type": "text"
+        },
+        {
+          "label": "Priority",
+          "name": "priority",
+          "required": true,
+          "requiredness": "required",
+          "role": "metadata",
+          "sourceName": "priority",
+          "type": "string"
+        },
+        {
+          "label": "Status",
+          "name": "status",
+          "required": true,
+          "requiredness": "required",
+          "role": "metadata",
+          "sourceName": "status",
+          "type": "string"
+        },
+        {
+          "label": "Assigned Team",
+          "name": "assigned_team",
+          "required": false,
+          "requiredness": "optional",
+          "role": "metadata",
+          "sourceName": "assigned_team",
+          "type": "string"
+        },
+        {
+          "label": "Opened At",
+          "name": "opened_at",
+          "required": true,
+          "requiredness": "required",
+          "role": "date",
+          "sourceName": "opened_at",
+          "type": "datetime"
+        },
+        {
+          "label": "Updated At",
+          "name": "updated_at",
+          "required": true,
+          "requiredness": "required",
+          "role": "date",
+          "sourceName": "updated_at",
+          "type": "datetime"
+        },
+        {
+          "label": "Resolution",
+          "name": "resolution",
+          "required": false,
+          "requiredness": "optional",
+          "role": "metadata",
+          "sourceName": "resolution",
+          "type": "string"
+        }
+      ],
+      "emptyState": null,
+      "id": "incident_detail",
+      "inputShape": null,
+      "itemShape": null,
+      "kind": "detail",
+      "layout": {
+        "appShell": null,
+        "fills": "content",
+        "id": "layout_split_detail",
+        "inherited": [
+          {
+            "appShell": "workspace",
+            "fills": null,
+            "id": "layout_standard_app_shell",
+            "name": "Standard App Shell"
+          },
+          {
+            "appShell": null,
+            "fills": "content",
+            "id": "layout_split_detail",
+            "name": "Split Detail Layout"
+          }
+        ],
+        "name": "Split Detail Layout"
+      },
+      "loadCapability": {
+        "id": "cap_review_incident",
+        "kind": "capability"
+      },
+      "lookups": [],
+      "messages": [
+        {
+          "actionId": null,
+          "context": "screen_title",
+          "defaultText": "Incident Detail",
+          "id": "msg_incident_detail_title",
+          "key": "operations.incident.title",
+          "screenId": "incident_detail",
+          "terms": [],
+          "variables": [],
+          "widgetId": null
+        },
+        {
+          "actionId": null,
+          "context": "widget_label",
+          "defaultText": "Selected work detail",
+          "id": "msg_widget_detail_panel_label",
+          "key": "operations.widgets.detail_panel.label",
+          "screenId": null,
+          "terms": [],
+          "variables": [],
+          "widgetId": "widget_detail_panel"
+        },
+        {
+          "actionId": null,
+          "context": "widget_label",
+          "defaultText": "Activity timeline",
+          "id": "msg_widget_activity_timeline_label",
+          "key": "operations.widgets.activity_timeline.label",
+          "screenId": null,
+          "terms": [],
+          "variables": [],
+          "widgetId": "widget_activity_timeline"
+        },
+        {
+          "actionId": null,
+          "context": "widget_label",
+          "defaultText": "Assignment form",
+          "id": "msg_widget_assignment_form_label",
+          "key": "operations.widgets.assignment_form.label",
+          "screenId": null,
+          "terms": [],
+          "variables": [],
+          "widgetId": "widget_assignment_form"
+        },
+        {
+          "actionId": "cap_assign_field_work",
+          "context": "action_label",
+          "defaultText": "Assign field work",
+          "id": "msg_action_assign_field_work_label",
+          "key": "operations.actions.assign_field_work",
+          "screenId": null,
+          "terms": [],
+          "variables": [],
+          "widgetId": null
+        },
+        {
+          "actionId": "cap_resolve_incident",
+          "context": "action_label",
+          "defaultText": "Resolve incident",
+          "id": "msg_action_resolve_incident_label",
+          "key": "operations.actions.resolve_incident",
+          "screenId": null,
+          "terms": [],
+          "variables": [],
+          "widgetId": null
+        },
+        {
+          "actionId": null,
+          "context": "status",
+          "defaultText": "Resolved",
+          "id": "msg_status_resolved",
+          "key": "operations.status.resolved",
+          "screenId": null,
+          "terms": [],
+          "variables": [],
+          "widgetId": "widget_detail_panel"
+        }
+      ],
+      "navigation": {
+        "successNavigate": null,
+        "successRefresh": null
+      },
+      "patterns": [
+        "app_header",
+        "primary_navigation",
+        "content_region",
+        "activity_feed",
+        "detail_panel",
+        "timeline_view",
+        "inspector_pane",
+        "footer_bar"
+      ],
+      "regions": [
+        {
+          "accessibilityObligations": [
+            "landmark_banner",
+            "visible_focus",
+            "account_menu_label"
+          ],
+          "allowedWidgetPatterns": [
+            "app_header",
+            "action_bar",
+            "status_badge"
+          ],
+          "density": "compact",
+          "i18nObligations": [
+            "brand_label",
+            "account_action_labels"
+          ],
+          "kind": "header",
+          "layoutId": "layout_standard_app_shell",
+          "name": "header",
+          "pattern": "app_header",
+          "placement": "top",
+          "region": "header",
+          "regionContractId": "region_app_header",
+          "slot": false,
+          "source": "layout",
+          "state": null,
+          "styleIntent": [
+            "persistent",
+            "brand",
+            "operational"
+          ],
+          "title": "App Header",
+          "variant": null,
+          "viewport": "any"
+        },
+        {
+          "accessibilityObligations": [
+            "landmark_navigation",
+            "keyboard_navigation",
+            "current_page_marker"
+          ],
+          "allowedWidgetPatterns": [
+            "primary_navigation",
+            "hamburger_drawer"
+          ],
+          "density": "comfortable",
+          "i18nObligations": [
+            "navigation_labels",
+            "section_labels"
+          ],
+          "kind": "navigation",
+          "layoutId": "layout_standard_app_shell",
+          "name": "nav",
+          "pattern": "primary_navigation",
+          "placement": "shell",
+          "region": "nav",
+          "regionContractId": "region_global_navigation",
+          "slot": false,
+          "source": "layout",
+          "state": null,
+          "styleIntent": [
+            "persistent",
+            "orienting",
+            "scannable"
+          ],
+          "title": "Global Navigation",
+          "variant": null,
+          "viewport": "any"
+        },
+        {
+          "accessibilityObligations": [
+            "labelled_region",
+            "keyboard_collection_navigation",
+            "row_action_labels"
+          ],
+          "allowedWidgetPatterns": [
+            "resource_table",
+            "data_grid_view",
+            "resource_cards",
+            "board_view",
+            "calendar_view",
+            "search_results",
+            "empty_state_panel"
+          ],
+          "density": "comfortable",
+          "i18nObligations": [
+            "title",
+            "empty_state",
+            "loading_state",
+            "error_state"
+          ],
+          "kind": "results",
+          "layoutId": "layout_standard_app_shell",
+          "name": "content",
+          "pattern": "content_region",
+          "placement": "primary",
+          "region": "content",
+          "regionContractId": "region_results",
+          "slot": true,
+          "source": "layout",
+          "state": null,
+          "styleIntent": [
+            "primary",
+            "scannable",
+            "structured",
+            "responsive"
+          ],
+          "title": "Results Region",
+          "variant": null,
+          "viewport": "any"
+        },
+        {
+          "accessibilityObligations": [
+            "live_region",
+            "polite_announcements",
+            "pause_updates"
+          ],
+          "allowedWidgetPatterns": [
+            "activity_feed",
+            "status_badge",
+            "empty_state_panel"
+          ],
+          "density": "compact",
+          "i18nObligations": [
+            "alert_labels",
+            "relative_time_labels"
+          ],
+          "kind": "activity",
+          "layoutId": "layout_standard_app_shell",
+          "name": "live_updates",
+          "pattern": "activity_feed",
+          "placement": "supporting",
+          "region": "live_updates",
+          "regionContractId": "region_live_updates",
+          "slot": false,
+          "source": "layout",
+          "state": null,
+          "styleIntent": [
+            "time_sensitive",
+            "noticeable",
+            "non_blocking"
+          ],
+          "title": "Live Updates",
+          "variant": null,
+          "viewport": "wide"
+        },
+        {
+          "accessibilityObligations": [
+            "labelled_region",
+            "heading_order",
+            "focus_entry"
+          ],
+          "allowedWidgetPatterns": [
+            "detail_panel",
+            "status_badge",
+            "edit_form"
+          ],
+          "density": "comfortable",
+          "i18nObligations": [
+            "field_labels",
+            "status_labels",
+            "not_found_state"
+          ],
+          "kind": "summary",
+          "layoutId": "layout_split_detail",
+          "name": "summary",
+          "pattern": "detail_panel",
+          "placement": "primary",
+          "region": "summary",
+          "regionContractId": "region_detail_summary",
+          "slot": true,
+          "source": "layout",
+          "state": null,
+          "styleIntent": [
+            "focused",
+            "readable",
+            "decision_support"
+          ],
+          "title": "Detail Summary",
+          "variant": null,
+          "viewport": "any"
+        },
+        {
+          "accessibilityObligations": [
+            "labelled_region",
+            "chronological_order"
+          ],
+          "allowedWidgetPatterns": [
+            "timeline_view",
+            "activity_feed",
+            "comment_thread",
+            "audit_log"
+          ],
+          "density": "comfortable",
+          "i18nObligations": [
+            "timestamp_labels",
+            "event_labels",
+            "empty_state"
+          ],
+          "kind": "timeline",
+          "layoutId": "layout_split_detail",
+          "name": "activity",
+          "pattern": "timeline_view",
+          "placement": "supporting",
+          "region": "activity",
+          "regionContractId": "region_activity_timeline",
+          "slot": false,
+          "source": "layout",
+          "state": null,
+          "styleIntent": [
+            "chronological",
+            "secondary",
+            "audit_friendly"
+          ],
+          "title": "Activity Timeline",
+          "variant": null,
+          "viewport": "any"
+        },
+        {
+          "accessibilityObligations": [
+            "labelled_region",
+            "focus_return"
+          ],
+          "allowedWidgetPatterns": [
+            "inspector_pane",
+            "detail_panel",
+            "lookup_select"
+          ],
+          "density": "compact",
+          "i18nObligations": [
+            "panel_title",
+            "field_labels",
+            "empty_state"
+          ],
+          "kind": "aside",
+          "layoutId": "layout_split_detail",
+          "name": "inspector",
+          "pattern": "inspector_pane",
+          "placement": "end",
+          "region": "inspector",
+          "regionContractId": "region_inspector_panel",
+          "slot": false,
+          "source": "layout",
+          "state": null,
+          "styleIntent": [
+            "contextual",
+            "secondary",
+            "collapsible"
+          ],
+          "title": "Inspector Panel",
+          "variant": null,
+          "viewport": "wide"
+        },
+        {
+          "accessibilityObligations": [
+            "toolbar_label",
+            "visible_focus",
+            "destructive_action_warning"
+          ],
+          "allowedWidgetPatterns": [
+            "action_bar",
+            "footer_bar"
+          ],
+          "density": "compact",
+          "i18nObligations": [
+            "action_labels",
+            "confirmation_labels"
+          ],
+          "kind": "footer_actions",
+          "layoutId": "layout_split_detail",
+          "name": "footer_actions",
+          "pattern": "footer_bar",
+          "placement": "secondary",
+          "region": "footer_actions",
+          "regionContractId": "region_footer_actions",
+          "slot": false,
+          "source": "screen_override",
+          "state": null,
+          "styleIntent": [
+            "persistent",
+            "terminal_action",
+            "safe_destructive"
+          ],
+          "title": "Resolution Actions",
+          "variant": null,
+          "viewport": "any"
+        }
+      ],
+      "states": {
+        "empty": "auto",
+        "error": "inline",
+        "loading": "skeleton",
+        "notFound": "inline",
+        "success": "auto",
+        "unauthorized": "auto"
+      },
+      "submitCapability": null,
+      "title": "Incident Detail",
+      "type": "ui_screen_contract",
+      "viewShape": {
+        "id": "shape_incident_detail",
+        "kind": "shape"
+      },
+      "visibility": [],
+      "widgets": [
+        {
+          "accessibility": [
+            {
+              "focus": "visible",
+              "keyboard": "standard",
+              "live": "off",
+              "nameFrom": {
+                "source": "message",
+                "value": "msg_widget_detail_panel_label"
+              },
+              "role": "region",
+              "targetId": "widget_detail_panel",
+              "targetKind": "widget"
+            }
+          ],
+          "behaviorRealizations": [],
+          "dataBindings": [
+            {
+              "prop": "item",
+              "source": {
+                "id": "cap_review_incident",
+                "kind": "capability"
+              }
+            }
+          ],
+          "diagnostics": [],
+          "display": {
+            "diagnostics": [],
+            "fields": [
+              {
+                "label": "Id",
+                "name": "id",
+                "required": true,
+                "requiredness": "required",
+                "role": "identifier",
+                "sourceName": "id",
+                "type": "string"
+              },
+              {
+                "label": "Title",
+                "name": "title",
+                "required": true,
+                "requiredness": "required",
+                "role": "primary",
+                "sourceName": "title",
+                "type": "string"
+              },
+              {
+                "label": "Summary",
+                "name": "summary",
+                "required": true,
+                "requiredness": "required",
+                "role": "metadata",
+                "sourceName": "summary",
+                "type": "text"
+              },
+              {
+                "label": "Priority",
+                "name": "priority",
+                "required": true,
+                "requiredness": "required",
+                "role": "metadata",
+                "sourceName": "priority",
+                "type": "string"
+              },
+              {
+                "label": "Status",
+                "name": "status",
+                "required": true,
+                "requiredness": "required",
+                "role": "metadata",
+                "sourceName": "status",
+                "type": "string"
+              },
+              {
+                "label": "Assigned Team",
+                "name": "assigned_team",
+                "required": false,
+                "requiredness": "optional",
+                "role": "metadata",
+                "sourceName": "assigned_team",
+                "type": "string"
+              },
+              {
+                "label": "Opened At",
+                "name": "opened_at",
+                "required": true,
+                "requiredness": "required",
+                "role": "date",
+                "sourceName": "opened_at",
+                "type": "datetime"
+              },
+              {
+                "label": "Updated At",
+                "name": "updated_at",
+                "required": true,
+                "requiredness": "required",
+                "role": "date",
+                "sourceName": "updated_at",
+                "type": "datetime"
+              },
+              {
+                "label": "Resolution",
+                "name": "resolution",
+                "required": false,
+                "requiredness": "optional",
+                "role": "metadata",
+                "sourceName": "resolution",
+                "type": "string"
+              }
+            ],
+            "prop": "item",
+            "source": {
+              "id": "cap_review_incident",
+              "kind": "capability"
+            },
+            "sourceShape": {
+              "id": "shape_incident_detail",
+              "kind": "shape"
+            }
+          },
+          "displayFields": [
+            {
+              "label": "Id",
+              "name": "id",
+              "required": true,
+              "requiredness": "required",
+              "role": "identifier",
+              "sourceName": "id",
+              "type": "string"
+            },
+            {
+              "label": "Title",
+              "name": "title",
+              "required": true,
+              "requiredness": "required",
+              "role": "primary",
+              "sourceName": "title",
+              "type": "string"
+            },
+            {
+              "label": "Summary",
+              "name": "summary",
+              "required": true,
+              "requiredness": "required",
+              "role": "metadata",
+              "sourceName": "summary",
+              "type": "text"
+            },
+            {
+              "label": "Priority",
+              "name": "priority",
+              "required": true,
+              "requiredness": "required",
+              "role": "metadata",
+              "sourceName": "priority",
+              "type": "string"
+            },
+            {
+              "label": "Status",
+              "name": "status",
+              "required": true,
+              "requiredness": "required",
+              "role": "metadata",
+              "sourceName": "status",
+              "type": "string"
+            },
+            {
+              "label": "Assigned Team",
+              "name": "assigned_team",
+              "required": false,
+              "requiredness": "optional",
+              "role": "metadata",
+              "sourceName": "assigned_team",
+              "type": "string"
+            },
+            {
+              "label": "Opened At",
+              "name": "opened_at",
+              "required": true,
+              "requiredness": "required",
+              "role": "date",
+              "sourceName": "opened_at",
+              "type": "datetime"
+            },
+            {
+              "label": "Updated At",
+              "name": "updated_at",
+              "required": true,
+              "requiredness": "required",
+              "role": "date",
+              "sourceName": "updated_at",
+              "type": "datetime"
+            },
+            {
+              "label": "Resolution",
+              "name": "resolution",
+              "required": false,
+              "requiredness": "optional",
+              "role": "metadata",
+              "sourceName": "resolution",
+              "type": "string"
+            }
+          ],
+          "eventBindings": [
+            {
+              "action": "action",
+              "event": "edit_requested",
+              "target": {
+                "id": "cap_resolve_incident",
+                "kind": "capability"
+              }
+            }
+          ],
+          "messages": [
+            {
+              "actionId": null,
+              "context": "widget_label",
+              "defaultText": "Selected work detail",
+              "id": "msg_widget_detail_panel_label",
+              "key": "operations.widgets.detail_panel.label",
+              "screenId": null,
+              "terms": [],
+              "variables": [],
+              "widgetId": "widget_detail_panel"
+            },
+            {
+              "actionId": null,
+              "context": "status",
+              "defaultText": "Resolved",
+              "id": "msg_status_resolved",
+              "key": "operations.status.resolved",
+              "screenId": null,
+              "terms": [],
+              "variables": [],
+              "widgetId": "widget_detail_panel"
+            }
+          ],
+          "pattern": "detail_panel",
+          "placement": "primary",
+          "region": "summary",
+          "screenId": "incident_detail",
+          "type": "ui_widget_usage",
+          "widget": {
+            "category": "display",
+            "id": "widget_detail_panel",
+            "name": "Detail Panel",
+            "version": "1.0"
+          }
+        },
+        {
+          "accessibility": [
+            {
+              "focus": "visible",
+              "keyboard": "standard",
+              "live": "off",
+              "nameFrom": {
+                "source": "message",
+                "value": "msg_widget_activity_timeline_label"
+              },
+              "role": "list",
+              "targetId": "widget_activity_timeline",
+              "targetKind": "widget"
+            }
+          ],
+          "behaviorRealizations": [],
+          "dataBindings": [
+            {
+              "prop": "timeline_items",
+              "source": {
+                "id": "cap_review_incident",
+                "kind": "capability"
+              }
+            }
+          ],
+          "diagnostics": [],
+          "display": {
+            "diagnostics": [],
+            "fields": [
+              {
+                "label": "Id",
+                "name": "id",
+                "required": true,
+                "requiredness": "required",
+                "role": "identifier",
+                "sourceName": "id",
+                "type": "string"
+              },
+              {
+                "label": "Title",
+                "name": "title",
+                "required": true,
+                "requiredness": "required",
+                "role": "primary",
+                "sourceName": "title",
+                "type": "string"
+              },
+              {
+                "label": "Summary",
+                "name": "summary",
+                "required": true,
+                "requiredness": "required",
+                "role": "metadata",
+                "sourceName": "summary",
+                "type": "text"
+              },
+              {
+                "label": "Priority",
+                "name": "priority",
+                "required": true,
+                "requiredness": "required",
+                "role": "metadata",
+                "sourceName": "priority",
+                "type": "string"
+              },
+              {
+                "label": "Status",
+                "name": "status",
+                "required": true,
+                "requiredness": "required",
+                "role": "metadata",
+                "sourceName": "status",
+                "type": "string"
+              },
+              {
+                "label": "Assigned Team",
+                "name": "assigned_team",
+                "required": false,
+                "requiredness": "optional",
+                "role": "metadata",
+                "sourceName": "assigned_team",
+                "type": "string"
+              },
+              {
+                "label": "Opened At",
+                "name": "opened_at",
+                "required": true,
+                "requiredness": "required",
+                "role": "date",
+                "sourceName": "opened_at",
+                "type": "datetime"
+              },
+              {
+                "label": "Updated At",
+                "name": "updated_at",
+                "required": true,
+                "requiredness": "required",
+                "role": "date",
+                "sourceName": "updated_at",
+                "type": "datetime"
+              },
+              {
+                "label": "Resolution",
+                "name": "resolution",
+                "required": false,
+                "requiredness": "optional",
+                "role": "metadata",
+                "sourceName": "resolution",
+                "type": "string"
+              }
+            ],
+            "prop": "timeline_items",
+            "source": {
+              "id": "cap_review_incident",
+              "kind": "capability"
+            },
+            "sourceShape": {
+              "id": "shape_incident_detail",
+              "kind": "shape"
+            }
+          },
+          "displayFields": [
+            {
+              "label": "Id",
+              "name": "id",
+              "required": true,
+              "requiredness": "required",
+              "role": "identifier",
+              "sourceName": "id",
+              "type": "string"
+            },
+            {
+              "label": "Title",
+              "name": "title",
+              "required": true,
+              "requiredness": "required",
+              "role": "primary",
+              "sourceName": "title",
+              "type": "string"
+            },
+            {
+              "label": "Summary",
+              "name": "summary",
+              "required": true,
+              "requiredness": "required",
+              "role": "metadata",
+              "sourceName": "summary",
+              "type": "text"
+            },
+            {
+              "label": "Priority",
+              "name": "priority",
+              "required": true,
+              "requiredness": "required",
+              "role": "metadata",
+              "sourceName": "priority",
+              "type": "string"
+            },
+            {
+              "label": "Status",
+              "name": "status",
+              "required": true,
+              "requiredness": "required",
+              "role": "metadata",
+              "sourceName": "status",
+              "type": "string"
+            },
+            {
+              "label": "Assigned Team",
+              "name": "assigned_team",
+              "required": false,
+              "requiredness": "optional",
+              "role": "metadata",
+              "sourceName": "assigned_team",
+              "type": "string"
+            },
+            {
+              "label": "Opened At",
+              "name": "opened_at",
+              "required": true,
+              "requiredness": "required",
+              "role": "date",
+              "sourceName": "opened_at",
+              "type": "datetime"
+            },
+            {
+              "label": "Updated At",
+              "name": "updated_at",
+              "required": true,
+              "requiredness": "required",
+              "role": "date",
+              "sourceName": "updated_at",
+              "type": "datetime"
+            },
+            {
+              "label": "Resolution",
+              "name": "resolution",
+              "required": false,
+              "requiredness": "optional",
+              "role": "metadata",
+              "sourceName": "resolution",
+              "type": "string"
+            }
+          ],
+          "eventBindings": [],
+          "messages": [
+            {
+              "actionId": null,
+              "context": "widget_label",
+              "defaultText": "Activity timeline",
+              "id": "msg_widget_activity_timeline_label",
+              "key": "operations.widgets.activity_timeline.label",
+              "screenId": null,
+              "terms": [],
+              "variables": [],
+              "widgetId": "widget_activity_timeline"
+            }
+          ],
+          "pattern": "timeline_view",
+          "placement": "supporting",
+          "region": "activity",
+          "screenId": "incident_detail",
+          "type": "ui_widget_usage",
+          "widget": {
+            "category": "display",
+            "id": "widget_activity_timeline",
+            "name": "Activity Timeline",
+            "version": "1.0"
+          }
+        },
+        {
+          "accessibility": [
+            {
+              "focus": "managed",
+              "keyboard": "form",
+              "live": "off",
+              "nameFrom": {
+                "source": "message",
+                "value": "msg_widget_assignment_form_label"
+              },
+              "role": "form",
+              "targetId": "widget_assignment_form",
+              "targetKind": "widget"
+            }
+          ],
+          "behaviorRealizations": [
+            {
+              "actions": [
+                {
+                  "bindings": [
+                    {
+                      "action": "action",
+                      "event": "submit",
+                      "target": {
+                        "id": "cap_resolve_incident",
+                        "kind": "capability"
+                      }
+                    }
+                  ],
+                  "bound": true,
+                  "effects": [
+                    {
+                      "capability": {
+                        "id": "cap_resolve_incident",
+                        "kind": "capability"
+                      },
+                      "event": "submit",
+                      "type": "command"
+                    }
+                  ],
+                  "event": "submit"
+                }
+              ],
+              "dataDependencies": [
+                {
+                  "prop": "value",
+                  "source": {
+                    "id": "cap_resolve_incident",
+                    "kind": "capability"
+                  }
+                }
+              ],
+              "directives": {
+                "actions": [
+                  "submit"
+                ],
+                "rollback": true
+              },
+              "effects": [
+                {
+                  "capability": {
+                    "id": "cap_resolve_incident",
+                    "kind": "capability"
+                  },
+                  "event": "submit",
+                  "type": "command"
+                }
+              ],
+              "emits": [],
+              "kind": "optimistic_update",
+              "source": "structured",
+              "state": null,
+              "status": "realized"
+            },
+            {
+              "actions": [],
+              "dataDependencies": [
+                {
+                  "prop": "value",
+                  "source": {
+                    "id": "cap_resolve_incident",
+                    "kind": "capability"
+                  }
+                }
+              ],
+              "directives": {
+                "scope": "form",
+                "shortcuts": [
+                  "tab",
+                  "enter",
+                  "escape"
+                ]
+              },
+              "effects": [],
+              "emits": [],
+              "kind": "keyboard_navigation",
+              "source": "structured",
+              "state": null,
+              "status": "realized"
+            }
+          ],
+          "dataBindings": [
+            {
+              "prop": "value",
+              "source": {
+                "id": "cap_resolve_incident",
+                "kind": "capability"
+              }
+            }
+          ],
+          "diagnostics": [],
+          "display": {
+            "diagnostics": [],
+            "fields": [
+              {
+                "label": "Id",
+                "name": "id",
+                "required": true,
+                "requiredness": "required",
+                "role": "identifier",
+                "sourceName": "id",
+                "type": "string"
+              },
+              {
+                "label": "Title",
+                "name": "title",
+                "required": true,
+                "requiredness": "required",
+                "role": "primary",
+                "sourceName": "title",
+                "type": "string"
+              },
+              {
+                "label": "Summary",
+                "name": "summary",
+                "required": true,
+                "requiredness": "required",
+                "role": "metadata",
+                "sourceName": "summary",
+                "type": "text"
+              },
+              {
+                "label": "Priority",
+                "name": "priority",
+                "required": true,
+                "requiredness": "required",
+                "role": "metadata",
+                "sourceName": "priority",
+                "type": "string"
+              },
+              {
+                "label": "Status",
+                "name": "status",
+                "required": true,
+                "requiredness": "required",
+                "role": "metadata",
+                "sourceName": "status",
+                "type": "string"
+              },
+              {
+                "label": "Assigned Team",
+                "name": "assigned_team",
+                "required": false,
+                "requiredness": "optional",
+                "role": "metadata",
+                "sourceName": "assigned_team",
+                "type": "string"
+              },
+              {
+                "label": "Opened At",
+                "name": "opened_at",
+                "required": true,
+                "requiredness": "required",
+                "role": "date",
+                "sourceName": "opened_at",
+                "type": "datetime"
+              },
+              {
+                "label": "Updated At",
+                "name": "updated_at",
+                "required": true,
+                "requiredness": "required",
+                "role": "date",
+                "sourceName": "updated_at",
+                "type": "datetime"
+              },
+              {
+                "label": "Resolution",
+                "name": "resolution",
+                "required": false,
+                "requiredness": "optional",
+                "role": "metadata",
+                "sourceName": "resolution",
+                "type": "string"
+              }
+            ],
+            "prop": "value",
+            "source": {
+              "id": "cap_resolve_incident",
+              "kind": "capability"
+            },
+            "sourceShape": {
+              "id": "shape_incident_detail",
+              "kind": "shape"
+            }
+          },
+          "displayFields": [
+            {
+              "label": "Id",
+              "name": "id",
+              "required": true,
+              "requiredness": "required",
+              "role": "identifier",
+              "sourceName": "id",
+              "type": "string"
+            },
+            {
+              "label": "Title",
+              "name": "title",
+              "required": true,
+              "requiredness": "required",
+              "role": "primary",
+              "sourceName": "title",
+              "type": "string"
+            },
+            {
+              "label": "Summary",
+              "name": "summary",
+              "required": true,
+              "requiredness": "required",
+              "role": "metadata",
+              "sourceName": "summary",
+              "type": "text"
+            },
+            {
+              "label": "Priority",
+              "name": "priority",
+              "required": true,
+              "requiredness": "required",
+              "role": "metadata",
+              "sourceName": "priority",
+              "type": "string"
+            },
+            {
+              "label": "Status",
+              "name": "status",
+              "required": true,
+              "requiredness": "required",
+              "role": "metadata",
+              "sourceName": "status",
+              "type": "string"
+            },
+            {
+              "label": "Assigned Team",
+              "name": "assigned_team",
+              "required": false,
+              "requiredness": "optional",
+              "role": "metadata",
+              "sourceName": "assigned_team",
+              "type": "string"
+            },
+            {
+              "label": "Opened At",
+              "name": "opened_at",
+              "required": true,
+              "requiredness": "required",
+              "role": "date",
+              "sourceName": "opened_at",
+              "type": "datetime"
+            },
+            {
+              "label": "Updated At",
+              "name": "updated_at",
+              "required": true,
+              "requiredness": "required",
+              "role": "date",
+              "sourceName": "updated_at",
+              "type": "datetime"
+            },
+            {
+              "label": "Resolution",
+              "name": "resolution",
+              "required": false,
+              "requiredness": "optional",
+              "role": "metadata",
+              "sourceName": "resolution",
+              "type": "string"
+            }
+          ],
+          "eventBindings": [
+            {
+              "action": "action",
+              "event": "submit",
+              "target": {
+                "id": "cap_resolve_incident",
+                "kind": "capability"
+              }
+            }
+          ],
+          "messages": [
+            {
+              "actionId": null,
+              "context": "widget_label",
+              "defaultText": "Assignment form",
+              "id": "msg_widget_assignment_form_label",
+              "key": "operations.widgets.assignment_form.label",
+              "screenId": null,
+              "terms": [],
+              "variables": [],
+              "widgetId": "widget_assignment_form"
+            }
+          ],
+          "pattern": "footer_bar",
+          "placement": "secondary",
+          "region": "footer_actions",
+          "screenId": "incident_detail",
+          "type": "ui_widget_usage",
+          "widget": {
+            "category": "form",
+            "id": "widget_assignment_form",
+            "name": "Assignment Form",
+            "version": "1.0"
+          }
+        }
+      ]
+    },
+    "type": "ui_agent_packet",
+    "uiContract": {
+      "id": "proj_operations_ui_contract",
+      "name": "Operations UI Contract",
+      "type": "ui_contract"
+    },
+    "version": 1,
+    "visibilityRules": [],
+    "widgets": [
+      {
+        "behaviorRealizations": [],
+        "dataBindings": [
+          {
+            "prop": "item",
+            "source": "cap_review_incident"
+          }
+        ],
+        "display": {
+          "diagnostics": [],
+          "fields": [
+            {
+              "label": "Id",
+              "name": "id",
+              "required": true,
+              "requiredness": "required",
+              "role": "identifier",
+              "sourceName": "id",
+              "type": "string"
+            },
+            {
+              "label": "Title",
+              "name": "title",
+              "required": true,
+              "requiredness": "required",
+              "role": "primary",
+              "sourceName": "title",
+              "type": "string"
+            },
+            {
+              "label": "Summary",
+              "name": "summary",
+              "required": true,
+              "requiredness": "required",
+              "role": "metadata",
+              "sourceName": "summary",
+              "type": "text"
+            },
+            {
+              "label": "Priority",
+              "name": "priority",
+              "required": true,
+              "requiredness": "required",
+              "role": "metadata",
+              "sourceName": "priority",
+              "type": "string"
+            },
+            {
+              "label": "Status",
+              "name": "status",
+              "required": true,
+              "requiredness": "required",
+              "role": "metadata",
+              "sourceName": "status",
+              "type": "string"
+            },
+            {
+              "label": "Assigned Team",
+              "name": "assigned_team",
+              "required": false,
+              "requiredness": "optional",
+              "role": "metadata",
+              "sourceName": "assigned_team",
+              "type": "string"
+            },
+            {
+              "label": "Opened At",
+              "name": "opened_at",
+              "required": true,
+              "requiredness": "required",
+              "role": "date",
+              "sourceName": "opened_at",
+              "type": "datetime"
+            },
+            {
+              "label": "Updated At",
+              "name": "updated_at",
+              "required": true,
+              "requiredness": "required",
+              "role": "date",
+              "sourceName": "updated_at",
+              "type": "datetime"
+            },
+            {
+              "label": "Resolution",
+              "name": "resolution",
+              "required": false,
+              "requiredness": "optional",
+              "role": "metadata",
+              "sourceName": "resolution",
+              "type": "string"
+            }
+          ],
+          "prop": "item",
+          "source": {
+            "id": "cap_review_incident",
+            "kind": "capability"
+          },
+          "sourceShape": {
+            "id": "shape_incident_detail",
+            "kind": "shape"
+          }
+        },
+        "displayFields": [
+          {
+            "label": "Id",
+            "name": "id",
+            "required": true,
+            "requiredness": "required",
+            "role": "identifier",
+            "sourceName": "id",
+            "type": "string"
+          },
+          {
+            "label": "Title",
+            "name": "title",
+            "required": true,
+            "requiredness": "required",
+            "role": "primary",
+            "sourceName": "title",
+            "type": "string"
+          },
+          {
+            "label": "Summary",
+            "name": "summary",
+            "required": true,
+            "requiredness": "required",
+            "role": "metadata",
+            "sourceName": "summary",
+            "type": "text"
+          },
+          {
+            "label": "Priority",
+            "name": "priority",
+            "required": true,
+            "requiredness": "required",
+            "role": "metadata",
+            "sourceName": "priority",
+            "type": "string"
+          },
+          {
+            "label": "Status",
+            "name": "status",
+            "required": true,
+            "requiredness": "required",
+            "role": "metadata",
+            "sourceName": "status",
+            "type": "string"
+          },
+          {
+            "label": "Assigned Team",
+            "name": "assigned_team",
+            "required": false,
+            "requiredness": "optional",
+            "role": "metadata",
+            "sourceName": "assigned_team",
+            "type": "string"
+          },
+          {
+            "label": "Opened At",
+            "name": "opened_at",
+            "required": true,
+            "requiredness": "required",
+            "role": "date",
+            "sourceName": "opened_at",
+            "type": "datetime"
+          },
+          {
+            "label": "Updated At",
+            "name": "updated_at",
+            "required": true,
+            "requiredness": "required",
+            "role": "date",
+            "sourceName": "updated_at",
+            "type": "datetime"
+          },
+          {
+            "label": "Resolution",
+            "name": "resolution",
+            "required": false,
+            "requiredness": "optional",
+            "role": "metadata",
+            "sourceName": "resolution",
+            "type": "string"
+          }
+        ],
+        "eventBindings": [
+          {
+            "action": "action",
+            "event": "edit_requested",
+            "target": "cap_resolve_incident"
+          }
+        ],
+        "region": "summary",
+        "regionContract": {
+          "accessibilityObligations": [
+            "labelled_region",
+            "heading_order",
+            "focus_entry"
+          ],
+          "allowedWidgetPatterns": [
+            "detail_panel",
+            "status_badge",
+            "edit_form"
+          ],
+          "density": "comfortable",
+          "i18nObligations": [
+            "field_labels",
+            "status_labels",
+            "not_found_state"
+          ],
+          "kind": "summary",
+          "layoutId": "layout_split_detail",
+          "name": "summary",
+          "pattern": "detail_panel",
+          "placement": "primary",
+          "regionContractId": "region_detail_summary",
+          "source": "layout",
+          "state": null,
+          "styleIntent": [
+            "focused",
+            "readable",
+            "decision_support"
+          ],
+          "title": "Detail Summary",
+          "variant": null
+        },
+        "route": null,
+        "screen": {
+          "id": "incident_detail",
+          "kind": "detail",
+          "layout": {
+            "appShell": null,
+            "fills": "content",
+            "id": "layout_split_detail",
+            "inherited": [
+              {
+                "appShell": "workspace",
+                "fills": null,
+                "id": "layout_standard_app_shell",
+                "name": "Standard App Shell"
+              },
+              {
+                "appShell": null,
+                "fills": "content",
+                "id": "layout_split_detail",
+                "name": "Split Detail Layout"
+              }
+            ],
+            "name": "Split Detail Layout"
+          },
+          "title": "Incident Detail"
+        },
+        "screenId": "incident_detail",
+        "widgetId": "widget_detail_panel"
+      },
+      {
+        "behaviorRealizations": [],
+        "dataBindings": [
+          {
+            "prop": "timeline_items",
+            "source": "cap_review_incident"
+          }
+        ],
+        "display": {
+          "diagnostics": [],
+          "fields": [
+            {
+              "label": "Id",
+              "name": "id",
+              "required": true,
+              "requiredness": "required",
+              "role": "identifier",
+              "sourceName": "id",
+              "type": "string"
+            },
+            {
+              "label": "Title",
+              "name": "title",
+              "required": true,
+              "requiredness": "required",
+              "role": "primary",
+              "sourceName": "title",
+              "type": "string"
+            },
+            {
+              "label": "Summary",
+              "name": "summary",
+              "required": true,
+              "requiredness": "required",
+              "role": "metadata",
+              "sourceName": "summary",
+              "type": "text"
+            },
+            {
+              "label": "Priority",
+              "name": "priority",
+              "required": true,
+              "requiredness": "required",
+              "role": "metadata",
+              "sourceName": "priority",
+              "type": "string"
+            },
+            {
+              "label": "Status",
+              "name": "status",
+              "required": true,
+              "requiredness": "required",
+              "role": "metadata",
+              "sourceName": "status",
+              "type": "string"
+            },
+            {
+              "label": "Assigned Team",
+              "name": "assigned_team",
+              "required": false,
+              "requiredness": "optional",
+              "role": "metadata",
+              "sourceName": "assigned_team",
+              "type": "string"
+            },
+            {
+              "label": "Opened At",
+              "name": "opened_at",
+              "required": true,
+              "requiredness": "required",
+              "role": "date",
+              "sourceName": "opened_at",
+              "type": "datetime"
+            },
+            {
+              "label": "Updated At",
+              "name": "updated_at",
+              "required": true,
+              "requiredness": "required",
+              "role": "date",
+              "sourceName": "updated_at",
+              "type": "datetime"
+            },
+            {
+              "label": "Resolution",
+              "name": "resolution",
+              "required": false,
+              "requiredness": "optional",
+              "role": "metadata",
+              "sourceName": "resolution",
+              "type": "string"
+            }
+          ],
+          "prop": "timeline_items",
+          "source": {
+            "id": "cap_review_incident",
+            "kind": "capability"
+          },
+          "sourceShape": {
+            "id": "shape_incident_detail",
+            "kind": "shape"
+          }
+        },
+        "displayFields": [
+          {
+            "label": "Id",
+            "name": "id",
+            "required": true,
+            "requiredness": "required",
+            "role": "identifier",
+            "sourceName": "id",
+            "type": "string"
+          },
+          {
+            "label": "Title",
+            "name": "title",
+            "required": true,
+            "requiredness": "required",
+            "role": "primary",
+            "sourceName": "title",
+            "type": "string"
+          },
+          {
+            "label": "Summary",
+            "name": "summary",
+            "required": true,
+            "requiredness": "required",
+            "role": "metadata",
+            "sourceName": "summary",
+            "type": "text"
+          },
+          {
+            "label": "Priority",
+            "name": "priority",
+            "required": true,
+            "requiredness": "required",
+            "role": "metadata",
+            "sourceName": "priority",
+            "type": "string"
+          },
+          {
+            "label": "Status",
+            "name": "status",
+            "required": true,
+            "requiredness": "required",
+            "role": "metadata",
+            "sourceName": "status",
+            "type": "string"
+          },
+          {
+            "label": "Assigned Team",
+            "name": "assigned_team",
+            "required": false,
+            "requiredness": "optional",
+            "role": "metadata",
+            "sourceName": "assigned_team",
+            "type": "string"
+          },
+          {
+            "label": "Opened At",
+            "name": "opened_at",
+            "required": true,
+            "requiredness": "required",
+            "role": "date",
+            "sourceName": "opened_at",
+            "type": "datetime"
+          },
+          {
+            "label": "Updated At",
+            "name": "updated_at",
+            "required": true,
+            "requiredness": "required",
+            "role": "date",
+            "sourceName": "updated_at",
+            "type": "datetime"
+          },
+          {
+            "label": "Resolution",
+            "name": "resolution",
+            "required": false,
+            "requiredness": "optional",
+            "role": "metadata",
+            "sourceName": "resolution",
+            "type": "string"
+          }
+        ],
+        "eventBindings": [],
+        "region": "activity",
+        "regionContract": {
+          "accessibilityObligations": [
+            "labelled_region",
+            "chronological_order"
+          ],
+          "allowedWidgetPatterns": [
+            "timeline_view",
+            "activity_feed",
+            "comment_thread",
+            "audit_log"
+          ],
+          "density": "comfortable",
+          "i18nObligations": [
+            "timestamp_labels",
+            "event_labels",
+            "empty_state"
+          ],
+          "kind": "timeline",
+          "layoutId": "layout_split_detail",
+          "name": "activity",
+          "pattern": "timeline_view",
+          "placement": "supporting",
+          "regionContractId": "region_activity_timeline",
+          "source": "layout",
+          "state": null,
+          "styleIntent": [
+            "chronological",
+            "secondary",
+            "audit_friendly"
+          ],
+          "title": "Activity Timeline",
+          "variant": null
+        },
+        "route": null,
+        "screen": {
+          "id": "incident_detail",
+          "kind": "detail",
+          "layout": {
+            "appShell": null,
+            "fills": "content",
+            "id": "layout_split_detail",
+            "inherited": [
+              {
+                "appShell": "workspace",
+                "fills": null,
+                "id": "layout_standard_app_shell",
+                "name": "Standard App Shell"
+              },
+              {
+                "appShell": null,
+                "fills": "content",
+                "id": "layout_split_detail",
+                "name": "Split Detail Layout"
+              }
+            ],
+            "name": "Split Detail Layout"
+          },
+          "title": "Incident Detail"
+        },
+        "screenId": "incident_detail",
+        "widgetId": "widget_activity_timeline"
+      },
+      {
+        "behaviorRealizations": [
+          {
+            "actions": [
+              {
+                "bindings": [
+                  {
+                    "action": "action",
+                    "event": "submit",
+                    "target": {
+                      "id": "cap_resolve_incident",
+                      "kind": "capability"
+                    }
+                  }
+                ],
+                "bound": true,
+                "effects": [
+                  {
+                    "capability": {
+                      "id": "cap_resolve_incident",
+                      "kind": "capability"
+                    },
+                    "event": "submit",
+                    "type": "command"
+                  }
+                ],
+                "event": "submit"
+              }
+            ],
+            "dataDependencies": [
+              {
+                "prop": "value",
+                "source": {
+                  "id": "cap_resolve_incident",
+                  "kind": "capability"
+                }
+              }
+            ],
+            "directives": {
+              "actions": [
+                "submit"
+              ],
+              "rollback": true
+            },
+            "effects": [
+              {
+                "capability": {
+                  "id": "cap_resolve_incident",
+                  "kind": "capability"
+                },
+                "event": "submit",
+                "type": "command"
+              }
+            ],
+            "emits": [],
+            "kind": "optimistic_update",
+            "source": "structured",
+            "state": null,
+            "status": "realized"
+          },
+          {
+            "actions": [],
+            "dataDependencies": [
+              {
+                "prop": "value",
+                "source": {
+                  "id": "cap_resolve_incident",
+                  "kind": "capability"
+                }
+              }
+            ],
+            "directives": {
+              "scope": "form",
+              "shortcuts": [
+                "tab",
+                "enter",
+                "escape"
+              ]
+            },
+            "effects": [],
+            "emits": [],
+            "kind": "keyboard_navigation",
+            "source": "structured",
+            "state": null,
+            "status": "realized"
+          }
+        ],
+        "dataBindings": [
+          {
+            "prop": "value",
+            "source": "cap_resolve_incident"
+          }
+        ],
+        "display": {
+          "diagnostics": [],
+          "fields": [
+            {
+              "label": "Id",
+              "name": "id",
+              "required": true,
+              "requiredness": "required",
+              "role": "identifier",
+              "sourceName": "id",
+              "type": "string"
+            },
+            {
+              "label": "Title",
+              "name": "title",
+              "required": true,
+              "requiredness": "required",
+              "role": "primary",
+              "sourceName": "title",
+              "type": "string"
+            },
+            {
+              "label": "Summary",
+              "name": "summary",
+              "required": true,
+              "requiredness": "required",
+              "role": "metadata",
+              "sourceName": "summary",
+              "type": "text"
+            },
+            {
+              "label": "Priority",
+              "name": "priority",
+              "required": true,
+              "requiredness": "required",
+              "role": "metadata",
+              "sourceName": "priority",
+              "type": "string"
+            },
+            {
+              "label": "Status",
+              "name": "status",
+              "required": true,
+              "requiredness": "required",
+              "role": "metadata",
+              "sourceName": "status",
+              "type": "string"
+            },
+            {
+              "label": "Assigned Team",
+              "name": "assigned_team",
+              "required": false,
+              "requiredness": "optional",
+              "role": "metadata",
+              "sourceName": "assigned_team",
+              "type": "string"
+            },
+            {
+              "label": "Opened At",
+              "name": "opened_at",
+              "required": true,
+              "requiredness": "required",
+              "role": "date",
+              "sourceName": "opened_at",
+              "type": "datetime"
+            },
+            {
+              "label": "Updated At",
+              "name": "updated_at",
+              "required": true,
+              "requiredness": "required",
+              "role": "date",
+              "sourceName": "updated_at",
+              "type": "datetime"
+            },
+            {
+              "label": "Resolution",
+              "name": "resolution",
+              "required": false,
+              "requiredness": "optional",
+              "role": "metadata",
+              "sourceName": "resolution",
+              "type": "string"
+            }
+          ],
+          "prop": "value",
+          "source": {
+            "id": "cap_resolve_incident",
+            "kind": "capability"
+          },
+          "sourceShape": {
+            "id": "shape_incident_detail",
+            "kind": "shape"
+          }
+        },
+        "displayFields": [
+          {
+            "label": "Id",
+            "name": "id",
+            "required": true,
+            "requiredness": "required",
+            "role": "identifier",
+            "sourceName": "id",
+            "type": "string"
+          },
+          {
+            "label": "Title",
+            "name": "title",
+            "required": true,
+            "requiredness": "required",
+            "role": "primary",
+            "sourceName": "title",
+            "type": "string"
+          },
+          {
+            "label": "Summary",
+            "name": "summary",
+            "required": true,
+            "requiredness": "required",
+            "role": "metadata",
+            "sourceName": "summary",
+            "type": "text"
+          },
+          {
+            "label": "Priority",
+            "name": "priority",
+            "required": true,
+            "requiredness": "required",
+            "role": "metadata",
+            "sourceName": "priority",
+            "type": "string"
+          },
+          {
+            "label": "Status",
+            "name": "status",
+            "required": true,
+            "requiredness": "required",
+            "role": "metadata",
+            "sourceName": "status",
+            "type": "string"
+          },
+          {
+            "label": "Assigned Team",
+            "name": "assigned_team",
+            "required": false,
+            "requiredness": "optional",
+            "role": "metadata",
+            "sourceName": "assigned_team",
+            "type": "string"
+          },
+          {
+            "label": "Opened At",
+            "name": "opened_at",
+            "required": true,
+            "requiredness": "required",
+            "role": "date",
+            "sourceName": "opened_at",
+            "type": "datetime"
+          },
+          {
+            "label": "Updated At",
+            "name": "updated_at",
+            "required": true,
+            "requiredness": "required",
+            "role": "date",
+            "sourceName": "updated_at",
+            "type": "datetime"
+          },
+          {
+            "label": "Resolution",
+            "name": "resolution",
+            "required": false,
+            "requiredness": "optional",
+            "role": "metadata",
+            "sourceName": "resolution",
+            "type": "string"
+          }
+        ],
+        "eventBindings": [
+          {
+            "action": "action",
+            "event": "submit",
+            "target": "cap_resolve_incident"
+          }
+        ],
+        "region": "footer_actions",
+        "regionContract": {
+          "accessibilityObligations": [
+            "toolbar_label",
+            "visible_focus",
+            "destructive_action_warning"
+          ],
+          "allowedWidgetPatterns": [
+            "action_bar",
+            "footer_bar"
+          ],
+          "density": "compact",
+          "i18nObligations": [
+            "action_labels",
+            "confirmation_labels"
+          ],
+          "kind": "footer_actions",
+          "layoutId": "layout_split_detail",
+          "name": "footer_actions",
+          "pattern": "footer_bar",
+          "placement": "secondary",
+          "regionContractId": "region_footer_actions",
+          "source": "screen_override",
+          "state": null,
+          "styleIntent": [
+            "persistent",
+            "terminal_action",
+            "safe_destructive"
+          ],
+          "title": "Resolution Actions",
+          "variant": null
+        },
+        "route": null,
+        "screen": {
+          "id": "incident_detail",
+          "kind": "detail",
+          "layout": {
+            "appShell": null,
+            "fills": "content",
+            "id": "layout_split_detail",
+            "inherited": [
+              {
+                "appShell": "workspace",
+                "fills": null,
+                "id": "layout_standard_app_shell",
+                "name": "Standard App Shell"
+              },
+              {
+                "appShell": null,
+                "fills": "content",
+                "id": "layout_split_detail",
+                "name": "Split Detail Layout"
+              }
+            ],
+            "name": "Split Detail Layout"
+          },
+          "title": "Incident Detail"
+        },
+        "screenId": "incident_detail",
+        "widgetId": "widget_assignment_form"
+      }
+    ],
+    "workMap": {
+      "layout": {
+        "appShell": null,
+        "fills": "content",
+        "id": "layout_split_detail",
+        "inherited": [
+          {
+            "appShell": "workspace",
+            "fills": null,
+            "id": "layout_standard_app_shell",
+            "name": "Standard App Shell"
+          },
+          {
+            "appShell": null,
+            "fills": "content",
+            "id": "layout_split_detail",
+            "name": "Split Detail Layout"
+          }
+        ],
+        "name": "Split Detail Layout"
+      },
+      "order": [
+        "screen",
+        "layout",
+        "region",
+        "widget",
+        "design_realization",
+        "proof"
+      ],
+      "regions": [
+        {
+          "id": "header",
+          "kind": "header",
+          "layoutId": "layout_standard_app_shell",
+          "obligations": {
+            "accessibility": [
+              "landmark_banner",
+              "visible_focus",
+              "account_menu_label"
+            ],
+            "allowedWidgetPatterns": [
+              "app_header",
+              "action_bar",
+              "status_badge"
+            ],
+            "internationalization": [
+              "brand_label",
+              "account_action_labels"
+            ],
+            "styleIntent": [
+              "persistent",
+              "brand",
+              "operational"
+            ]
+          },
+          "pattern": "app_header",
+          "placement": "top",
+          "regionContractId": "region_app_header",
+          "source": "layout"
+        },
+        {
+          "id": "nav",
+          "kind": "navigation",
+          "layoutId": "layout_standard_app_shell",
+          "obligations": {
+            "accessibility": [
+              "landmark_navigation",
+              "keyboard_navigation",
+              "current_page_marker"
+            ],
+            "allowedWidgetPatterns": [
+              "primary_navigation",
+              "hamburger_drawer"
+            ],
+            "internationalization": [
+              "navigation_labels",
+              "section_labels"
+            ],
+            "styleIntent": [
+              "persistent",
+              "orienting",
+              "scannable"
+            ]
+          },
+          "pattern": "primary_navigation",
+          "placement": "shell",
+          "regionContractId": "region_global_navigation",
+          "source": "layout"
+        },
+        {
+          "id": "content",
+          "kind": "results",
+          "layoutId": "layout_standard_app_shell",
+          "obligations": {
+            "accessibility": [
+              "labelled_region",
+              "keyboard_collection_navigation",
+              "row_action_labels"
+            ],
+            "allowedWidgetPatterns": [
+              "resource_table",
+              "data_grid_view",
+              "resource_cards",
+              "board_view",
+              "calendar_view",
+              "search_results",
+              "empty_state_panel"
+            ],
+            "internationalization": [
+              "title",
+              "empty_state",
+              "loading_state",
+              "error_state"
+            ],
+            "styleIntent": [
+              "primary",
+              "scannable",
+              "structured",
+              "responsive"
+            ]
+          },
+          "pattern": "content_region",
+          "placement": "primary",
+          "regionContractId": "region_results",
+          "source": "layout"
+        },
+        {
+          "id": "live_updates",
+          "kind": "activity",
+          "layoutId": "layout_standard_app_shell",
+          "obligations": {
+            "accessibility": [
+              "live_region",
+              "polite_announcements",
+              "pause_updates"
+            ],
+            "allowedWidgetPatterns": [
+              "activity_feed",
+              "status_badge",
+              "empty_state_panel"
+            ],
+            "internationalization": [
+              "alert_labels",
+              "relative_time_labels"
+            ],
+            "styleIntent": [
+              "time_sensitive",
+              "noticeable",
+              "non_blocking"
+            ]
+          },
+          "pattern": "activity_feed",
+          "placement": "supporting",
+          "regionContractId": "region_live_updates",
+          "source": "layout"
+        },
+        {
+          "id": "summary",
+          "kind": "summary",
+          "layoutId": "layout_split_detail",
+          "obligations": {
+            "accessibility": [
+              "labelled_region",
+              "heading_order",
+              "focus_entry"
+            ],
+            "allowedWidgetPatterns": [
+              "detail_panel",
+              "status_badge",
+              "edit_form"
+            ],
+            "internationalization": [
+              "field_labels",
+              "status_labels",
+              "not_found_state"
+            ],
+            "styleIntent": [
+              "focused",
+              "readable",
+              "decision_support"
+            ]
+          },
+          "pattern": "detail_panel",
+          "placement": "primary",
+          "regionContractId": "region_detail_summary",
+          "source": "layout"
+        },
+        {
+          "id": "activity",
+          "kind": "timeline",
+          "layoutId": "layout_split_detail",
+          "obligations": {
+            "accessibility": [
+              "labelled_region",
+              "chronological_order"
+            ],
+            "allowedWidgetPatterns": [
+              "timeline_view",
+              "activity_feed",
+              "comment_thread",
+              "audit_log"
+            ],
+            "internationalization": [
+              "timestamp_labels",
+              "event_labels",
+              "empty_state"
+            ],
+            "styleIntent": [
+              "chronological",
+              "secondary",
+              "audit_friendly"
+            ]
+          },
+          "pattern": "timeline_view",
+          "placement": "supporting",
+          "regionContractId": "region_activity_timeline",
+          "source": "layout"
+        },
+        {
+          "id": "inspector",
+          "kind": "aside",
+          "layoutId": "layout_split_detail",
+          "obligations": {
+            "accessibility": [
+              "labelled_region",
+              "focus_return"
+            ],
+            "allowedWidgetPatterns": [
+              "inspector_pane",
+              "detail_panel",
+              "lookup_select"
+            ],
+            "internationalization": [
+              "panel_title",
+              "field_labels",
+              "empty_state"
+            ],
+            "styleIntent": [
+              "contextual",
+              "secondary",
+              "collapsible"
+            ]
+          },
+          "pattern": "inspector_pane",
+          "placement": "end",
+          "regionContractId": "region_inspector_panel",
+          "source": "layout"
+        },
+        {
+          "id": "footer_actions",
+          "kind": "footer_actions",
+          "layoutId": "layout_split_detail",
+          "obligations": {
+            "accessibility": [
+              "toolbar_label",
+              "visible_focus",
+              "destructive_action_warning"
+            ],
+            "allowedWidgetPatterns": [
+              "action_bar",
+              "footer_bar"
+            ],
+            "internationalization": [
+              "action_labels",
+              "confirmation_labels"
+            ],
+            "styleIntent": [
+              "persistent",
+              "terminal_action",
+              "safe_destructive"
+            ]
+          },
+          "pattern": "footer_bar",
+          "placement": "secondary",
+          "regionContractId": "region_footer_actions",
+          "source": "screen_override"
+        }
+      ],
+      "screen": {
+        "id": "incident_detail",
+        "kind": "detail",
+        "title": "Incident Detail"
+      },
+      "widgetPlacements": [
+        {
+          "dataProps": [
+            "item"
+          ],
+          "events": [
+            "edit_requested"
+          ],
+          "pattern": "detail_panel",
+          "region": "summary",
+          "widget": "widget_detail_panel"
+        },
+        {
+          "dataProps": [
+            "timeline_items"
+          ],
+          "events": [],
+          "pattern": "timeline_view",
+          "region": "activity",
+          "widget": "widget_activity_timeline"
+        },
+        {
+          "dataProps": [
+            "value"
+          ],
+          "events": [
+            "submit"
+          ],
+          "pattern": "footer_bar",
+          "region": "footer_actions",
+          "widget": "widget_assignment_form"
+        }
+      ]
+    }
+  },
+  "verification": [
+    {
+      "description": "Runs proof path hygiene, proof audit, Topogram check, strict SDLC check, agent brief, commit prep, and clean-worktree verification for the first proof checkpoint.",
+      "id": "verification_step01_domain_app_shell",
+      "kind": "verification",
+      "method": "runtime",
+      "name": "Step 01 Domain And App Shell Verification",
+      "ownership_boundary": {
+        "canonical_topogram": {
+          "agent_mode": "propose_review_adopt",
+          "owner": "human"
+        },
+        "generated_artifacts": {
+          "agent_mode": "regenerate_or_compare",
+          "owner": "engine"
+        },
+        "maintained_code": {
+          "agent_mode": "bounded_edit_only",
+          "owner": "human"
+        },
+        "proposal_surfaces": {
+          "agent_mode": "stage_map_customize_reject",
+          "owner": "human"
+        }
+      },
+      "scenarios": [
+        "npm_run_verify_step_01"
+      ],
+      "validates": [
+        "cap_assign_field_work",
+        "cap_manage_field_teams",
+        "cap_monitor_operations_dashboard",
+        "cap_resolve_incident",
+        "cap_review_incident",
+        "cap_triage_incoming_work"
+      ]
+    },
+    {
+      "description": "Runs proof path hygiene, proof audit, Topogram check, strict SDLC check, domain slice generation, region catalog review, and clean-worktree verification for the semantic region checkpoint.",
+      "id": "verification_step02_semantic_regions",
+      "kind": "verification",
+      "method": "runtime",
+      "name": "Step 02 Semantic Regions Verification",
+      "ownership_boundary": {
+        "canonical_topogram": {
+          "agent_mode": "propose_review_adopt",
+          "owner": "human"
+        },
+        "generated_artifacts": {
+          "agent_mode": "regenerate_or_compare",
+          "owner": "engine"
+        },
+        "maintained_code": {
+          "agent_mode": "bounded_edit_only",
+          "owner": "human"
+        },
+        "proposal_surfaces": {
+          "agent_mode": "stage_map_customize_reject",
+          "owner": "human"
+        }
+      },
+      "scenarios": [
+        "npm_run_verify_step_02"
+      ],
+      "validates": [
+        "cap_assign_field_work",
+        "cap_manage_field_teams",
+        "cap_monitor_operations_dashboard",
+        "cap_resolve_incident",
+        "cap_review_incident",
+        "cap_triage_incoming_work"
+      ]
+    },
+    {
+      "description": "Runs proof path hygiene, proof audit, Topogram check, strict SDLC check, domain slice generation, layout catalog review, and clean-worktree verification for the reusable layout checkpoint.",
+      "id": "verification_step03_reusable_layouts",
+      "kind": "verification",
+      "method": "runtime",
+      "name": "Step 03 Reusable Layouts Verification",
+      "ownership_boundary": {
+        "canonical_topogram": {
+          "agent_mode": "propose_review_adopt",
+          "owner": "human"
+        },
+        "generated_artifacts": {
+          "agent_mode": "regenerate_or_compare",
+          "owner": "engine"
+        },
+        "maintained_code": {
+          "agent_mode": "bounded_edit_only",
+          "owner": "human"
+        },
+        "proposal_surfaces": {
+          "agent_mode": "stage_map_customize_reject",
+          "owner": "human"
+        }
+      },
+      "scenarios": [
+        "npm_run_verify_step_03"
+      ],
+      "validates": [
+        "cap_assign_field_work",
+        "cap_manage_field_teams",
+        "cap_monitor_operations_dashboard",
+        "cap_resolve_incident",
+        "cap_review_incident",
+        "cap_triage_incoming_work"
+      ]
+    },
+    {
+      "description": "Runs proof path hygiene, proof audit, Topogram check, strict SDLC check, screen slice generation, screen catalog review, and clean-worktree verification for the screen/navigation checkpoint.",
+      "id": "verification_step04_screens_navigation",
+      "kind": "verification",
+      "method": "runtime",
+      "name": "Step 04 Screens And Navigation Verification",
+      "ownership_boundary": {
+        "canonical_topogram": {
+          "agent_mode": "propose_review_adopt",
+          "owner": "human"
+        },
+        "generated_artifacts": {
+          "agent_mode": "regenerate_or_compare",
+          "owner": "engine"
+        },
+        "maintained_code": {
+          "agent_mode": "bounded_edit_only",
+          "owner": "human"
+        },
+        "proposal_surfaces": {
+          "agent_mode": "stage_map_customize_reject",
+          "owner": "human"
+        }
+      },
+      "scenarios": [
+        "npm_run_verify_step_04"
+      ],
+      "validates": [
+        "cap_assign_field_work",
+        "cap_manage_field_teams",
+        "cap_monitor_operations_dashboard",
+        "cap_resolve_incident",
+        "cap_review_incident",
+        "cap_triage_incoming_work"
+      ]
+    },
+    {
+      "description": "Runs proof path hygiene, proof audit, Topogram check, strict SDLC check, screen and widget slice generation, widget catalog review, and clean-worktree verification for the semantic widget binding checkpoint.",
+      "id": "verification_step05_widgets_bindings",
+      "kind": "verification",
+      "method": "runtime",
+      "name": "Step 05 Widgets And Bindings Verification",
+      "ownership_boundary": {
+        "canonical_topogram": {
+          "agent_mode": "propose_review_adopt",
+          "owner": "human"
+        },
+        "generated_artifacts": {
+          "agent_mode": "regenerate_or_compare",
+          "owner": "engine"
+        },
+        "maintained_code": {
+          "agent_mode": "bounded_edit_only",
+          "owner": "human"
+        },
+        "proposal_surfaces": {
+          "agent_mode": "stage_map_customize_reject",
+          "owner": "human"
+        }
+      },
+      "scenarios": [
+        "npm_run_verify_step_05"
+      ],
+      "validates": [
+        "cap_assign_field_work",
+        "cap_manage_field_teams",
+        "cap_monitor_operations_dashboard",
+        "cap_resolve_incident",
+        "cap_review_incident",
+        "cap_triage_incoming_work"
+      ]
+    },
+    {
+      "description": "Runs proof path hygiene, proof audit, Topogram check, strict SDLC check, UI design coverage, UI realization report, focused widget slice review, and clean-worktree verification for the design realization checkpoint.",
+      "id": "verification_step06_design_realizations",
+      "kind": "verification",
+      "method": "runtime",
+      "name": "Step 06 Design Contract Realizations Verification",
+      "ownership_boundary": {
+        "canonical_topogram": {
+          "agent_mode": "propose_review_adopt",
+          "owner": "human"
+        },
+        "generated_artifacts": {
+          "agent_mode": "regenerate_or_compare",
+          "owner": "engine"
+        },
+        "maintained_code": {
+          "agent_mode": "bounded_edit_only",
+          "owner": "human"
+        },
+        "proposal_surfaces": {
+          "agent_mode": "stage_map_customize_reject",
+          "owner": "human"
+        }
+      },
+      "scenarios": [
+        "npm_run_verify_step_06"
+      ],
+      "validates": [
+        "cap_assign_field_work",
+        "cap_manage_field_teams",
+        "cap_monitor_operations_dashboard",
+        "cap_resolve_incident",
+        "cap_review_incident",
+        "cap_triage_incoming_work"
+      ]
+    },
+    {
+      "description": "Runs proof path hygiene, proof audit, Topogram check, strict SDLC check, UI design coverage, UI realization report, focused screen/widget slices, and clean-worktree verification for i18n and accessibility obligations.",
+      "id": "verification_step07_i18n_aria_states",
+      "kind": "verification",
+      "method": "runtime",
+      "name": "Step 07 i18n ARIA And States Verification",
+      "ownership_boundary": {
+        "canonical_topogram": {
+          "agent_mode": "propose_review_adopt",
+          "owner": "human"
+        },
+        "generated_artifacts": {
+          "agent_mode": "regenerate_or_compare",
+          "owner": "engine"
+        },
+        "maintained_code": {
+          "agent_mode": "bounded_edit_only",
+          "owner": "human"
+        },
+        "proposal_surfaces": {
+          "agent_mode": "stage_map_customize_reject",
+          "owner": "human"
+        }
+      },
+      "scenarios": [
+        "npm_run_verify_step_07"
+      ],
+      "validates": [
+        "cap_assign_field_work",
+        "cap_manage_field_teams",
+        "cap_monitor_operations_dashboard",
+        "cap_resolve_incident",
+        "cap_review_incident",
+        "cap_triage_incoming_work"
+      ]
+    }
+  ],
+  "verification_targets": {
+    "generated_checks": [
+      "compile-check",
+      "runtime-check"
+    ],
+    "maintained_app_checks": [],
+    "rationale": "Screen slices should prove UI contract, realization coverage, widget behavior, and generated/maintained app checks for the selected surface.",
+    "verification_ids": [
+      "verification_step01_domain_app_shell",
+      "verification_step02_semantic_regions",
+      "verification_step03_reusable_layouts",
+      "verification_step04_screens_navigation",
+      "verification_step05_widgets_bindings",
+      "verification_step06_design_realizations",
+      "verification_step07_i18n_aria_states"
+    ]
+  },
+  "version": 1,
+  "write_scope": {
+    "generator_owned": [
+      "artifacts/**",
+      "apps/**"
+    ],
+    "human_owned_review_required": [
+      "examples/maintained/proof-app/**"
+    ],
+    "out_of_bounds": [
+      ".git/**",
+      "node_modules/**"
+    ],
+    "safe_to_edit": [
+      "topo/**",
+      "candidates/**"
+    ]
+  }
+}

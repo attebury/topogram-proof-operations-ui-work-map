@@ -83,6 +83,80 @@ projection proj_operations_ui_contract {
     screen settings_preferences region settings widget widget_detail_panel data item from cap_manage_field_teams event edit_requested action cap_manage_field_teams
   }
 
+  messages {
+    locale default "en-US" fallback "en-US" direction ltr supported ["en-US"]
+
+    message msg_operations_dashboard_title key "operations.dashboard.title" default "Operations Dashboard" context screen_title screen operations_dashboard
+    message msg_intake_queue_title key "operations.intake.title" default "Intake Queue" context screen_title screen intake_queue
+    message msg_incident_detail_title key "operations.incident.title" default "Incident Detail" context screen_title screen incident_detail
+    message msg_assignment_board_title key "operations.assignments.title" default "Assignment Board" context screen_title screen assignment_board
+    message msg_schedule_calendar_title key "operations.schedule.title" default "Schedule Calendar" context screen_title screen schedule_calendar
+    message msg_field_team_directory_title key "operations.teams.title" default "Field Team Directory" context screen_title screen field_team_directory
+    message msg_audit_timeline_title key "operations.audit.title" default "Audit Timeline" context screen_title screen audit_timeline
+    message msg_settings_preferences_title key "operations.settings.title" default "Settings And Preferences" context screen_title screen settings_preferences
+
+    message msg_intake_queue_empty_title key "operations.intake.empty.title" default "No intake work" context screen_empty_title screen intake_queue
+    message msg_intake_queue_empty_body key "operations.intake.empty.body" default "Incoming work that needs triage appears here." context screen_empty_body screen intake_queue
+    message msg_assignment_board_empty_title key "operations.assignments.empty.title" default "No assignments ready" context screen_empty_title screen assignment_board
+    message msg_assignment_board_empty_body key "operations.assignments.empty.body" default "Ready work appears after triage." context screen_empty_body screen assignment_board
+    message msg_schedule_calendar_empty_title key "operations.schedule.empty.title" default "No scheduled work" context screen_empty_title screen schedule_calendar
+    message msg_schedule_calendar_empty_body key "operations.schedule.empty.body" default "Scheduled field work appears here." context screen_empty_body screen schedule_calendar
+    message msg_field_team_directory_empty_title key "operations.teams.empty.title" default "No teams available" context screen_empty_title screen field_team_directory
+    message msg_field_team_directory_empty_body key "operations.teams.empty.body" default "Create or activate teams before assigning work." context screen_empty_body screen field_team_directory
+
+    message msg_widget_command_toolbar_label key "operations.widgets.command_toolbar.label" default "Screen commands" context widget_label widget widget_command_toolbar
+    message msg_widget_kpi_summary_cards_label key "operations.widgets.kpi_summary_cards.label" default "Operations summary cards" context widget_label widget widget_kpi_summary_cards
+    message msg_widget_alert_banner_label key "operations.widgets.alert_banner.label" default "Live operations alerts" context widget_label widget widget_alert_banner
+    message msg_widget_filter_panel_label key "operations.widgets.filter_panel.label" default "Filter controls" context widget_label widget widget_filter_panel
+    message msg_widget_card_list_label key "operations.widgets.card_list.label" default "Work item cards" context widget_label widget widget_card_list
+    message msg_widget_detail_panel_label key "operations.widgets.detail_panel.label" default "Selected work detail" context widget_label widget widget_detail_panel
+    message msg_widget_activity_timeline_label key "operations.widgets.activity_timeline.label" default "Activity timeline" context widget_label widget widget_activity_timeline
+    message msg_widget_assignment_form_label key "operations.widgets.assignment_form.label" default "Assignment form" context widget_label widget widget_assignment_form
+    message msg_widget_status_board_label key "operations.widgets.status_board.label" default "Assignment status board" context widget_label widget widget_status_board
+    message msg_widget_schedule_calendar_label key "operations.widgets.schedule_calendar.label" default "Schedule calendar" context widget_label widget widget_schedule_calendar
+    message msg_widget_data_grid_label key "operations.widgets.data_grid.label" default "Team results table" context widget_label widget widget_data_grid
+
+    message msg_action_triage_incoming_work_label key "operations.actions.triage_incoming_work" default "Triage incoming work" context action_label action cap_triage_incoming_work
+    message msg_action_assign_field_work_label key "operations.actions.assign_field_work" default "Assign field work" context action_label action cap_assign_field_work
+    message msg_action_review_incident_label key "operations.actions.review_incident" default "Review incident" context action_label action cap_review_incident
+    message msg_action_resolve_incident_label key "operations.actions.resolve_incident" default "Resolve incident" context action_label action cap_resolve_incident
+    message msg_action_manage_field_teams_label key "operations.actions.manage_field_teams" default "Manage field teams" context action_label action cap_manage_field_teams
+
+    message msg_status_urgent key "operations.status.urgent" default "Urgent" context status widget widget_alert_banner
+    message msg_status_in_review key "operations.status.in_review" default "In review" context status widget widget_card_list
+    message msg_status_resolved key "operations.status.resolved" default "Resolved" context status widget widget_detail_panel
+    message msg_alert_live_updates_label key "operations.alerts.live_updates.label" default "Live updates" context aria_label widget widget_alert_banner
+  }
+
+  accessibility {
+    screen operations_dashboard role main name_from message msg_operations_dashboard_title keyboard standard focus visible live off
+    screen intake_queue role main name_from message msg_intake_queue_title keyboard standard focus visible live off
+    screen incident_detail role main name_from message msg_incident_detail_title keyboard standard focus visible live off
+    screen assignment_board role main name_from message msg_assignment_board_title keyboard standard focus visible live off
+    screen schedule_calendar role main name_from message msg_schedule_calendar_title keyboard standard focus visible live off
+    screen field_team_directory role main name_from message msg_field_team_directory_title keyboard standard focus visible live off
+    screen audit_timeline role main name_from message msg_audit_timeline_title keyboard standard focus visible live off
+    screen settings_preferences role main name_from message msg_settings_preferences_title keyboard standard focus visible live off
+
+    widget widget_command_toolbar role region name_from message msg_widget_command_toolbar_label keyboard standard focus visible live off
+    widget widget_kpi_summary_cards role region name_from message msg_widget_kpi_summary_cards_label keyboard standard focus visible live off
+    widget widget_alert_banner role status name_from message msg_widget_alert_banner_label keyboard standard focus visible live polite
+    widget widget_filter_panel role search name_from message msg_widget_filter_panel_label keyboard form focus visible live off
+    widget widget_card_list role list name_from message msg_widget_card_list_label keyboard standard focus visible live off
+    widget widget_detail_panel role region name_from message msg_widget_detail_panel_label keyboard standard focus visible live off
+    widget widget_activity_timeline role list name_from message msg_widget_activity_timeline_label keyboard standard focus visible live off
+    widget widget_assignment_form role form name_from message msg_widget_assignment_form_label keyboard form focus managed live off
+    widget widget_status_board role grid name_from message msg_widget_status_board_label keyboard roving_tabindex focus roving_tabindex live off
+    widget widget_schedule_calendar role grid name_from message msg_widget_schedule_calendar_label keyboard arrow_keys focus roving_tabindex live off
+    widget widget_data_grid role grid name_from message msg_widget_data_grid_label keyboard data_grid focus roving_tabindex live off
+
+    action cap_triage_incoming_work role button name_from message msg_action_triage_incoming_work_label keyboard button focus visible live off
+    action cap_assign_field_work role button name_from message msg_action_assign_field_work_label keyboard button focus visible live off
+    action cap_review_incident role button name_from message msg_action_review_incident_label keyboard button focus visible live off
+    action cap_resolve_incident role button name_from message msg_action_resolve_incident_label keyboard button focus visible live off
+    action cap_manage_field_teams role button name_from message msg_action_manage_field_teams_label keyboard button focus visible live off
+  }
+
   status active
 }
 

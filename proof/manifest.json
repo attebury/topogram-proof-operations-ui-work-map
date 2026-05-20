@@ -1,6 +1,6 @@
 {
   "cliVersion": "0.3.112",
-  "currentStep": "proof-06-design-contract-realizations",
+  "currentStep": "proof-07-i18n-aria-states",
   "expectedTags": [
     "proof-01-domain-and-app-shell",
     "proof-02-semantic-regions",
@@ -130,8 +130,46 @@
       "requiredKeys": ["type", "focus", "ui_agent_packet"]
     },
     {
+      "path": "proof/artifacts/step-07-i18n-aria-states/check.json",
+      "json": true,
+      "requiredKeys": ["ok", "topogram"]
+    },
+    {
+      "path": "proof/artifacts/step-07-i18n-aria-states/sdlc-check.json",
+      "json": true,
+      "requiredKeys": ["ok"]
+    },
+    {
+      "path": "proof/artifacts/step-07-i18n-aria-states/ui-design-coverage.json",
+      "json": true,
+      "requiredKeys": ["type", "summary", "design_matrix"]
+    },
+    {
+      "path": "proof/artifacts/step-07-i18n-aria-states/ui-design-coverage.md",
+      "contains": ["# UI Design Coverage", "widget_alert_banner", "contract_only", "unsupported"]
+    },
+    {
+      "path": "proof/artifacts/step-07-i18n-aria-states/ui-realization-report.json",
+      "json": true,
+      "requiredKeys": ["type", "summary", "messages", "accessibility"]
+    },
+    {
+      "path": "proof/artifacts/step-07-i18n-aria-states/screen-slice.json",
+      "json": true,
+      "requiredKeys": ["type", "focus", "ui_agent_packet"]
+    },
+    {
+      "path": "proof/artifacts/step-07-i18n-aria-states/widget-slice.json",
+      "json": true,
+      "requiredKeys": ["type", "focus", "ui_agent_packet"]
+    },
+    {
+      "path": "proof/artifacts/step-07-i18n-aria-states/i18n-aria-summary.md",
+      "contains": ["# Step 07 i18n and ARIA Summary", "msg_widget_alert_banner_label", "Accessibility examples"]
+    },
+    {
       "path": "proof/STEP.md",
-      "contains": ["Step 06", "Design Contract Realizations"]
+      "contains": ["Step 07", "i18n, ARIA, And States"]
     }
   ]
 }

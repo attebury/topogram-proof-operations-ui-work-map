@@ -65,3 +65,88 @@ term term_component_ref {
   domain dom_ui_work_map_proof
   status active
 }
+
+term term_message_key {
+  name "Message Key"
+  description "A stable translatable text identity that lets agents use product wording without hard-coding source copy into implementation work."
+  category i18n
+  domain dom_ui_work_map_proof
+  aliases [translation_key]
+  status active
+}
+
+term term_translatable_message {
+  name "Translatable Message"
+  description "A UI text obligation with a stable message key and default copy that can later be translated by the application."
+  category i18n
+  domain dom_ui_work_map_proof
+  aliases [message_default]
+  status active
+}
+
+term term_locale_policy {
+  name "Locale Policy"
+  description "The default locale, fallback locale, text direction, and supported locale set for a UI contract."
+  category i18n
+  domain dom_ui_work_map_proof
+  status active
+}
+
+term term_source_text {
+  name "Source Text"
+  description "Default human-readable wording carried by a message contract before locale-specific translations are supplied by the app."
+  category i18n
+  domain dom_ui_work_map_proof
+  aliases [default_copy]
+  status active
+}
+
+term term_accessibility_obligation {
+  name "Accessibility Obligation"
+  description "A semantic accessibility requirement carried by the UI contract, such as a role, accessible name, keyboard model, focus model, or live-region behavior."
+  category accessibility
+  domain dom_ui_work_map_proof
+  aliases [a11y_obligation]
+  status active
+}
+
+term term_accessible_name {
+  name "Accessible Name"
+  description "The name assistive technologies use for a screen, widget, or action, preferably derived from a message key."
+  category accessibility
+  domain dom_ui_work_map_proof
+  status active
+}
+
+term term_semantic_role {
+  name "Semantic Role"
+  description "The accessibility role expected for a screen, widget, or action before platform-specific ARIA or native attributes are implemented."
+  category accessibility
+  domain dom_ui_work_map_proof
+  status active
+}
+
+term term_keyboard_model {
+  name "Keyboard Model"
+  description "The expected keyboard interaction pattern for a widget or action, such as standard controls, forms, grids, roving tabindex, or arrow-key navigation."
+  category accessibility
+  domain dom_ui_work_map_proof
+  status active
+}
+
+term term_keyboard_interaction {
+  name "Keyboard Interaction"
+  description "The keyboard behavior a widget or action must support for accessible operation."
+  category accessibility
+  domain dom_ui_work_map_proof
+  aliases [keyboard_model]
+  status active
+}
+
+term term_live_region {
+  name "Live Region"
+  description "An accessibility obligation for announcing changing status or alert content politely or assertively."
+  category accessibility
+  domain dom_ui_work_map_proof
+  status active
+}

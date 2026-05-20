@@ -1,0 +1,2345 @@
+{
+  "agent_guidance": {
+    "completion_command": "topogram sdlc prep commit . --json",
+    "mode": "implementation",
+    "next_commands": [
+      "topogram query slice ./topo --mode implementation --widget widget_alert_banner --json",
+      "topogram query single-agent-plan ./topo --mode implementation --widget widget_alert_banner --json",
+      "topogram query sdlc-proof-gaps ./topo --json",
+      "topogram check . --json",
+      "topogram sdlc check . --strict",
+      "topogram sdlc prep commit . --json"
+    ],
+    "next_queries": [
+      "topogram query slice ./topo --mode implementation --widget widget_alert_banner --json",
+      "topogram query single-agent-plan ./topo --mode implementation --widget widget_alert_banner --json"
+    ],
+    "proof_commands": [
+      "topogram check . --json",
+      "topogram sdlc check . --strict",
+      "topogram sdlc prep commit . --json"
+    ],
+    "read_first": [
+      "focus",
+      "summary",
+      "agent_guidance",
+      "terms",
+      "review_boundary",
+      "ownership_boundary",
+      "write_scope",
+      "ui_agent_packet"
+    ],
+    "read_order": [
+      "focus",
+      "summary",
+      "agent_guidance",
+      "terms",
+      "review_boundary",
+      "ownership_boundary",
+      "write_scope",
+      "ui_agent_packet"
+    ],
+    "required_commands": [
+      "topogram query sdlc-proof-gaps ./topo --json",
+      "topogram check . --json",
+      "topogram sdlc check . --strict",
+      "topogram sdlc prep commit . --json"
+    ],
+    "warnings": [],
+    "write_scope_summary": "Edit the canonical Topogram source and project-owned files only; generated-owned outputs should be regenerated."
+  },
+  "depends_on": {
+    "capabilities": [],
+    "entities": [],
+    "projections": [
+      "proj_operations_ui_contract",
+      "proj_operations_web_surface"
+    ],
+    "shapes": [
+      "shape_work_queue_item"
+    ],
+    "terms": [
+      "term_operations_control_room",
+      "term_work_map"
+    ],
+    "verifications": [],
+    "widgets": []
+  },
+  "detail_level": "standard",
+  "focus": {
+    "id": "widget_alert_banner",
+    "kind": "widget"
+  },
+  "ownership_boundary": {
+    "canonical_topogram": {
+      "agent_mode": "propose_review_adopt",
+      "owner": "human"
+    },
+    "generated_artifacts": {
+      "agent_mode": "regenerate_or_compare",
+      "owner": "engine"
+    },
+    "maintained_code": {
+      "agent_mode": "bounded_edit_only",
+      "owner": "human"
+    },
+    "proposal_surfaces": {
+      "agent_mode": "stage_map_customize_reject",
+      "owner": "human"
+    }
+  },
+  "related": {
+    "capabilities": [],
+    "entities": [],
+    "projections": [
+      {
+        "dbTables": [],
+        "description": "Shared UI contract for the operations-dashboard proof with reusable layouts, screens, navigation, and semantic widget bindings.",
+        "httpCapabilities": [],
+        "id": "proj_operations_ui_contract",
+        "kind": "projection",
+        "name": "Operations UI Contract",
+        "outputs": [
+          "ui_contract"
+        ],
+        "ownership_boundary": {
+          "canonical_topogram": {
+            "agent_mode": "propose_review_adopt",
+            "owner": "human"
+          },
+          "generated_artifacts": {
+            "agent_mode": "regenerate_or_compare",
+            "owner": "engine"
+          },
+          "maintained_code": {
+            "agent_mode": "bounded_edit_only",
+            "owner": "human"
+          },
+          "proposal_surfaces": {
+            "agent_mode": "stage_map_customize_reject",
+            "owner": "human"
+          }
+        },
+        "realizes": [
+          "cap_assign_field_work",
+          "cap_manage_field_teams",
+          "cap_monitor_operations_dashboard",
+          "cap_resolve_incident",
+          "cap_review_incident",
+          "cap_triage_incoming_work"
+        ],
+        "reviewBoundary": {
+          "automation_class": "manual_decision",
+          "reasons": [
+            "ui_surface"
+          ]
+        },
+        "type": "ui_contract",
+        "uiScreens": [
+          "assignment_board",
+          "audit_timeline",
+          "field_team_directory",
+          "incident_detail",
+          "intake_queue",
+          "operations_dashboard",
+          "schedule_calendar",
+          "settings_preferences"
+        ],
+        "widgetBindings": [
+          "widget_activity_timeline",
+          "widget_alert_banner",
+          "widget_assignment_form",
+          "widget_card_list",
+          "widget_command_toolbar",
+          "widget_data_grid",
+          "widget_detail_panel",
+          "widget_filter_panel",
+          "widget_kpi_summary_cards",
+          "widget_schedule_calendar",
+          "widget_status_board"
+        ]
+      },
+      {
+        "dbTables": [],
+        "description": "Concrete web route surface for the operations-dashboard UI contract.",
+        "httpCapabilities": [],
+        "id": "proj_operations_web_surface",
+        "kind": "projection",
+        "name": "Operations Web Surface",
+        "outputs": [
+          "ui_contract",
+          "web_app"
+        ],
+        "ownership_boundary": {
+          "canonical_topogram": {
+            "agent_mode": "propose_review_adopt",
+            "owner": "human"
+          },
+          "generated_artifacts": {
+            "agent_mode": "regenerate_or_compare",
+            "owner": "engine"
+          },
+          "maintained_code": {
+            "agent_mode": "bounded_edit_only",
+            "owner": "human"
+          },
+          "proposal_surfaces": {
+            "agent_mode": "stage_map_customize_reject",
+            "owner": "human"
+          }
+        },
+        "realizes": [
+          "cap_assign_field_work",
+          "cap_manage_field_teams",
+          "cap_monitor_operations_dashboard",
+          "cap_resolve_incident",
+          "cap_review_incident",
+          "cap_triage_incoming_work",
+          "proj_operations_ui_contract"
+        ],
+        "reviewBoundary": {
+          "automation_class": "safe",
+          "reasons": [
+            "metadata_only"
+          ]
+        },
+        "type": "web_surface",
+        "uiScreens": [],
+        "widgetBindings": []
+      }
+    ],
+    "shapes": [
+      {
+        "derivedFrom": [],
+        "description": "Compact queue row or card for triage and assignment screens.",
+        "exclude": [],
+        "fields": [
+          {
+            "defaultValue": null,
+            "name": "id",
+            "requiredness": "required",
+            "type": "string"
+          },
+          {
+            "defaultValue": null,
+            "name": "title",
+            "requiredness": "required",
+            "type": "string"
+          },
+          {
+            "defaultValue": null,
+            "name": "priority",
+            "requiredness": "required",
+            "type": "string"
+          },
+          {
+            "defaultValue": null,
+            "name": "status",
+            "requiredness": "required",
+            "type": "string"
+          },
+          {
+            "defaultValue": null,
+            "name": "owner",
+            "requiredness": "optional",
+            "type": "string"
+          },
+          {
+            "defaultValue": null,
+            "name": "due_at",
+            "requiredness": "optional",
+            "type": "datetime"
+          },
+          {
+            "defaultValue": null,
+            "name": "location",
+            "requiredness": "optional",
+            "type": "string"
+          }
+        ],
+        "id": "shape_work_queue_item",
+        "include": [],
+        "kind": "shape",
+        "name": "Work Queue Item",
+        "ownership_boundary": {
+          "canonical_topogram": {
+            "agent_mode": "propose_review_adopt",
+            "owner": "human"
+          },
+          "generated_artifacts": {
+            "agent_mode": "regenerate_or_compare",
+            "owner": "engine"
+          },
+          "maintained_code": {
+            "agent_mode": "bounded_edit_only",
+            "owner": "human"
+          },
+          "proposal_surfaces": {
+            "agent_mode": "stage_map_customize_reject",
+            "owner": "human"
+          }
+        }
+      }
+    ],
+    "terms": [
+      {
+        "aliases": [],
+        "category": "operations",
+        "description": "A coordination app for monitoring intake, triage, assignment, active field work, incident review, and resolution.",
+        "excludes": [],
+        "id": "term_operations_control_room",
+        "kind": "term",
+        "name": "Operations Control Room",
+        "ownership_boundary": {
+          "canonical_topogram": {
+            "agent_mode": "propose_review_adopt",
+            "owner": "human"
+          },
+          "generated_artifacts": {
+            "agent_mode": "regenerate_or_compare",
+            "owner": "engine"
+          },
+          "maintained_code": {
+            "agent_mode": "bounded_edit_only",
+            "owner": "human"
+          },
+          "proposal_surfaces": {
+            "agent_mode": "stage_map_customize_reject",
+            "owner": "human"
+          }
+        },
+        "relatedTerms": [],
+        "status": "active"
+      },
+      {
+        "aliases": [
+          "app_map"
+        ],
+        "category": "ui_structure",
+        "description": "A graph that tells humans and agents where product work belongs without pretending to be a framework render tree.",
+        "excludes": [],
+        "id": "term_work_map",
+        "kind": "term",
+        "name": "Work Map",
+        "ownership_boundary": {
+          "canonical_topogram": {
+            "agent_mode": "propose_review_adopt",
+            "owner": "human"
+          },
+          "generated_artifacts": {
+            "agent_mode": "regenerate_or_compare",
+            "owner": "engine"
+          },
+          "maintained_code": {
+            "agent_mode": "bounded_edit_only",
+            "owner": "human"
+          },
+          "proposal_surfaces": {
+            "agent_mode": "stage_map_customize_reject",
+            "owner": "human"
+          }
+        },
+        "relatedTerms": [],
+        "status": "active"
+      }
+    ],
+    "widgets": []
+  },
+  "review_boundary": {
+    "automation_class": "review_required",
+    "reasons": [
+      "widget_surface"
+    ]
+  },
+  "slice_manifest": {
+    "detail_level": "standard",
+    "note": "Read must_read sections first; use reference sections only as needed; run proof commands before completing work.",
+    "proof_sections": [
+      "verification_targets"
+    ],
+    "read_order": [
+      "focus",
+      "summary",
+      "agent_guidance",
+      "terms",
+      "review_boundary",
+      "ownership_boundary",
+      "write_scope",
+      "ui_agent_packet"
+    ],
+    "sections": [
+      {
+        "field": "focus",
+        "id": "focus",
+        "item_count": 2,
+        "reason": "The selected graph surface this packet is scoped to.",
+        "tier": "must_read",
+        "title": "Focus"
+      },
+      {
+        "field": "summary",
+        "id": "summary",
+        "item_count": 18,
+        "reason": "The shortest human-readable description of the selected work or surface.",
+        "tier": "must_read",
+        "title": "Summary"
+      },
+      {
+        "field": "agent_guidance",
+        "id": "agent_guidance",
+        "item_count": 10,
+        "reason": "Mode, read order, follow-up queries, and required proof commands.",
+        "tier": "must_read",
+        "title": "Agent Guidance"
+      },
+      {
+        "field": "related.terms",
+        "id": "terms",
+        "item_count": 2,
+        "reason": "Canonical vocabulary needed to interpret this slice.",
+        "tier": "must_read",
+        "title": "Glossary Terms"
+      },
+      {
+        "field": "review_boundary",
+        "id": "review_boundary",
+        "item_count": 2,
+        "reason": "Automation and human-review expectations for this scope.",
+        "tier": "must_read",
+        "title": "Review Boundary"
+      },
+      {
+        "field": "ownership_boundary",
+        "id": "ownership_boundary",
+        "item_count": 4,
+        "reason": "Generated, maintained, and human-owned boundaries that constrain edits.",
+        "tier": "must_read",
+        "title": "Ownership Boundary"
+      },
+      {
+        "field": "write_scope",
+        "id": "write_scope",
+        "item_count": 4,
+        "reason": "Files and surfaces that are safe, risky, or out of bounds to edit.",
+        "tier": "must_read",
+        "title": "Write Scope"
+      },
+      {
+        "field": "ui_agent_packet",
+        "id": "ui_agent_packet",
+        "item_count": 11,
+        "reason": "Screen, layout, region, widget, accessibility, i18n, design-token, and UI proof context for UI slices.",
+        "tier": "must_read",
+        "title": "UI Agent Packet"
+      },
+      {
+        "field": "depends_on",
+        "id": "depends_on",
+        "item_count": 7,
+        "reason": "IDs that define the semantic closure without embedding every full record.",
+        "tier": "reference",
+        "title": "Depends On"
+      },
+      {
+        "field": "related",
+        "id": "related",
+        "item_count": 6,
+        "reason": "Summaries for directly related graph records.",
+        "tier": "reference",
+        "title": "Related Records"
+      },
+      {
+        "field": "verification_targets",
+        "id": "verification_targets",
+        "item_count": 4,
+        "reason": "Smallest verification set recommended for this change.",
+        "tier": "proof",
+        "title": "Verification Targets"
+      }
+    ]
+  },
+  "standing_rules": [],
+  "summary": {
+    "approvals": [],
+    "behavior": [
+      "realtime_update"
+    ],
+    "behaviors": [
+      {
+        "directives": {
+          "merge": "append",
+          "source": "cap_monitor_operations_dashboard"
+        },
+        "kind": "realtime_update",
+        "source": "structured"
+      }
+    ],
+    "category": "feedback",
+    "dependencies": [],
+    "description": "Time-sensitive operational alerts and live update summaries.",
+    "events": [
+      {
+        "id": "alert_select",
+        "shape": "shape_work_queue_item"
+      }
+    ],
+    "id": "widget_alert_banner",
+    "kind": "widget",
+    "lookups": [],
+    "name": "Alert Banner",
+    "ownership_boundary": {
+      "canonical_topogram": {
+        "agent_mode": "propose_review_adopt",
+        "owner": "human"
+      },
+      "generated_artifacts": {
+        "agent_mode": "regenerate_or_compare",
+        "owner": "engine"
+      },
+      "maintained_code": {
+        "agent_mode": "bounded_edit_only",
+        "owner": "human"
+      },
+      "proposal_surfaces": {
+        "agent_mode": "stage_map_customize_reject",
+        "owner": "human"
+      }
+    },
+    "patterns": [
+      "activity_feed",
+      "empty_state_panel",
+      "status_badge"
+    ],
+    "props": [
+      {
+        "defaultValue": null,
+        "name": "alerts",
+        "requiredness": "required",
+        "type": "array"
+      }
+    ],
+    "regions": [
+      "activity",
+      "header"
+    ],
+    "slots": [],
+    "status": "active",
+    "version": "1.0"
+  },
+  "type": "context_slice",
+  "ui_agent_packet": {
+    "accessibility": {
+      "authoredObligations": [
+        {
+          "focus": "visible",
+          "keyboard": "standard",
+          "live": "polite",
+          "nameFrom": {
+            "source": "message",
+            "value": "msg_widget_alert_banner_label"
+          },
+          "role": "status",
+          "targetId": "widget_alert_banner",
+          "targetKind": "widget"
+        }
+      ],
+      "currentSignals": {
+        "authoredContract": {
+          "obligations": [
+            {
+              "focus": "visible",
+              "keyboard": "standard",
+              "live": "polite",
+              "nameFrom": {
+                "source": "message",
+                "value": "msg_widget_alert_banner_label"
+              },
+              "role": "status",
+              "targetId": "widget_alert_banner",
+              "targetKind": "widget"
+            }
+          ],
+          "totalObligations": 24
+        },
+        "designTokens": null
+      },
+      "decisions": [
+        {
+          "found": false,
+          "id": "decision_aria_attributes_are_implementation_evidence",
+          "kind": null,
+          "name": "decision_aria_attributes_are_implementation_evidence",
+          "status": null
+        }
+      ],
+      "diagnostics": [],
+      "obligations": [
+        "Prefer semantic role, accessible-name source, keyboard model, focus behavior, live-region need, and proof command over raw aria-* snapshots.",
+        "Treat raw aria-* attributes as generated or maintained implementation evidence, not the contract source."
+      ],
+      "proofCommands": [
+        "topogram widget check --json",
+        "topogram widget behavior --json"
+      ],
+      "requirements": [
+        {
+          "found": false,
+          "id": "req_aria_accessibility_contract_v1",
+          "kind": null,
+          "name": "req_aria_accessibility_contract_v1",
+          "status": null
+        }
+      ],
+      "scope": {
+        "projectionId": null,
+        "screenId": null,
+        "widgetId": "widget_alert_banner"
+      },
+      "source": "ui_contract accessibility block, design-token evidence, terms, decisions, and requirements",
+      "status": "authored_contract",
+      "terms": [
+        {
+          "found": true,
+          "id": "term_accessibility_obligation",
+          "kind": "term",
+          "name": "Accessibility Obligation",
+          "status": "active"
+        },
+        {
+          "found": true,
+          "id": "term_accessible_name",
+          "kind": "term",
+          "name": "Accessible Name",
+          "status": "active"
+        },
+        {
+          "found": true,
+          "id": "term_semantic_role",
+          "kind": "term",
+          "name": "Semantic Role",
+          "status": "active"
+        },
+        {
+          "found": true,
+          "id": "term_keyboard_interaction",
+          "kind": "term",
+          "name": "Keyboard Interaction",
+          "status": "active"
+        },
+        {
+          "found": true,
+          "id": "term_live_region",
+          "kind": "term",
+          "name": "Live Region",
+          "status": "active"
+        }
+      ]
+    },
+    "designContracts": {
+      "contracts": [
+        {
+          "behaviorSupport": [
+            {
+              "behavior": "realtime_update",
+              "density": "compact",
+              "designRealizationSet": {
+                "id": "realization_set_operations_control_room_widgets",
+                "name": "Operations Control Room Widget Realizations"
+              },
+              "loc": {
+                "end": {
+                  "column": 4,
+                  "line": 556,
+                  "offset": 15263
+                },
+                "file": "topo/design/operations-realization-sets.tg",
+                "start": {
+                  "column": 3,
+                  "line": 542,
+                  "offset": 14848
+                }
+              },
+              "localeContexts": [
+                "default_locale"
+              ],
+              "platform": "web",
+              "roleContexts": [
+                "operator",
+                "manager"
+              ],
+              "stateCoverage": [
+                "loading",
+                "empty",
+                "error"
+              ],
+              "status": "rendered",
+              "themeContexts": [
+                "light",
+                "dark"
+              ],
+              "type": "design_realization_behavior_support",
+              "viewport": "wide",
+              "widget": {
+                "id": "widget_alert_banner",
+                "kind": "widget",
+                "target": {
+                  "id": "widget_alert_banner",
+                  "kind": "widget"
+                }
+              }
+            },
+            {
+              "behavior": "realtime_update",
+              "density": "compact",
+              "designRealizationSet": {
+                "id": "realization_set_operations_control_room_widgets",
+                "name": "Operations Control Room Widget Realizations"
+              },
+              "loc": {
+                "end": {
+                  "column": 4,
+                  "line": 572,
+                  "offset": 15678
+                },
+                "file": "topo/design/operations-realization-sets.tg",
+                "start": {
+                  "column": 3,
+                  "line": 558,
+                  "offset": 15267
+                }
+              },
+              "localeContexts": [
+                "default_locale"
+              ],
+              "platform": "ios",
+              "roleContexts": [
+                "operator"
+              ],
+              "stateCoverage": [
+                "loading",
+                "empty"
+              ],
+              "status": "implementation_owned",
+              "themeContexts": [
+                "system"
+              ],
+              "type": "design_realization_behavior_support",
+              "viewport": "any",
+              "widget": {
+                "id": "widget_alert_banner",
+                "kind": "widget",
+                "target": {
+                  "id": "widget_alert_banner",
+                  "kind": "widget"
+                }
+              }
+            },
+            {
+              "behavior": "realtime_update",
+              "density": "compact",
+              "designRealizationSet": {
+                "id": "realization_set_operations_control_room_widgets",
+                "name": "Operations Control Room Widget Realizations"
+              },
+              "loc": {
+                "end": {
+                  "column": 4,
+                  "line": 588,
+                  "offset": 16081
+                },
+                "file": "topo/design/operations-realization-sets.tg",
+                "start": {
+                  "column": 3,
+                  "line": 574,
+                  "offset": 15682
+                }
+              },
+              "localeContexts": [
+                "default_locale"
+              ],
+              "platform": "android",
+              "roleContexts": [
+                "operator"
+              ],
+              "stateCoverage": [
+                "loading"
+              ],
+              "status": "unsupported",
+              "themeContexts": [
+                "system"
+              ],
+              "type": "design_realization_behavior_support",
+              "viewport": "any",
+              "widget": {
+                "id": "widget_alert_banner",
+                "kind": "widget",
+                "target": {
+                  "id": "widget_alert_banner",
+                  "kind": "widget"
+                }
+              }
+            }
+          ],
+          "components": [
+            {
+              "density": "compact",
+              "designRealizationSet": {
+                "id": "realization_set_operations_control_room_widgets",
+                "name": "Operations Control Room Widget Realizations"
+              },
+              "id": "alert_banner_web_wide",
+              "loc": {
+                "end": {
+                  "column": 4,
+                  "line": 556,
+                  "offset": 15263
+                },
+                "file": "topo/design/operations-realization-sets.tg",
+                "start": {
+                  "column": 3,
+                  "line": 542,
+                  "offset": 14848
+                }
+              },
+              "localeContexts": [
+                "default_locale"
+              ],
+              "pattern": "activity_feed",
+              "platform": "web",
+              "realizes": {
+                "id": "widget_alert_banner",
+                "kind": "widget",
+                "target": {
+                  "id": "widget_alert_banner",
+                  "kind": "widget"
+                }
+              },
+              "ref": "ops.alerts.liveBanner",
+              "reviewNotes": null,
+              "roleContexts": [
+                "operator",
+                "manager"
+              ],
+              "stateCoverage": [
+                "loading",
+                "empty",
+                "error"
+              ],
+              "status": "rendered",
+              "themeContexts": [
+                "light",
+                "dark"
+              ],
+              "type": "design_realization_component",
+              "viewport": "wide"
+            },
+            {
+              "density": "compact",
+              "designRealizationSet": {
+                "id": "realization_set_operations_control_room_widgets",
+                "name": "Operations Control Room Widget Realizations"
+              },
+              "id": "alert_banner_ios",
+              "loc": {
+                "end": {
+                  "column": 4,
+                  "line": 572,
+                  "offset": 15678
+                },
+                "file": "topo/design/operations-realization-sets.tg",
+                "start": {
+                  "column": 3,
+                  "line": 558,
+                  "offset": 15267
+                }
+              },
+              "localeContexts": [
+                "default_locale"
+              ],
+              "pattern": "activity_feed",
+              "platform": "ios",
+              "realizes": {
+                "id": "widget_alert_banner",
+                "kind": "widget",
+                "target": {
+                  "id": "widget_alert_banner",
+                  "kind": "widget"
+                }
+              },
+              "ref": "ops.ios.liveAlert",
+              "reviewNotes": null,
+              "roleContexts": [
+                "operator"
+              ],
+              "stateCoverage": [
+                "loading",
+                "empty"
+              ],
+              "status": "implementation_owned",
+              "themeContexts": [
+                "system"
+              ],
+              "type": "design_realization_component",
+              "viewport": "any"
+            },
+            {
+              "density": "compact",
+              "designRealizationSet": {
+                "id": "realization_set_operations_control_room_widgets",
+                "name": "Operations Control Room Widget Realizations"
+              },
+              "id": "alert_banner_android",
+              "loc": {
+                "end": {
+                  "column": 4,
+                  "line": 588,
+                  "offset": 16081
+                },
+                "file": "topo/design/operations-realization-sets.tg",
+                "start": {
+                  "column": 3,
+                  "line": 574,
+                  "offset": 15682
+                }
+              },
+              "localeContexts": [
+                "default_locale"
+              ],
+              "pattern": "activity_feed",
+              "platform": "android",
+              "realizes": {
+                "id": "widget_alert_banner",
+                "kind": "widget",
+                "target": {
+                  "id": "widget_alert_banner",
+                  "kind": "widget"
+                }
+              },
+              "ref": "ops.android.liveAlert",
+              "reviewNotes": null,
+              "roleContexts": [
+                "operator"
+              ],
+              "stateCoverage": [
+                "loading"
+              ],
+              "status": "unsupported",
+              "themeContexts": [
+                "system"
+              ],
+              "type": "design_realization_component",
+              "viewport": "any"
+            }
+          ],
+          "id": "design_operations_product_ui",
+          "library": "operations_product_ui",
+          "name": "Operations Product UI",
+          "packageName": "@operations/product-ui",
+          "platforms": [
+            "web",
+            "ios",
+            "android"
+          ],
+          "realizationSets": [
+            {
+              "id": "realization_set_operations_control_room_widgets",
+              "name": "Operations Control Room Widget Realizations",
+              "status": "active",
+              "widgetRealizations": [
+                {
+                  "behaviorsContractOnly": [],
+                  "behaviorsImplementationOwned": [],
+                  "behaviorsRendered": [
+                    "realtime_update"
+                  ],
+                  "behaviorsUnsupported": [],
+                  "componentRef": "ops.alerts.liveBanner",
+                  "density": "compact",
+                  "id": "alert_banner_web_wide",
+                  "loc": {
+                    "end": {
+                      "column": 4,
+                      "line": 556,
+                      "offset": 15263
+                    },
+                    "file": "topo/design/operations-realization-sets.tg",
+                    "start": {
+                      "column": 3,
+                      "line": 542,
+                      "offset": 14848
+                    }
+                  },
+                  "localeContexts": [
+                    "default_locale"
+                  ],
+                  "pattern": "activity_feed",
+                  "platform": "web",
+                  "reviewNotes": null,
+                  "roleContexts": [
+                    "operator",
+                    "manager"
+                  ],
+                  "stateCoverage": [
+                    "loading",
+                    "empty",
+                    "error"
+                  ],
+                  "status": "rendered",
+                  "themeContexts": [
+                    "light",
+                    "dark"
+                  ],
+                  "type": "widget_realization",
+                  "viewport": "wide",
+                  "widget": {
+                    "id": "widget_alert_banner",
+                    "kind": "widget",
+                    "target": {
+                      "id": "widget_alert_banner",
+                      "kind": "widget"
+                    }
+                  }
+                },
+                {
+                  "behaviorsContractOnly": [],
+                  "behaviorsImplementationOwned": [
+                    "realtime_update"
+                  ],
+                  "behaviorsRendered": [],
+                  "behaviorsUnsupported": [],
+                  "componentRef": "ops.ios.liveAlert",
+                  "density": "compact",
+                  "id": "alert_banner_ios",
+                  "loc": {
+                    "end": {
+                      "column": 4,
+                      "line": 572,
+                      "offset": 15678
+                    },
+                    "file": "topo/design/operations-realization-sets.tg",
+                    "start": {
+                      "column": 3,
+                      "line": 558,
+                      "offset": 15267
+                    }
+                  },
+                  "localeContexts": [
+                    "default_locale"
+                  ],
+                  "pattern": "activity_feed",
+                  "platform": "ios",
+                  "reviewNotes": null,
+                  "roleContexts": [
+                    "operator"
+                  ],
+                  "stateCoverage": [
+                    "loading",
+                    "empty"
+                  ],
+                  "status": "implementation_owned",
+                  "themeContexts": [
+                    "system"
+                  ],
+                  "type": "widget_realization",
+                  "viewport": "any",
+                  "widget": {
+                    "id": "widget_alert_banner",
+                    "kind": "widget",
+                    "target": {
+                      "id": "widget_alert_banner",
+                      "kind": "widget"
+                    }
+                  }
+                },
+                {
+                  "behaviorsContractOnly": [],
+                  "behaviorsImplementationOwned": [],
+                  "behaviorsRendered": [],
+                  "behaviorsUnsupported": [
+                    "realtime_update"
+                  ],
+                  "componentRef": "ops.android.liveAlert",
+                  "density": "compact",
+                  "id": "alert_banner_android",
+                  "loc": {
+                    "end": {
+                      "column": 4,
+                      "line": 588,
+                      "offset": 16081
+                    },
+                    "file": "topo/design/operations-realization-sets.tg",
+                    "start": {
+                      "column": 3,
+                      "line": 574,
+                      "offset": 15682
+                    }
+                  },
+                  "localeContexts": [
+                    "default_locale"
+                  ],
+                  "pattern": "activity_feed",
+                  "platform": "android",
+                  "reviewNotes": null,
+                  "roleContexts": [
+                    "operator"
+                  ],
+                  "stateCoverage": [
+                    "loading"
+                  ],
+                  "status": "unsupported",
+                  "themeContexts": [
+                    "system"
+                  ],
+                  "type": "widget_realization",
+                  "viewport": "any",
+                  "widget": {
+                    "id": "widget_alert_banner",
+                    "kind": "widget",
+                    "target": {
+                      "id": "widget_alert_banner",
+                      "kind": "widget"
+                    }
+                  }
+                }
+              ]
+            }
+          ],
+          "status": "active",
+          "surfaces": [
+            "proj_operations_web_surface"
+          ],
+          "tokenMappings": [
+            {
+              "loc": {
+                "end": {
+                  "column": 55,
+                  "line": 12,
+                  "offset": 529
+                },
+                "file": "topo/design/operations-design-contract.tg",
+                "start": {
+                  "column": 5,
+                  "line": 12,
+                  "offset": 479
+                }
+              },
+              "platform": null,
+              "raw": [
+                "color_role",
+                "primary",
+                "token",
+                "ops.color.brand.primary"
+              ],
+              "role": "primary",
+              "roleKind": "color_role",
+              "token": "ops.color.brand.primary",
+              "type": "design_contract_token_mapping"
+            },
+            {
+              "loc": {
+                "end": {
+                  "column": 57,
+                  "line": 13,
+                  "offset": 586
+                },
+                "file": "topo/design/operations-design-contract.tg",
+                "start": {
+                  "column": 5,
+                  "line": 13,
+                  "offset": 534
+                }
+              },
+              "platform": null,
+              "raw": [
+                "color_role",
+                "surface",
+                "token",
+                "ops.color.surface.default"
+              ],
+              "role": "surface",
+              "roleKind": "color_role",
+              "token": "ops.color.surface.default",
+              "type": "design_contract_token_mapping"
+            },
+            {
+              "loc": {
+                "end": {
+                  "column": 51,
+                  "line": 14,
+                  "offset": 637
+                },
+                "file": "topo/design/operations-design-contract.tg",
+                "start": {
+                  "column": 5,
+                  "line": 14,
+                  "offset": 591
+                }
+              },
+              "platform": null,
+              "raw": [
+                "color_role",
+                "text",
+                "token",
+                "ops.color.text.default"
+              ],
+              "role": "text",
+              "roleKind": "color_role",
+              "token": "ops.color.text.default",
+              "type": "design_contract_token_mapping"
+            },
+            {
+              "loc": {
+                "end": {
+                  "column": 50,
+                  "line": 15,
+                  "offset": 687
+                },
+                "file": "topo/design/operations-design-contract.tg",
+                "start": {
+                  "column": 5,
+                  "line": 15,
+                  "offset": 642
+                }
+              },
+              "platform": null,
+              "raw": [
+                "color_role",
+                "muted",
+                "token",
+                "ops.color.text.muted"
+              ],
+              "role": "muted",
+              "roleKind": "color_role",
+              "token": "ops.color.text.muted",
+              "type": "design_contract_token_mapping"
+            },
+            {
+              "loc": {
+                "end": {
+                  "column": 54,
+                  "line": 16,
+                  "offset": 741
+                },
+                "file": "topo/design/operations-design-contract.tg",
+                "start": {
+                  "column": 5,
+                  "line": 16,
+                  "offset": 692
+                }
+              },
+              "platform": null,
+              "raw": [
+                "color_role",
+                "danger",
+                "token",
+                "ops.color.status.danger"
+              ],
+              "role": "danger",
+              "roleKind": "color_role",
+              "token": "ops.color.status.danger",
+              "type": "design_contract_token_mapping"
+            },
+            {
+              "loc": {
+                "end": {
+                  "column": 56,
+                  "line": 17,
+                  "offset": 797
+                },
+                "file": "topo/design/operations-design-contract.tg",
+                "start": {
+                  "column": 5,
+                  "line": 17,
+                  "offset": 746
+                }
+              },
+              "platform": null,
+              "raw": [
+                "color_role",
+                "success",
+                "token",
+                "ops.color.status.success"
+              ],
+              "role": "success",
+              "roleKind": "color_role",
+              "token": "ops.color.status.success",
+              "type": "design_contract_token_mapping"
+            },
+            {
+              "loc": {
+                "end": {
+                  "column": 56,
+                  "line": 18,
+                  "offset": 853
+                },
+                "file": "topo/design/operations-design-contract.tg",
+                "start": {
+                  "column": 5,
+                  "line": 18,
+                  "offset": 802
+                }
+              },
+              "platform": null,
+              "raw": [
+                "color_role",
+                "warning",
+                "token",
+                "ops.color.status.warning"
+              ],
+              "role": "warning",
+              "roleKind": "color_role",
+              "token": "ops.color.status.warning",
+              "type": "design_contract_token_mapping"
+            },
+            {
+              "loc": {
+                "end": {
+                  "column": 50,
+                  "line": 19,
+                  "offset": 903
+                },
+                "file": "topo/design/operations-design-contract.tg",
+                "start": {
+                  "column": 5,
+                  "line": 19,
+                  "offset": 858
+                }
+              },
+              "platform": null,
+              "raw": [
+                "color_role",
+                "info",
+                "token",
+                "ops.color.status.info"
+              ],
+              "role": "info",
+              "roleKind": "color_role",
+              "token": "ops.color.status.info",
+              "type": "design_contract_token_mapping"
+            },
+            {
+              "loc": {
+                "end": {
+                  "column": 53,
+                  "line": 20,
+                  "offset": 956
+                },
+                "file": "topo/design/operations-design-contract.tg",
+                "start": {
+                  "column": 5,
+                  "line": 20,
+                  "offset": 908
+                }
+              },
+              "platform": null,
+              "raw": [
+                "typography_role",
+                "heading",
+                "token",
+                "ops.type.heading"
+              ],
+              "role": "heading",
+              "roleKind": "typography_role",
+              "token": "ops.type.heading",
+              "type": "design_contract_token_mapping"
+            },
+            {
+              "loc": {
+                "end": {
+                  "column": 47,
+                  "line": 21,
+                  "offset": 1003
+                },
+                "file": "topo/design/operations-design-contract.tg",
+                "start": {
+                  "column": 5,
+                  "line": 21,
+                  "offset": 961
+                }
+              },
+              "platform": null,
+              "raw": [
+                "typography_role",
+                "body",
+                "token",
+                "ops.type.body"
+              ],
+              "role": "body",
+              "roleKind": "typography_role",
+              "token": "ops.type.body",
+              "type": "design_contract_token_mapping"
+            },
+            {
+              "loc": {
+                "end": {
+                  "column": 49,
+                  "line": 22,
+                  "offset": 1052
+                },
+                "file": "topo/design/operations-design-contract.tg",
+                "start": {
+                  "column": 5,
+                  "line": 22,
+                  "offset": 1008
+                }
+              },
+              "platform": null,
+              "raw": [
+                "typography_role",
+                "label",
+                "token",
+                "ops.type.label"
+              ],
+              "role": "label",
+              "roleKind": "typography_role",
+              "token": "ops.type.label",
+              "type": "design_contract_token_mapping"
+            },
+            {
+              "loc": {
+                "end": {
+                  "column": 53,
+                  "line": 23,
+                  "offset": 1105
+                },
+                "file": "topo/design/operations-design-contract.tg",
+                "start": {
+                  "column": 5,
+                  "line": 23,
+                  "offset": 1057
+                }
+              },
+              "platform": null,
+              "raw": [
+                "typography_role",
+                "numeric",
+                "token",
+                "ops.type.numeric"
+              ],
+              "role": "numeric",
+              "roleKind": "typography_role",
+              "token": "ops.type.numeric",
+              "type": "design_contract_token_mapping"
+            },
+            {
+              "loc": {
+                "end": {
+                  "column": 51,
+                  "line": 24,
+                  "offset": 1156
+                },
+                "file": "topo/design/operations-design-contract.tg",
+                "start": {
+                  "column": 5,
+                  "line": 24,
+                  "offset": 1110
+                }
+              },
+              "platform": null,
+              "raw": [
+                "action_role",
+                "primary",
+                "token",
+                "ops.action.primary"
+              ],
+              "role": "primary",
+              "roleKind": "action_role",
+              "token": "ops.action.primary",
+              "type": "design_contract_token_mapping"
+            },
+            {
+              "loc": {
+                "end": {
+                  "column": 55,
+                  "line": 25,
+                  "offset": 1211
+                },
+                "file": "topo/design/operations-design-contract.tg",
+                "start": {
+                  "column": 5,
+                  "line": 25,
+                  "offset": 1161
+                }
+              },
+              "platform": null,
+              "raw": [
+                "action_role",
+                "secondary",
+                "token",
+                "ops.action.secondary"
+              ],
+              "role": "secondary",
+              "roleKind": "action_role",
+              "token": "ops.action.secondary",
+              "type": "design_contract_token_mapping"
+            },
+            {
+              "loc": {
+                "end": {
+                  "column": 59,
+                  "line": 26,
+                  "offset": 1270
+                },
+                "file": "topo/design/operations-design-contract.tg",
+                "start": {
+                  "column": 5,
+                  "line": 26,
+                  "offset": 1216
+                }
+              },
+              "platform": null,
+              "raw": [
+                "action_role",
+                "destructive",
+                "token",
+                "ops.action.destructive"
+              ],
+              "role": "destructive",
+              "roleKind": "action_role",
+              "token": "ops.action.destructive",
+              "type": "design_contract_token_mapping"
+            },
+            {
+              "loc": {
+                "end": {
+                  "column": 45,
+                  "line": 27,
+                  "offset": 1315
+                },
+                "file": "topo/design/operations-design-contract.tg",
+                "start": {
+                  "column": 5,
+                  "line": 27,
+                  "offset": 1275
+                }
+              },
+              "platform": null,
+              "raw": [
+                "action_role",
+                "bulk",
+                "token",
+                "ops.action.bulk"
+              ],
+              "role": "bulk",
+              "roleKind": "action_role",
+              "token": "ops.action.bulk",
+              "type": "design_contract_token_mapping"
+            },
+            {
+              "loc": {
+                "end": {
+                  "column": 56,
+                  "line": 28,
+                  "offset": 1371
+                },
+                "file": "topo/design/operations-design-contract.tg",
+                "start": {
+                  "column": 5,
+                  "line": 28,
+                  "offset": 1320
+                }
+              },
+              "platform": null,
+              "raw": [
+                "accessibility",
+                "contrast",
+                "token",
+                "ops.a11y.contrast.aa"
+              ],
+              "role": "contrast",
+              "roleKind": "accessibility",
+              "token": "ops.a11y.contrast.aa",
+              "type": "design_contract_token_mapping"
+            },
+            {
+              "loc": {
+                "end": {
+                  "column": 55,
+                  "line": 29,
+                  "offset": 1426
+                },
+                "file": "topo/design/operations-design-contract.tg",
+                "start": {
+                  "column": 5,
+                  "line": 29,
+                  "offset": 1376
+                }
+              },
+              "platform": null,
+              "raw": [
+                "accessibility",
+                "focus",
+                "token",
+                "ops.a11y.focus.visible"
+              ],
+              "role": "focus",
+              "roleKind": "accessibility",
+              "token": "ops.a11y.focus.visible",
+              "type": "design_contract_token_mapping"
+            },
+            {
+              "loc": {
+                "end": {
+                  "column": 70,
+                  "line": 30,
+                  "offset": 1496
+                },
+                "file": "topo/design/operations-design-contract.tg",
+                "start": {
+                  "column": 5,
+                  "line": 30,
+                  "offset": 1431
+                }
+              },
+              "platform": null,
+              "raw": [
+                "accessibility",
+                "min_touch_target",
+                "token",
+                "ops.a11y.touch.comfortable"
+              ],
+              "role": "min_touch_target",
+              "roleKind": "accessibility",
+              "token": "ops.a11y.touch.comfortable",
+              "type": "design_contract_token_mapping"
+            }
+          ]
+        },
+        {
+          "behaviorSupport": [
+            {
+              "behavior": "realtime_update",
+              "density": "compact",
+              "designRealizationSet": {
+                "id": "realization_set_operations_review_gap_probe",
+                "name": "Operations Review Gap Probe Realizations"
+              },
+              "loc": {
+                "end": {
+                  "column": 4,
+                  "line": 614,
+                  "offset": 17002
+                },
+                "file": "topo/design/operations-realization-sets.tg",
+                "start": {
+                  "column": 3,
+                  "line": 599,
+                  "offset": 16504
+                }
+              },
+              "localeContexts": [
+                "default_locale"
+              ],
+              "platform": "web",
+              "roleContexts": [
+                "operator"
+              ],
+              "stateCoverage": [
+                "loading"
+              ],
+              "status": "contract_only",
+              "themeContexts": [
+                "light"
+              ],
+              "type": "design_realization_behavior_support",
+              "viewport": "wide",
+              "widget": {
+                "id": "widget_alert_banner",
+                "kind": "widget",
+                "target": {
+                  "id": "widget_alert_banner",
+                  "kind": "widget"
+                }
+              }
+            }
+          ],
+          "components": [
+            {
+              "density": "compact",
+              "designRealizationSet": {
+                "id": "realization_set_operations_review_gap_probe",
+                "name": "Operations Review Gap Probe Realizations"
+              },
+              "id": "alert_banner_gap_probe",
+              "loc": {
+                "end": {
+                  "column": 4,
+                  "line": 614,
+                  "offset": 17002
+                },
+                "file": "topo/design/operations-realization-sets.tg",
+                "start": {
+                  "column": 3,
+                  "line": 599,
+                  "offset": 16504
+                }
+              },
+              "localeContexts": [
+                "default_locale"
+              ],
+              "pattern": "activity_feed",
+              "platform": "web",
+              "realizes": {
+                "id": "widget_alert_banner",
+                "kind": "widget",
+                "target": {
+                  "id": "widget_alert_banner",
+                  "kind": "widget"
+                }
+              },
+              "ref": "ops.reviewGap.liveAlert",
+              "reviewNotes": "Intentional Step 06 review row: this design contract has no token mappings.",
+              "roleContexts": [
+                "operator"
+              ],
+              "stateCoverage": [
+                "loading"
+              ],
+              "status": "contract_only",
+              "themeContexts": [
+                "light"
+              ],
+              "type": "design_realization_component",
+              "viewport": "wide"
+            }
+          ],
+          "id": "design_operations_review_gap_probe",
+          "library": "operations_review_gap_probe",
+          "name": "Operations Review Gap Probe",
+          "packageName": "@operations/review-gap-probe",
+          "platforms": [
+            "web"
+          ],
+          "realizationSets": [
+            {
+              "id": "realization_set_operations_review_gap_probe",
+              "name": "Operations Review Gap Probe Realizations",
+              "status": "proposed",
+              "widgetRealizations": [
+                {
+                  "behaviorsContractOnly": [
+                    "realtime_update"
+                  ],
+                  "behaviorsImplementationOwned": [],
+                  "behaviorsRendered": [],
+                  "behaviorsUnsupported": [],
+                  "componentRef": "ops.reviewGap.liveAlert",
+                  "density": "compact",
+                  "id": "alert_banner_gap_probe",
+                  "loc": {
+                    "end": {
+                      "column": 4,
+                      "line": 614,
+                      "offset": 17002
+                    },
+                    "file": "topo/design/operations-realization-sets.tg",
+                    "start": {
+                      "column": 3,
+                      "line": 599,
+                      "offset": 16504
+                    }
+                  },
+                  "localeContexts": [
+                    "default_locale"
+                  ],
+                  "pattern": "activity_feed",
+                  "platform": "web",
+                  "reviewNotes": "Intentional Step 06 review row: this design contract has no token mappings.",
+                  "roleContexts": [
+                    "operator"
+                  ],
+                  "stateCoverage": [
+                    "loading"
+                  ],
+                  "status": "contract_only",
+                  "themeContexts": [
+                    "light"
+                  ],
+                  "type": "widget_realization",
+                  "viewport": "wide",
+                  "widget": {
+                    "id": "widget_alert_banner",
+                    "kind": "widget",
+                    "target": {
+                      "id": "widget_alert_banner",
+                      "kind": "widget"
+                    }
+                  }
+                }
+              ]
+            }
+          ],
+          "status": "proposed",
+          "surfaces": [
+            "proj_operations_web_surface"
+          ],
+          "tokenMappings": []
+        }
+      ],
+      "diagnostics": [],
+      "proofCommands": [
+        "topogram query slice ./topo --widget widget_alert_banner --json"
+      ],
+      "scope": {
+        "projectionId": null,
+        "screenId": null,
+        "widgetId": "widget_alert_banner"
+      },
+      "source": "design_contract records own design-system scope and token mappings; design_realization_set records map semantic widgets to platform component refs and behavior support.",
+      "status": "mapped"
+    },
+    "designReview": {
+      "diagnostics": [
+        "Behavior 'realtime_update' is 'unsupported'.",
+        "Realization 'alert_banner_android' does not declare 'empty' state coverage.",
+        "Realization 'alert_banner_android' does not declare 'error' state coverage.",
+        "Realization 'alert_banner_android' is 'unsupported'.",
+        "Realization 'alert_banner_ios' does not declare 'error' state coverage.",
+        "Behavior 'realtime_update' is 'contract_only'.",
+        "Realization 'alert_banner_gap_probe' does not declare 'empty' state coverage.",
+        "Realization 'alert_banner_gap_probe' does not declare 'error' state coverage.",
+        "Design contract 'design_operations_review_gap_probe' has no token mappings.",
+        "Realization 'alert_banner_gap_probe' is 'contract_only'."
+      ],
+      "gaps": {
+        "behavior_review_items": 4,
+        "missing_accessibility": 0,
+        "missing_i18n": 0,
+        "missing_platforms": 0,
+        "missing_states": 5,
+        "missing_token_mappings": 1
+      },
+      "matrix": {
+        "review_rows": [
+          {
+            "code": "design_behavior_review_required",
+            "component_ref": "ops.android.liveAlert",
+            "message": "Behavior 'realtime_update' is 'unsupported'.",
+            "platform": "android",
+            "status": "unsupported",
+            "viewport": "any",
+            "widget": "widget_alert_banner"
+          },
+          {
+            "code": "design_missing_state",
+            "component_ref": "ops.android.liveAlert",
+            "message": "Realization 'alert_banner_android' does not declare 'empty' state coverage.",
+            "platform": "android",
+            "status": "missing_state",
+            "viewport": "any",
+            "widget": "widget_alert_banner"
+          },
+          {
+            "code": "design_missing_state",
+            "component_ref": "ops.android.liveAlert",
+            "message": "Realization 'alert_banner_android' does not declare 'error' state coverage.",
+            "platform": "android",
+            "status": "missing_state",
+            "viewport": "any",
+            "widget": "widget_alert_banner"
+          },
+          {
+            "code": "design_realization_status_review",
+            "component_ref": "ops.android.liveAlert",
+            "message": "Realization 'alert_banner_android' is 'unsupported'.",
+            "platform": "android",
+            "status": "unsupported",
+            "viewport": "any",
+            "widget": "widget_alert_banner"
+          },
+          {
+            "code": "design_missing_state",
+            "component_ref": "ops.ios.liveAlert",
+            "message": "Realization 'alert_banner_ios' does not declare 'error' state coverage.",
+            "platform": "ios",
+            "status": "missing_state",
+            "viewport": "any",
+            "widget": "widget_alert_banner"
+          },
+          {
+            "code": "design_behavior_review_required",
+            "component_ref": "ops.reviewGap.liveAlert",
+            "message": "Behavior 'realtime_update' is 'contract_only'.",
+            "platform": "web",
+            "status": "contract_only",
+            "viewport": "wide",
+            "widget": "widget_alert_banner"
+          },
+          {
+            "code": "design_missing_state",
+            "component_ref": "ops.reviewGap.liveAlert",
+            "message": "Realization 'alert_banner_gap_probe' does not declare 'empty' state coverage.",
+            "platform": "web",
+            "status": "missing_state",
+            "viewport": "wide",
+            "widget": "widget_alert_banner"
+          },
+          {
+            "code": "design_missing_state",
+            "component_ref": "ops.reviewGap.liveAlert",
+            "message": "Realization 'alert_banner_gap_probe' does not declare 'error' state coverage.",
+            "platform": "web",
+            "status": "missing_state",
+            "viewport": "wide",
+            "widget": "widget_alert_banner"
+          },
+          {
+            "code": "design_missing_token_mapping",
+            "component_ref": "ops.reviewGap.liveAlert",
+            "message": "Design contract 'design_operations_review_gap_probe' has no token mappings.",
+            "platform": "web",
+            "status": "missing_token",
+            "viewport": "wide",
+            "widget": "widget_alert_banner"
+          },
+          {
+            "code": "design_realization_status_review",
+            "component_ref": "ops.reviewGap.liveAlert",
+            "message": "Realization 'alert_banner_gap_probe' is 'contract_only'.",
+            "platform": "web",
+            "status": "contract_only",
+            "viewport": "wide",
+            "widget": "widget_alert_banner"
+          }
+        ],
+        "rows": [
+          {
+            "accessibility_status": "authored",
+            "behavior_statuses": [
+              {
+                "behavior": "realtime_update",
+                "status": "unsupported"
+              }
+            ],
+            "component_ref": "ops.android.liveAlert",
+            "density": "compact",
+            "i18n_status": "authored",
+            "missing_states": [
+              "empty",
+              "error"
+            ],
+            "pattern": "activity_feed",
+            "platform": "android",
+            "review_status": "review_required",
+            "state_coverage": [
+              "loading"
+            ],
+            "status": "unsupported",
+            "token_status": "mapped",
+            "viewport": "any",
+            "widget": "widget_alert_banner"
+          },
+          {
+            "accessibility_status": "authored",
+            "behavior_statuses": [
+              {
+                "behavior": "realtime_update",
+                "status": "implementation_owned"
+              }
+            ],
+            "component_ref": "ops.ios.liveAlert",
+            "density": "compact",
+            "i18n_status": "authored",
+            "missing_states": [
+              "error"
+            ],
+            "pattern": "activity_feed",
+            "platform": "ios",
+            "review_status": "review_required",
+            "state_coverage": [
+              "loading",
+              "empty"
+            ],
+            "status": "implementation_owned",
+            "token_status": "mapped",
+            "viewport": "any",
+            "widget": "widget_alert_banner"
+          },
+          {
+            "accessibility_status": "authored",
+            "behavior_statuses": [
+              {
+                "behavior": "realtime_update",
+                "status": "contract_only"
+              }
+            ],
+            "component_ref": "ops.reviewGap.liveAlert",
+            "density": "compact",
+            "i18n_status": "authored",
+            "missing_states": [
+              "empty",
+              "error"
+            ],
+            "pattern": "activity_feed",
+            "platform": "web",
+            "review_status": "review_required",
+            "state_coverage": [
+              "loading"
+            ],
+            "status": "contract_only",
+            "token_status": "missing",
+            "viewport": "wide",
+            "widget": "widget_alert_banner"
+          },
+          {
+            "accessibility_status": "authored",
+            "behavior_statuses": [
+              {
+                "behavior": "realtime_update",
+                "status": "rendered"
+              }
+            ],
+            "component_ref": "ops.alerts.liveBanner",
+            "density": "compact",
+            "i18n_status": "authored",
+            "missing_states": [],
+            "pattern": "activity_feed",
+            "platform": "web",
+            "review_status": "mapped",
+            "state_coverage": [
+              "loading",
+              "empty",
+              "error"
+            ],
+            "status": "rendered",
+            "token_status": "mapped",
+            "viewport": "wide",
+            "widget": "widget_alert_banner"
+          }
+        ]
+      },
+      "proofCommands": [
+        "topogram query ui-design-coverage ./topo --widget widget_alert_banner --json",
+        "topogram query ui-design-coverage ./topo --widget widget_alert_banner --format markdown"
+      ],
+      "scope": {
+        "projectionId": null,
+        "screenId": null,
+        "widgetId": "widget_alert_banner"
+      },
+      "source": "ui-design-coverage design_matrix rows from design_contract and design_realization_set records",
+      "status": "review_required"
+    },
+    "inheritedBy": [
+      "proj_operations_web_surface"
+    ],
+    "internationalization": {
+      "currentSignals": {
+        "authoredContract": {
+          "messages": [
+            {
+              "actionId": null,
+              "context": "widget_label",
+              "defaultText": "Live operations alerts",
+              "id": "msg_widget_alert_banner_label",
+              "key": "operations.widgets.alert_banner.label",
+              "screenId": null,
+              "terms": [],
+              "variables": [],
+              "widgetId": "widget_alert_banner"
+            },
+            {
+              "actionId": null,
+              "context": "status",
+              "defaultText": "Urgent",
+              "id": "msg_status_urgent",
+              "key": "operations.status.urgent",
+              "screenId": null,
+              "terms": [],
+              "variables": [],
+              "widgetId": "widget_alert_banner"
+            },
+            {
+              "actionId": null,
+              "context": "aria_label",
+              "defaultText": "Live updates",
+              "id": "msg_alert_live_updates_label",
+              "key": "operations.alerts.live_updates.label",
+              "screenId": null,
+              "terms": [],
+              "variables": [],
+              "widgetId": "widget_alert_banner"
+            }
+          ],
+          "totalMessages": 36
+        },
+        "localePolicy": {
+          "defaultLocale": "en-US",
+          "direction": "ltr",
+          "fallbackLocale": "en-US",
+          "supportedLocales": [
+            "en-US"
+          ]
+        },
+        "messageKeys": [
+          "operations.widgets.alert_banner.label",
+          "operations.status.urgent",
+          "operations.alerts.live_updates.label"
+        ]
+      },
+      "decisions": [
+        {
+          "found": false,
+          "id": "decision_i18n_messages_are_separate_from_glossary_terms",
+          "kind": null,
+          "name": "decision_i18n_messages_are_separate_from_glossary_terms",
+          "status": null
+        }
+      ],
+      "diagnostics": [],
+      "messages": [
+        {
+          "actionId": null,
+          "context": "widget_label",
+          "defaultText": "Live operations alerts",
+          "id": "msg_widget_alert_banner_label",
+          "key": "operations.widgets.alert_banner.label",
+          "screenId": null,
+          "terms": [],
+          "variables": [],
+          "widgetId": "widget_alert_banner"
+        },
+        {
+          "actionId": null,
+          "context": "status",
+          "defaultText": "Urgent",
+          "id": "msg_status_urgent",
+          "key": "operations.status.urgent",
+          "screenId": null,
+          "terms": [],
+          "variables": [],
+          "widgetId": "widget_alert_banner"
+        },
+        {
+          "actionId": null,
+          "context": "aria_label",
+          "defaultText": "Live updates",
+          "id": "msg_alert_live_updates_label",
+          "key": "operations.alerts.live_updates.label",
+          "screenId": null,
+          "terms": [],
+          "variables": [],
+          "widgetId": "widget_alert_banner"
+        }
+      ],
+      "obligations": [
+        "Use glossary terms for canonical meaning and message keys for translated wording.",
+        "Keep concrete locale catalogs in generated or maintained app code until a message contract DSL exists."
+      ],
+      "proofCommands": [
+        "topogram emit glossary ./topo --json"
+      ],
+      "requirements": [
+        {
+          "found": false,
+          "id": "req_i18n_message_contract_v1",
+          "kind": null,
+          "name": "req_i18n_message_contract_v1",
+          "status": null
+        }
+      ],
+      "scope": {
+        "projectionId": null,
+        "screenId": null,
+        "widgetId": "widget_alert_banner"
+      },
+      "source": "ui_contract messages block, glossary terms, decisions, and requirements",
+      "status": "authored_contract",
+      "terms": [
+        {
+          "found": true,
+          "id": "term_translatable_message",
+          "kind": "term",
+          "name": "Translatable Message",
+          "status": "active"
+        },
+        {
+          "found": true,
+          "id": "term_message_key",
+          "kind": "term",
+          "name": "Message Key",
+          "status": "active"
+        },
+        {
+          "found": true,
+          "id": "term_locale_policy",
+          "kind": "term",
+          "name": "Locale Policy",
+          "status": "active"
+        },
+        {
+          "found": true,
+          "id": "term_source_text",
+          "kind": "term",
+          "name": "Source Text",
+          "status": "active"
+        }
+      ]
+    },
+    "ownership": {
+      "concreteSurfacesInherit": true,
+      "widgetContract": "widget",
+      "widgetPlacement": "ui_contract"
+    },
+    "requiredGates": [
+      {
+        "command": "topogram check",
+        "reason": "Validate shared UI ownership, taxonomy, references, and topology."
+      },
+      {
+        "command": "topogram widget check --widget widget_alert_banner",
+        "reason": "Validate widget placement, props, events, regions, and patterns."
+      },
+      {
+        "command": "topogram widget behavior --widget widget_alert_banner",
+        "reason": "Inspect behavior realizations and partial bindings before code changes."
+      },
+      {
+        "command": "topogram emit ui-realization-report --json",
+        "reason": "Confirm screens, regions, widgets, display fields, behavior, and design tokens are realizable by the web generator."
+      }
+    ],
+    "sourceUsages": [
+      {
+        "designTokens": [],
+        "projection": {
+          "id": "proj_operations_ui_contract",
+          "ownership": "owner",
+          "type": "ui_contract"
+        },
+        "usage": {
+          "behaviorRealizations": [],
+          "dataBindings": [
+            {
+              "prop": "alerts",
+              "source": "cap_monitor_operations_dashboard"
+            }
+          ],
+          "display": null,
+          "displayFields": [],
+          "eventBindings": [
+            {
+              "action": "navigate",
+              "event": "alert_select",
+              "target": "incident_detail"
+            }
+          ],
+          "region": "live_updates",
+          "regionContract": {
+            "accessibilityObligations": [
+              "live_region",
+              "polite_announcements",
+              "pause_updates"
+            ],
+            "allowedWidgetPatterns": [
+              "activity_feed",
+              "status_badge",
+              "empty_state_panel"
+            ],
+            "density": "compact",
+            "i18nObligations": [
+              "alert_labels",
+              "relative_time_labels"
+            ],
+            "kind": "activity",
+            "layoutId": "layout_dashboard_overview",
+            "name": "live_updates",
+            "pattern": "activity_feed",
+            "placement": "supporting",
+            "regionContractId": "region_live_updates",
+            "source": "screen_override",
+            "state": null,
+            "styleIntent": [
+              "time_sensitive",
+              "noticeable",
+              "non_blocking"
+            ],
+            "title": "Live Updates",
+            "variant": null
+          },
+          "route": null,
+          "screen": {
+            "id": "operations_dashboard",
+            "kind": "dashboard",
+            "layout": {
+              "appShell": null,
+              "fills": "content",
+              "id": "layout_dashboard_overview",
+              "inherited": [
+                {
+                  "appShell": "workspace",
+                  "fills": null,
+                  "id": "layout_standard_app_shell",
+                  "name": "Standard App Shell"
+                },
+                {
+                  "appShell": null,
+                  "fills": "content",
+                  "id": "layout_dashboard_overview",
+                  "name": "Dashboard Overview Layout"
+                }
+              ],
+              "name": "Dashboard Overview Layout"
+            },
+            "title": "Operations Dashboard"
+          },
+          "screenId": "operations_dashboard",
+          "widgetId": "widget_alert_banner"
+        }
+      }
+    ],
+    "type": "ui_agent_packet",
+    "version": 1,
+    "widget": {
+      "behaviors": [
+        {
+          "directives": {
+            "merge": "append",
+            "source": "cap_monitor_operations_dashboard"
+          },
+          "kind": "realtime_update",
+          "source": "structured"
+        }
+      ],
+      "category": "feedback",
+      "id": "widget_alert_banner",
+      "name": "Alert Banner",
+      "patterns": [
+        "activity_feed",
+        "status_badge",
+        "empty_state_panel"
+      ],
+      "regions": [
+        "header",
+        "activity"
+      ]
+    }
+  },
+  "verification": [],
+  "verification_targets": {
+    "generated_checks": [
+      "compile-check"
+    ],
+    "maintained_app_checks": [],
+    "rationale": "Widget changes affect every related projection, so verification should follow the widget contract closure.",
+    "verification_ids": []
+  },
+  "version": 1,
+  "write_scope": {
+    "generator_owned": [
+      "artifacts/**",
+      "apps/**"
+    ],
+    "human_owned_review_required": [
+      "examples/maintained/proof-app/**"
+    ],
+    "out_of_bounds": [
+      ".git/**",
+      "node_modules/**"
+    ],
+    "safe_to_edit": [
+      "topo/**",
+      "candidates/**"
+    ]
+  }
+}

@@ -1,19 +1,19 @@
-# Step 06: Design Contract Realizations
+# Step 07: i18n, ARIA, And States
 
-> This checkpoint maps semantic widgets to platform component refs through design contracts and realization sets.
+> This checkpoint adds translatable message keys, locale policy, accessibility obligations, and state labels to the operations UI work map.
 
 Status: current
 
 Audience: reviewers following the proof step by step.
 
-Use when: you want to inspect how semantic widgets become reviewable design-system implementation work across web, iOS, and Android.
+Use when: you want to inspect how UI text and accessibility intent become reviewable contract evidence for agents and designers.
 
 ## What Changed
 
-- Added the `design_operations_product_ui` contract for web, iOS, and Android platform scope plus semantic token mappings.
-- Added widget-first realization sets that map operations widgets to stable component refs, not import paths.
-- Included rendered, contract-only, implementation-owned, unsupported, missing-platform, missing-state, missing-token, missing-a11y, and missing-i18n review cases.
-- Added Step 06 design coverage, realization report, design matrix, and focused widget slice artifacts.
+- Added `messages` for screen titles, empty states, widget labels, action labels, status labels, and alert labels.
+- Added a locale policy for `en-US` with left-to-right direction.
+- Added accessibility obligations for screens, widgets, and actions: roles, accessible names, keyboard models, focus models, and live-region behavior.
+- Added Step 07 coverage/report/slice artifacts showing i18n and ARIA obligations alongside the existing design review rows.
 
 ## Verification
 
@@ -21,4 +21,4 @@ Use when: you want to inspect how semantic widgets become reviewable design-syst
 npm run verify
 ```
 
-The current step proves design mapping is reviewable work. It does not yet add authored message keys or accessibility obligations; those arrive in Step 07.
+The current step proves that i18n and accessibility obligations are visible in reports and slices. It does not run a translation catalog, axe, Playwright, or native accessibility audit.

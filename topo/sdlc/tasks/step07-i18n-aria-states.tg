@@ -1,0 +1,16 @@
+task task_step07_i18n_aria_states {
+  name "Step 07 i18n ARIA And States"
+  description "Add message keys, locale policy, accessibility obligations, and state labels to the operations UI contract, then prove they appear in reports and focused agent slices."
+  satisfies [req_operations_ui_work_map_proof]
+  acceptance_refs [ac_step07_i18n_aria_states_valid]
+  verification_refs [verification_step07_i18n_aria_states]
+  affects [cap_monitor_operations_dashboard cap_triage_incoming_work cap_assign_field_work cap_review_incident cap_resolve_incident cap_manage_field_teams]
+  blocked_by []
+  disposition active
+  risk_class medium
+  change_type ui
+  priority high
+  work_type implementation
+  claimed_by [actor_coding_agent]
+  status done
+}
