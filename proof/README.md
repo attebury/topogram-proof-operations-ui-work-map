@@ -13,7 +13,7 @@ Use when: you want to compare each checkpoint before the next UI layer is added.
 1. `proof-01-domain-and-app-shell`: establishes the operations-dashboard domain, actors, capabilities, proof scripts, SDLC policy, and app-map rules.
 2. `proof-02-semantic-regions`: adds reusable region contracts for headers, nav, command bars, filters, results, queues, detail summaries, timelines, inspectors, footer actions, and live updates.
 3. `proof-03-reusable-layouts`: composes reusable region contracts into app shell, dashboard, queue, detail, board, calendar, modal task-flow, and settings layouts.
-4. `proof-04-screens-and-navigation`: adds substantial screens and routes.
+4. `proof-04-screens-and-navigation`: adds a shared UI contract, screen set, navigation groups, concrete web routes, and screen-to-layout mapping.
 5. `proof-05-widgets-and-bindings`: binds semantic widgets into inherited layout regions.
 6. `proof-06-design-contract-realizations`: maps widgets to web, iOS, and Android component refs.
 7. `proof-07-i18n-aria-states`: adds messages, accessibility obligations, and state coverage.

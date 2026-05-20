@@ -1,6 +1,6 @@
 {
   "cliVersion": "0.3.112",
-  "currentStep": "proof-03-reusable-layouts",
+  "currentStep": "proof-04-screens-and-navigation",
   "expectedTags": [
     "proof-01-domain-and-app-shell",
     "proof-02-semantic-regions",
@@ -61,8 +61,26 @@
       "contains": ["# Step 03 Layout Catalog", "layout_queue_workspace", "layout_split_detail"]
     },
     {
+      "path": "proof/artifacts/step-04-screens-and-navigation/check.json",
+      "json": true,
+      "requiredKeys": ["ok", "topogram"]
+    },
+    {
+      "path": "proof/artifacts/step-04-screens-and-navigation/screen-slice.json",
+      "json": true,
+      "requiredKeys": ["type", "focus"]
+    },
+    {
+      "path": "proof/artifacts/step-04-screens-and-navigation/screen-slice.md",
+      "contains": ["# Context Slice", "intake_queue", "UI Agent Packet"]
+    },
+    {
+      "path": "proof/artifacts/step-04-screens-and-navigation/screen-catalog.md",
+      "contains": ["# Step 04 Screen Catalog", "intake_queue", "layout_queue_workspace", "incident_detail"]
+    },
+    {
       "path": "proof/STEP.md",
-      "contains": ["Step 03", "Reusable Layouts"]
+      "contains": ["Step 04", "Screens And Navigation"]
     }
   ]
 }

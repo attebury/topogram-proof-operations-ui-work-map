@@ -1,18 +1,19 @@
-# Step 03: Reusable Layouts
+# Step 04: Screens And Navigation
 
-> This checkpoint composes reusable semantic regions into layouts before screens and widgets are introduced.
+> This checkpoint maps a substantial operations screen set onto the reusable layouts.
 
 Status: current
 
 Audience: reviewers following the proof step by step.
 
-Use when: you want to see how screens will inherit reusable work areas instead of restating scattered screen regions.
+Use when: you want to inspect how screens, navigation, and web routes inherit reusable layouts and regions.
 
 ## What Changed
 
-- Added `layout_contract` records for the standard app shell, dashboard overview, queue workspace, split detail, board workspace, calendar workspace, modal task flow, and settings workspace.
-- Each layout composes Step 02 region contracts and marks slots/fills for future screens.
-- Added a Step 03 layout catalog artifact showing parent relationships, fills, and region composition.
+- Added a shared `ui_contract` projection for the operations dashboard.
+- Added eight screens: dashboard, intake queue, incident detail, assignment board, schedule calendar, field team directory, audit timeline, and settings/preferences.
+- Added navigation groups, concrete web routes, and screen support shapes.
+- Added Step 04 screen catalog and screen slice artifacts so reviewers can inspect screen-to-layout mapping.
 
 ## Verification
 
@@ -20,4 +21,4 @@ Use when: you want to see how screens will inherit reusable work areas instead o
 npm run verify
 ```
 
-The current step proves layouts can compose semantic regions. It does not yet include screens, widget bindings, or design realization contracts.
+The current step proves screens can inherit reusable layouts and expose route/navigation context. It does not yet include widget bindings or design realization contracts.

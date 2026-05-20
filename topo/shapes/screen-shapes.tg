@@ -1,0 +1,65 @@
+shape shape_operation_summary_card {
+  name "Operation Summary Card"
+  description "Dashboard summary payload for one operational health metric."
+
+  fields {
+    id string required
+    label string required
+    value string required
+    trend string optional
+    status string required
+  }
+
+  status active
+}
+
+shape shape_work_queue_item {
+  name "Work Queue Item"
+  description "Compact queue row or card for triage and assignment screens."
+
+  fields {
+    id string required
+    title string required
+    priority string required
+    status string required
+    owner string optional
+    due_at datetime optional
+    location string optional
+  }
+
+  status active
+}
+
+shape shape_incident_detail {
+  name "Incident Detail"
+  description "Detailed incident payload for review and resolution screens."
+
+  fields {
+    id string required
+    title string required
+    summary text required
+    priority string required
+    status string required
+    assigned_team string optional
+    opened_at datetime required
+    updated_at datetime required
+    resolution string optional
+  }
+
+  status active
+}
+
+shape shape_field_team_card {
+  name "Field Team Card"
+  description "Compact field team payload for team directory and assignment work."
+
+  fields {
+    id string required
+    name string required
+    status string required
+    coverage_area string optional
+    active_assignments integer required
+  }
+
+  status active
+}

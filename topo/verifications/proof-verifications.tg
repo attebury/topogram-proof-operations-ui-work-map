@@ -27,3 +27,13 @@ verification verification_step03_reusable_layouts {
   domain dom_ui_work_map_proof
   status active
 }
+
+verification verification_step04_screens_navigation {
+  name "Step 04 Screens And Navigation Verification"
+  description "Runs proof path hygiene, proof audit, Topogram check, strict SDLC check, screen slice generation, screen catalog review, and clean-worktree verification for the screen/navigation checkpoint."
+  validates [cap_monitor_operations_dashboard cap_triage_incoming_work cap_assign_field_work cap_review_incident cap_resolve_incident cap_manage_field_teams]
+  method runtime
+  scenarios [npm_run_verify_step_04]
+  domain dom_ui_work_map_proof
+  status active
+}

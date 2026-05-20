@@ -1,0 +1,112 @@
+projection proj_operations_ui_contract {
+  name "Operations UI Contract"
+  description "Shared UI contract for the operations-dashboard proof before widget bindings and design realizations are added."
+
+  type ui_contract
+  realizes [
+    cap_monitor_operations_dashboard,
+    cap_triage_incoming_work,
+    cap_assign_field_work,
+    cap_review_incident,
+    cap_resolve_incident,
+    cap_manage_field_teams
+  ]
+  outputs [ui_contract]
+
+  app_shell {
+    brand "Operations Control Room"
+    shell workspace
+    primary_nav true
+    global_search true
+    notifications true
+    account_menu true
+    workspace_switcher true
+    windowing single_window
+  }
+
+  screens {
+    screen operations_dashboard kind dashboard layout layout_dashboard_overview title "Operations Dashboard" load cap_monitor_operations_dashboard item_shape shape_operation_summary_card loading_state skeleton error_state inline
+    screen intake_queue kind inbox layout layout_queue_workspace title "Intake Queue" load cap_triage_incoming_work item_shape shape_work_queue_item detail_capability cap_review_incident primary_action cap_assign_field_work secondary_action cap_triage_incoming_work empty_title "No intake work" empty_body "Incoming work that needs triage appears here." loading_state skeleton error_state inline unauthorized_state inline
+    screen incident_detail kind detail layout layout_split_detail title "Incident Detail" load cap_review_incident view_shape shape_incident_detail primary_action cap_resolve_incident secondary_action cap_assign_field_work loading_state skeleton error_state inline not_found_state inline
+    screen assignment_board kind board layout layout_board_workspace title "Assignment Board" load cap_assign_field_work item_shape shape_work_queue_item detail_capability cap_review_incident primary_action cap_assign_field_work empty_title "No assignments ready" empty_body "Ready work appears after triage." loading_state skeleton error_state inline
+    screen schedule_calendar kind calendar layout layout_calendar_workspace title "Schedule Calendar" load cap_assign_field_work item_shape shape_work_queue_item detail_capability cap_review_incident primary_action cap_assign_field_work empty_title "No scheduled work" empty_body "Scheduled field work appears here." loading_state skeleton error_state inline
+    screen field_team_directory kind list layout layout_queue_workspace title "Field Team Directory" load cap_manage_field_teams item_shape shape_field_team_card detail_capability cap_manage_field_teams empty_title "No teams available" empty_body "Create or activate teams before assigning work." loading_state skeleton error_state inline
+    screen audit_timeline kind feed layout layout_split_detail title "Audit Timeline" load cap_review_incident item_shape shape_incident_detail detail_capability cap_review_incident loading_state skeleton error_state inline
+    screen settings_preferences kind settings layout layout_settings_workspace title "Settings And Preferences" load cap_manage_field_teams loading_state skeleton error_state inline
+  }
+
+  navigation {
+    group command_center label "Command Center" placement primary pattern navigation_rail
+    group operations label "Operations" placement primary pattern navigation_rail
+    group admin label "Admin" placement secondary pattern navigation_rail
+    screen operations_dashboard group command_center label "Dashboard" order 10 visible true default true sitemap include pattern navigation_rail
+    screen intake_queue group operations label "Intake" order 20 visible true sitemap include pattern navigation_rail
+    screen assignment_board group operations label "Assignments" order 30 visible true sitemap include pattern navigation_rail
+    screen schedule_calendar group operations label "Schedule" order 40 visible true sitemap include pattern navigation_rail
+    screen field_team_directory group operations label "Teams" order 50 visible true sitemap include pattern navigation_rail
+    screen incident_detail group operations label "Incident Detail" visible false breadcrumb intake_queue sitemap exclude pattern stack_navigation
+    screen audit_timeline group admin label "Audit" order 60 visible true sitemap include pattern navigation_rail
+    screen settings_preferences group admin label "Settings" order 70 visible true sitemap include pattern navigation_rail
+  }
+
+  screen_regions {
+    screen operations_dashboard region live_updates pattern activity_feed placement supporting title "Live Updates"
+    screen intake_queue region inspector pattern inspector_pane placement supporting title "Selected Work"
+    screen incident_detail region footer_actions pattern footer_bar placement secondary title "Resolution Actions"
+    screen settings_preferences region settings pattern settings_section placement primary title "Settings Sections"
+  }
+
+  status active
+}
+
+projection proj_operations_web_surface {
+  name "Operations Web Surface"
+  description "Concrete web route surface for the operations-dashboard UI contract."
+
+  type web_surface
+  realizes [
+    proj_operations_ui_contract,
+    cap_monitor_operations_dashboard,
+    cap_triage_incoming_work,
+    cap_assign_field_work,
+    cap_review_incident,
+    cap_resolve_incident,
+    cap_manage_field_teams
+  ]
+  outputs [ui_contract, web_app]
+
+  screen_routes {
+    screen operations_dashboard path /operations
+    screen intake_queue path /operations/intake
+    screen incident_detail path /operations/incidents/:id
+    screen assignment_board path /operations/assignments
+    screen schedule_calendar path /operations/schedule
+    screen field_team_directory path /operations/teams
+    screen audit_timeline path /operations/audit
+    screen settings_preferences path /operations/settings
+  }
+
+  web_hints {
+    screen operations_dashboard shell workspace
+    screen operations_dashboard layout dashboard_overview
+    screen intake_queue layout queue_workspace
+    screen intake_queue desktop_variant cards
+    screen intake_queue mobile_variant list
+    screen incident_detail layout split_view
+    screen assignment_board layout board
+    screen assignment_board desktop_variant board
+    screen assignment_board mobile_variant cards
+    screen schedule_calendar layout calendar
+    screen schedule_calendar desktop_variant calendar
+    screen schedule_calendar mobile_variant list
+    screen field_team_directory layout queue_workspace
+    screen field_team_directory desktop_variant table
+    screen field_team_directory mobile_variant cards
+    screen audit_timeline layout detail_page
+    screen settings_preferences layout settings
+    action cap_assign_field_work present drawer
+    action cap_resolve_incident present drawer
+  }
+
+  status active
+}

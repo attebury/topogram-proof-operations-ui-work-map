@@ -1,0 +1,16 @@
+task task_step04_screens_and_navigation {
+  name "Step 04 Screens And Navigation"
+  description "Add a shared operations UI contract, screen set, navigation groups, concrete web routes, screen support shapes, and proof artifacts that show screen-to-layout mapping."
+  satisfies [req_operations_ui_work_map_proof]
+  acceptance_refs [ac_step04_screens_navigation_valid]
+  verification_refs [verification_step04_screens_navigation]
+  affects [cap_monitor_operations_dashboard cap_triage_incoming_work cap_assign_field_work cap_review_incident cap_resolve_incident cap_manage_field_teams]
+  blocked_by []
+  disposition active
+  risk_class low
+  change_type ui
+  priority high
+  work_type implementation
+  claimed_by [actor_coding_agent]
+  status done
+}

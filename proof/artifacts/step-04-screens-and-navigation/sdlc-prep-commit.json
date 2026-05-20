@@ -1,0 +1,84 @@
+{
+  "changedFiles": [
+    "proof/README.md",
+    "proof/STEP.md",
+    "proof/manifest.json",
+    "topo/verifications/proof-verifications.tg",
+    "proof/artifacts/step-04-screens-and-navigation/agent-brief.json",
+    "proof/artifacts/step-04-screens-and-navigation/check.json",
+    "proof/artifacts/step-04-screens-and-navigation/sdlc-check.json",
+    "topo/projections/operations-ui-contract.tg",
+    "topo/sdlc/acceptance_criteria/step04-screens-navigation-valid.tg",
+    "topo/sdlc/tasks/step04-screens-and-navigation.tg",
+    "topo/shapes/screen-shapes.tg"
+  ],
+  "changedTasks": [
+    {
+      "change_type": "ui",
+      "disposition": "active",
+      "explicitDisposition": true,
+      "file": "topo/sdlc/tasks/step04-screens-and-navigation.tg",
+      "id": "task_step04_screens_and_navigation",
+      "latest_verification_runs": [
+        {
+          "latest": null,
+          "verification_id": "verification_step04_screens_navigation"
+        }
+      ],
+      "priority": "high",
+      "proof_learning_review": null,
+      "requiresDisposition": false,
+      "risk_class": "low",
+      "status": "done"
+    }
+  ],
+  "errors": [],
+  "nextCommands": [
+    "topogram sdlc explain <task-id> --json",
+    "topogram query slice ./topo --task <task-id> --json",
+    "topogram sdlc gate . --base <ref> --head <ref> --require-adopted"
+  ],
+  "ok": true,
+  "openTasks": [],
+  "projectRoot": "<repo>",
+  "staleWork": {
+    "breaches": [],
+    "nextCommands": [
+      "topogram query sdlc-claimed ./topo --json",
+      "topogram query sdlc-proof-gaps ./topo --json",
+      "topogram sdlc prep commit . --json"
+    ],
+    "now": "2026-05-20T23:12:32.854Z",
+    "ok": true,
+    "policy": {
+      "configured": false,
+      "staleWork": {
+        "claimedDays": null,
+        "inProgressDays": null
+      },
+      "wipLimits": {
+        "maxClaimedTasksPerActor": null,
+        "maxInProgressTasks": null
+      }
+    },
+    "stale": {
+      "claimed": [],
+      "in_progress": [],
+      "missing_history": []
+    },
+    "type": "sdlc_stale_work_query",
+    "version": 1,
+    "wip": {
+      "by_actor": [],
+      "claimed_count": 0,
+      "in_progress_count": 0
+    }
+  },
+  "taskFiles": [
+    "topo/sdlc/tasks/step04-screens-and-navigation.tg"
+  ],
+  "topogramRoot": "<workspace>",
+  "type": "sdlc_commit_prep",
+  "version": "1",
+  "warnings": []
+}
