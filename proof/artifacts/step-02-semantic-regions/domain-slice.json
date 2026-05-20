@@ -1,0 +1,504 @@
+{
+  "agent_guidance": {
+    "completion_command": "topogram sdlc prep commit . --json",
+    "mode": "implementation",
+    "next_commands": [
+      "topogram query slice ./topo --mode implementation --domain dom_ui_work_map_proof --detail compact --json",
+      "topogram query single-agent-plan ./topo --mode implementation --domain dom_ui_work_map_proof --json",
+      "topogram query sdlc-proof-gaps ./topo --json",
+      "topogram check . --json",
+      "topogram sdlc check . --strict",
+      "topogram sdlc prep commit . --json"
+    ],
+    "next_queries": [
+      "topogram query slice ./topo --mode implementation --domain dom_ui_work_map_proof --detail compact --json",
+      "topogram query single-agent-plan ./topo --mode implementation --domain dom_ui_work_map_proof --json"
+    ],
+    "proof_commands": [
+      "topogram check . --json",
+      "topogram sdlc check . --strict",
+      "topogram sdlc prep commit . --json"
+    ],
+    "read_first": [
+      "focus",
+      "summary",
+      "agent_guidance",
+      "terms",
+      "review_boundary",
+      "ownership_boundary",
+      "write_scope"
+    ],
+    "read_order": [
+      "focus",
+      "summary",
+      "agent_guidance",
+      "terms",
+      "review_boundary",
+      "ownership_boundary",
+      "write_scope"
+    ],
+    "required_commands": [
+      "topogram query sdlc-proof-gaps ./topo --json",
+      "topogram check . --json",
+      "topogram sdlc check . --strict",
+      "topogram sdlc prep commit . --json"
+    ],
+    "warnings": [],
+    "write_scope_summary": "Edit the canonical Topogram source and project-owned files only; generated-owned outputs should be regenerated."
+  },
+  "depends_on": {
+    "capabilities": [],
+    "decisions": [
+      "decision_graph_is_work_map_not_render_tree"
+    ],
+    "entities": [],
+    "operations": [],
+    "orchestrations": [],
+    "projections": [],
+    "rules": [
+      "rule_agents_start_ui_changes_from_slices",
+      "rule_ui_graph_is_work_map"
+    ],
+    "terms": [
+      "term_design_realization_set",
+      "term_layout_contract",
+      "term_region_contract",
+      "term_widget",
+      "term_work_map"
+    ],
+    "verifications": [
+      "verification_step01_domain_app_shell",
+      "verification_step02_semantic_regions"
+    ]
+  },
+  "detail_level": "compact",
+  "focus": {
+    "id": "dom_ui_work_map_proof",
+    "kind": "domain"
+  },
+  "ownership_boundary": {
+    "canonical_topogram": {
+      "agent_mode": "propose_review_adopt",
+      "owner": "human"
+    },
+    "generated_artifacts": {
+      "agent_mode": "regenerate_or_compare",
+      "owner": "engine"
+    },
+    "maintained_code": {
+      "agent_mode": "bounded_edit_only",
+      "owner": "human"
+    },
+    "proposal_surfaces": {
+      "agent_mode": "stage_map_customize_reject",
+      "owner": "human"
+    }
+  },
+  "related": {
+    "terms": [
+      {
+        "aliases": [],
+        "category": "design",
+        "description": "A widget-first mapping from semantic widgets to platform component refs and behavior support for a design contract.",
+        "excludes": [],
+        "id": "term_design_realization_set",
+        "kind": "term",
+        "name": "Design Realization Set",
+        "ownership_boundary": {
+          "canonical_topogram": {
+            "agent_mode": "propose_review_adopt",
+            "owner": "human"
+          },
+          "generated_artifacts": {
+            "agent_mode": "regenerate_or_compare",
+            "owner": "engine"
+          },
+          "maintained_code": {
+            "agent_mode": "bounded_edit_only",
+            "owner": "human"
+          },
+          "proposal_surfaces": {
+            "agent_mode": "stage_map_customize_reject",
+            "owner": "human"
+          }
+        },
+        "relatedTerms": [],
+        "status": "active"
+      },
+      {
+        "aliases": [
+          "semantic_layout"
+        ],
+        "category": "ui_structure",
+        "description": "A reusable semantic template that composes regions for screens without prescribing DOM, SwiftUI, Android, or CSS layout code.",
+        "excludes": [],
+        "id": "term_layout_contract",
+        "kind": "term",
+        "name": "Layout Contract",
+        "ownership_boundary": {
+          "canonical_topogram": {
+            "agent_mode": "propose_review_adopt",
+            "owner": "human"
+          },
+          "generated_artifacts": {
+            "agent_mode": "regenerate_or_compare",
+            "owner": "engine"
+          },
+          "maintained_code": {
+            "agent_mode": "bounded_edit_only",
+            "owner": "human"
+          },
+          "proposal_surfaces": {
+            "agent_mode": "stage_map_customize_reject",
+            "owner": "human"
+          }
+        },
+        "relatedTerms": [],
+        "status": "active"
+      },
+      {
+        "aliases": [
+          "work_area"
+        ],
+        "category": "ui_structure",
+        "description": "A reusable semantic work area such as command bar, filter rail, results, detail summary, timeline, inspector, or footer actions.",
+        "excludes": [],
+        "id": "term_region_contract",
+        "kind": "term",
+        "name": "Region Contract",
+        "ownership_boundary": {
+          "canonical_topogram": {
+            "agent_mode": "propose_review_adopt",
+            "owner": "human"
+          },
+          "generated_artifacts": {
+            "agent_mode": "regenerate_or_compare",
+            "owner": "engine"
+          },
+          "maintained_code": {
+            "agent_mode": "bounded_edit_only",
+            "owner": "human"
+          },
+          "proposal_surfaces": {
+            "agent_mode": "stage_map_customize_reject",
+            "owner": "human"
+          }
+        },
+        "relatedTerms": [],
+        "status": "active"
+      },
+      {
+        "aliases": [
+          "semantic_component"
+        ],
+        "category": "ui_structure",
+        "description": "A reusable semantic UI contract that can be realized by different platform components while keeping one product meaning.",
+        "excludes": [],
+        "id": "term_widget",
+        "kind": "term",
+        "name": "Widget",
+        "ownership_boundary": {
+          "canonical_topogram": {
+            "agent_mode": "propose_review_adopt",
+            "owner": "human"
+          },
+          "generated_artifacts": {
+            "agent_mode": "regenerate_or_compare",
+            "owner": "engine"
+          },
+          "maintained_code": {
+            "agent_mode": "bounded_edit_only",
+            "owner": "human"
+          },
+          "proposal_surfaces": {
+            "agent_mode": "stage_map_customize_reject",
+            "owner": "human"
+          }
+        },
+        "relatedTerms": [],
+        "status": "active"
+      },
+      {
+        "aliases": [
+          "app_map"
+        ],
+        "category": "ui_structure",
+        "description": "A graph that tells humans and agents where product work belongs without pretending to be a framework render tree.",
+        "excludes": [],
+        "id": "term_work_map",
+        "kind": "term",
+        "name": "Work Map",
+        "ownership_boundary": {
+          "canonical_topogram": {
+            "agent_mode": "propose_review_adopt",
+            "owner": "human"
+          },
+          "generated_artifacts": {
+            "agent_mode": "regenerate_or_compare",
+            "owner": "engine"
+          },
+          "maintained_code": {
+            "agent_mode": "bounded_edit_only",
+            "owner": "human"
+          },
+          "proposal_surfaces": {
+            "agent_mode": "stage_map_customize_reject",
+            "owner": "human"
+          }
+        },
+        "relatedTerms": [],
+        "status": "active"
+      }
+    ]
+  },
+  "related_summary": {
+    "decisions": {
+      "count": 1,
+      "ids": [
+        "decision_graph_is_work_map_not_render_tree"
+      ]
+    },
+    "rules": {
+      "count": 2,
+      "ids": [
+        "rule_agents_start_ui_changes_from_slices",
+        "rule_ui_graph_is_work_map"
+      ]
+    }
+  },
+  "review_boundary": {
+    "automation_class": "review_required",
+    "reasons": [
+      "domain_surface"
+    ]
+  },
+  "slice_manifest": {
+    "detail_level": "compact",
+    "note": "Read must_read sections first; use reference sections only as needed; run proof commands before completing work.",
+    "proof_sections": [
+      "verification_targets",
+      "verification"
+    ],
+    "read_order": [
+      "focus",
+      "summary",
+      "agent_guidance",
+      "terms",
+      "review_boundary",
+      "ownership_boundary",
+      "write_scope"
+    ],
+    "sections": [
+      {
+        "field": "focus",
+        "id": "focus",
+        "item_count": 2,
+        "reason": "The selected graph surface this packet is scoped to.",
+        "tier": "must_read",
+        "title": "Focus"
+      },
+      {
+        "field": "summary",
+        "id": "summary",
+        "item_count": 10,
+        "reason": "The shortest human-readable description of the selected work or surface.",
+        "tier": "must_read",
+        "title": "Summary"
+      },
+      {
+        "field": "agent_guidance",
+        "id": "agent_guidance",
+        "item_count": 10,
+        "reason": "Mode, read order, follow-up queries, and required proof commands.",
+        "tier": "must_read",
+        "title": "Agent Guidance"
+      },
+      {
+        "field": "related.terms",
+        "id": "terms",
+        "item_count": 5,
+        "reason": "Canonical vocabulary needed to interpret this slice.",
+        "tier": "must_read",
+        "title": "Glossary Terms"
+      },
+      {
+        "field": "review_boundary",
+        "id": "review_boundary",
+        "item_count": 2,
+        "reason": "Automation and human-review expectations for this scope.",
+        "tier": "must_read",
+        "title": "Review Boundary"
+      },
+      {
+        "field": "ownership_boundary",
+        "id": "ownership_boundary",
+        "item_count": 4,
+        "reason": "Generated, maintained, and human-owned boundaries that constrain edits.",
+        "tier": "must_read",
+        "title": "Ownership Boundary"
+      },
+      {
+        "field": "write_scope",
+        "id": "write_scope",
+        "item_count": 4,
+        "reason": "Files and surfaces that are safe, risky, or out of bounds to edit.",
+        "tier": "must_read",
+        "title": "Write Scope"
+      },
+      {
+        "field": "depends_on",
+        "id": "depends_on",
+        "item_count": 9,
+        "reason": "IDs that define the semantic closure without embedding every full record.",
+        "tier": "reference",
+        "title": "Depends On"
+      },
+      {
+        "field": "related",
+        "id": "related",
+        "item_count": 1,
+        "reason": "Summaries for directly related graph records.",
+        "tier": "reference",
+        "title": "Related Records"
+      },
+      {
+        "field": "related_summary",
+        "id": "related_summary",
+        "item_count": 2,
+        "reason": "Compact counts and IDs for related records omitted from compact detail.",
+        "tier": "reference",
+        "title": "Related Summary"
+      },
+      {
+        "field": "verification_targets",
+        "id": "verification_targets",
+        "item_count": 4,
+        "reason": "Smallest verification set recommended for this change.",
+        "tier": "proof",
+        "title": "Verification Targets"
+      },
+      {
+        "field": "verification",
+        "id": "verification",
+        "item_count": 2,
+        "reason": "Verification records directly linked to this slice.",
+        "tier": "proof",
+        "title": "Verification Records"
+      }
+    ]
+  },
+  "standing_rules": [],
+  "summary": {
+    "aliases": [],
+    "description": "Proof domain for showing how Topogram layouts, regions, screens, widgets, design contracts, and agent slices compose into a usable UI work map.",
+    "id": "dom_ui_work_map_proof",
+    "in_scope": [],
+    "kind": "domain",
+    "members_count": 22,
+    "name": "UI Work Map Proof",
+    "out_of_scope": [],
+    "parent_domain": null,
+    "status": "active"
+  },
+  "type": "context_slice",
+  "verification": [
+    {
+      "description": "Runs proof path hygiene, proof audit, Topogram check, strict SDLC check, agent brief, commit prep, and clean-worktree verification for the first proof checkpoint.",
+      "id": "verification_step01_domain_app_shell",
+      "kind": "verification",
+      "method": "runtime",
+      "name": "Step 01 Domain And App Shell Verification",
+      "ownership_boundary": {
+        "canonical_topogram": {
+          "agent_mode": "propose_review_adopt",
+          "owner": "human"
+        },
+        "generated_artifacts": {
+          "agent_mode": "regenerate_or_compare",
+          "owner": "engine"
+        },
+        "maintained_code": {
+          "agent_mode": "bounded_edit_only",
+          "owner": "human"
+        },
+        "proposal_surfaces": {
+          "agent_mode": "stage_map_customize_reject",
+          "owner": "human"
+        }
+      },
+      "scenarios": [
+        "npm_run_verify_step_01"
+      ],
+      "validates": [
+        "cap_assign_field_work",
+        "cap_manage_field_teams",
+        "cap_monitor_operations_dashboard",
+        "cap_resolve_incident",
+        "cap_review_incident",
+        "cap_triage_incoming_work"
+      ]
+    },
+    {
+      "description": "Runs proof path hygiene, proof audit, Topogram check, strict SDLC check, domain slice generation, region catalog review, and clean-worktree verification for the semantic region checkpoint.",
+      "id": "verification_step02_semantic_regions",
+      "kind": "verification",
+      "method": "runtime",
+      "name": "Step 02 Semantic Regions Verification",
+      "ownership_boundary": {
+        "canonical_topogram": {
+          "agent_mode": "propose_review_adopt",
+          "owner": "human"
+        },
+        "generated_artifacts": {
+          "agent_mode": "regenerate_or_compare",
+          "owner": "engine"
+        },
+        "maintained_code": {
+          "agent_mode": "bounded_edit_only",
+          "owner": "human"
+        },
+        "proposal_surfaces": {
+          "agent_mode": "stage_map_customize_reject",
+          "owner": "human"
+        }
+      },
+      "scenarios": [
+        "npm_run_verify_step_02"
+      ],
+      "validates": [
+        "cap_assign_field_work",
+        "cap_manage_field_teams",
+        "cap_monitor_operations_dashboard",
+        "cap_resolve_incident",
+        "cap_review_incident",
+        "cap_triage_incoming_work"
+      ]
+    }
+  ],
+  "verification_targets": {
+    "generated_checks": [
+      "compile-check"
+    ],
+    "maintained_app_checks": [],
+    "rationale": "Domain slices should re-run verification covering the domain's capabilities, entities, and projection types.",
+    "verification_ids": []
+  },
+  "version": 1,
+  "write_scope": {
+    "generator_owned": [
+      "artifacts/**",
+      "apps/**"
+    ],
+    "human_owned_review_required": [
+      "examples/maintained/proof-app/**"
+    ],
+    "out_of_bounds": [
+      ".git/**",
+      "node_modules/**"
+    ],
+    "safe_to_edit": [
+      "topo/**",
+      "candidates/**"
+    ]
+  }
+}

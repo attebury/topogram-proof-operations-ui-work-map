@@ -1,0 +1,182 @@
+region_contract region_app_header {
+  name "App Header"
+  description "Persistent product header for brand identity, account controls, alerts entry, and global command access."
+  kind header
+  pattern app_header
+  placement top
+  density compact
+  style_intent [persistent brand operational]
+  accessibility_obligations [landmark_banner visible_focus account_menu_label]
+  i18n_obligations [brand_label account_action_labels]
+  allowed_widget_patterns [app_header action_bar status_badge]
+  related_terms [term_region_contract term_work_map]
+  domain dom_ui_work_map_proof
+  status active
+}
+
+region_contract region_global_navigation {
+  name "Global Navigation"
+  description "Persistent navigation for the major operations workspaces."
+  kind navigation
+  pattern primary_navigation
+  placement shell
+  density comfortable
+  style_intent [persistent orienting scannable]
+  accessibility_obligations [landmark_navigation keyboard_navigation current_page_marker]
+  i18n_obligations [navigation_labels section_labels]
+  allowed_widget_patterns [primary_navigation hamburger_drawer]
+  related_terms [term_region_contract term_work_map]
+  domain dom_ui_work_map_proof
+  status active
+}
+
+region_contract region_command_bar {
+  name "Command Bar"
+  description "Screen-level commands for creating, assigning, exporting, refreshing, and escalating operations work."
+  kind toolbar
+  pattern action_bar
+  placement secondary
+  density compact
+  style_intent [actionable scannable priority_ordered]
+  accessibility_obligations [toolbar_label keyboard_navigation visible_focus]
+  i18n_obligations [action_labels shortcut_labels]
+  allowed_widget_patterns [action_bar status_badge]
+  related_terms [term_region_contract term_widget]
+  domain dom_ui_work_map_proof
+  status active
+}
+
+region_contract region_filter_rail {
+  name "Filter Rail"
+  description "Collapsible filter and search region for narrowing operational queues by status, priority, owner, team, location, and due window."
+  kind filters
+  pattern filter_panel
+  placement start
+  states [loading empty error]
+  density compact
+  style_intent [collapsible scannable persistent_when_active]
+  accessibility_obligations [labelled_region form_labels keyboard_navigation]
+  i18n_obligations [filter_labels empty_state]
+  allowed_widget_patterns [filter_panel lookup_select search_results]
+  related_terms [term_region_contract term_widget]
+  domain dom_ui_work_map_proof
+  status active
+}
+
+region_contract region_results {
+  name "Results Region"
+  description "Primary collection browsing area for tabular, card, board, calendar, or search-result views."
+  kind results
+  pattern data_grid_view
+  placement primary
+  states [loading empty error unauthorized]
+  density comfortable
+  style_intent [primary scannable structured responsive]
+  accessibility_obligations [labelled_region keyboard_collection_navigation row_action_labels]
+  i18n_obligations [title empty_state loading_state error_state]
+  allowed_widget_patterns [resource_table data_grid_view resource_cards board_view calendar_view search_results empty_state_panel]
+  related_terms [term_region_contract term_widget]
+  domain dom_ui_work_map_proof
+  status active
+}
+
+region_contract region_work_queue {
+  name "Work Queue"
+  description "Prioritized review area for incoming or active work that needs triage, assignment, escalation, or resolution."
+  kind results
+  pattern resource_cards
+  placement primary
+  states [loading empty error unauthorized]
+  density comfortable
+  style_intent [prioritized actionable queue_focused]
+  accessibility_obligations [labelled_region keyboard_collection_navigation status_announcements]
+  i18n_obligations [queue_title priority_labels empty_state]
+  allowed_widget_patterns [resource_cards data_grid_view status_badge empty_state_panel]
+  related_terms [term_region_contract term_widget]
+  domain dom_ui_work_map_proof
+  status active
+}
+
+region_contract region_detail_summary {
+  name "Detail Summary"
+  description "Primary detail region for selected incident, assignment, team, or audit record context."
+  kind summary
+  pattern detail_panel
+  placement primary
+  states [loading error not_found unauthorized]
+  density comfortable
+  style_intent [focused readable decision_support]
+  accessibility_obligations [labelled_region heading_order focus_entry]
+  i18n_obligations [field_labels status_labels not_found_state]
+  allowed_widget_patterns [detail_panel status_badge edit_form]
+  related_terms [term_region_contract term_widget]
+  domain dom_ui_work_map_proof
+  status active
+}
+
+region_contract region_activity_timeline {
+  name "Activity Timeline"
+  description "Chronological history for status changes, comments, handoffs, assignments, and audit events."
+  kind timeline
+  pattern timeline_view
+  placement supporting
+  states [loading empty error]
+  density comfortable
+  style_intent [chronological secondary audit_friendly]
+  accessibility_obligations [labelled_region chronological_order]
+  i18n_obligations [timestamp_labels event_labels empty_state]
+  allowed_widget_patterns [timeline_view activity_feed comment_thread audit_log]
+  related_terms [term_region_contract term_widget]
+  domain dom_ui_work_map_proof
+  status active
+}
+
+region_contract region_inspector_panel {
+  name "Inspector Panel"
+  description "Supporting side panel for selected-row metadata, related records, operational notes, and quick edits."
+  kind aside
+  pattern inspector_pane
+  placement end
+  states [empty loading error]
+  density compact
+  style_intent [contextual secondary collapsible]
+  accessibility_obligations [labelled_region focus_return]
+  i18n_obligations [panel_title field_labels empty_state]
+  allowed_widget_patterns [inspector_pane detail_panel lookup_select]
+  related_terms [term_region_contract term_widget]
+  domain dom_ui_work_map_proof
+  status active
+}
+
+region_contract region_footer_actions {
+  name "Footer Actions"
+  description "Sticky or terminal action area for completing multi-step review, assignment, or resolution work."
+  kind footer_actions
+  pattern footer_bar
+  placement bottom
+  density compact
+  style_intent [persistent terminal_action safe_destructive]
+  accessibility_obligations [toolbar_label visible_focus destructive_action_warning]
+  i18n_obligations [action_labels confirmation_labels]
+  allowed_widget_patterns [action_bar footer_bar]
+  related_terms [term_region_contract term_widget]
+  domain dom_ui_work_map_proof
+  status active
+}
+
+region_contract region_live_updates {
+  name "Live Updates"
+  description "Supporting region for operational alerts, SLA risk, assignment changes, and background refresh status."
+  kind activity
+  pattern activity_feed
+  placement supporting
+  states [loading empty error]
+  density compact
+  style_intent [time_sensitive noticeable non_blocking]
+  accessibility_obligations [live_region polite_announcements pause_updates]
+  i18n_obligations [alert_labels relative_time_labels]
+  allowed_widget_patterns [activity_feed status_badge empty_state_panel]
+  related_terms [term_region_contract term_widget]
+  domain dom_ui_work_map_proof
+  status active
+}

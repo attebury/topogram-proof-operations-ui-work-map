@@ -1,0 +1,83 @@
+{
+  "changedFiles": [
+    "proof/README.md",
+    "proof/STEP.md",
+    "proof/manifest.json",
+    "topo/verifications/proof-verifications.tg",
+    "proof/artifacts/step-02-semantic-regions/agent-brief.json",
+    "proof/artifacts/step-02-semantic-regions/check.json",
+    "proof/artifacts/step-02-semantic-regions/sdlc-check.json",
+    "topo/sdlc/acceptance_criteria/step02-semantic-regions-valid.tg",
+    "topo/sdlc/tasks/step02-semantic-regions.tg",
+    "topo/ui-structure/region-contracts.tg"
+  ],
+  "changedTasks": [
+    {
+      "change_type": "workflow",
+      "disposition": "active",
+      "explicitDisposition": true,
+      "file": "topo/sdlc/tasks/step02-semantic-regions.tg",
+      "id": "task_step02_semantic_regions",
+      "latest_verification_runs": [
+        {
+          "latest": null,
+          "verification_id": "verification_step02_semantic_regions"
+        }
+      ],
+      "priority": "high",
+      "proof_learning_review": null,
+      "requiresDisposition": false,
+      "risk_class": "low",
+      "status": "done"
+    }
+  ],
+  "errors": [],
+  "nextCommands": [
+    "topogram sdlc explain <task-id> --json",
+    "topogram query slice ./topo --task <task-id> --json",
+    "topogram sdlc gate . --base <ref> --head <ref> --require-adopted"
+  ],
+  "ok": true,
+  "openTasks": [],
+  "projectRoot": "<repo>",
+  "staleWork": {
+    "breaches": [],
+    "nextCommands": [
+      "topogram query sdlc-claimed ./topo --json",
+      "topogram query sdlc-proof-gaps ./topo --json",
+      "topogram sdlc prep commit . --json"
+    ],
+    "now": "2026-05-20T23:01:35.281Z",
+    "ok": true,
+    "policy": {
+      "configured": false,
+      "staleWork": {
+        "claimedDays": null,
+        "inProgressDays": null
+      },
+      "wipLimits": {
+        "maxClaimedTasksPerActor": null,
+        "maxInProgressTasks": null
+      }
+    },
+    "stale": {
+      "claimed": [],
+      "in_progress": [],
+      "missing_history": []
+    },
+    "type": "sdlc_stale_work_query",
+    "version": 1,
+    "wip": {
+      "by_actor": [],
+      "claimed_count": 0,
+      "in_progress_count": 0
+    }
+  },
+  "taskFiles": [
+    "topo/sdlc/tasks/step02-semantic-regions.tg"
+  ],
+  "topogramRoot": "<workspace>",
+  "type": "sdlc_commit_prep",
+  "version": "1",
+  "warnings": []
+}

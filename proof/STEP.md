@@ -1,20 +1,18 @@
-# Step 01: Domain And App Shell
+# Step 02: Semantic Regions
 
-> This checkpoint defines the operations-dashboard product surface before adding UI structure.
+> This checkpoint adds reusable semantic work areas before layouts, screens, and widgets are introduced.
 
 Status: current
 
 Audience: reviewers following the proof step by step.
 
-Use when: you want to understand the domain and proof shell before semantic regions, layouts, screens, and widgets are introduced.
+Use when: you want to understand the reusable region vocabulary that later layouts and screens inherit.
 
 ## What Changed
 
-- Added a maintained Topogram workspace in `topo/`.
-- Added an enforced SDLC policy for the proof repo.
-- Defined the operations-control-room domain, actors, glossary terms, and core capabilities.
-- Added proof rules that keep the graph a work map and require UI changes to start from focused slices.
-- Added verification scripts and Step 01 artifacts.
+- Added reusable `region_contract` records for app shell, navigation, commands, filters, results, queues, detail, timeline, inspector, footer actions, and live updates.
+- Captured state expectations, density, style intent, accessibility obligations, i18n obligations, and allowed widget patterns for each region.
+- Added a Step 02 region catalog artifact so reviewers can inspect the semantic vocabulary before layout composition begins.
 
 ## Verification
 
@@ -22,4 +20,4 @@ Use when: you want to understand the domain and proof shell before semantic regi
 npm run verify
 ```
 
-The current step proves the workspace is valid and the proof repo is ready for the next checkpoint. It does not yet include region, layout, screen, widget, or design realization contracts.
+The current step proves region contracts validate independently. It does not yet include reusable layout composition, screens, widget bindings, or design realization contracts.

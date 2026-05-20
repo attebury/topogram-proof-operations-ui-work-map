@@ -1,6 +1,6 @@
 {
   "cliVersion": "0.3.112",
-  "currentStep": "proof-01-domain-and-app-shell",
+  "currentStep": "proof-02-semantic-regions",
   "expectedTags": [
     "proof-01-domain-and-app-shell",
     "proof-02-semantic-regions",
@@ -33,8 +33,22 @@
       "requiredKeys": ["ok"]
     },
     {
+      "path": "proof/artifacts/step-02-semantic-regions/check.json",
+      "json": true,
+      "requiredKeys": ["ok", "topogram"]
+    },
+    {
+      "path": "proof/artifacts/step-02-semantic-regions/domain-slice.json",
+      "json": true,
+      "requiredKeys": ["type", "focus"]
+    },
+    {
+      "path": "proof/artifacts/step-02-semantic-regions/region-catalog.md",
+      "contains": ["# Step 02 Region Catalog", "region_results", "region_live_updates"]
+    },
+    {
       "path": "proof/STEP.md",
-      "contains": ["Step 01", "Domain And App Shell"]
+      "contains": ["Step 02", "Semantic Regions"]
     }
   ]
 }
