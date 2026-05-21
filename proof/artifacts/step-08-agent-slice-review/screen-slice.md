@@ -9,7 +9,7 @@
 - Reasons: `ui_screen_surface`
 
 ## Slice Manifest
-- Detail level: standard
+- Detail level: compact
 - Read order: `focus`, `summary`, `agent_guidance`, `terms`, `review_boundary`, `ownership_boundary`, `write_scope`, `ui_agent_packet`
 - Proof sections: `verification_targets`, `verification`
 - `focus` (must_read) — Focus
@@ -41,7 +41,10 @@
   - Items: 6
 - `related` (reference) — Related Records
   - Summaries for directly related graph records.
-  - Items: 5
+  - Items: 1
+- `related_summary` (reference) — Related Summary
+  - Compact counts and IDs for related records omitted from compact detail.
+  - Items: 4
 - `verification_targets` (proof) — Verification Targets
   - Smallest verification set recommended for this change.
   - Items: 4
@@ -54,7 +57,7 @@
 - Read first: `focus`, `summary`, `agent_guidance`, `terms`, `review_boundary`, `ownership_boundary`, `write_scope`, `ui_agent_packet`
 - Read order: `focus`, `summary`, `agent_guidance`, `terms`, `review_boundary`, `ownership_boundary`, `write_scope`, `ui_agent_packet`
 - Next queries:
-  - `topogram query slice ./topo --mode implementation --projection proj_operations_ui_contract --screen intake_queue --json`
+  - `topogram query slice ./topo --mode implementation --projection proj_operations_ui_contract --screen intake_queue --detail compact --json`
   - `topogram query single-agent-plan ./topo --mode implementation --projection proj_operations_ui_contract --screen intake_queue --json`
 - Required commands:
   - `topogram query sdlc-proof-gaps ./topo --json`
@@ -82,30 +85,6 @@
 - widgets: `widget_card_list`, `widget_command_toolbar`, `widget_detail_panel`, `widget_filter_panel`
 - verifications: `verification_step01_domain_app_shell`, `verification_step02_semantic_regions`, `verification_step03_reusable_layouts`, `verification_step04_screens_navigation`, `verification_step05_widgets_bindings`, `verification_step06_design_realizations`, `verification_step07_i18n_aria_states`, `verification_step08_agent_slice_review`
 - terms: `term_layout_contract`, `term_region_contract`, `term_widget`
-
-## Related
-### projections
-- `proj_operations_ui_contract` — Operations UI Contract
-  - Shared UI contract for the operations-dashboard proof with reusable layouts, screens, navigation, and semantic widget bindings.
-### capabilities
-- `cap_assign_field_work` — Assign Field Work
-  - Match work items to available field operators based on urgency, location, and capacity.
-- `cap_review_incident` — Review Incident
-  - Inspect an incident, its activity timeline, related work, status changes, and next available actions.
-- `cap_triage_incoming_work` — Triage Incoming Work
-  - Review incoming work, classify priority, request missing details, and move ready work into assignment.
-### shapes
-- `shape_work_queue_item` — Work Queue Item
-  - Compact queue row or card for triage and assignment screens.
-### widgets
-- `widget_card_list` — Card List
-  - Prioritized card list for queue-style operational work.
-- `widget_command_toolbar` — Command Toolbar
-  - Compact screen command surface for assignment, refresh, export, and escalation actions.
-- `widget_detail_panel` — Detail Panel
-  - Readable selected-record summary for incident, team, settings, and inspector contexts.
-- `widget_filter_panel` — Filter Panel
-  - Filter and search controls for operational queues, boards, calendars, and directories.
 
 ## Verification Targets
 - Rationale: Screen slices should prove UI contract, realization coverage, widget behavior, and generated/maintained app checks for the selected surface.

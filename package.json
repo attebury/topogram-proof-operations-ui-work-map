@@ -10,6 +10,6 @@
     "proof:check-paths": "node ./scripts/check-paths.mjs"
   },
   "devDependencies": {
-    "@topogram/cli": "0.3.112"
+    "@topogram/cli": "0.3.113"
   }
 }

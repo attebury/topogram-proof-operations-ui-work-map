@@ -15,25 +15,27 @@ Use when: deciding what the next UI slice/report product gap should be after thi
 - Projection slices are useful for broad orientation: they show the full UI work map, terms, rules, capabilities, widgets, verifications, and proof commands.
 - Design coverage is useful for designer/developer review: it makes rendered, contract-only, implementation-owned, unsupported, missing-state, and missing-token rows visible.
 
-## Dedicated Selector Gap
+## Dedicated Selectors Resolved
 
-- Direct `--layout`, `--region`, and `--design-realization-set` slice selectors currently fail.
-- The fallback is workable but too indirect: an agent must ask for a screen/projection slice and infer the layout, region, or realization-set context from nested data.
-- This should become a Topogram follow-up: first-class layout, region, and design-realization-set slice selectors with compact Markdown output.
+- Direct `--layout`, `--region`, and `--design-realization-set` slice selectors work in `@topogram/cli@0.3.113`.
+- The layout slice gives agents inherited regions, widgets using the layout, design context, and proof commands without scanning the full projection slice.
+- The region slice gives agents style intent, region obligations, widget usages, and affected screens in one focused packet.
+- The design realization set slice gives designers and agents the widget-to-component mapping, behavior support, token/i18n/a11y review context, and proof commands.
 
 ## What An Agent Can Do Today
 
-1. Start with `topogram query slice ./topo --screen intake_queue --projection proj_operations_ui_contract --detail standard --format markdown`.
+1. Start with `topogram query slice ./topo --screen intake_queue --projection proj_operations_ui_contract --detail compact --format markdown`.
 2. Use the resolved layout and region packet to see where work belongs.
-3. Use `topogram query slice ./topo --widget widget_alert_banner --detail standard --format markdown` for component refs, i18n, ARIA, and behavior review.
-4. Use `topogram query ui-design-coverage ./topo --projection proj_operations_web_surface --format markdown` to see design gaps before implementation.
-5. Run `npm run verify` before considering the proof checkpoint complete.
+3. Use `topogram query slice ./topo --layout layout_queue_workspace --projection proj_operations_ui_contract --detail compact --format markdown` for reusable layout work.
+4. Use `topogram query slice ./topo --region region_work_queue --projection proj_operations_ui_contract --detail compact --format markdown` for a focused region packet.
+5. Use `topogram query slice ./topo --design-realization-set realization_set_operations_control_room_widgets --projection proj_operations_ui_contract --detail compact --format markdown` for component mapping review.
+6. Use `topogram query slice ./topo --widget widget_alert_banner --detail compact --format markdown` for component refs, i18n, ARIA, and behavior review.
+7. Use `topogram query ui-design-coverage ./topo --projection proj_operations_web_surface --format markdown` to see design gaps before implementation.
+8. Run `npm run verify` before considering the proof checkpoint complete.
 
 ## Product Follow-Ups
 
-- Add first-class context-slice selectors for `layout_contract`, `region_contract`, and `design_realization_set`.
-- Add compact Markdown summaries specifically for layout/region/design work so agents do not need to inspect huge projection slices.
-- Add query-list selector documentation for `--screen`, since the command supports it but the query list output does not advertise it.
+- Keep improving compact Markdown summaries for layout/region/design work as the proof exposes new agent friction.
 - Consider a `query ui-work-map` view that starts from screen/layout/region/widget/design as peer concepts.
 
 ## Artifact Index
@@ -41,5 +43,5 @@ Use when: deciding what the next UI slice/report product gap should be after thi
 - `screen-slice.md` and `screen-slice.json` show the most useful current agent packet.
 - `widget-slice.md` and `widget-slice.json` show semantic widget, design, i18n, and ARIA context.
 - `projection-slice.md` and `projection-slice.json` show broad context but are too large for most agent tasks.
-- `layout-context.*`, `region-context.*`, and `design-realization-set-context.*` are review cards derived from current outputs.
-- `selector-attempts.json` records the missing first-class selector support.
+- `layout-context.*`, `region-context.*`, and `design-realization-set-context.*` are direct first-class context slices.
+- `selector-attempts.json` records that the dedicated selector gap is resolved in `@topogram/cli@0.3.113`.

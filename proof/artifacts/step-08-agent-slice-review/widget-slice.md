@@ -10,7 +10,7 @@
 - Reasons: `widget_surface`
 
 ## Slice Manifest
-- Detail level: standard
+- Detail level: compact
 - Read order: `focus`, `summary`, `agent_guidance`, `terms`, `review_boundary`, `ownership_boundary`, `write_scope`, `ui_agent_packet`
 - Proof sections: `verification_targets`
 - `focus` (must_read) — Focus
@@ -42,7 +42,10 @@
   - Items: 7
 - `related` (reference) — Related Records
   - Summaries for directly related graph records.
-  - Items: 6
+  - Items: 1
+- `related_summary` (reference) — Related Summary
+  - Compact counts and IDs for related records omitted from compact detail.
+  - Items: 2
 - `verification_targets` (proof) — Verification Targets
   - Smallest verification set recommended for this change.
   - Items: 4
@@ -52,7 +55,7 @@
 - Read first: `focus`, `summary`, `agent_guidance`, `terms`, `review_boundary`, `ownership_boundary`, `write_scope`, `ui_agent_packet`
 - Read order: `focus`, `summary`, `agent_guidance`, `terms`, `review_boundary`, `ownership_boundary`, `write_scope`, `ui_agent_packet`
 - Next queries:
-  - `topogram query slice ./topo --mode implementation --widget widget_alert_banner --json`
+  - `topogram query slice ./topo --mode implementation --widget widget_alert_banner --detail compact --json`
   - `topogram query single-agent-plan ./topo --mode implementation --widget widget_alert_banner --json`
 - Required commands:
   - `topogram query sdlc-proof-gaps ./topo --json`
@@ -74,16 +77,6 @@
 - shapes: `shape_work_queue_item`
 - projections: `proj_operations_ui_contract`, `proj_operations_web_surface`
 - terms: `term_operations_control_room`, `term_work_map`
-
-## Related
-### shapes
-- `shape_work_queue_item` — Work Queue Item
-  - Compact queue row or card for triage and assignment screens.
-### projections
-- `proj_operations_ui_contract` — Operations UI Contract
-  - Shared UI contract for the operations-dashboard proof with reusable layouts, screens, navigation, and semantic widget bindings.
-- `proj_operations_web_surface` — Operations Web Surface
-  - Concrete web route surface for the operations-dashboard UI contract.
 
 ## Verification Targets
 - Rationale: Widget changes affect every related projection, so verification should follow the widget contract closure.

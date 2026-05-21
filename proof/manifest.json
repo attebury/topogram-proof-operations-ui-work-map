@@ -1,5 +1,5 @@
 {
-  "cliVersion": "0.3.112",
+  "cliVersion": "0.3.113",
   "currentStep": "proof-08-agent-slice-review",
   "expectedTags": [
     "proof-01-domain-and-app-shell",
@@ -207,17 +207,17 @@
     {
       "path": "proof/artifacts/step-08-agent-slice-review/layout-context.json",
       "json": true,
-      "requiredKeys": ["type", "target_kind", "target_id"]
+      "requiredKeys": ["type", "focus", "ui_agent_packet"]
     },
     {
       "path": "proof/artifacts/step-08-agent-slice-review/region-context.json",
       "json": true,
-      "requiredKeys": ["type", "target_kind", "target_id"]
+      "requiredKeys": ["type", "focus", "ui_agent_packet"]
     },
     {
       "path": "proof/artifacts/step-08-agent-slice-review/design-realization-set-context.json",
       "json": true,
-      "requiredKeys": ["type", "target_kind", "target_id"]
+      "requiredKeys": ["type", "focus", "ui_agent_packet"]
     },
     {
       "path": "proof/artifacts/step-08-agent-slice-review/selector-attempts.json",
@@ -226,7 +226,7 @@
     },
     {
       "path": "proof/artifacts/step-08-agent-slice-review/agent-slice-review.md",
-      "contains": ["# Step 08 Agent Slice Review", "Useful Enough", "Dedicated Selector Gap", "first-class context-slice selectors"]
+      "contains": ["# Step 08 Agent Slice Review", "Useful Enough", "Dedicated Selectors Resolved", "direct first-class context slices"]
     },
     {
       "path": "proof/STEP.md",

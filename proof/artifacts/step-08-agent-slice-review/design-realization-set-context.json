@@ -1,28 +1,4267 @@
 {
-  "type": "agent_slice_context_card",
-  "target_kind": "design_realization_set",
-  "target_id": "realization_set_operations_control_room_widgets",
-  "direct_selector_supported": false,
-  "usable_source_artifacts": [
-    "ui-design-coverage.json",
-    "projection-slice.json",
-    "widget-slice.json"
-  ],
-  "summary": "Maps operations semantic widgets to platform component refs across web, iOS, and Android.",
-  "example_widget": "widget_alert_banner",
-  "example_component_refs": [
-    "ops.alerts.liveBanner",
-    "ops.ios.liveAlert",
-    "ops.android.liveAlert"
-  ],
-  "review_states_visible": [
-    "rendered",
-    "contract_only",
-    "implementation_owned",
-    "unsupported",
-    "missing_state",
-    "missing_token_mapping"
-  ],
-  "useful_for_agent": true,
-  "limitation": "Design realization data is visible through coverage/report/widget slices, but there is no direct realization-set selector."
+  "agent_guidance": {
+    "completion_command": "topogram sdlc prep commit . --json",
+    "mode": "implementation",
+    "next_commands": [
+      "topogram query slice ./topo --mode implementation --projection proj_operations_ui_contract --design-realization-set realization_set_operations_control_room_widgets --detail compact --json",
+      "topogram query single-agent-plan ./topo --mode implementation --projection proj_operations_ui_contract --design-realization-set realization_set_operations_control_room_widgets --json",
+      "topogram query sdlc-proof-gaps ./topo --json",
+      "topogram check . --json",
+      "topogram sdlc check . --strict",
+      "topogram sdlc prep commit . --json"
+    ],
+    "next_queries": [
+      "topogram query slice ./topo --mode implementation --projection proj_operations_ui_contract --design-realization-set realization_set_operations_control_room_widgets --detail compact --json",
+      "topogram query single-agent-plan ./topo --mode implementation --projection proj_operations_ui_contract --design-realization-set realization_set_operations_control_room_widgets --json"
+    ],
+    "proof_commands": [
+      "topogram check . --json",
+      "topogram sdlc check . --strict",
+      "topogram sdlc prep commit . --json"
+    ],
+    "read_first": [
+      "focus",
+      "summary",
+      "agent_guidance",
+      "terms",
+      "review_boundary",
+      "ownership_boundary",
+      "write_scope",
+      "ui_agent_packet"
+    ],
+    "read_order": [
+      "focus",
+      "summary",
+      "agent_guidance",
+      "terms",
+      "review_boundary",
+      "ownership_boundary",
+      "write_scope",
+      "ui_agent_packet"
+    ],
+    "required_commands": [
+      "topogram query sdlc-proof-gaps ./topo --json",
+      "topogram check . --json",
+      "topogram sdlc check . --strict",
+      "topogram sdlc prep commit . --json"
+    ],
+    "warnings": [],
+    "write_scope_summary": "Edit the canonical Topogram source and project-owned files only; generated-owned outputs should be regenerated."
+  },
+  "depends_on": {
+    "design_contracts": [
+      "design_operations_product_ui"
+    ],
+    "projections": [
+      "proj_operations_ui_contract"
+    ],
+    "terms": [
+      "term_component_ref",
+      "term_design_contract",
+      "term_design_realization_set",
+      "term_widget"
+    ],
+    "verifications": [],
+    "widgets": [
+      "widget_activity_timeline",
+      "widget_alert_banner",
+      "widget_assignment_form",
+      "widget_card_list",
+      "widget_command_toolbar",
+      "widget_data_grid",
+      "widget_detail_panel",
+      "widget_filter_panel",
+      "widget_kpi_summary_cards",
+      "widget_schedule_calendar",
+      "widget_status_board"
+    ]
+  },
+  "detail_level": "compact",
+  "focus": {
+    "id": "realization_set_operations_control_room_widgets",
+    "kind": "design_realization_set",
+    "projectionId": "proj_operations_ui_contract"
+  },
+  "ownership_boundary": {
+    "canonical_topogram": {
+      "agent_mode": "propose_review_adopt",
+      "owner": "human"
+    },
+    "generated_artifacts": {
+      "agent_mode": "regenerate_or_compare",
+      "owner": "engine"
+    },
+    "maintained_code": {
+      "agent_mode": "bounded_edit_only",
+      "owner": "human"
+    },
+    "proposal_surfaces": {
+      "agent_mode": "stage_map_customize_reject",
+      "owner": "human"
+    }
+  },
+  "related": {
+    "terms": [
+      {
+        "aliases": [],
+        "category": "design",
+        "description": "A stable design-system component identity used in Topogram instead of framework import paths or source file paths.",
+        "excludes": [],
+        "id": "term_component_ref",
+        "kind": "term",
+        "name": "Component Ref",
+        "ownership_boundary": {
+          "canonical_topogram": {
+            "agent_mode": "propose_review_adopt",
+            "owner": "human"
+          },
+          "generated_artifacts": {
+            "agent_mode": "regenerate_or_compare",
+            "owner": "engine"
+          },
+          "maintained_code": {
+            "agent_mode": "bounded_edit_only",
+            "owner": "human"
+          },
+          "proposal_surfaces": {
+            "agent_mode": "stage_map_customize_reject",
+            "owner": "human"
+          }
+        },
+        "relatedTerms": [],
+        "status": "active"
+      },
+      {
+        "aliases": [],
+        "category": "design",
+        "description": "A design-system scope record that names supported platforms, packages, and semantic token mappings before widgets are realized by platform components.",
+        "excludes": [],
+        "id": "term_design_contract",
+        "kind": "term",
+        "name": "Design Contract",
+        "ownership_boundary": {
+          "canonical_topogram": {
+            "agent_mode": "propose_review_adopt",
+            "owner": "human"
+          },
+          "generated_artifacts": {
+            "agent_mode": "regenerate_or_compare",
+            "owner": "engine"
+          },
+          "maintained_code": {
+            "agent_mode": "bounded_edit_only",
+            "owner": "human"
+          },
+          "proposal_surfaces": {
+            "agent_mode": "stage_map_customize_reject",
+            "owner": "human"
+          }
+        },
+        "relatedTerms": [],
+        "status": "active"
+      },
+      {
+        "aliases": [],
+        "category": "design",
+        "description": "A widget-first mapping from semantic widgets to platform component refs and behavior support for a design contract.",
+        "excludes": [],
+        "id": "term_design_realization_set",
+        "kind": "term",
+        "name": "Design Realization Set",
+        "ownership_boundary": {
+          "canonical_topogram": {
+            "agent_mode": "propose_review_adopt",
+            "owner": "human"
+          },
+          "generated_artifacts": {
+            "agent_mode": "regenerate_or_compare",
+            "owner": "engine"
+          },
+          "maintained_code": {
+            "agent_mode": "bounded_edit_only",
+            "owner": "human"
+          },
+          "proposal_surfaces": {
+            "agent_mode": "stage_map_customize_reject",
+            "owner": "human"
+          }
+        },
+        "relatedTerms": [],
+        "status": "active"
+      },
+      {
+        "aliases": [
+          "semantic_component"
+        ],
+        "category": "ui_structure",
+        "description": "A reusable semantic UI contract that can be realized by different platform components while keeping one product meaning.",
+        "excludes": [],
+        "id": "term_widget",
+        "kind": "term",
+        "name": "Widget",
+        "ownership_boundary": {
+          "canonical_topogram": {
+            "agent_mode": "propose_review_adopt",
+            "owner": "human"
+          },
+          "generated_artifacts": {
+            "agent_mode": "regenerate_or_compare",
+            "owner": "engine"
+          },
+          "maintained_code": {
+            "agent_mode": "bounded_edit_only",
+            "owner": "human"
+          },
+          "proposal_surfaces": {
+            "agent_mode": "stage_map_customize_reject",
+            "owner": "human"
+          }
+        },
+        "relatedTerms": [],
+        "status": "active"
+      }
+    ]
+  },
+  "related_summary": {
+    "design_contracts": {
+      "count": 1,
+      "ids": [
+        "design_operations_product_ui"
+      ]
+    },
+    "projections": {
+      "count": 1,
+      "ids": [
+        "proj_operations_ui_contract"
+      ]
+    },
+    "widgets": {
+      "count": 11,
+      "ids": [
+        "widget_activity_timeline",
+        "widget_alert_banner",
+        "widget_assignment_form",
+        "widget_card_list",
+        "widget_command_toolbar",
+        "widget_data_grid",
+        "widget_detail_panel",
+        "widget_filter_panel",
+        "widget_kpi_summary_cards",
+        "widget_schedule_calendar",
+        "widget_status_board"
+      ]
+    }
+  },
+  "review_boundary": {
+    "automation_class": "review_required",
+    "reasons": [
+      "design_realization_work_map"
+    ]
+  },
+  "slice_manifest": {
+    "detail_level": "compact",
+    "note": "Read must_read sections first; use reference sections only as needed; run proof commands before completing work.",
+    "proof_sections": [
+      "verification_targets"
+    ],
+    "read_order": [
+      "focus",
+      "summary",
+      "agent_guidance",
+      "terms",
+      "review_boundary",
+      "ownership_boundary",
+      "write_scope",
+      "ui_agent_packet"
+    ],
+    "sections": [
+      {
+        "field": "focus",
+        "id": "focus",
+        "item_count": 3,
+        "reason": "The selected graph surface this packet is scoped to.",
+        "tier": "must_read",
+        "title": "Focus"
+      },
+      {
+        "field": "summary",
+        "id": "summary",
+        "item_count": 5,
+        "reason": "The shortest human-readable description of the selected work or surface.",
+        "tier": "must_read",
+        "title": "Summary"
+      },
+      {
+        "field": "agent_guidance",
+        "id": "agent_guidance",
+        "item_count": 10,
+        "reason": "Mode, read order, follow-up queries, and required proof commands.",
+        "tier": "must_read",
+        "title": "Agent Guidance"
+      },
+      {
+        "field": "related.terms",
+        "id": "terms",
+        "item_count": 4,
+        "reason": "Canonical vocabulary needed to interpret this slice.",
+        "tier": "must_read",
+        "title": "Glossary Terms"
+      },
+      {
+        "field": "review_boundary",
+        "id": "review_boundary",
+        "item_count": 2,
+        "reason": "Automation and human-review expectations for this scope.",
+        "tier": "must_read",
+        "title": "Review Boundary"
+      },
+      {
+        "field": "ownership_boundary",
+        "id": "ownership_boundary",
+        "item_count": 4,
+        "reason": "Generated, maintained, and human-owned boundaries that constrain edits.",
+        "tier": "must_read",
+        "title": "Ownership Boundary"
+      },
+      {
+        "field": "write_scope",
+        "id": "write_scope",
+        "item_count": 4,
+        "reason": "Files and surfaces that are safe, risky, or out of bounds to edit.",
+        "tier": "must_read",
+        "title": "Write Scope"
+      },
+      {
+        "field": "ui_agent_packet",
+        "id": "ui_agent_packet",
+        "item_count": 10,
+        "reason": "Screen, layout, region, widget, accessibility, i18n, design-token, and UI proof context for UI slices.",
+        "tier": "must_read",
+        "title": "UI Agent Packet"
+      },
+      {
+        "field": "depends_on",
+        "id": "depends_on",
+        "item_count": 5,
+        "reason": "IDs that define the semantic closure without embedding every full record.",
+        "tier": "reference",
+        "title": "Depends On"
+      },
+      {
+        "field": "related",
+        "id": "related",
+        "item_count": 1,
+        "reason": "Summaries for directly related graph records.",
+        "tier": "reference",
+        "title": "Related Records"
+      },
+      {
+        "field": "related_summary",
+        "id": "related_summary",
+        "item_count": 3,
+        "reason": "Compact counts and IDs for related records omitted from compact detail.",
+        "tier": "reference",
+        "title": "Related Summary"
+      },
+      {
+        "field": "verification_targets",
+        "id": "verification_targets",
+        "item_count": 4,
+        "reason": "Smallest verification set recommended for this change.",
+        "tier": "proof",
+        "title": "Verification Targets"
+      }
+    ]
+  },
+  "standing_rules": [],
+  "summary": {
+    "description": "Maps operations semantic widgets to platform component refs across web, iOS, and Android.",
+    "id": "realization_set_operations_control_room_widgets",
+    "kind": "design_realization_set",
+    "name": "Operations Control Room Widget Realizations",
+    "ownership_boundary": {
+      "canonical_topogram": {
+        "agent_mode": "propose_review_adopt",
+        "owner": "human"
+      },
+      "generated_artifacts": {
+        "agent_mode": "regenerate_or_compare",
+        "owner": "engine"
+      },
+      "maintained_code": {
+        "agent_mode": "bounded_edit_only",
+        "owner": "human"
+      },
+      "proposal_surfaces": {
+        "agent_mode": "stage_map_customize_reject",
+        "owner": "human"
+      }
+    }
+  },
+  "type": "context_slice",
+  "ui_agent_packet": {
+    "designContracts": {
+      "contracts": [
+        {
+          "id": "design_operations_product_ui",
+          "library": null,
+          "name": "design_operations_product_ui",
+          "packageName": null,
+          "platforms": [],
+          "status": null,
+          "surfaces": [],
+          "tokenMappings": []
+        }
+      ],
+      "diagnostics": [],
+      "proofCommands": [],
+      "scope": {
+        "designRealizationSetId": "realization_set_operations_control_room_widgets"
+      },
+      "source": "design_contract records own design-system scope and token mappings; design_realization_set records map semantic widgets to platform component refs and behavior support.",
+      "status": "mapped"
+    },
+    "designRealizationSet": {
+      "description": "Maps operations semantic widgets to platform component refs across web, iOS, and Android.",
+      "designContract": {
+        "id": "design_operations_product_ui",
+        "name": "design_operations_product_ui"
+      },
+      "id": "realization_set_operations_control_room_widgets",
+      "name": "Operations Control Room Widget Realizations",
+      "status": "active"
+    },
+    "designReview": {
+      "diagnostics": [
+        "Widget 'widget_activity_timeline' has no android design realization in 'design_operations_product_ui'.",
+        "Widget 'widget_activity_timeline' has no authored accessibility obligation.",
+        "Widget 'widget_activity_timeline' has no authored message key.",
+        "Widget 'widget_activity_timeline' has no authored accessibility obligation.",
+        "Widget 'widget_activity_timeline' has no authored message key.",
+        "Behavior 'realtime_update' is 'unsupported'.",
+        "Widget 'widget_alert_banner' has no authored accessibility obligation.",
+        "Widget 'widget_alert_banner' has no authored message key.",
+        "Realization 'alert_banner_android' does not declare 'empty' state coverage.",
+        "Realization 'alert_banner_android' does not declare 'error' state coverage.",
+        "Realization 'alert_banner_android' is 'unsupported'.",
+        "Widget 'widget_alert_banner' has no authored accessibility obligation.",
+        "Widget 'widget_alert_banner' has no authored message key.",
+        "Realization 'alert_banner_ios' does not declare 'error' state coverage.",
+        "Behavior 'realtime_update' is 'contract_only'.",
+        "Widget 'widget_alert_banner' has no authored accessibility obligation.",
+        "Widget 'widget_alert_banner' has no authored accessibility obligation.",
+        "Widget 'widget_alert_banner' has no authored message key.",
+        "Widget 'widget_alert_banner' has no authored message key.",
+        "Realization 'alert_banner_gap_probe' does not declare 'empty' state coverage.",
+        "Realization 'alert_banner_gap_probe' does not declare 'error' state coverage.",
+        "Design contract 'design_operations_review_gap_probe' has no token mappings.",
+        "Realization 'alert_banner_gap_probe' is 'contract_only'.",
+        "Widget 'widget_assignment_form' has no authored accessibility obligation.",
+        "Widget 'widget_assignment_form' has no authored message key.",
+        "Widget 'widget_assignment_form' has no authored accessibility obligation.",
+        "Widget 'widget_assignment_form' has no authored message key.",
+        "Behavior 'keyboard_navigation' is 'contract_only'.",
+        "Behavior 'optimistic_update' is 'contract_only'.",
+        "Widget 'widget_assignment_form' has no authored accessibility obligation.",
+        "Widget 'widget_assignment_form' has no authored accessibility obligation.",
+        "Widget 'widget_assignment_form' has no authored message key.",
+        "Widget 'widget_assignment_form' has no authored message key.",
+        "Realization 'assignment_form_web_narrow' does not declare 'error' state coverage.",
+        "Realization 'assignment_form_web_narrow' is 'contract_only'.",
+        "Behavior 'filtering' is 'unsupported'.",
+        "Widget 'widget_card_list' has no authored accessibility obligation.",
+        "Widget 'widget_card_list' has no authored message key.",
+        "Realization 'card_list_android' does not declare 'error' state coverage.",
+        "Realization 'card_list_android' is 'unsupported'.",
+        "Widget 'widget_card_list' has no authored accessibility obligation.",
+        "Widget 'widget_card_list' has no authored message key.",
+        "Behavior 'filtering' is 'contract_only'.",
+        "Widget 'widget_card_list' has no authored accessibility obligation.",
+        "Widget 'widget_card_list' has no authored accessibility obligation.",
+        "Widget 'widget_card_list' has no authored message key.",
+        "Widget 'widget_card_list' has no authored message key.",
+        "Realization 'card_list_web_narrow' does not declare 'error' state coverage.",
+        "Realization 'card_list_web_narrow' is 'contract_only'.",
+        "Widget 'widget_command_toolbar' has no authored accessibility obligation.",
+        "Widget 'widget_command_toolbar' has no authored message key.",
+        "Widget 'widget_command_toolbar' has no authored accessibility obligation.",
+        "Widget 'widget_command_toolbar' has no authored message key.",
+        "Behavior 'bulk_action' is 'contract_only'.",
+        "Widget 'widget_command_toolbar' has no authored accessibility obligation.",
+        "Widget 'widget_command_toolbar' has no authored accessibility obligation.",
+        "Widget 'widget_command_toolbar' has no authored message key.",
+        "Widget 'widget_command_toolbar' has no authored message key.",
+        "Widget 'widget_data_grid' has no android design realization in 'design_operations_product_ui'.",
+        "Widget 'widget_data_grid' has no ios design realization in 'design_operations_product_ui'.",
+        "Behavior 'filtering' is 'contract_only'.",
+        "Behavior 'keyboard_navigation' is 'contract_only'.",
+        "Behavior 'sorting' is 'contract_only'.",
+        "Widget 'widget_data_grid' has no authored accessibility obligation.",
+        "Widget 'widget_data_grid' has no authored accessibility obligation.",
+        "Widget 'widget_data_grid' has no authored message key.",
+        "Widget 'widget_data_grid' has no authored message key.",
+        "Realization 'data_grid_web_narrow' does not declare 'error' state coverage.",
+        "Realization 'data_grid_web_narrow' is 'contract_only'.",
+        "Widget 'widget_detail_panel' has no authored accessibility obligation.",
+        "Widget 'widget_detail_panel' has no authored message key.",
+        "Widget 'widget_detail_panel' has no authored accessibility obligation.",
+        "Widget 'widget_detail_panel' has no authored message key.",
+        "Widget 'widget_detail_panel' has no authored accessibility obligation.",
+        "Widget 'widget_detail_panel' has no authored accessibility obligation.",
+        "Widget 'widget_detail_panel' has no authored accessibility obligation.",
+        "Widget 'widget_detail_panel' has no authored message key.",
+        "Widget 'widget_detail_panel' has no authored message key.",
+        "Widget 'widget_detail_panel' has no authored message key.",
+        "Realization 'detail_panel_web_settings' does not declare 'error' state coverage.",
+        "Realization 'detail_panel_web_settings' is 'contract_only'.",
+        "Widget 'widget_filter_panel' has no android design realization in 'design_operations_product_ui'.",
+        "Widget 'widget_filter_panel' has no authored accessibility obligation.",
+        "Widget 'widget_filter_panel' has no authored message key.",
+        "Behavior 'filtering' is 'contract_only'.",
+        "Behavior 'search' is 'contract_only'.",
+        "Widget 'widget_filter_panel' has no authored accessibility obligation.",
+        "Widget 'widget_filter_panel' has no authored accessibility obligation.",
+        "Widget 'widget_filter_panel' has no authored message key.",
+        "Widget 'widget_filter_panel' has no authored message key.",
+        "Realization 'filter_panel_web_narrow' does not declare 'error' state coverage.",
+        "Realization 'filter_panel_web_narrow' is 'contract_only'.",
+        "Widget 'widget_kpi_summary_cards' has no android design realization in 'design_operations_product_ui'.",
+        "Widget 'widget_kpi_summary_cards' has no authored accessibility obligation.",
+        "Widget 'widget_kpi_summary_cards' has no authored message key.",
+        "Behavior 'selection' is 'contract_only'.",
+        "Widget 'widget_kpi_summary_cards' has no authored accessibility obligation.",
+        "Widget 'widget_kpi_summary_cards' has no authored accessibility obligation.",
+        "Widget 'widget_kpi_summary_cards' has no authored message key.",
+        "Widget 'widget_kpi_summary_cards' has no authored message key.",
+        "Realization 'kpi_cards_web_narrow' does not declare 'error' state coverage.",
+        "Realization 'kpi_cards_web_narrow' is 'contract_only'.",
+        "Widget 'widget_schedule_calendar' has no authored accessibility obligation.",
+        "Widget 'widget_schedule_calendar' has no authored message key.",
+        "Widget 'widget_schedule_calendar' has no authored accessibility obligation.",
+        "Widget 'widget_schedule_calendar' has no authored message key.",
+        "Behavior 'selection' is 'unsupported'.",
+        "Widget 'widget_schedule_calendar' has no authored accessibility obligation.",
+        "Widget 'widget_schedule_calendar' has no authored accessibility obligation.",
+        "Widget 'widget_schedule_calendar' has no authored message key.",
+        "Widget 'widget_schedule_calendar' has no authored message key.",
+        "Realization 'calendar_web_narrow' does not declare 'empty' state coverage.",
+        "Realization 'calendar_web_narrow' does not declare 'error' state coverage.",
+        "Realization 'calendar_web_narrow' is 'unsupported'.",
+        "Widget 'widget_status_board' has no android design realization in 'design_operations_product_ui'.",
+        "Widget 'widget_status_board' has no authored accessibility obligation.",
+        "Widget 'widget_status_board' has no authored message key.",
+        "Realization 'status_board_ios' does not declare 'error' state coverage.",
+        "Widget 'widget_status_board' has no authored accessibility obligation.",
+        "Widget 'widget_status_board' has no authored message key."
+      ],
+      "gaps": {
+        "behavior_review_items": 24,
+        "missing_accessibility": 37,
+        "missing_i18n": 37,
+        "missing_platforms": 6,
+        "missing_states": 15,
+        "missing_token_mappings": 1
+      },
+      "matrix": {
+        "review_rows": [
+          {
+            "code": "design_missing_platform",
+            "message": "Widget 'widget_activity_timeline' has no android design realization in 'design_operations_product_ui'.",
+            "platform": "android",
+            "widget": "widget_activity_timeline"
+          },
+          {
+            "code": "design_missing_accessibility",
+            "component_ref": "ops.ios.timeline",
+            "message": "Widget 'widget_activity_timeline' has no authored accessibility obligation.",
+            "platform": "ios",
+            "status": "missing_accessibility",
+            "viewport": "any",
+            "widget": "widget_activity_timeline"
+          },
+          {
+            "code": "design_missing_i18n",
+            "component_ref": "ops.ios.timeline",
+            "message": "Widget 'widget_activity_timeline' has no authored message key.",
+            "platform": "ios",
+            "status": "missing_i18n",
+            "viewport": "any",
+            "widget": "widget_activity_timeline"
+          },
+          {
+            "code": "design_missing_accessibility",
+            "component_ref": "ops.timeline.auditTrail",
+            "message": "Widget 'widget_activity_timeline' has no authored accessibility obligation.",
+            "platform": "web",
+            "status": "missing_accessibility",
+            "viewport": "wide",
+            "widget": "widget_activity_timeline"
+          },
+          {
+            "code": "design_missing_i18n",
+            "component_ref": "ops.timeline.auditTrail",
+            "message": "Widget 'widget_activity_timeline' has no authored message key.",
+            "platform": "web",
+            "status": "missing_i18n",
+            "viewport": "wide",
+            "widget": "widget_activity_timeline"
+          },
+          {
+            "code": "design_behavior_review_required",
+            "component_ref": "ops.android.liveAlert",
+            "message": "Behavior 'realtime_update' is 'unsupported'.",
+            "platform": "android",
+            "status": "unsupported",
+            "viewport": "any",
+            "widget": "widget_alert_banner"
+          },
+          {
+            "code": "design_missing_accessibility",
+            "component_ref": "ops.android.liveAlert",
+            "message": "Widget 'widget_alert_banner' has no authored accessibility obligation.",
+            "platform": "android",
+            "status": "missing_accessibility",
+            "viewport": "any",
+            "widget": "widget_alert_banner"
+          },
+          {
+            "code": "design_missing_i18n",
+            "component_ref": "ops.android.liveAlert",
+            "message": "Widget 'widget_alert_banner' has no authored message key.",
+            "platform": "android",
+            "status": "missing_i18n",
+            "viewport": "any",
+            "widget": "widget_alert_banner"
+          },
+          {
+            "code": "design_missing_state",
+            "component_ref": "ops.android.liveAlert",
+            "message": "Realization 'alert_banner_android' does not declare 'empty' state coverage.",
+            "platform": "android",
+            "status": "missing_state",
+            "viewport": "any",
+            "widget": "widget_alert_banner"
+          },
+          {
+            "code": "design_missing_state",
+            "component_ref": "ops.android.liveAlert",
+            "message": "Realization 'alert_banner_android' does not declare 'error' state coverage.",
+            "platform": "android",
+            "status": "missing_state",
+            "viewport": "any",
+            "widget": "widget_alert_banner"
+          },
+          {
+            "code": "design_realization_status_review",
+            "component_ref": "ops.android.liveAlert",
+            "message": "Realization 'alert_banner_android' is 'unsupported'.",
+            "platform": "android",
+            "status": "unsupported",
+            "viewport": "any",
+            "widget": "widget_alert_banner"
+          },
+          {
+            "code": "design_missing_accessibility",
+            "component_ref": "ops.ios.liveAlert",
+            "message": "Widget 'widget_alert_banner' has no authored accessibility obligation.",
+            "platform": "ios",
+            "status": "missing_accessibility",
+            "viewport": "any",
+            "widget": "widget_alert_banner"
+          },
+          {
+            "code": "design_missing_i18n",
+            "component_ref": "ops.ios.liveAlert",
+            "message": "Widget 'widget_alert_banner' has no authored message key.",
+            "platform": "ios",
+            "status": "missing_i18n",
+            "viewport": "any",
+            "widget": "widget_alert_banner"
+          },
+          {
+            "code": "design_missing_state",
+            "component_ref": "ops.ios.liveAlert",
+            "message": "Realization 'alert_banner_ios' does not declare 'error' state coverage.",
+            "platform": "ios",
+            "status": "missing_state",
+            "viewport": "any",
+            "widget": "widget_alert_banner"
+          },
+          {
+            "code": "design_behavior_review_required",
+            "component_ref": "ops.reviewGap.liveAlert",
+            "message": "Behavior 'realtime_update' is 'contract_only'.",
+            "platform": "web",
+            "status": "contract_only",
+            "viewport": "wide",
+            "widget": "widget_alert_banner"
+          },
+          {
+            "code": "design_missing_accessibility",
+            "component_ref": "ops.reviewGap.liveAlert",
+            "message": "Widget 'widget_alert_banner' has no authored accessibility obligation.",
+            "platform": "web",
+            "status": "missing_accessibility",
+            "viewport": "wide",
+            "widget": "widget_alert_banner"
+          },
+          {
+            "code": "design_missing_accessibility",
+            "component_ref": "ops.alerts.liveBanner",
+            "message": "Widget 'widget_alert_banner' has no authored accessibility obligation.",
+            "platform": "web",
+            "status": "missing_accessibility",
+            "viewport": "wide",
+            "widget": "widget_alert_banner"
+          },
+          {
+            "code": "design_missing_i18n",
+            "component_ref": "ops.reviewGap.liveAlert",
+            "message": "Widget 'widget_alert_banner' has no authored message key.",
+            "platform": "web",
+            "status": "missing_i18n",
+            "viewport": "wide",
+            "widget": "widget_alert_banner"
+          },
+          {
+            "code": "design_missing_i18n",
+            "component_ref": "ops.alerts.liveBanner",
+            "message": "Widget 'widget_alert_banner' has no authored message key.",
+            "platform": "web",
+            "status": "missing_i18n",
+            "viewport": "wide",
+            "widget": "widget_alert_banner"
+          },
+          {
+            "code": "design_missing_state",
+            "component_ref": "ops.reviewGap.liveAlert",
+            "message": "Realization 'alert_banner_gap_probe' does not declare 'empty' state coverage.",
+            "platform": "web",
+            "status": "missing_state",
+            "viewport": "wide",
+            "widget": "widget_alert_banner"
+          },
+          {
+            "code": "design_missing_state",
+            "component_ref": "ops.reviewGap.liveAlert",
+            "message": "Realization 'alert_banner_gap_probe' does not declare 'error' state coverage.",
+            "platform": "web",
+            "status": "missing_state",
+            "viewport": "wide",
+            "widget": "widget_alert_banner"
+          },
+          {
+            "code": "design_missing_token_mapping",
+            "component_ref": "ops.reviewGap.liveAlert",
+            "message": "Design contract 'design_operations_review_gap_probe' has no token mappings.",
+            "platform": "web",
+            "status": "missing_token",
+            "viewport": "wide",
+            "widget": "widget_alert_banner"
+          },
+          {
+            "code": "design_realization_status_review",
+            "component_ref": "ops.reviewGap.liveAlert",
+            "message": "Realization 'alert_banner_gap_probe' is 'contract_only'.",
+            "platform": "web",
+            "status": "contract_only",
+            "viewport": "wide",
+            "widget": "widget_alert_banner"
+          },
+          {
+            "code": "design_missing_accessibility",
+            "component_ref": "ops.android.assignmentSheet",
+            "message": "Widget 'widget_assignment_form' has no authored accessibility obligation.",
+            "platform": "android",
+            "status": "missing_accessibility",
+            "viewport": "any",
+            "widget": "widget_assignment_form"
+          },
+          {
+            "code": "design_missing_i18n",
+            "component_ref": "ops.android.assignmentSheet",
+            "message": "Widget 'widget_assignment_form' has no authored message key.",
+            "platform": "android",
+            "status": "missing_i18n",
+            "viewport": "any",
+            "widget": "widget_assignment_form"
+          },
+          {
+            "code": "design_missing_accessibility",
+            "component_ref": "ops.ios.assignmentSheet",
+            "message": "Widget 'widget_assignment_form' has no authored accessibility obligation.",
+            "platform": "ios",
+            "status": "missing_accessibility",
+            "viewport": "any",
+            "widget": "widget_assignment_form"
+          },
+          {
+            "code": "design_missing_i18n",
+            "component_ref": "ops.ios.assignmentSheet",
+            "message": "Widget 'widget_assignment_form' has no authored message key.",
+            "platform": "ios",
+            "status": "missing_i18n",
+            "viewport": "any",
+            "widget": "widget_assignment_form"
+          },
+          {
+            "code": "design_behavior_review_required",
+            "component_ref": "ops.forms.assignmentSheet",
+            "message": "Behavior 'keyboard_navigation' is 'contract_only'.",
+            "platform": "web",
+            "status": "contract_only",
+            "viewport": "narrow",
+            "widget": "widget_assignment_form"
+          },
+          {
+            "code": "design_behavior_review_required",
+            "component_ref": "ops.forms.assignmentSheet",
+            "message": "Behavior 'optimistic_update' is 'contract_only'.",
+            "platform": "web",
+            "status": "contract_only",
+            "viewport": "narrow",
+            "widget": "widget_assignment_form"
+          },
+          {
+            "code": "design_missing_accessibility",
+            "component_ref": "ops.forms.assignmentSheet",
+            "message": "Widget 'widget_assignment_form' has no authored accessibility obligation.",
+            "platform": "web",
+            "status": "missing_accessibility",
+            "viewport": "narrow",
+            "widget": "widget_assignment_form"
+          },
+          {
+            "code": "design_missing_accessibility",
+            "component_ref": "ops.forms.assignmentDrawer",
+            "message": "Widget 'widget_assignment_form' has no authored accessibility obligation.",
+            "platform": "web",
+            "status": "missing_accessibility",
+            "viewport": "wide",
+            "widget": "widget_assignment_form"
+          },
+          {
+            "code": "design_missing_i18n",
+            "component_ref": "ops.forms.assignmentSheet",
+            "message": "Widget 'widget_assignment_form' has no authored message key.",
+            "platform": "web",
+            "status": "missing_i18n",
+            "viewport": "narrow",
+            "widget": "widget_assignment_form"
+          },
+          {
+            "code": "design_missing_i18n",
+            "component_ref": "ops.forms.assignmentDrawer",
+            "message": "Widget 'widget_assignment_form' has no authored message key.",
+            "platform": "web",
+            "status": "missing_i18n",
+            "viewport": "wide",
+            "widget": "widget_assignment_form"
+          },
+          {
+            "code": "design_missing_state",
+            "component_ref": "ops.forms.assignmentSheet",
+            "message": "Realization 'assignment_form_web_narrow' does not declare 'error' state coverage.",
+            "platform": "web",
+            "status": "missing_state",
+            "viewport": "narrow",
+            "widget": "widget_assignment_form"
+          },
+          {
+            "code": "design_realization_status_review",
+            "component_ref": "ops.forms.assignmentSheet",
+            "message": "Realization 'assignment_form_web_narrow' is 'contract_only'.",
+            "platform": "web",
+            "status": "contract_only",
+            "viewport": "narrow",
+            "widget": "widget_assignment_form"
+          },
+          {
+            "code": "design_behavior_review_required",
+            "component_ref": "ops.android.queueCards",
+            "message": "Behavior 'filtering' is 'unsupported'.",
+            "platform": "android",
+            "status": "unsupported",
+            "viewport": "any",
+            "widget": "widget_card_list"
+          },
+          {
+            "code": "design_missing_accessibility",
+            "component_ref": "ops.android.queueCards",
+            "message": "Widget 'widget_card_list' has no authored accessibility obligation.",
+            "platform": "android",
+            "status": "missing_accessibility",
+            "viewport": "any",
+            "widget": "widget_card_list"
+          },
+          {
+            "code": "design_missing_i18n",
+            "component_ref": "ops.android.queueCards",
+            "message": "Widget 'widget_card_list' has no authored message key.",
+            "platform": "android",
+            "status": "missing_i18n",
+            "viewport": "any",
+            "widget": "widget_card_list"
+          },
+          {
+            "code": "design_missing_state",
+            "component_ref": "ops.android.queueCards",
+            "message": "Realization 'card_list_android' does not declare 'error' state coverage.",
+            "platform": "android",
+            "status": "missing_state",
+            "viewport": "any",
+            "widget": "widget_card_list"
+          },
+          {
+            "code": "design_realization_status_review",
+            "component_ref": "ops.android.queueCards",
+            "message": "Realization 'card_list_android' is 'unsupported'.",
+            "platform": "android",
+            "status": "unsupported",
+            "viewport": "any",
+            "widget": "widget_card_list"
+          },
+          {
+            "code": "design_missing_accessibility",
+            "component_ref": "ops.ios.queueList",
+            "message": "Widget 'widget_card_list' has no authored accessibility obligation.",
+            "platform": "ios",
+            "status": "missing_accessibility",
+            "viewport": "any",
+            "widget": "widget_card_list"
+          },
+          {
+            "code": "design_missing_i18n",
+            "component_ref": "ops.ios.queueList",
+            "message": "Widget 'widget_card_list' has no authored message key.",
+            "platform": "ios",
+            "status": "missing_i18n",
+            "viewport": "any",
+            "widget": "widget_card_list"
+          },
+          {
+            "code": "design_behavior_review_required",
+            "component_ref": "ops.queue.mobileCards",
+            "message": "Behavior 'filtering' is 'contract_only'.",
+            "platform": "web",
+            "status": "contract_only",
+            "viewport": "narrow",
+            "widget": "widget_card_list"
+          },
+          {
+            "code": "design_missing_accessibility",
+            "component_ref": "ops.queue.mobileCards",
+            "message": "Widget 'widget_card_list' has no authored accessibility obligation.",
+            "platform": "web",
+            "status": "missing_accessibility",
+            "viewport": "narrow",
+            "widget": "widget_card_list"
+          },
+          {
+            "code": "design_missing_accessibility",
+            "component_ref": "ops.queue.priorityCards",
+            "message": "Widget 'widget_card_list' has no authored accessibility obligation.",
+            "platform": "web",
+            "status": "missing_accessibility",
+            "viewport": "wide",
+            "widget": "widget_card_list"
+          },
+          {
+            "code": "design_missing_i18n",
+            "component_ref": "ops.queue.mobileCards",
+            "message": "Widget 'widget_card_list' has no authored message key.",
+            "platform": "web",
+            "status": "missing_i18n",
+            "viewport": "narrow",
+            "widget": "widget_card_list"
+          },
+          {
+            "code": "design_missing_i18n",
+            "component_ref": "ops.queue.priorityCards",
+            "message": "Widget 'widget_card_list' has no authored message key.",
+            "platform": "web",
+            "status": "missing_i18n",
+            "viewport": "wide",
+            "widget": "widget_card_list"
+          },
+          {
+            "code": "design_missing_state",
+            "component_ref": "ops.queue.mobileCards",
+            "message": "Realization 'card_list_web_narrow' does not declare 'error' state coverage.",
+            "platform": "web",
+            "status": "missing_state",
+            "viewport": "narrow",
+            "widget": "widget_card_list"
+          },
+          {
+            "code": "design_realization_status_review",
+            "component_ref": "ops.queue.mobileCards",
+            "message": "Realization 'card_list_web_narrow' is 'contract_only'.",
+            "platform": "web",
+            "status": "contract_only",
+            "viewport": "narrow",
+            "widget": "widget_card_list"
+          },
+          {
+            "code": "design_missing_accessibility",
+            "component_ref": "ops.android.actionRow",
+            "message": "Widget 'widget_command_toolbar' has no authored accessibility obligation.",
+            "platform": "android",
+            "status": "missing_accessibility",
+            "viewport": "any",
+            "widget": "widget_command_toolbar"
+          },
+          {
+            "code": "design_missing_i18n",
+            "component_ref": "ops.android.actionRow",
+            "message": "Widget 'widget_command_toolbar' has no authored message key.",
+            "platform": "android",
+            "status": "missing_i18n",
+            "viewport": "any",
+            "widget": "widget_command_toolbar"
+          },
+          {
+            "code": "design_missing_accessibility",
+            "component_ref": "ops.ios.commandBar",
+            "message": "Widget 'widget_command_toolbar' has no authored accessibility obligation.",
+            "platform": "ios",
+            "status": "missing_accessibility",
+            "viewport": "any",
+            "widget": "widget_command_toolbar"
+          },
+          {
+            "code": "design_missing_i18n",
+            "component_ref": "ops.ios.commandBar",
+            "message": "Widget 'widget_command_toolbar' has no authored message key.",
+            "platform": "ios",
+            "status": "missing_i18n",
+            "viewport": "any",
+            "widget": "widget_command_toolbar"
+          },
+          {
+            "code": "design_behavior_review_required",
+            "component_ref": "ops.commandToolbar.overflow",
+            "message": "Behavior 'bulk_action' is 'contract_only'.",
+            "platform": "web",
+            "status": "contract_only",
+            "viewport": "narrow",
+            "widget": "widget_command_toolbar"
+          },
+          {
+            "code": "design_missing_accessibility",
+            "component_ref": "ops.commandToolbar.overflow",
+            "message": "Widget 'widget_command_toolbar' has no authored accessibility obligation.",
+            "platform": "web",
+            "status": "missing_accessibility",
+            "viewport": "narrow",
+            "widget": "widget_command_toolbar"
+          },
+          {
+            "code": "design_missing_accessibility",
+            "component_ref": "ops.commandToolbar.desktop",
+            "message": "Widget 'widget_command_toolbar' has no authored accessibility obligation.",
+            "platform": "web",
+            "status": "missing_accessibility",
+            "viewport": "wide",
+            "widget": "widget_command_toolbar"
+          },
+          {
+            "code": "design_missing_i18n",
+            "component_ref": "ops.commandToolbar.overflow",
+            "message": "Widget 'widget_command_toolbar' has no authored message key.",
+            "platform": "web",
+            "status": "missing_i18n",
+            "viewport": "narrow",
+            "widget": "widget_command_toolbar"
+          },
+          {
+            "code": "design_missing_i18n",
+            "component_ref": "ops.commandToolbar.desktop",
+            "message": "Widget 'widget_command_toolbar' has no authored message key.",
+            "platform": "web",
+            "status": "missing_i18n",
+            "viewport": "wide",
+            "widget": "widget_command_toolbar"
+          },
+          {
+            "code": "design_missing_platform",
+            "message": "Widget 'widget_data_grid' has no android design realization in 'design_operations_product_ui'.",
+            "platform": "android",
+            "widget": "widget_data_grid"
+          },
+          {
+            "code": "design_missing_platform",
+            "message": "Widget 'widget_data_grid' has no ios design realization in 'design_operations_product_ui'.",
+            "platform": "ios",
+            "widget": "widget_data_grid"
+          },
+          {
+            "code": "design_behavior_review_required",
+            "component_ref": "ops.table.cardFallback",
+            "message": "Behavior 'filtering' is 'contract_only'.",
+            "platform": "web",
+            "status": "contract_only",
+            "viewport": "narrow",
+            "widget": "widget_data_grid"
+          },
+          {
+            "code": "design_behavior_review_required",
+            "component_ref": "ops.table.cardFallback",
+            "message": "Behavior 'keyboard_navigation' is 'contract_only'.",
+            "platform": "web",
+            "status": "contract_only",
+            "viewport": "narrow",
+            "widget": "widget_data_grid"
+          },
+          {
+            "code": "design_behavior_review_required",
+            "component_ref": "ops.table.cardFallback",
+            "message": "Behavior 'sorting' is 'contract_only'.",
+            "platform": "web",
+            "status": "contract_only",
+            "viewport": "narrow",
+            "widget": "widget_data_grid"
+          },
+          {
+            "code": "design_missing_accessibility",
+            "component_ref": "ops.table.cardFallback",
+            "message": "Widget 'widget_data_grid' has no authored accessibility obligation.",
+            "platform": "web",
+            "status": "missing_accessibility",
+            "viewport": "narrow",
+            "widget": "widget_data_grid"
+          },
+          {
+            "code": "design_missing_accessibility",
+            "component_ref": "ops.table.dataGrid",
+            "message": "Widget 'widget_data_grid' has no authored accessibility obligation.",
+            "platform": "web",
+            "status": "missing_accessibility",
+            "viewport": "wide",
+            "widget": "widget_data_grid"
+          },
+          {
+            "code": "design_missing_i18n",
+            "component_ref": "ops.table.cardFallback",
+            "message": "Widget 'widget_data_grid' has no authored message key.",
+            "platform": "web",
+            "status": "missing_i18n",
+            "viewport": "narrow",
+            "widget": "widget_data_grid"
+          },
+          {
+            "code": "design_missing_i18n",
+            "component_ref": "ops.table.dataGrid",
+            "message": "Widget 'widget_data_grid' has no authored message key.",
+            "platform": "web",
+            "status": "missing_i18n",
+            "viewport": "wide",
+            "widget": "widget_data_grid"
+          },
+          {
+            "code": "design_missing_state",
+            "component_ref": "ops.table.cardFallback",
+            "message": "Realization 'data_grid_web_narrow' does not declare 'error' state coverage.",
+            "platform": "web",
+            "status": "missing_state",
+            "viewport": "narrow",
+            "widget": "widget_data_grid"
+          },
+          {
+            "code": "design_realization_status_review",
+            "component_ref": "ops.table.cardFallback",
+            "message": "Realization 'data_grid_web_narrow' is 'contract_only'.",
+            "platform": "web",
+            "status": "contract_only",
+            "viewport": "narrow",
+            "widget": "widget_data_grid"
+          },
+          {
+            "code": "design_missing_accessibility",
+            "component_ref": "ops.android.detailSheet",
+            "message": "Widget 'widget_detail_panel' has no authored accessibility obligation.",
+            "platform": "android",
+            "status": "missing_accessibility",
+            "viewport": "any",
+            "widget": "widget_detail_panel"
+          },
+          {
+            "code": "design_missing_i18n",
+            "component_ref": "ops.android.detailSheet",
+            "message": "Widget 'widget_detail_panel' has no authored message key.",
+            "platform": "android",
+            "status": "missing_i18n",
+            "viewport": "any",
+            "widget": "widget_detail_panel"
+          },
+          {
+            "code": "design_missing_accessibility",
+            "component_ref": "ops.ios.detailSheet",
+            "message": "Widget 'widget_detail_panel' has no authored accessibility obligation.",
+            "platform": "ios",
+            "status": "missing_accessibility",
+            "viewport": "any",
+            "widget": "widget_detail_panel"
+          },
+          {
+            "code": "design_missing_i18n",
+            "component_ref": "ops.ios.detailSheet",
+            "message": "Widget 'widget_detail_panel' has no authored message key.",
+            "platform": "ios",
+            "status": "missing_i18n",
+            "viewport": "any",
+            "widget": "widget_detail_panel"
+          },
+          {
+            "code": "design_missing_accessibility",
+            "component_ref": "ops.detail.inspector",
+            "message": "Widget 'widget_detail_panel' has no authored accessibility obligation.",
+            "platform": "web",
+            "status": "missing_accessibility",
+            "viewport": "wide",
+            "widget": "widget_detail_panel"
+          },
+          {
+            "code": "design_missing_accessibility",
+            "component_ref": "ops.settings.sectionPanel",
+            "message": "Widget 'widget_detail_panel' has no authored accessibility obligation.",
+            "platform": "web",
+            "status": "missing_accessibility",
+            "viewport": "wide",
+            "widget": "widget_detail_panel"
+          },
+          {
+            "code": "design_missing_accessibility",
+            "component_ref": "ops.detail.summaryPanel",
+            "message": "Widget 'widget_detail_panel' has no authored accessibility obligation.",
+            "platform": "web",
+            "status": "missing_accessibility",
+            "viewport": "wide",
+            "widget": "widget_detail_panel"
+          },
+          {
+            "code": "design_missing_i18n",
+            "component_ref": "ops.detail.inspector",
+            "message": "Widget 'widget_detail_panel' has no authored message key.",
+            "platform": "web",
+            "status": "missing_i18n",
+            "viewport": "wide",
+            "widget": "widget_detail_panel"
+          },
+          {
+            "code": "design_missing_i18n",
+            "component_ref": "ops.settings.sectionPanel",
+            "message": "Widget 'widget_detail_panel' has no authored message key.",
+            "platform": "web",
+            "status": "missing_i18n",
+            "viewport": "wide",
+            "widget": "widget_detail_panel"
+          },
+          {
+            "code": "design_missing_i18n",
+            "component_ref": "ops.detail.summaryPanel",
+            "message": "Widget 'widget_detail_panel' has no authored message key.",
+            "platform": "web",
+            "status": "missing_i18n",
+            "viewport": "wide",
+            "widget": "widget_detail_panel"
+          },
+          {
+            "code": "design_missing_state",
+            "component_ref": "ops.settings.sectionPanel",
+            "message": "Realization 'detail_panel_web_settings' does not declare 'error' state coverage.",
+            "platform": "web",
+            "status": "missing_state",
+            "viewport": "wide",
+            "widget": "widget_detail_panel"
+          },
+          {
+            "code": "design_realization_status_review",
+            "component_ref": "ops.settings.sectionPanel",
+            "message": "Realization 'detail_panel_web_settings' is 'contract_only'.",
+            "platform": "web",
+            "status": "contract_only",
+            "viewport": "wide",
+            "widget": "widget_detail_panel"
+          },
+          {
+            "code": "design_missing_platform",
+            "message": "Widget 'widget_filter_panel' has no android design realization in 'design_operations_product_ui'.",
+            "platform": "android",
+            "widget": "widget_filter_panel"
+          },
+          {
+            "code": "design_missing_accessibility",
+            "component_ref": "ops.ios.filterSheet",
+            "message": "Widget 'widget_filter_panel' has no authored accessibility obligation.",
+            "platform": "ios",
+            "status": "missing_accessibility",
+            "viewport": "any",
+            "widget": "widget_filter_panel"
+          },
+          {
+            "code": "design_missing_i18n",
+            "component_ref": "ops.ios.filterSheet",
+            "message": "Widget 'widget_filter_panel' has no authored message key.",
+            "platform": "ios",
+            "status": "missing_i18n",
+            "viewport": "any",
+            "widget": "widget_filter_panel"
+          },
+          {
+            "code": "design_behavior_review_required",
+            "component_ref": "ops.filters.sheet",
+            "message": "Behavior 'filtering' is 'contract_only'.",
+            "platform": "web",
+            "status": "contract_only",
+            "viewport": "narrow",
+            "widget": "widget_filter_panel"
+          },
+          {
+            "code": "design_behavior_review_required",
+            "component_ref": "ops.filters.sheet",
+            "message": "Behavior 'search' is 'contract_only'.",
+            "platform": "web",
+            "status": "contract_only",
+            "viewport": "narrow",
+            "widget": "widget_filter_panel"
+          },
+          {
+            "code": "design_missing_accessibility",
+            "component_ref": "ops.filters.sheet",
+            "message": "Widget 'widget_filter_panel' has no authored accessibility obligation.",
+            "platform": "web",
+            "status": "missing_accessibility",
+            "viewport": "narrow",
+            "widget": "widget_filter_panel"
+          },
+          {
+            "code": "design_missing_accessibility",
+            "component_ref": "ops.filters.rail",
+            "message": "Widget 'widget_filter_panel' has no authored accessibility obligation.",
+            "platform": "web",
+            "status": "missing_accessibility",
+            "viewport": "wide",
+            "widget": "widget_filter_panel"
+          },
+          {
+            "code": "design_missing_i18n",
+            "component_ref": "ops.filters.sheet",
+            "message": "Widget 'widget_filter_panel' has no authored message key.",
+            "platform": "web",
+            "status": "missing_i18n",
+            "viewport": "narrow",
+            "widget": "widget_filter_panel"
+          },
+          {
+            "code": "design_missing_i18n",
+            "component_ref": "ops.filters.rail",
+            "message": "Widget 'widget_filter_panel' has no authored message key.",
+            "platform": "web",
+            "status": "missing_i18n",
+            "viewport": "wide",
+            "widget": "widget_filter_panel"
+          },
+          {
+            "code": "design_missing_state",
+            "component_ref": "ops.filters.sheet",
+            "message": "Realization 'filter_panel_web_narrow' does not declare 'error' state coverage.",
+            "platform": "web",
+            "status": "missing_state",
+            "viewport": "narrow",
+            "widget": "widget_filter_panel"
+          },
+          {
+            "code": "design_realization_status_review",
+            "component_ref": "ops.filters.sheet",
+            "message": "Realization 'filter_panel_web_narrow' is 'contract_only'.",
+            "platform": "web",
+            "status": "contract_only",
+            "viewport": "narrow",
+            "widget": "widget_filter_panel"
+          },
+          {
+            "code": "design_missing_platform",
+            "message": "Widget 'widget_kpi_summary_cards' has no android design realization in 'design_operations_product_ui'.",
+            "platform": "android",
+            "widget": "widget_kpi_summary_cards"
+          },
+          {
+            "code": "design_missing_accessibility",
+            "component_ref": "ops.ios.metricCards",
+            "message": "Widget 'widget_kpi_summary_cards' has no authored accessibility obligation.",
+            "platform": "ios",
+            "status": "missing_accessibility",
+            "viewport": "any",
+            "widget": "widget_kpi_summary_cards"
+          },
+          {
+            "code": "design_missing_i18n",
+            "component_ref": "ops.ios.metricCards",
+            "message": "Widget 'widget_kpi_summary_cards' has no authored message key.",
+            "platform": "ios",
+            "status": "missing_i18n",
+            "viewport": "any",
+            "widget": "widget_kpi_summary_cards"
+          },
+          {
+            "code": "design_behavior_review_required",
+            "component_ref": "ops.kpi.summaryCarousel",
+            "message": "Behavior 'selection' is 'contract_only'.",
+            "platform": "web",
+            "status": "contract_only",
+            "viewport": "narrow",
+            "widget": "widget_kpi_summary_cards"
+          },
+          {
+            "code": "design_missing_accessibility",
+            "component_ref": "ops.kpi.summaryCarousel",
+            "message": "Widget 'widget_kpi_summary_cards' has no authored accessibility obligation.",
+            "platform": "web",
+            "status": "missing_accessibility",
+            "viewport": "narrow",
+            "widget": "widget_kpi_summary_cards"
+          },
+          {
+            "code": "design_missing_accessibility",
+            "component_ref": "ops.kpi.summaryGrid",
+            "message": "Widget 'widget_kpi_summary_cards' has no authored accessibility obligation.",
+            "platform": "web",
+            "status": "missing_accessibility",
+            "viewport": "wide",
+            "widget": "widget_kpi_summary_cards"
+          },
+          {
+            "code": "design_missing_i18n",
+            "component_ref": "ops.kpi.summaryCarousel",
+            "message": "Widget 'widget_kpi_summary_cards' has no authored message key.",
+            "platform": "web",
+            "status": "missing_i18n",
+            "viewport": "narrow",
+            "widget": "widget_kpi_summary_cards"
+          },
+          {
+            "code": "design_missing_i18n",
+            "component_ref": "ops.kpi.summaryGrid",
+            "message": "Widget 'widget_kpi_summary_cards' has no authored message key.",
+            "platform": "web",
+            "status": "missing_i18n",
+            "viewport": "wide",
+            "widget": "widget_kpi_summary_cards"
+          },
+          {
+            "code": "design_missing_state",
+            "component_ref": "ops.kpi.summaryCarousel",
+            "message": "Realization 'kpi_cards_web_narrow' does not declare 'error' state coverage.",
+            "platform": "web",
+            "status": "missing_state",
+            "viewport": "narrow",
+            "widget": "widget_kpi_summary_cards"
+          },
+          {
+            "code": "design_realization_status_review",
+            "component_ref": "ops.kpi.summaryCarousel",
+            "message": "Realization 'kpi_cards_web_narrow' is 'contract_only'.",
+            "platform": "web",
+            "status": "contract_only",
+            "viewport": "narrow",
+            "widget": "widget_kpi_summary_cards"
+          },
+          {
+            "code": "design_missing_accessibility",
+            "component_ref": "ops.android.scheduleCalendar",
+            "message": "Widget 'widget_schedule_calendar' has no authored accessibility obligation.",
+            "platform": "android",
+            "status": "missing_accessibility",
+            "viewport": "any",
+            "widget": "widget_schedule_calendar"
+          },
+          {
+            "code": "design_missing_i18n",
+            "component_ref": "ops.android.scheduleCalendar",
+            "message": "Widget 'widget_schedule_calendar' has no authored message key.",
+            "platform": "android",
+            "status": "missing_i18n",
+            "viewport": "any",
+            "widget": "widget_schedule_calendar"
+          },
+          {
+            "code": "design_missing_accessibility",
+            "component_ref": "ops.ios.scheduleCalendar",
+            "message": "Widget 'widget_schedule_calendar' has no authored accessibility obligation.",
+            "platform": "ios",
+            "status": "missing_accessibility",
+            "viewport": "any",
+            "widget": "widget_schedule_calendar"
+          },
+          {
+            "code": "design_missing_i18n",
+            "component_ref": "ops.ios.scheduleCalendar",
+            "message": "Widget 'widget_schedule_calendar' has no authored message key.",
+            "platform": "ios",
+            "status": "missing_i18n",
+            "viewport": "any",
+            "widget": "widget_schedule_calendar"
+          },
+          {
+            "code": "design_behavior_review_required",
+            "component_ref": "ops.calendar.agendaList",
+            "message": "Behavior 'selection' is 'unsupported'.",
+            "platform": "web",
+            "status": "unsupported",
+            "viewport": "narrow",
+            "widget": "widget_schedule_calendar"
+          },
+          {
+            "code": "design_missing_accessibility",
+            "component_ref": "ops.calendar.agendaList",
+            "message": "Widget 'widget_schedule_calendar' has no authored accessibility obligation.",
+            "platform": "web",
+            "status": "missing_accessibility",
+            "viewport": "narrow",
+            "widget": "widget_schedule_calendar"
+          },
+          {
+            "code": "design_missing_accessibility",
+            "component_ref": "ops.calendar.scheduleBoard",
+            "message": "Widget 'widget_schedule_calendar' has no authored accessibility obligation.",
+            "platform": "web",
+            "status": "missing_accessibility",
+            "viewport": "wide",
+            "widget": "widget_schedule_calendar"
+          },
+          {
+            "code": "design_missing_i18n",
+            "component_ref": "ops.calendar.agendaList",
+            "message": "Widget 'widget_schedule_calendar' has no authored message key.",
+            "platform": "web",
+            "status": "missing_i18n",
+            "viewport": "narrow",
+            "widget": "widget_schedule_calendar"
+          },
+          {
+            "code": "design_missing_i18n",
+            "component_ref": "ops.calendar.scheduleBoard",
+            "message": "Widget 'widget_schedule_calendar' has no authored message key.",
+            "platform": "web",
+            "status": "missing_i18n",
+            "viewport": "wide",
+            "widget": "widget_schedule_calendar"
+          },
+          {
+            "code": "design_missing_state",
+            "component_ref": "ops.calendar.agendaList",
+            "message": "Realization 'calendar_web_narrow' does not declare 'empty' state coverage.",
+            "platform": "web",
+            "status": "missing_state",
+            "viewport": "narrow",
+            "widget": "widget_schedule_calendar"
+          },
+          {
+            "code": "design_missing_state",
+            "component_ref": "ops.calendar.agendaList",
+            "message": "Realization 'calendar_web_narrow' does not declare 'error' state coverage.",
+            "platform": "web",
+            "status": "missing_state",
+            "viewport": "narrow",
+            "widget": "widget_schedule_calendar"
+          },
+          {
+            "code": "design_realization_status_review",
+            "component_ref": "ops.calendar.agendaList",
+            "message": "Realization 'calendar_web_narrow' is 'unsupported'.",
+            "platform": "web",
+            "status": "unsupported",
+            "viewport": "narrow",
+            "widget": "widget_schedule_calendar"
+          },
+          {
+            "code": "design_missing_platform",
+            "message": "Widget 'widget_status_board' has no android design realization in 'design_operations_product_ui'.",
+            "platform": "android",
+            "widget": "widget_status_board"
+          },
+          {
+            "code": "design_missing_accessibility",
+            "component_ref": "ops.ios.statusBoard",
+            "message": "Widget 'widget_status_board' has no authored accessibility obligation.",
+            "platform": "ios",
+            "status": "missing_accessibility",
+            "viewport": "any",
+            "widget": "widget_status_board"
+          },
+          {
+            "code": "design_missing_i18n",
+            "component_ref": "ops.ios.statusBoard",
+            "message": "Widget 'widget_status_board' has no authored message key.",
+            "platform": "ios",
+            "status": "missing_i18n",
+            "viewport": "any",
+            "widget": "widget_status_board"
+          },
+          {
+            "code": "design_missing_state",
+            "component_ref": "ops.ios.statusBoard",
+            "message": "Realization 'status_board_ios' does not declare 'error' state coverage.",
+            "platform": "ios",
+            "status": "missing_state",
+            "viewport": "any",
+            "widget": "widget_status_board"
+          },
+          {
+            "code": "design_missing_accessibility",
+            "component_ref": "ops.board.statusLanes",
+            "message": "Widget 'widget_status_board' has no authored accessibility obligation.",
+            "platform": "web",
+            "status": "missing_accessibility",
+            "viewport": "wide",
+            "widget": "widget_status_board"
+          },
+          {
+            "code": "design_missing_i18n",
+            "component_ref": "ops.board.statusLanes",
+            "message": "Widget 'widget_status_board' has no authored message key.",
+            "platform": "web",
+            "status": "missing_i18n",
+            "viewport": "wide",
+            "widget": "widget_status_board"
+          }
+        ],
+        "rows": [
+          {
+            "accessibility_status": "missing",
+            "behavior_statuses": [],
+            "component_ref": null,
+            "density": "unspecified",
+            "i18n_status": "missing",
+            "missing_states": [
+              "loading",
+              "empty",
+              "error"
+            ],
+            "pattern": null,
+            "platform": "android",
+            "review_status": "review_required",
+            "state_coverage": [],
+            "status": "missing_platform",
+            "token_status": "mapped",
+            "viewport": "any",
+            "widget": "widget_activity_timeline"
+          },
+          {
+            "accessibility_status": "missing",
+            "behavior_statuses": [],
+            "component_ref": "ops.ios.timeline",
+            "density": "comfortable",
+            "i18n_status": "missing",
+            "missing_states": [],
+            "pattern": "timeline_view",
+            "platform": "ios",
+            "review_status": "review_required",
+            "state_coverage": [
+              "loading",
+              "empty",
+              "error"
+            ],
+            "status": "implementation_owned",
+            "token_status": "mapped",
+            "viewport": "any",
+            "widget": "widget_activity_timeline"
+          },
+          {
+            "accessibility_status": "missing",
+            "behavior_statuses": [],
+            "component_ref": "ops.timeline.auditTrail",
+            "density": "comfortable",
+            "i18n_status": "missing",
+            "missing_states": [],
+            "pattern": "timeline_view",
+            "platform": "web",
+            "review_status": "review_required",
+            "state_coverage": [
+              "loading",
+              "empty",
+              "error"
+            ],
+            "status": "rendered",
+            "token_status": "mapped",
+            "viewport": "wide",
+            "widget": "widget_activity_timeline"
+          },
+          {
+            "accessibility_status": "missing",
+            "behavior_statuses": [
+              {
+                "behavior": "realtime_update",
+                "status": "unsupported"
+              }
+            ],
+            "component_ref": "ops.android.liveAlert",
+            "density": "compact",
+            "i18n_status": "missing",
+            "missing_states": [
+              "empty",
+              "error"
+            ],
+            "pattern": "activity_feed",
+            "platform": "android",
+            "review_status": "review_required",
+            "state_coverage": [
+              "loading"
+            ],
+            "status": "unsupported",
+            "token_status": "mapped",
+            "viewport": "any",
+            "widget": "widget_alert_banner"
+          },
+          {
+            "accessibility_status": "missing",
+            "behavior_statuses": [
+              {
+                "behavior": "realtime_update",
+                "status": "implementation_owned"
+              }
+            ],
+            "component_ref": "ops.ios.liveAlert",
+            "density": "compact",
+            "i18n_status": "missing",
+            "missing_states": [
+              "error"
+            ],
+            "pattern": "activity_feed",
+            "platform": "ios",
+            "review_status": "review_required",
+            "state_coverage": [
+              "loading",
+              "empty"
+            ],
+            "status": "implementation_owned",
+            "token_status": "mapped",
+            "viewport": "any",
+            "widget": "widget_alert_banner"
+          },
+          {
+            "accessibility_status": "missing",
+            "behavior_statuses": [
+              {
+                "behavior": "realtime_update",
+                "status": "contract_only"
+              }
+            ],
+            "component_ref": "ops.reviewGap.liveAlert",
+            "density": "compact",
+            "i18n_status": "missing",
+            "missing_states": [
+              "empty",
+              "error"
+            ],
+            "pattern": "activity_feed",
+            "platform": "web",
+            "review_status": "review_required",
+            "state_coverage": [
+              "loading"
+            ],
+            "status": "contract_only",
+            "token_status": "missing",
+            "viewport": "wide",
+            "widget": "widget_alert_banner"
+          },
+          {
+            "accessibility_status": "missing",
+            "behavior_statuses": [
+              {
+                "behavior": "realtime_update",
+                "status": "rendered"
+              }
+            ],
+            "component_ref": "ops.alerts.liveBanner",
+            "density": "compact",
+            "i18n_status": "missing",
+            "missing_states": [],
+            "pattern": "activity_feed",
+            "platform": "web",
+            "review_status": "review_required",
+            "state_coverage": [
+              "loading",
+              "empty",
+              "error"
+            ],
+            "status": "rendered",
+            "token_status": "mapped",
+            "viewport": "wide",
+            "widget": "widget_alert_banner"
+          },
+          {
+            "accessibility_status": "missing",
+            "behavior_statuses": [
+              {
+                "behavior": "keyboard_navigation",
+                "status": "implementation_owned"
+              },
+              {
+                "behavior": "optimistic_update",
+                "status": "implementation_owned"
+              }
+            ],
+            "component_ref": "ops.android.assignmentSheet",
+            "density": "comfortable",
+            "i18n_status": "missing",
+            "missing_states": [],
+            "pattern": "footer_bar",
+            "platform": "android",
+            "review_status": "review_required",
+            "state_coverage": [
+              "loading",
+              "empty",
+              "error"
+            ],
+            "status": "implementation_owned",
+            "token_status": "mapped",
+            "viewport": "any",
+            "widget": "widget_assignment_form"
+          },
+          {
+            "accessibility_status": "missing",
+            "behavior_statuses": [
+              {
+                "behavior": "keyboard_navigation",
+                "status": "implementation_owned"
+              },
+              {
+                "behavior": "optimistic_update",
+                "status": "implementation_owned"
+              }
+            ],
+            "component_ref": "ops.ios.assignmentSheet",
+            "density": "comfortable",
+            "i18n_status": "missing",
+            "missing_states": [],
+            "pattern": "footer_bar",
+            "platform": "ios",
+            "review_status": "review_required",
+            "state_coverage": [
+              "loading",
+              "empty",
+              "error"
+            ],
+            "status": "implementation_owned",
+            "token_status": "mapped",
+            "viewport": "any",
+            "widget": "widget_assignment_form"
+          },
+          {
+            "accessibility_status": "missing",
+            "behavior_statuses": [
+              {
+                "behavior": "keyboard_navigation",
+                "status": "contract_only"
+              },
+              {
+                "behavior": "optimistic_update",
+                "status": "contract_only"
+              }
+            ],
+            "component_ref": "ops.forms.assignmentSheet",
+            "density": "comfortable",
+            "i18n_status": "missing",
+            "missing_states": [
+              "error"
+            ],
+            "pattern": "footer_bar",
+            "platform": "web",
+            "review_status": "review_required",
+            "state_coverage": [
+              "loading",
+              "empty"
+            ],
+            "status": "contract_only",
+            "token_status": "mapped",
+            "viewport": "narrow",
+            "widget": "widget_assignment_form"
+          },
+          {
+            "accessibility_status": "missing",
+            "behavior_statuses": [
+              {
+                "behavior": "keyboard_navigation",
+                "status": "rendered"
+              },
+              {
+                "behavior": "optimistic_update",
+                "status": "rendered"
+              }
+            ],
+            "component_ref": "ops.forms.assignmentDrawer",
+            "density": "comfortable",
+            "i18n_status": "missing",
+            "missing_states": [],
+            "pattern": "footer_bar",
+            "platform": "web",
+            "review_status": "review_required",
+            "state_coverage": [
+              "loading",
+              "empty",
+              "error"
+            ],
+            "status": "rendered",
+            "token_status": "mapped",
+            "viewport": "wide",
+            "widget": "widget_assignment_form"
+          },
+          {
+            "accessibility_status": "missing",
+            "behavior_statuses": [
+              {
+                "behavior": "filtering",
+                "status": "unsupported"
+              },
+              {
+                "behavior": "selection",
+                "status": "rendered"
+              }
+            ],
+            "component_ref": "ops.android.queueCards",
+            "density": "comfortable",
+            "i18n_status": "missing",
+            "missing_states": [
+              "error"
+            ],
+            "pattern": "resource_cards",
+            "platform": "android",
+            "review_status": "review_required",
+            "state_coverage": [
+              "loading",
+              "empty"
+            ],
+            "status": "unsupported",
+            "token_status": "mapped",
+            "viewport": "any",
+            "widget": "widget_card_list"
+          },
+          {
+            "accessibility_status": "missing",
+            "behavior_statuses": [
+              {
+                "behavior": "filtering",
+                "status": "implementation_owned"
+              },
+              {
+                "behavior": "selection",
+                "status": "rendered"
+              }
+            ],
+            "component_ref": "ops.ios.queueList",
+            "density": "comfortable",
+            "i18n_status": "missing",
+            "missing_states": [],
+            "pattern": "resource_cards",
+            "platform": "ios",
+            "review_status": "review_required",
+            "state_coverage": [
+              "loading",
+              "empty",
+              "error"
+            ],
+            "status": "implementation_owned",
+            "token_status": "mapped",
+            "viewport": "any",
+            "widget": "widget_card_list"
+          },
+          {
+            "accessibility_status": "missing",
+            "behavior_statuses": [
+              {
+                "behavior": "filtering",
+                "status": "contract_only"
+              },
+              {
+                "behavior": "selection",
+                "status": "rendered"
+              }
+            ],
+            "component_ref": "ops.queue.mobileCards",
+            "density": "comfortable",
+            "i18n_status": "missing",
+            "missing_states": [
+              "error"
+            ],
+            "pattern": "resource_cards",
+            "platform": "web",
+            "review_status": "review_required",
+            "state_coverage": [
+              "loading",
+              "empty"
+            ],
+            "status": "contract_only",
+            "token_status": "mapped",
+            "viewport": "narrow",
+            "widget": "widget_card_list"
+          },
+          {
+            "accessibility_status": "missing",
+            "behavior_statuses": [
+              {
+                "behavior": "filtering",
+                "status": "rendered"
+              },
+              {
+                "behavior": "selection",
+                "status": "rendered"
+              }
+            ],
+            "component_ref": "ops.queue.priorityCards",
+            "density": "comfortable",
+            "i18n_status": "missing",
+            "missing_states": [],
+            "pattern": "resource_cards",
+            "platform": "web",
+            "review_status": "review_required",
+            "state_coverage": [
+              "loading",
+              "empty",
+              "error"
+            ],
+            "status": "rendered",
+            "token_status": "mapped",
+            "viewport": "wide",
+            "widget": "widget_card_list"
+          },
+          {
+            "accessibility_status": "missing",
+            "behavior_statuses": [
+              {
+                "behavior": "bulk_action",
+                "status": "implementation_owned"
+              },
+              {
+                "behavior": "keyboard_navigation",
+                "status": "rendered"
+              }
+            ],
+            "component_ref": "ops.android.actionRow",
+            "density": "comfortable",
+            "i18n_status": "missing",
+            "missing_states": [],
+            "pattern": "action_bar",
+            "platform": "android",
+            "review_status": "review_required",
+            "state_coverage": [
+              "loading",
+              "empty",
+              "error"
+            ],
+            "status": "implementation_owned",
+            "token_status": "mapped",
+            "viewport": "any",
+            "widget": "widget_command_toolbar"
+          },
+          {
+            "accessibility_status": "missing",
+            "behavior_statuses": [
+              {
+                "behavior": "bulk_action",
+                "status": "implementation_owned"
+              },
+              {
+                "behavior": "keyboard_navigation",
+                "status": "rendered"
+              }
+            ],
+            "component_ref": "ops.ios.commandBar",
+            "density": "comfortable",
+            "i18n_status": "missing",
+            "missing_states": [],
+            "pattern": "action_bar",
+            "platform": "ios",
+            "review_status": "review_required",
+            "state_coverage": [
+              "loading",
+              "empty",
+              "error"
+            ],
+            "status": "implementation_owned",
+            "token_status": "mapped",
+            "viewport": "any",
+            "widget": "widget_command_toolbar"
+          },
+          {
+            "accessibility_status": "missing",
+            "behavior_statuses": [
+              {
+                "behavior": "bulk_action",
+                "status": "contract_only"
+              },
+              {
+                "behavior": "keyboard_navigation",
+                "status": "rendered"
+              }
+            ],
+            "component_ref": "ops.commandToolbar.overflow",
+            "density": "compact",
+            "i18n_status": "missing",
+            "missing_states": [],
+            "pattern": "action_bar",
+            "platform": "web",
+            "review_status": "review_required",
+            "state_coverage": [
+              "loading",
+              "empty",
+              "error"
+            ],
+            "status": "rendered",
+            "token_status": "mapped",
+            "viewport": "narrow",
+            "widget": "widget_command_toolbar"
+          },
+          {
+            "accessibility_status": "missing",
+            "behavior_statuses": [
+              {
+                "behavior": "bulk_action",
+                "status": "rendered"
+              },
+              {
+                "behavior": "keyboard_navigation",
+                "status": "rendered"
+              }
+            ],
+            "component_ref": "ops.commandToolbar.desktop",
+            "density": "compact",
+            "i18n_status": "missing",
+            "missing_states": [],
+            "pattern": "action_bar",
+            "platform": "web",
+            "review_status": "review_required",
+            "state_coverage": [
+              "loading",
+              "empty",
+              "error"
+            ],
+            "status": "rendered",
+            "token_status": "mapped",
+            "viewport": "wide",
+            "widget": "widget_command_toolbar"
+          },
+          {
+            "accessibility_status": "missing",
+            "behavior_statuses": [],
+            "component_ref": null,
+            "density": "unspecified",
+            "i18n_status": "missing",
+            "missing_states": [
+              "loading",
+              "empty",
+              "error"
+            ],
+            "pattern": null,
+            "platform": "android",
+            "review_status": "review_required",
+            "state_coverage": [],
+            "status": "missing_platform",
+            "token_status": "mapped",
+            "viewport": "any",
+            "widget": "widget_data_grid"
+          },
+          {
+            "accessibility_status": "missing",
+            "behavior_statuses": [],
+            "component_ref": null,
+            "density": "unspecified",
+            "i18n_status": "missing",
+            "missing_states": [
+              "loading",
+              "empty",
+              "error"
+            ],
+            "pattern": null,
+            "platform": "ios",
+            "review_status": "review_required",
+            "state_coverage": [],
+            "status": "missing_platform",
+            "token_status": "mapped",
+            "viewport": "any",
+            "widget": "widget_data_grid"
+          },
+          {
+            "accessibility_status": "missing",
+            "behavior_statuses": [
+              {
+                "behavior": "filtering",
+                "status": "contract_only"
+              },
+              {
+                "behavior": "keyboard_navigation",
+                "status": "contract_only"
+              },
+              {
+                "behavior": "selection",
+                "status": "rendered"
+              },
+              {
+                "behavior": "sorting",
+                "status": "contract_only"
+              }
+            ],
+            "component_ref": "ops.table.cardFallback",
+            "density": "comfortable",
+            "i18n_status": "missing",
+            "missing_states": [
+              "error"
+            ],
+            "pattern": "data_grid_view",
+            "platform": "web",
+            "review_status": "review_required",
+            "state_coverage": [
+              "loading",
+              "empty"
+            ],
+            "status": "contract_only",
+            "token_status": "mapped",
+            "viewport": "narrow",
+            "widget": "widget_data_grid"
+          },
+          {
+            "accessibility_status": "missing",
+            "behavior_statuses": [
+              {
+                "behavior": "filtering",
+                "status": "rendered"
+              },
+              {
+                "behavior": "keyboard_navigation",
+                "status": "rendered"
+              },
+              {
+                "behavior": "selection",
+                "status": "rendered"
+              },
+              {
+                "behavior": "sorting",
+                "status": "rendered"
+              }
+            ],
+            "component_ref": "ops.table.dataGrid",
+            "density": "compact",
+            "i18n_status": "missing",
+            "missing_states": [],
+            "pattern": "data_grid_view",
+            "platform": "web",
+            "review_status": "review_required",
+            "state_coverage": [
+              "loading",
+              "empty",
+              "error"
+            ],
+            "status": "rendered",
+            "token_status": "mapped",
+            "viewport": "wide",
+            "widget": "widget_data_grid"
+          },
+          {
+            "accessibility_status": "missing",
+            "behavior_statuses": [],
+            "component_ref": "ops.android.detailSheet",
+            "density": "comfortable",
+            "i18n_status": "missing",
+            "missing_states": [],
+            "pattern": "detail_panel",
+            "platform": "android",
+            "review_status": "review_required",
+            "state_coverage": [
+              "loading",
+              "empty",
+              "error"
+            ],
+            "status": "implementation_owned",
+            "token_status": "mapped",
+            "viewport": "any",
+            "widget": "widget_detail_panel"
+          },
+          {
+            "accessibility_status": "missing",
+            "behavior_statuses": [],
+            "component_ref": "ops.ios.detailSheet",
+            "density": "comfortable",
+            "i18n_status": "missing",
+            "missing_states": [],
+            "pattern": "detail_panel",
+            "platform": "ios",
+            "review_status": "review_required",
+            "state_coverage": [
+              "loading",
+              "empty",
+              "error"
+            ],
+            "status": "implementation_owned",
+            "token_status": "mapped",
+            "viewport": "any",
+            "widget": "widget_detail_panel"
+          },
+          {
+            "accessibility_status": "missing",
+            "behavior_statuses": [],
+            "component_ref": "ops.settings.sectionPanel",
+            "density": "comfortable",
+            "i18n_status": "missing",
+            "missing_states": [
+              "error"
+            ],
+            "pattern": "settings_section",
+            "platform": "web",
+            "review_status": "review_required",
+            "state_coverage": [
+              "loading",
+              "empty"
+            ],
+            "status": "contract_only",
+            "token_status": "mapped",
+            "viewport": "wide",
+            "widget": "widget_detail_panel"
+          },
+          {
+            "accessibility_status": "missing",
+            "behavior_statuses": [],
+            "component_ref": "ops.detail.summaryPanel",
+            "density": "comfortable",
+            "i18n_status": "missing",
+            "missing_states": [],
+            "pattern": "detail_panel",
+            "platform": "web",
+            "review_status": "review_required",
+            "state_coverage": [
+              "loading",
+              "empty",
+              "error"
+            ],
+            "status": "rendered",
+            "token_status": "mapped",
+            "viewport": "wide",
+            "widget": "widget_detail_panel"
+          },
+          {
+            "accessibility_status": "missing",
+            "behavior_statuses": [],
+            "component_ref": "ops.detail.inspector",
+            "density": "compact",
+            "i18n_status": "missing",
+            "missing_states": [],
+            "pattern": "inspector_pane",
+            "platform": "web",
+            "review_status": "review_required",
+            "state_coverage": [
+              "loading",
+              "empty",
+              "error"
+            ],
+            "status": "rendered",
+            "token_status": "mapped",
+            "viewport": "wide",
+            "widget": "widget_detail_panel"
+          },
+          {
+            "accessibility_status": "missing",
+            "behavior_statuses": [],
+            "component_ref": null,
+            "density": "unspecified",
+            "i18n_status": "missing",
+            "missing_states": [
+              "loading",
+              "empty",
+              "error"
+            ],
+            "pattern": null,
+            "platform": "android",
+            "review_status": "review_required",
+            "state_coverage": [],
+            "status": "missing_platform",
+            "token_status": "mapped",
+            "viewport": "any",
+            "widget": "widget_filter_panel"
+          },
+          {
+            "accessibility_status": "missing",
+            "behavior_statuses": [
+              {
+                "behavior": "filtering",
+                "status": "implementation_owned"
+              },
+              {
+                "behavior": "search",
+                "status": "implementation_owned"
+              }
+            ],
+            "component_ref": "ops.ios.filterSheet",
+            "density": "comfortable",
+            "i18n_status": "missing",
+            "missing_states": [],
+            "pattern": "filter_panel",
+            "platform": "ios",
+            "review_status": "review_required",
+            "state_coverage": [
+              "loading",
+              "empty",
+              "error"
+            ],
+            "status": "implementation_owned",
+            "token_status": "mapped",
+            "viewport": "any",
+            "widget": "widget_filter_panel"
+          },
+          {
+            "accessibility_status": "missing",
+            "behavior_statuses": [
+              {
+                "behavior": "filtering",
+                "status": "contract_only"
+              },
+              {
+                "behavior": "search",
+                "status": "contract_only"
+              }
+            ],
+            "component_ref": "ops.filters.sheet",
+            "density": "comfortable",
+            "i18n_status": "missing",
+            "missing_states": [
+              "error"
+            ],
+            "pattern": "filter_panel",
+            "platform": "web",
+            "review_status": "review_required",
+            "state_coverage": [
+              "loading",
+              "empty"
+            ],
+            "status": "contract_only",
+            "token_status": "mapped",
+            "viewport": "narrow",
+            "widget": "widget_filter_panel"
+          },
+          {
+            "accessibility_status": "missing",
+            "behavior_statuses": [
+              {
+                "behavior": "filtering",
+                "status": "rendered"
+              },
+              {
+                "behavior": "search",
+                "status": "rendered"
+              }
+            ],
+            "component_ref": "ops.filters.rail",
+            "density": "compact",
+            "i18n_status": "missing",
+            "missing_states": [],
+            "pattern": "filter_panel",
+            "platform": "web",
+            "review_status": "review_required",
+            "state_coverage": [
+              "loading",
+              "empty",
+              "error"
+            ],
+            "status": "rendered",
+            "token_status": "mapped",
+            "viewport": "wide",
+            "widget": "widget_filter_panel"
+          },
+          {
+            "accessibility_status": "missing",
+            "behavior_statuses": [],
+            "component_ref": null,
+            "density": "unspecified",
+            "i18n_status": "missing",
+            "missing_states": [
+              "loading",
+              "empty",
+              "error"
+            ],
+            "pattern": null,
+            "platform": "android",
+            "review_status": "review_required",
+            "state_coverage": [],
+            "status": "missing_platform",
+            "token_status": "mapped",
+            "viewport": "any",
+            "widget": "widget_kpi_summary_cards"
+          },
+          {
+            "accessibility_status": "missing",
+            "behavior_statuses": [
+              {
+                "behavior": "selection",
+                "status": "rendered"
+              }
+            ],
+            "component_ref": "ops.ios.metricCards",
+            "density": "comfortable",
+            "i18n_status": "missing",
+            "missing_states": [],
+            "pattern": "data_grid_view",
+            "platform": "ios",
+            "review_status": "review_required",
+            "state_coverage": [
+              "loading",
+              "empty",
+              "error"
+            ],
+            "status": "implementation_owned",
+            "token_status": "mapped",
+            "viewport": "any",
+            "widget": "widget_kpi_summary_cards"
+          },
+          {
+            "accessibility_status": "missing",
+            "behavior_statuses": [
+              {
+                "behavior": "selection",
+                "status": "contract_only"
+              }
+            ],
+            "component_ref": "ops.kpi.summaryCarousel",
+            "density": "comfortable",
+            "i18n_status": "missing",
+            "missing_states": [
+              "error"
+            ],
+            "pattern": "data_grid_view",
+            "platform": "web",
+            "review_status": "review_required",
+            "state_coverage": [
+              "loading",
+              "empty"
+            ],
+            "status": "contract_only",
+            "token_status": "mapped",
+            "viewport": "narrow",
+            "widget": "widget_kpi_summary_cards"
+          },
+          {
+            "accessibility_status": "missing",
+            "behavior_statuses": [
+              {
+                "behavior": "selection",
+                "status": "rendered"
+              }
+            ],
+            "component_ref": "ops.kpi.summaryGrid",
+            "density": "comfortable",
+            "i18n_status": "missing",
+            "missing_states": [],
+            "pattern": "data_grid_view",
+            "platform": "web",
+            "review_status": "review_required",
+            "state_coverage": [
+              "loading",
+              "empty",
+              "error"
+            ],
+            "status": "rendered",
+            "token_status": "mapped",
+            "viewport": "wide",
+            "widget": "widget_kpi_summary_cards"
+          },
+          {
+            "accessibility_status": "missing",
+            "behavior_statuses": [
+              {
+                "behavior": "selection",
+                "status": "rendered"
+              }
+            ],
+            "component_ref": "ops.android.scheduleCalendar",
+            "density": "comfortable",
+            "i18n_status": "missing",
+            "missing_states": [],
+            "pattern": "calendar_view",
+            "platform": "android",
+            "review_status": "review_required",
+            "state_coverage": [
+              "loading",
+              "empty",
+              "error"
+            ],
+            "status": "implementation_owned",
+            "token_status": "mapped",
+            "viewport": "any",
+            "widget": "widget_schedule_calendar"
+          },
+          {
+            "accessibility_status": "missing",
+            "behavior_statuses": [
+              {
+                "behavior": "selection",
+                "status": "rendered"
+              }
+            ],
+            "component_ref": "ops.ios.scheduleCalendar",
+            "density": "comfortable",
+            "i18n_status": "missing",
+            "missing_states": [],
+            "pattern": "calendar_view",
+            "platform": "ios",
+            "review_status": "review_required",
+            "state_coverage": [
+              "loading",
+              "empty",
+              "error"
+            ],
+            "status": "implementation_owned",
+            "token_status": "mapped",
+            "viewport": "any",
+            "widget": "widget_schedule_calendar"
+          },
+          {
+            "accessibility_status": "missing",
+            "behavior_statuses": [
+              {
+                "behavior": "selection",
+                "status": "unsupported"
+              }
+            ],
+            "component_ref": "ops.calendar.agendaList",
+            "density": "comfortable",
+            "i18n_status": "missing",
+            "missing_states": [
+              "empty",
+              "error"
+            ],
+            "pattern": "calendar_view",
+            "platform": "web",
+            "review_status": "review_required",
+            "state_coverage": [
+              "loading"
+            ],
+            "status": "unsupported",
+            "token_status": "mapped",
+            "viewport": "narrow",
+            "widget": "widget_schedule_calendar"
+          },
+          {
+            "accessibility_status": "missing",
+            "behavior_statuses": [
+              {
+                "behavior": "selection",
+                "status": "rendered"
+              }
+            ],
+            "component_ref": "ops.calendar.scheduleBoard",
+            "density": "comfortable",
+            "i18n_status": "missing",
+            "missing_states": [],
+            "pattern": "calendar_view",
+            "platform": "web",
+            "review_status": "review_required",
+            "state_coverage": [
+              "loading",
+              "empty",
+              "error"
+            ],
+            "status": "rendered",
+            "token_status": "mapped",
+            "viewport": "wide",
+            "widget": "widget_schedule_calendar"
+          },
+          {
+            "accessibility_status": "missing",
+            "behavior_statuses": [],
+            "component_ref": null,
+            "density": "unspecified",
+            "i18n_status": "missing",
+            "missing_states": [
+              "loading",
+              "empty",
+              "error"
+            ],
+            "pattern": null,
+            "platform": "android",
+            "review_status": "review_required",
+            "state_coverage": [],
+            "status": "missing_platform",
+            "token_status": "mapped",
+            "viewport": "any",
+            "widget": "widget_status_board"
+          },
+          {
+            "accessibility_status": "missing",
+            "behavior_statuses": [
+              {
+                "behavior": "drag_drop",
+                "status": "implementation_owned"
+              },
+              {
+                "behavior": "selection",
+                "status": "rendered"
+              }
+            ],
+            "component_ref": "ops.ios.statusBoard",
+            "density": "comfortable",
+            "i18n_status": "missing",
+            "missing_states": [
+              "error"
+            ],
+            "pattern": "board_view",
+            "platform": "ios",
+            "review_status": "review_required",
+            "state_coverage": [
+              "loading",
+              "empty"
+            ],
+            "status": "implementation_owned",
+            "token_status": "mapped",
+            "viewport": "any",
+            "widget": "widget_status_board"
+          },
+          {
+            "accessibility_status": "missing",
+            "behavior_statuses": [
+              {
+                "behavior": "drag_drop",
+                "status": "rendered"
+              },
+              {
+                "behavior": "selection",
+                "status": "rendered"
+              }
+            ],
+            "component_ref": "ops.board.statusLanes",
+            "density": "compact",
+            "i18n_status": "missing",
+            "missing_states": [],
+            "pattern": "board_view",
+            "platform": "web",
+            "review_status": "review_required",
+            "state_coverage": [
+              "loading",
+              "empty",
+              "error"
+            ],
+            "status": "rendered",
+            "token_status": "mapped",
+            "viewport": "wide",
+            "widget": "widget_status_board"
+          }
+        ]
+      },
+      "proofCommands": [
+        "topogram query ui-design-coverage ./topo --projection proj_operations_ui_contract --json",
+        "topogram query ui-design-coverage ./topo --projection proj_operations_ui_contract --format markdown",
+        "topogram emit ui-realization-report ./topo --projection proj_operations_ui_contract --json"
+      ],
+      "scope": {
+        "projectionId": "proj_operations_ui_contract",
+        "screenId": null,
+        "widgetId": null
+      },
+      "source": "ui-design-coverage design_matrix rows from design_contract and design_realization_set records",
+      "status": "review_required"
+    },
+    "focus": {
+      "id": "realization_set_operations_control_room_widgets",
+      "kind": "design_realization_set"
+    },
+    "ownership": {
+      "designContract": "design_contract",
+      "semanticWidgets": "widget",
+      "widgetMappings": "design_realization_set"
+    },
+    "requiredGates": [
+      {
+        "command": "topogram check",
+        "reason": "Validate shared UI ownership, taxonomy, references, and topology."
+      },
+      {
+        "command": "topogram widget check --projection proj_operations_ui_contract",
+        "reason": "Validate widget placement, props, events, regions, and patterns."
+      },
+      {
+        "command": "topogram widget behavior --projection proj_operations_ui_contract",
+        "reason": "Inspect behavior realizations and partial bindings before code changes."
+      },
+      {
+        "command": "topogram emit ui-realization-report --projection proj_operations_ui_contract --json",
+        "reason": "Confirm screens, regions, widgets, display fields, behavior, and design tokens are realizable by the web generator."
+      }
+    ],
+    "type": "ui_agent_packet",
+    "version": 1,
+    "widgetRealizations": [
+      {
+        "behaviors_contract_only": [],
+        "behaviors_implementation_owned": [],
+        "behaviors_rendered": [
+          "bulk_action",
+          "keyboard_navigation"
+        ],
+        "behaviors_unsupported": [],
+        "component_ref": "ops.commandToolbar.desktop",
+        "density": "compact",
+        "id": "command_toolbar_web_wide",
+        "locale_contexts": [
+          "default_locale"
+        ],
+        "pattern": "action_bar",
+        "platform": "web",
+        "review_notes": null,
+        "role_contexts": [
+          "operator",
+          "manager"
+        ],
+        "state_coverage": [
+          "loading",
+          "empty",
+          "error"
+        ],
+        "status": "rendered",
+        "theme_contexts": [
+          "light",
+          "dark"
+        ],
+        "viewport": "wide",
+        "widget": "widget_command_toolbar"
+      },
+      {
+        "behaviors_contract_only": [
+          "bulk_action"
+        ],
+        "behaviors_implementation_owned": [],
+        "behaviors_rendered": [
+          "keyboard_navigation"
+        ],
+        "behaviors_unsupported": [],
+        "component_ref": "ops.commandToolbar.overflow",
+        "density": "compact",
+        "id": "command_toolbar_web_narrow",
+        "locale_contexts": [
+          "default_locale"
+        ],
+        "pattern": "action_bar",
+        "platform": "web",
+        "review_notes": null,
+        "role_contexts": [
+          "operator"
+        ],
+        "state_coverage": [
+          "loading",
+          "empty",
+          "error"
+        ],
+        "status": "rendered",
+        "theme_contexts": [
+          "light",
+          "dark"
+        ],
+        "viewport": "narrow",
+        "widget": "widget_command_toolbar"
+      },
+      {
+        "behaviors_contract_only": [],
+        "behaviors_implementation_owned": [
+          "bulk_action"
+        ],
+        "behaviors_rendered": [
+          "keyboard_navigation"
+        ],
+        "behaviors_unsupported": [],
+        "component_ref": "ops.ios.commandBar",
+        "density": "comfortable",
+        "id": "command_toolbar_ios",
+        "locale_contexts": [
+          "default_locale"
+        ],
+        "pattern": "action_bar",
+        "platform": "ios",
+        "review_notes": null,
+        "role_contexts": [
+          "operator"
+        ],
+        "state_coverage": [
+          "loading",
+          "empty",
+          "error"
+        ],
+        "status": "implementation_owned",
+        "theme_contexts": [
+          "system"
+        ],
+        "viewport": "any",
+        "widget": "widget_command_toolbar"
+      },
+      {
+        "behaviors_contract_only": [],
+        "behaviors_implementation_owned": [
+          "bulk_action"
+        ],
+        "behaviors_rendered": [
+          "keyboard_navigation"
+        ],
+        "behaviors_unsupported": [],
+        "component_ref": "ops.android.actionRow",
+        "density": "comfortable",
+        "id": "command_toolbar_android",
+        "locale_contexts": [
+          "default_locale"
+        ],
+        "pattern": "action_bar",
+        "platform": "android",
+        "review_notes": null,
+        "role_contexts": [
+          "operator"
+        ],
+        "state_coverage": [
+          "loading",
+          "empty",
+          "error"
+        ],
+        "status": "implementation_owned",
+        "theme_contexts": [
+          "system"
+        ],
+        "viewport": "any",
+        "widget": "widget_command_toolbar"
+      },
+      {
+        "behaviors_contract_only": [],
+        "behaviors_implementation_owned": [],
+        "behaviors_rendered": [
+          "selection"
+        ],
+        "behaviors_unsupported": [],
+        "component_ref": "ops.kpi.summaryGrid",
+        "density": "comfortable",
+        "id": "kpi_cards_web_wide",
+        "locale_contexts": [
+          "default_locale"
+        ],
+        "pattern": "data_grid_view",
+        "platform": "web",
+        "review_notes": null,
+        "role_contexts": [
+          "manager"
+        ],
+        "state_coverage": [
+          "loading",
+          "empty",
+          "error"
+        ],
+        "status": "rendered",
+        "theme_contexts": [
+          "light",
+          "dark"
+        ],
+        "viewport": "wide",
+        "widget": "widget_kpi_summary_cards"
+      },
+      {
+        "behaviors_contract_only": [
+          "selection"
+        ],
+        "behaviors_implementation_owned": [],
+        "behaviors_rendered": [],
+        "behaviors_unsupported": [],
+        "component_ref": "ops.kpi.summaryCarousel",
+        "density": "comfortable",
+        "id": "kpi_cards_web_narrow",
+        "locale_contexts": [
+          "default_locale"
+        ],
+        "pattern": "data_grid_view",
+        "platform": "web",
+        "review_notes": "Narrow KPI presentation still needs error-state proof.",
+        "role_contexts": [
+          "manager"
+        ],
+        "state_coverage": [
+          "loading",
+          "empty"
+        ],
+        "status": "contract_only",
+        "theme_contexts": [
+          "light",
+          "dark"
+        ],
+        "viewport": "narrow",
+        "widget": "widget_kpi_summary_cards"
+      },
+      {
+        "behaviors_contract_only": [],
+        "behaviors_implementation_owned": [],
+        "behaviors_rendered": [
+          "selection"
+        ],
+        "behaviors_unsupported": [],
+        "component_ref": "ops.ios.metricCards",
+        "density": "comfortable",
+        "id": "kpi_cards_ios",
+        "locale_contexts": [
+          "default_locale"
+        ],
+        "pattern": "data_grid_view",
+        "platform": "ios",
+        "review_notes": null,
+        "role_contexts": [
+          "manager"
+        ],
+        "state_coverage": [
+          "loading",
+          "empty",
+          "error"
+        ],
+        "status": "implementation_owned",
+        "theme_contexts": [
+          "system"
+        ],
+        "viewport": "any",
+        "widget": "widget_kpi_summary_cards"
+      },
+      {
+        "behaviors_contract_only": [],
+        "behaviors_implementation_owned": [],
+        "behaviors_rendered": [
+          "selection",
+          "filtering"
+        ],
+        "behaviors_unsupported": [],
+        "component_ref": "ops.queue.priorityCards",
+        "density": "comfortable",
+        "id": "card_list_web_wide",
+        "locale_contexts": [
+          "default_locale"
+        ],
+        "pattern": "resource_cards",
+        "platform": "web",
+        "review_notes": null,
+        "role_contexts": [
+          "dispatcher"
+        ],
+        "state_coverage": [
+          "loading",
+          "empty",
+          "error"
+        ],
+        "status": "rendered",
+        "theme_contexts": [
+          "light",
+          "dark"
+        ],
+        "viewport": "wide",
+        "widget": "widget_card_list"
+      },
+      {
+        "behaviors_contract_only": [
+          "filtering"
+        ],
+        "behaviors_implementation_owned": [],
+        "behaviors_rendered": [
+          "selection"
+        ],
+        "behaviors_unsupported": [],
+        "component_ref": "ops.queue.mobileCards",
+        "density": "comfortable",
+        "id": "card_list_web_narrow",
+        "locale_contexts": [
+          "default_locale"
+        ],
+        "pattern": "resource_cards",
+        "platform": "web",
+        "review_notes": "Narrow queue cards carry the contract but need error-state proof.",
+        "role_contexts": [
+          "dispatcher"
+        ],
+        "state_coverage": [
+          "loading",
+          "empty"
+        ],
+        "status": "contract_only",
+        "theme_contexts": [
+          "light",
+          "dark"
+        ],
+        "viewport": "narrow",
+        "widget": "widget_card_list"
+      },
+      {
+        "behaviors_contract_only": [],
+        "behaviors_implementation_owned": [
+          "filtering"
+        ],
+        "behaviors_rendered": [
+          "selection"
+        ],
+        "behaviors_unsupported": [],
+        "component_ref": "ops.ios.queueList",
+        "density": "comfortable",
+        "id": "card_list_ios",
+        "locale_contexts": [
+          "default_locale"
+        ],
+        "pattern": "resource_cards",
+        "platform": "ios",
+        "review_notes": null,
+        "role_contexts": [
+          "dispatcher"
+        ],
+        "state_coverage": [
+          "loading",
+          "empty",
+          "error"
+        ],
+        "status": "implementation_owned",
+        "theme_contexts": [
+          "system"
+        ],
+        "viewport": "any",
+        "widget": "widget_card_list"
+      },
+      {
+        "behaviors_contract_only": [],
+        "behaviors_implementation_owned": [],
+        "behaviors_rendered": [
+          "selection"
+        ],
+        "behaviors_unsupported": [
+          "filtering"
+        ],
+        "component_ref": "ops.android.queueCards",
+        "density": "comfortable",
+        "id": "card_list_android",
+        "locale_contexts": [
+          "default_locale"
+        ],
+        "pattern": "resource_cards",
+        "platform": "android",
+        "review_notes": "Android queue filtering is intentionally unsupported for this proof.",
+        "role_contexts": [
+          "dispatcher"
+        ],
+        "state_coverage": [
+          "loading",
+          "empty"
+        ],
+        "status": "unsupported",
+        "theme_contexts": [
+          "system"
+        ],
+        "viewport": "any",
+        "widget": "widget_card_list"
+      },
+      {
+        "behaviors_contract_only": [],
+        "behaviors_implementation_owned": [],
+        "behaviors_rendered": [
+          "selection",
+          "sorting",
+          "filtering",
+          "keyboard_navigation"
+        ],
+        "behaviors_unsupported": [],
+        "component_ref": "ops.table.dataGrid",
+        "density": "compact",
+        "id": "data_grid_web_wide",
+        "locale_contexts": [
+          "default_locale"
+        ],
+        "pattern": "data_grid_view",
+        "platform": "web",
+        "review_notes": null,
+        "role_contexts": [
+          "dispatcher",
+          "manager"
+        ],
+        "state_coverage": [
+          "loading",
+          "empty",
+          "error"
+        ],
+        "status": "rendered",
+        "theme_contexts": [
+          "light",
+          "dark"
+        ],
+        "viewport": "wide",
+        "widget": "widget_data_grid"
+      },
+      {
+        "behaviors_contract_only": [
+          "sorting",
+          "filtering",
+          "keyboard_navigation"
+        ],
+        "behaviors_implementation_owned": [],
+        "behaviors_rendered": [
+          "selection"
+        ],
+        "behaviors_unsupported": [],
+        "component_ref": "ops.table.cardFallback",
+        "density": "comfortable",
+        "id": "data_grid_web_narrow",
+        "locale_contexts": [
+          "default_locale"
+        ],
+        "pattern": "data_grid_view",
+        "platform": "web",
+        "review_notes": "Narrow data-grid fallback needs sorting and keyboard proof.",
+        "role_contexts": [
+          "dispatcher"
+        ],
+        "state_coverage": [
+          "loading",
+          "empty"
+        ],
+        "status": "contract_only",
+        "theme_contexts": [
+          "light"
+        ],
+        "viewport": "narrow",
+        "widget": "widget_data_grid"
+      },
+      {
+        "behaviors_contract_only": [],
+        "behaviors_implementation_owned": [],
+        "behaviors_rendered": [
+          "filtering",
+          "search"
+        ],
+        "behaviors_unsupported": [],
+        "component_ref": "ops.filters.rail",
+        "density": "compact",
+        "id": "filter_panel_web_wide",
+        "locale_contexts": [
+          "default_locale"
+        ],
+        "pattern": "filter_panel",
+        "platform": "web",
+        "review_notes": null,
+        "role_contexts": [
+          "dispatcher",
+          "manager"
+        ],
+        "state_coverage": [
+          "loading",
+          "empty",
+          "error"
+        ],
+        "status": "rendered",
+        "theme_contexts": [
+          "light",
+          "dark"
+        ],
+        "viewport": "wide",
+        "widget": "widget_filter_panel"
+      },
+      {
+        "behaviors_contract_only": [
+          "filtering",
+          "search"
+        ],
+        "behaviors_implementation_owned": [],
+        "behaviors_rendered": [],
+        "behaviors_unsupported": [],
+        "component_ref": "ops.filters.sheet",
+        "density": "comfortable",
+        "id": "filter_panel_web_narrow",
+        "locale_contexts": [
+          "default_locale"
+        ],
+        "pattern": "filter_panel",
+        "platform": "web",
+        "review_notes": null,
+        "role_contexts": [
+          "dispatcher"
+        ],
+        "state_coverage": [
+          "loading",
+          "empty"
+        ],
+        "status": "contract_only",
+        "theme_contexts": [
+          "light",
+          "dark"
+        ],
+        "viewport": "narrow",
+        "widget": "widget_filter_panel"
+      },
+      {
+        "behaviors_contract_only": [],
+        "behaviors_implementation_owned": [
+          "filtering",
+          "search"
+        ],
+        "behaviors_rendered": [],
+        "behaviors_unsupported": [],
+        "component_ref": "ops.ios.filterSheet",
+        "density": "comfortable",
+        "id": "filter_panel_ios",
+        "locale_contexts": [
+          "default_locale"
+        ],
+        "pattern": "filter_panel",
+        "platform": "ios",
+        "review_notes": null,
+        "role_contexts": [
+          "dispatcher"
+        ],
+        "state_coverage": [
+          "loading",
+          "empty",
+          "error"
+        ],
+        "status": "implementation_owned",
+        "theme_contexts": [
+          "system"
+        ],
+        "viewport": "any",
+        "widget": "widget_filter_panel"
+      },
+      {
+        "behaviors_contract_only": [],
+        "behaviors_implementation_owned": [],
+        "behaviors_rendered": [],
+        "behaviors_unsupported": [],
+        "component_ref": "ops.detail.summaryPanel",
+        "density": "comfortable",
+        "id": "detail_panel_web_wide",
+        "locale_contexts": [
+          "default_locale"
+        ],
+        "pattern": "detail_panel",
+        "platform": "web",
+        "review_notes": null,
+        "role_contexts": [
+          "dispatcher",
+          "manager"
+        ],
+        "state_coverage": [
+          "loading",
+          "empty",
+          "error"
+        ],
+        "status": "rendered",
+        "theme_contexts": [
+          "light",
+          "dark"
+        ],
+        "viewport": "wide",
+        "widget": "widget_detail_panel"
+      },
+      {
+        "behaviors_contract_only": [],
+        "behaviors_implementation_owned": [],
+        "behaviors_rendered": [],
+        "behaviors_unsupported": [],
+        "component_ref": "ops.detail.inspector",
+        "density": "compact",
+        "id": "detail_panel_web_inspector",
+        "locale_contexts": [
+          "default_locale"
+        ],
+        "pattern": "inspector_pane",
+        "platform": "web",
+        "review_notes": null,
+        "role_contexts": [
+          "dispatcher"
+        ],
+        "state_coverage": [
+          "loading",
+          "empty",
+          "error"
+        ],
+        "status": "rendered",
+        "theme_contexts": [
+          "light",
+          "dark"
+        ],
+        "viewport": "wide",
+        "widget": "widget_detail_panel"
+      },
+      {
+        "behaviors_contract_only": [],
+        "behaviors_implementation_owned": [],
+        "behaviors_rendered": [],
+        "behaviors_unsupported": [],
+        "component_ref": "ops.settings.sectionPanel",
+        "density": "comfortable",
+        "id": "detail_panel_web_settings",
+        "locale_contexts": [
+          "default_locale"
+        ],
+        "pattern": "settings_section",
+        "platform": "web",
+        "review_notes": null,
+        "role_contexts": [
+          "manager"
+        ],
+        "state_coverage": [
+          "loading",
+          "empty"
+        ],
+        "status": "contract_only",
+        "theme_contexts": [
+          "light",
+          "dark"
+        ],
+        "viewport": "wide",
+        "widget": "widget_detail_panel"
+      },
+      {
+        "behaviors_contract_only": [],
+        "behaviors_implementation_owned": [],
+        "behaviors_rendered": [],
+        "behaviors_unsupported": [],
+        "component_ref": "ops.ios.detailSheet",
+        "density": "comfortable",
+        "id": "detail_panel_ios",
+        "locale_contexts": [
+          "default_locale"
+        ],
+        "pattern": "detail_panel",
+        "platform": "ios",
+        "review_notes": null,
+        "role_contexts": [
+          "dispatcher",
+          "manager"
+        ],
+        "state_coverage": [
+          "loading",
+          "empty",
+          "error"
+        ],
+        "status": "implementation_owned",
+        "theme_contexts": [
+          "system"
+        ],
+        "viewport": "any",
+        "widget": "widget_detail_panel"
+      },
+      {
+        "behaviors_contract_only": [],
+        "behaviors_implementation_owned": [],
+        "behaviors_rendered": [],
+        "behaviors_unsupported": [],
+        "component_ref": "ops.android.detailSheet",
+        "density": "comfortable",
+        "id": "detail_panel_android",
+        "locale_contexts": [
+          "default_locale"
+        ],
+        "pattern": "detail_panel",
+        "platform": "android",
+        "review_notes": null,
+        "role_contexts": [
+          "dispatcher",
+          "manager"
+        ],
+        "state_coverage": [
+          "loading",
+          "empty",
+          "error"
+        ],
+        "status": "implementation_owned",
+        "theme_contexts": [
+          "system"
+        ],
+        "viewport": "any",
+        "widget": "widget_detail_panel"
+      },
+      {
+        "behaviors_contract_only": [],
+        "behaviors_implementation_owned": [],
+        "behaviors_rendered": [
+          "selection",
+          "drag_drop"
+        ],
+        "behaviors_unsupported": [],
+        "component_ref": "ops.board.statusLanes",
+        "density": "compact",
+        "id": "status_board_web_wide",
+        "locale_contexts": [
+          "default_locale"
+        ],
+        "pattern": "board_view",
+        "platform": "web",
+        "review_notes": null,
+        "role_contexts": [
+          "dispatcher"
+        ],
+        "state_coverage": [
+          "loading",
+          "empty",
+          "error"
+        ],
+        "status": "rendered",
+        "theme_contexts": [
+          "light",
+          "dark"
+        ],
+        "viewport": "wide",
+        "widget": "widget_status_board"
+      },
+      {
+        "behaviors_contract_only": [],
+        "behaviors_implementation_owned": [
+          "drag_drop"
+        ],
+        "behaviors_rendered": [
+          "selection"
+        ],
+        "behaviors_unsupported": [],
+        "component_ref": "ops.ios.statusBoard",
+        "density": "comfortable",
+        "id": "status_board_ios",
+        "locale_contexts": [
+          "default_locale"
+        ],
+        "pattern": "board_view",
+        "platform": "ios",
+        "review_notes": null,
+        "role_contexts": [
+          "dispatcher"
+        ],
+        "state_coverage": [
+          "loading",
+          "empty"
+        ],
+        "status": "implementation_owned",
+        "theme_contexts": [
+          "system"
+        ],
+        "viewport": "any",
+        "widget": "widget_status_board"
+      },
+      {
+        "behaviors_contract_only": [],
+        "behaviors_implementation_owned": [],
+        "behaviors_rendered": [],
+        "behaviors_unsupported": [],
+        "component_ref": "ops.timeline.auditTrail",
+        "density": "comfortable",
+        "id": "timeline_web_wide",
+        "locale_contexts": [
+          "default_locale"
+        ],
+        "pattern": "timeline_view",
+        "platform": "web",
+        "review_notes": null,
+        "role_contexts": [
+          "auditor",
+          "manager"
+        ],
+        "state_coverage": [
+          "loading",
+          "empty",
+          "error"
+        ],
+        "status": "rendered",
+        "theme_contexts": [
+          "light",
+          "dark"
+        ],
+        "viewport": "wide",
+        "widget": "widget_activity_timeline"
+      },
+      {
+        "behaviors_contract_only": [],
+        "behaviors_implementation_owned": [],
+        "behaviors_rendered": [],
+        "behaviors_unsupported": [],
+        "component_ref": "ops.ios.timeline",
+        "density": "comfortable",
+        "id": "timeline_ios",
+        "locale_contexts": [
+          "default_locale"
+        ],
+        "pattern": "timeline_view",
+        "platform": "ios",
+        "review_notes": null,
+        "role_contexts": [
+          "auditor"
+        ],
+        "state_coverage": [
+          "loading",
+          "empty",
+          "error"
+        ],
+        "status": "implementation_owned",
+        "theme_contexts": [
+          "system"
+        ],
+        "viewport": "any",
+        "widget": "widget_activity_timeline"
+      },
+      {
+        "behaviors_contract_only": [],
+        "behaviors_implementation_owned": [],
+        "behaviors_rendered": [
+          "selection"
+        ],
+        "behaviors_unsupported": [],
+        "component_ref": "ops.calendar.scheduleBoard",
+        "density": "comfortable",
+        "id": "calendar_web_wide",
+        "locale_contexts": [
+          "default_locale"
+        ],
+        "pattern": "calendar_view",
+        "platform": "web",
+        "review_notes": null,
+        "role_contexts": [
+          "dispatcher"
+        ],
+        "state_coverage": [
+          "loading",
+          "empty",
+          "error"
+        ],
+        "status": "rendered",
+        "theme_contexts": [
+          "light",
+          "dark"
+        ],
+        "viewport": "wide",
+        "widget": "widget_schedule_calendar"
+      },
+      {
+        "behaviors_contract_only": [],
+        "behaviors_implementation_owned": [],
+        "behaviors_rendered": [],
+        "behaviors_unsupported": [
+          "selection"
+        ],
+        "component_ref": "ops.calendar.agendaList",
+        "density": "comfortable",
+        "id": "calendar_web_narrow",
+        "locale_contexts": [
+          "default_locale"
+        ],
+        "pattern": "calendar_view",
+        "platform": "web",
+        "review_notes": null,
+        "role_contexts": [
+          "dispatcher"
+        ],
+        "state_coverage": [
+          "loading"
+        ],
+        "status": "unsupported",
+        "theme_contexts": [
+          "light"
+        ],
+        "viewport": "narrow",
+        "widget": "widget_schedule_calendar"
+      },
+      {
+        "behaviors_contract_only": [],
+        "behaviors_implementation_owned": [],
+        "behaviors_rendered": [
+          "selection"
+        ],
+        "behaviors_unsupported": [],
+        "component_ref": "ops.ios.scheduleCalendar",
+        "density": "comfortable",
+        "id": "calendar_ios",
+        "locale_contexts": [
+          "default_locale"
+        ],
+        "pattern": "calendar_view",
+        "platform": "ios",
+        "review_notes": null,
+        "role_contexts": [
+          "dispatcher"
+        ],
+        "state_coverage": [
+          "loading",
+          "empty",
+          "error"
+        ],
+        "status": "implementation_owned",
+        "theme_contexts": [
+          "system"
+        ],
+        "viewport": "any",
+        "widget": "widget_schedule_calendar"
+      },
+      {
+        "behaviors_contract_only": [],
+        "behaviors_implementation_owned": [],
+        "behaviors_rendered": [
+          "selection"
+        ],
+        "behaviors_unsupported": [],
+        "component_ref": "ops.android.scheduleCalendar",
+        "density": "comfortable",
+        "id": "calendar_android",
+        "locale_contexts": [
+          "default_locale"
+        ],
+        "pattern": "calendar_view",
+        "platform": "android",
+        "review_notes": null,
+        "role_contexts": [
+          "dispatcher"
+        ],
+        "state_coverage": [
+          "loading",
+          "empty",
+          "error"
+        ],
+        "status": "implementation_owned",
+        "theme_contexts": [
+          "system"
+        ],
+        "viewport": "any",
+        "widget": "widget_schedule_calendar"
+      },
+      {
+        "behaviors_contract_only": [],
+        "behaviors_implementation_owned": [],
+        "behaviors_rendered": [
+          "optimistic_update",
+          "keyboard_navigation"
+        ],
+        "behaviors_unsupported": [],
+        "component_ref": "ops.forms.assignmentDrawer",
+        "density": "comfortable",
+        "id": "assignment_form_web_wide",
+        "locale_contexts": [
+          "default_locale"
+        ],
+        "pattern": "footer_bar",
+        "platform": "web",
+        "review_notes": null,
+        "role_contexts": [
+          "dispatcher",
+          "manager"
+        ],
+        "state_coverage": [
+          "loading",
+          "empty",
+          "error"
+        ],
+        "status": "rendered",
+        "theme_contexts": [
+          "light",
+          "dark"
+        ],
+        "viewport": "wide",
+        "widget": "widget_assignment_form"
+      },
+      {
+        "behaviors_contract_only": [
+          "optimistic_update",
+          "keyboard_navigation"
+        ],
+        "behaviors_implementation_owned": [],
+        "behaviors_rendered": [],
+        "behaviors_unsupported": [],
+        "component_ref": "ops.forms.assignmentSheet",
+        "density": "comfortable",
+        "id": "assignment_form_web_narrow",
+        "locale_contexts": [
+          "default_locale"
+        ],
+        "pattern": "footer_bar",
+        "platform": "web",
+        "review_notes": null,
+        "role_contexts": [
+          "dispatcher"
+        ],
+        "state_coverage": [
+          "loading",
+          "empty"
+        ],
+        "status": "contract_only",
+        "theme_contexts": [
+          "light",
+          "dark"
+        ],
+        "viewport": "narrow",
+        "widget": "widget_assignment_form"
+      },
+      {
+        "behaviors_contract_only": [],
+        "behaviors_implementation_owned": [
+          "optimistic_update",
+          "keyboard_navigation"
+        ],
+        "behaviors_rendered": [],
+        "behaviors_unsupported": [],
+        "component_ref": "ops.ios.assignmentSheet",
+        "density": "comfortable",
+        "id": "assignment_form_ios",
+        "locale_contexts": [
+          "default_locale"
+        ],
+        "pattern": "footer_bar",
+        "platform": "ios",
+        "review_notes": null,
+        "role_contexts": [
+          "dispatcher"
+        ],
+        "state_coverage": [
+          "loading",
+          "empty",
+          "error"
+        ],
+        "status": "implementation_owned",
+        "theme_contexts": [
+          "system"
+        ],
+        "viewport": "any",
+        "widget": "widget_assignment_form"
+      },
+      {
+        "behaviors_contract_only": [],
+        "behaviors_implementation_owned": [
+          "optimistic_update",
+          "keyboard_navigation"
+        ],
+        "behaviors_rendered": [],
+        "behaviors_unsupported": [],
+        "component_ref": "ops.android.assignmentSheet",
+        "density": "comfortable",
+        "id": "assignment_form_android",
+        "locale_contexts": [
+          "default_locale"
+        ],
+        "pattern": "footer_bar",
+        "platform": "android",
+        "review_notes": null,
+        "role_contexts": [
+          "dispatcher"
+        ],
+        "state_coverage": [
+          "loading",
+          "empty",
+          "error"
+        ],
+        "status": "implementation_owned",
+        "theme_contexts": [
+          "system"
+        ],
+        "viewport": "any",
+        "widget": "widget_assignment_form"
+      },
+      {
+        "behaviors_contract_only": [],
+        "behaviors_implementation_owned": [],
+        "behaviors_rendered": [
+          "realtime_update"
+        ],
+        "behaviors_unsupported": [],
+        "component_ref": "ops.alerts.liveBanner",
+        "density": "compact",
+        "id": "alert_banner_web_wide",
+        "locale_contexts": [
+          "default_locale"
+        ],
+        "pattern": "activity_feed",
+        "platform": "web",
+        "review_notes": null,
+        "role_contexts": [
+          "operator",
+          "manager"
+        ],
+        "state_coverage": [
+          "loading",
+          "empty",
+          "error"
+        ],
+        "status": "rendered",
+        "theme_contexts": [
+          "light",
+          "dark"
+        ],
+        "viewport": "wide",
+        "widget": "widget_alert_banner"
+      },
+      {
+        "behaviors_contract_only": [],
+        "behaviors_implementation_owned": [
+          "realtime_update"
+        ],
+        "behaviors_rendered": [],
+        "behaviors_unsupported": [],
+        "component_ref": "ops.ios.liveAlert",
+        "density": "compact",
+        "id": "alert_banner_ios",
+        "locale_contexts": [
+          "default_locale"
+        ],
+        "pattern": "activity_feed",
+        "platform": "ios",
+        "review_notes": null,
+        "role_contexts": [
+          "operator"
+        ],
+        "state_coverage": [
+          "loading",
+          "empty"
+        ],
+        "status": "implementation_owned",
+        "theme_contexts": [
+          "system"
+        ],
+        "viewport": "any",
+        "widget": "widget_alert_banner"
+      },
+      {
+        "behaviors_contract_only": [],
+        "behaviors_implementation_owned": [],
+        "behaviors_rendered": [],
+        "behaviors_unsupported": [
+          "realtime_update"
+        ],
+        "component_ref": "ops.android.liveAlert",
+        "density": "compact",
+        "id": "alert_banner_android",
+        "locale_contexts": [
+          "default_locale"
+        ],
+        "pattern": "activity_feed",
+        "platform": "android",
+        "review_notes": null,
+        "role_contexts": [
+          "operator"
+        ],
+        "state_coverage": [
+          "loading"
+        ],
+        "status": "unsupported",
+        "theme_contexts": [
+          "system"
+        ],
+        "viewport": "any",
+        "widget": "widget_alert_banner"
+      }
+    ],
+    "widgets": [
+      {
+        "behaviors": [],
+        "id": "widget_activity_timeline",
+        "name": "Activity Timeline",
+        "patterns": [
+          "timeline_view",
+          "activity_feed",
+          "audit_log"
+        ]
+      },
+      {
+        "behaviors": [
+          {
+            "directives": {
+              "merge": "append",
+              "source": "cap_monitor_operations_dashboard"
+            },
+            "kind": "realtime_update",
+            "source": "structured"
+          }
+        ],
+        "id": "widget_alert_banner",
+        "name": "Alert Banner",
+        "patterns": [
+          "activity_feed",
+          "status_badge",
+          "empty_state_panel"
+        ]
+      },
+      {
+        "behaviors": [
+          {
+            "directives": {
+              "actions": [
+                "submit"
+              ],
+              "rollback": true
+            },
+            "kind": "optimistic_update",
+            "source": "structured"
+          },
+          {
+            "directives": {
+              "scope": "form",
+              "shortcuts": [
+                "tab",
+                "enter",
+                "escape"
+              ]
+            },
+            "kind": "keyboard_navigation",
+            "source": "structured"
+          }
+        ],
+        "id": "widget_assignment_form",
+        "name": "Assignment Form",
+        "patterns": [
+          "edit_form",
+          "footer_bar",
+          "action_bar"
+        ]
+      },
+      {
+        "behaviors": [
+          {
+            "directives": {
+              "emits": "item_select",
+              "mode": "single",
+              "state": "selected_ids"
+            },
+            "kind": "selection",
+            "source": "structured"
+          },
+          {
+            "directives": {
+              "fields": [
+                "priority",
+                "status",
+                "owner",
+                "location"
+              ]
+            },
+            "kind": "filtering",
+            "source": "structured"
+          }
+        ],
+        "id": "widget_card_list",
+        "name": "Card List",
+        "patterns": [
+          "resource_cards",
+          "search_results"
+        ]
+      },
+      {
+        "behaviors": [
+          {
+            "directives": {
+              "actions": [
+                "primary_action"
+              ],
+              "emits": "primary_action",
+              "state": "selected_ids"
+            },
+            "kind": "bulk_action",
+            "source": "structured"
+          },
+          {
+            "directives": {
+              "scope": "toolbar",
+              "shortcuts": [
+                "tab",
+                "enter",
+                "escape"
+              ]
+            },
+            "kind": "keyboard_navigation",
+            "source": "structured"
+          }
+        ],
+        "id": "widget_command_toolbar",
+        "name": "Command Toolbar",
+        "patterns": [
+          "action_bar",
+          "status_badge"
+        ]
+      },
+      {
+        "behaviors": [
+          {
+            "directives": {
+              "emits": "row_select",
+              "mode": "single",
+              "state": "selected_ids"
+            },
+            "kind": "selection",
+            "source": "structured"
+          },
+          {
+            "directives": {
+              "default": [
+                "priority",
+                "desc"
+              ],
+              "fields": [
+                "priority",
+                "status",
+                "due_at",
+                "owner"
+              ]
+            },
+            "kind": "sorting",
+            "source": "structured"
+          },
+          {
+            "directives": {
+              "fields": [
+                "priority",
+                "status",
+                "owner",
+                "location"
+              ]
+            },
+            "kind": "filtering",
+            "source": "structured"
+          },
+          {
+            "directives": {
+              "scope": "collection",
+              "shortcuts": [
+                "enter",
+                "open",
+                "escape",
+                "clear"
+              ]
+            },
+            "kind": "keyboard_navigation",
+            "source": "structured"
+          }
+        ],
+        "id": "widget_data_grid",
+        "name": "Data Grid",
+        "patterns": [
+          "resource_table",
+          "data_grid_view"
+        ]
+      },
+      {
+        "behaviors": [],
+        "id": "widget_detail_panel",
+        "name": "Detail Panel",
+        "patterns": [
+          "detail_panel",
+          "inspector_pane",
+          "settings_section"
+        ]
+      },
+      {
+        "behaviors": [
+          {
+            "directives": {
+              "fields": [
+                "priority",
+                "status",
+                "owner",
+                "team",
+                "location",
+                "due_at"
+              ]
+            },
+            "kind": "filtering",
+            "source": "structured"
+          },
+          {
+            "directives": {
+              "fields": [
+                "title",
+                "location",
+                "owner",
+                "team"
+              ]
+            },
+            "kind": "search",
+            "source": "structured"
+          }
+        ],
+        "id": "widget_filter_panel",
+        "name": "Filter Panel",
+        "patterns": [
+          "filter_panel",
+          "lookup_select",
+          "search_results",
+          "primary_navigation"
+        ]
+      },
+      {
+        "behaviors": [
+          {
+            "directives": {
+              "emits": "card_select",
+              "mode": "single",
+              "state": "selected_ids"
+            },
+            "kind": "selection",
+            "source": "structured"
+          }
+        ],
+        "id": "widget_kpi_summary_cards",
+        "name": "KPI Summary Cards",
+        "patterns": [
+          "summary_stats",
+          "resource_cards",
+          "data_grid_view"
+        ]
+      },
+      {
+        "behaviors": [
+          {
+            "directives": {
+              "emits": "item_select",
+              "mode": "single",
+              "state": "selected_ids"
+            },
+            "kind": "selection",
+            "source": "structured"
+          }
+        ],
+        "id": "widget_schedule_calendar",
+        "name": "Schedule Calendar",
+        "patterns": [
+          "calendar_view"
+        ]
+      },
+      {
+        "behaviors": [
+          {
+            "directives": {
+              "emits": "item_select",
+              "mode": "single",
+              "state": "selected_ids"
+            },
+            "kind": "selection",
+            "source": "structured"
+          },
+          {
+            "directives": {
+              "axis": "both",
+              "reorder": true
+            },
+            "kind": "drag_drop",
+            "source": "structured"
+          }
+        ],
+        "id": "widget_status_board",
+        "name": "Status Board",
+        "patterns": [
+          "board_view",
+          "status_badge"
+        ]
+      }
+    ]
+  },
+  "verification": [],
+  "verification_targets": {
+    "generated_checks": [
+      "compile-check"
+    ],
+    "maintained_app_checks": [],
+    "rationale": "Design realization-set slices prove widget-to-platform component mappings and visible review gaps before UI implementation work.",
+    "verification_ids": []
+  },
+  "version": 1,
+  "write_scope": {
+    "generator_owned": [
+      "artifacts/**",
+      "apps/**"
+    ],
+    "human_owned_review_required": [
+      "examples/maintained/proof-app/**"
+    ],
+    "out_of_bounds": [
+      ".git/**",
+      "node_modules/**"
+    ],
+    "safe_to_edit": [
+      "topo/**",
+      "candidates/**"
+    ]
+  }
 }

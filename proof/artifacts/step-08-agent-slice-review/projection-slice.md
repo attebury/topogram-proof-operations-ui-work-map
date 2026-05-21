@@ -9,7 +9,7 @@
 - Reasons: `projection_surface`
 
 ## Slice Manifest
-- Detail level: standard
+- Detail level: compact
 - Read order: `focus`, `summary`, `agent_guidance`, `terms`, `review_boundary`, `ownership_boundary`, `write_scope`, `ui_agent_packet`
 - Proof sections: `verification_targets`, `verification`
 - `focus` (must_read) — Focus
@@ -41,7 +41,10 @@
   - Items: 7
 - `related` (reference) — Related Records
   - Summaries for directly related graph records.
-  - Items: 6
+  - Items: 1
+- `related_summary` (reference) — Related Summary
+  - Compact counts and IDs for related records omitted from compact detail.
+  - Items: 4
 - `verification_targets` (proof) — Verification Targets
   - Smallest verification set recommended for this change.
   - Items: 4
@@ -54,7 +57,7 @@
 - Read first: `focus`, `summary`, `agent_guidance`, `terms`, `review_boundary`, `ownership_boundary`, `write_scope`, `ui_agent_packet`
 - Read order: `focus`, `summary`, `agent_guidance`, `terms`, `review_boundary`, `ownership_boundary`, `write_scope`, `ui_agent_packet`
 - Next queries:
-  - `topogram query slice ./topo --mode implementation --projection proj_operations_ui_contract --json`
+  - `topogram query slice ./topo --mode implementation --projection proj_operations_ui_contract --detail compact --json`
   - `topogram query single-agent-plan ./topo --mode implementation --projection proj_operations_ui_contract --json`
 - Required commands:
   - `topogram query sdlc-proof-gaps ./topo --json`
@@ -91,52 +94,6 @@
 - rules: `rule_agents_start_ui_changes_from_slices`, `rule_ui_graph_is_work_map`
 - verifications: `verification_step01_domain_app_shell`, `verification_step02_semantic_regions`, `verification_step03_reusable_layouts`, `verification_step04_screens_navigation`, `verification_step05_widgets_bindings`, `verification_step06_design_realizations`, `verification_step07_i18n_aria_states`, `verification_step08_agent_slice_review`
 - terms: `term_design_realization_set`, `term_layout_contract`, `term_operations_control_room`, `term_region_contract`, `term_widget`, `term_work_map`
-
-## Related
-### shapes
-- `shape_incident_detail` — Incident Detail
-  - Detailed incident payload for review and resolution screens.
-### capabilities
-- `cap_assign_field_work` — Assign Field Work
-  - Match work items to available field operators based on urgency, location, and capacity.
-- `cap_manage_field_teams` — Manage Field Teams
-  - Review team rosters, assignment load, availability, and operational coverage.
-- `cap_monitor_operations_dashboard` — Monitor Operations Dashboard
-  - View active operational health, urgent work, team load, and service-level risk.
-- `cap_resolve_incident` — Resolve Incident
-  - Record resolution details, close out follow-up actions, and make the final status visible to operations.
-- `cap_review_incident` — Review Incident
-  - Inspect an incident, its activity timeline, related work, status changes, and next available actions.
-- `cap_triage_incoming_work` — Triage Incoming Work
-  - Review incoming work, classify priority, request missing details, and move ready work into assignment.
-### widgets
-- `widget_activity_timeline` — Activity Timeline
-  - Chronological activity, handoff, status-change, and audit event trail.
-- `widget_alert_banner` — Alert Banner
-  - Time-sensitive operational alerts and live update summaries.
-- `widget_assignment_form` — Assignment Form
-  - Focused assignment or resolution form for terminal operational decisions.
-- `widget_card_list` — Card List
-  - Prioritized card list for queue-style operational work.
-- `widget_command_toolbar` — Command Toolbar
-  - Compact screen command surface for assignment, refresh, export, and escalation actions.
-- `widget_data_grid` — Data Grid
-  - Tabular operational collection for high-density team and incident review.
-- `widget_detail_panel` — Detail Panel
-  - Readable selected-record summary for incident, team, settings, and inspector contexts.
-- `widget_filter_panel` — Filter Panel
-  - Filter and search controls for operational queues, boards, calendars, and directories.
-- `widget_kpi_summary_cards` — KPI Summary Cards
-  - Reusable operational health cards for counts, trends, and service-level risk.
-- `widget_schedule_calendar` — Schedule Calendar
-  - Calendar view for field work due dates, assignments, and capacity windows.
-- `widget_status_board` — Status Board
-  - Board-style status lanes for assigned field work and escalations.
-### rules
-- `rule_agents_start_ui_changes_from_slices` — Agents Start UI Changes From Slices
-  - Agent-facing UI work should start from a focused Topogram slice that shows screen, layout, region, widget, design, i18n, ARIA, gaps, and proof command context.
-- `rule_ui_graph_is_work_map` — UI Graph Is Work Map
-  - Proof UI records must describe semantic work areas, product meaning, and proof obligations, not framework render trees or source import paths.
 
 ## Verification Targets
 - Rationale: Projection slices affect generated contract and runtime surfaces, so verification should follow the projection closure.

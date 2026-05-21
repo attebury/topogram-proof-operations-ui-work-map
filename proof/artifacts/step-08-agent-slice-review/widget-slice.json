@@ -3,7 +3,7 @@
     "completion_command": "topogram sdlc prep commit . --json",
     "mode": "implementation",
     "next_commands": [
-      "topogram query slice ./topo --mode implementation --widget widget_alert_banner --json",
+      "topogram query slice ./topo --mode implementation --widget widget_alert_banner --detail compact --json",
       "topogram query single-agent-plan ./topo --mode implementation --widget widget_alert_banner --json",
       "topogram query sdlc-proof-gaps ./topo --json",
       "topogram check . --json",
@@ -11,7 +11,7 @@
       "topogram sdlc prep commit . --json"
     ],
     "next_queries": [
-      "topogram query slice ./topo --mode implementation --widget widget_alert_banner --json",
+      "topogram query slice ./topo --mode implementation --widget widget_alert_banner --detail compact --json",
       "topogram query single-agent-plan ./topo --mode implementation --widget widget_alert_banner --json"
     ],
     "proof_commands": [
@@ -65,7 +65,7 @@
     "verifications": [],
     "widgets": []
   },
-  "detail_level": "standard",
+  "detail_level": "compact",
   "focus": {
     "id": "widget_alert_banner",
     "kind": "widget"
@@ -89,198 +89,6 @@
     }
   },
   "related": {
-    "capabilities": [],
-    "entities": [],
-    "projections": [
-      {
-        "dbTables": [],
-        "description": "Shared UI contract for the operations-dashboard proof with reusable layouts, screens, navigation, and semantic widget bindings.",
-        "httpCapabilities": [],
-        "id": "proj_operations_ui_contract",
-        "kind": "projection",
-        "name": "Operations UI Contract",
-        "outputs": [
-          "ui_contract"
-        ],
-        "ownership_boundary": {
-          "canonical_topogram": {
-            "agent_mode": "propose_review_adopt",
-            "owner": "human"
-          },
-          "generated_artifacts": {
-            "agent_mode": "regenerate_or_compare",
-            "owner": "engine"
-          },
-          "maintained_code": {
-            "agent_mode": "bounded_edit_only",
-            "owner": "human"
-          },
-          "proposal_surfaces": {
-            "agent_mode": "stage_map_customize_reject",
-            "owner": "human"
-          }
-        },
-        "realizes": [
-          "cap_assign_field_work",
-          "cap_manage_field_teams",
-          "cap_monitor_operations_dashboard",
-          "cap_resolve_incident",
-          "cap_review_incident",
-          "cap_triage_incoming_work"
-        ],
-        "reviewBoundary": {
-          "automation_class": "manual_decision",
-          "reasons": [
-            "ui_surface"
-          ]
-        },
-        "type": "ui_contract",
-        "uiScreens": [
-          "assignment_board",
-          "audit_timeline",
-          "field_team_directory",
-          "incident_detail",
-          "intake_queue",
-          "operations_dashboard",
-          "schedule_calendar",
-          "settings_preferences"
-        ],
-        "widgetBindings": [
-          "widget_activity_timeline",
-          "widget_alert_banner",
-          "widget_assignment_form",
-          "widget_card_list",
-          "widget_command_toolbar",
-          "widget_data_grid",
-          "widget_detail_panel",
-          "widget_filter_panel",
-          "widget_kpi_summary_cards",
-          "widget_schedule_calendar",
-          "widget_status_board"
-        ]
-      },
-      {
-        "dbTables": [],
-        "description": "Concrete web route surface for the operations-dashboard UI contract.",
-        "httpCapabilities": [],
-        "id": "proj_operations_web_surface",
-        "kind": "projection",
-        "name": "Operations Web Surface",
-        "outputs": [
-          "ui_contract",
-          "web_app"
-        ],
-        "ownership_boundary": {
-          "canonical_topogram": {
-            "agent_mode": "propose_review_adopt",
-            "owner": "human"
-          },
-          "generated_artifacts": {
-            "agent_mode": "regenerate_or_compare",
-            "owner": "engine"
-          },
-          "maintained_code": {
-            "agent_mode": "bounded_edit_only",
-            "owner": "human"
-          },
-          "proposal_surfaces": {
-            "agent_mode": "stage_map_customize_reject",
-            "owner": "human"
-          }
-        },
-        "realizes": [
-          "cap_assign_field_work",
-          "cap_manage_field_teams",
-          "cap_monitor_operations_dashboard",
-          "cap_resolve_incident",
-          "cap_review_incident",
-          "cap_triage_incoming_work",
-          "proj_operations_ui_contract"
-        ],
-        "reviewBoundary": {
-          "automation_class": "safe",
-          "reasons": [
-            "metadata_only"
-          ]
-        },
-        "type": "web_surface",
-        "uiScreens": [],
-        "widgetBindings": []
-      }
-    ],
-    "shapes": [
-      {
-        "derivedFrom": [],
-        "description": "Compact queue row or card for triage and assignment screens.",
-        "exclude": [],
-        "fields": [
-          {
-            "defaultValue": null,
-            "name": "id",
-            "requiredness": "required",
-            "type": "string"
-          },
-          {
-            "defaultValue": null,
-            "name": "title",
-            "requiredness": "required",
-            "type": "string"
-          },
-          {
-            "defaultValue": null,
-            "name": "priority",
-            "requiredness": "required",
-            "type": "string"
-          },
-          {
-            "defaultValue": null,
-            "name": "status",
-            "requiredness": "required",
-            "type": "string"
-          },
-          {
-            "defaultValue": null,
-            "name": "owner",
-            "requiredness": "optional",
-            "type": "string"
-          },
-          {
-            "defaultValue": null,
-            "name": "due_at",
-            "requiredness": "optional",
-            "type": "datetime"
-          },
-          {
-            "defaultValue": null,
-            "name": "location",
-            "requiredness": "optional",
-            "type": "string"
-          }
-        ],
-        "id": "shape_work_queue_item",
-        "include": [],
-        "kind": "shape",
-        "name": "Work Queue Item",
-        "ownership_boundary": {
-          "canonical_topogram": {
-            "agent_mode": "propose_review_adopt",
-            "owner": "human"
-          },
-          "generated_artifacts": {
-            "agent_mode": "regenerate_or_compare",
-            "owner": "engine"
-          },
-          "maintained_code": {
-            "agent_mode": "bounded_edit_only",
-            "owner": "human"
-          },
-          "proposal_surfaces": {
-            "agent_mode": "stage_map_customize_reject",
-            "owner": "human"
-          }
-        }
-      }
-    ],
     "terms": [
       {
         "aliases": [],
@@ -342,8 +150,22 @@
         "relatedTerms": [],
         "status": "active"
       }
-    ],
-    "widgets": []
+    ]
+  },
+  "related_summary": {
+    "projections": {
+      "count": 2,
+      "ids": [
+        "proj_operations_ui_contract",
+        "proj_operations_web_surface"
+      ]
+    },
+    "shapes": {
+      "count": 1,
+      "ids": [
+        "shape_work_queue_item"
+      ]
+    }
   },
   "review_boundary": {
     "automation_class": "review_required",
@@ -352,7 +174,7 @@
     ]
   },
   "slice_manifest": {
-    "detail_level": "standard",
+    "detail_level": "compact",
     "note": "Read must_read sections first; use reference sections only as needed; run proof commands before completing work.",
     "proof_sections": [
       "verification_targets"
@@ -443,10 +265,18 @@
       {
         "field": "related",
         "id": "related",
-        "item_count": 6,
+        "item_count": 1,
         "reason": "Summaries for directly related graph records.",
         "tier": "reference",
         "title": "Related Records"
+      },
+      {
+        "field": "related_summary",
+        "id": "related_summary",
+        "item_count": 2,
+        "reason": "Compact counts and IDs for related records omitted from compact detail.",
+        "tier": "reference",
+        "title": "Related Summary"
       },
       {
         "field": "verification_targets",

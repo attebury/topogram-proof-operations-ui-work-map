@@ -1,37 +1,3308 @@
 {
-  "type": "agent_slice_context_card",
-  "target_kind": "region_contract",
-  "target_id": "region_work_queue",
-  "direct_selector_supported": false,
-  "usable_source_artifacts": [
-    "screen-slice.json",
-    "projection-slice.json"
-  ],
-  "summary": "Prioritized review area for incoming or active work that needs triage, assignment, escalation, or resolution.",
-  "appears_as_region_ids": [
-    "queue"
-  ],
-  "style_intent": [
-    "prioritized",
-    "actionable",
-    "queue_focused"
-  ],
-  "accessibility_obligations": [
-    "labelled_region",
-    "keyboard_collection_navigation",
-    "status_announcements"
-  ],
-  "i18n_obligations": [
-    "queue_title",
-    "priority_labels",
-    "empty_state"
-  ],
-  "allowed_widget_patterns": [
-    "resource_cards",
-    "data_grid_view",
-    "status_badge",
-    "empty_state_panel"
-  ],
-  "useful_for_agent": true,
-  "limitation": "The region is visible through resolved screen regions, but not directly selectable as a slice."
+  "agent_guidance": {
+    "completion_command": "topogram sdlc prep commit . --json",
+    "mode": "implementation",
+    "next_commands": [
+      "topogram query slice ./topo --mode implementation --projection proj_operations_ui_contract --region region_work_queue --detail compact --json",
+      "topogram query single-agent-plan ./topo --mode implementation --projection proj_operations_ui_contract --region region_work_queue --json",
+      "topogram query sdlc-proof-gaps ./topo --json",
+      "topogram check . --json",
+      "topogram sdlc check . --strict",
+      "topogram sdlc prep commit . --json"
+    ],
+    "next_queries": [
+      "topogram query slice ./topo --mode implementation --projection proj_operations_ui_contract --region region_work_queue --detail compact --json",
+      "topogram query single-agent-plan ./topo --mode implementation --projection proj_operations_ui_contract --region region_work_queue --json"
+    ],
+    "proof_commands": [
+      "topogram check . --json",
+      "topogram sdlc check . --strict",
+      "topogram sdlc prep commit . --json"
+    ],
+    "read_first": [
+      "focus",
+      "summary",
+      "agent_guidance",
+      "terms",
+      "review_boundary",
+      "ownership_boundary",
+      "write_scope",
+      "ui_agent_packet"
+    ],
+    "read_order": [
+      "focus",
+      "summary",
+      "agent_guidance",
+      "terms",
+      "review_boundary",
+      "ownership_boundary",
+      "write_scope",
+      "ui_agent_packet"
+    ],
+    "required_commands": [
+      "topogram query sdlc-proof-gaps ./topo --json",
+      "topogram check . --json",
+      "topogram sdlc check . --strict",
+      "topogram sdlc prep commit . --json"
+    ],
+    "warnings": [],
+    "write_scope_summary": "Edit the canonical Topogram source and project-owned files only; generated-owned outputs should be regenerated."
+  },
+  "depends_on": {
+    "layouts": [
+      "layout_queue_workspace"
+    ],
+    "projections": [
+      "proj_operations_ui_contract"
+    ],
+    "terms": [
+      "term_region_contract",
+      "term_widget"
+    ],
+    "verifications": [],
+    "widgets": [
+      "widget_card_list",
+      "widget_data_grid"
+    ]
+  },
+  "detail_level": "compact",
+  "focus": {
+    "id": "region_work_queue",
+    "kind": "region_contract",
+    "projectionId": "proj_operations_ui_contract"
+  },
+  "ownership_boundary": {
+    "canonical_topogram": {
+      "agent_mode": "propose_review_adopt",
+      "owner": "human"
+    },
+    "generated_artifacts": {
+      "agent_mode": "regenerate_or_compare",
+      "owner": "engine"
+    },
+    "maintained_code": {
+      "agent_mode": "bounded_edit_only",
+      "owner": "human"
+    },
+    "proposal_surfaces": {
+      "agent_mode": "stage_map_customize_reject",
+      "owner": "human"
+    }
+  },
+  "related": {
+    "terms": [
+      {
+        "aliases": [
+          "work_area"
+        ],
+        "category": "ui_structure",
+        "description": "A reusable semantic work area such as command bar, filter rail, results, detail summary, timeline, inspector, or footer actions.",
+        "excludes": [],
+        "id": "term_region_contract",
+        "kind": "term",
+        "name": "Region Contract",
+        "ownership_boundary": {
+          "canonical_topogram": {
+            "agent_mode": "propose_review_adopt",
+            "owner": "human"
+          },
+          "generated_artifacts": {
+            "agent_mode": "regenerate_or_compare",
+            "owner": "engine"
+          },
+          "maintained_code": {
+            "agent_mode": "bounded_edit_only",
+            "owner": "human"
+          },
+          "proposal_surfaces": {
+            "agent_mode": "stage_map_customize_reject",
+            "owner": "human"
+          }
+        },
+        "relatedTerms": [],
+        "status": "active"
+      },
+      {
+        "aliases": [
+          "semantic_component"
+        ],
+        "category": "ui_structure",
+        "description": "A reusable semantic UI contract that can be realized by different platform components while keeping one product meaning.",
+        "excludes": [],
+        "id": "term_widget",
+        "kind": "term",
+        "name": "Widget",
+        "ownership_boundary": {
+          "canonical_topogram": {
+            "agent_mode": "propose_review_adopt",
+            "owner": "human"
+          },
+          "generated_artifacts": {
+            "agent_mode": "regenerate_or_compare",
+            "owner": "engine"
+          },
+          "maintained_code": {
+            "agent_mode": "bounded_edit_only",
+            "owner": "human"
+          },
+          "proposal_surfaces": {
+            "agent_mode": "stage_map_customize_reject",
+            "owner": "human"
+          }
+        },
+        "relatedTerms": [],
+        "status": "active"
+      }
+    ]
+  },
+  "related_summary": {
+    "layouts": {
+      "count": 1,
+      "ids": [
+        "layout_queue_workspace"
+      ]
+    },
+    "projections": {
+      "count": 1,
+      "ids": [
+        "proj_operations_ui_contract"
+      ]
+    },
+    "widgets": {
+      "count": 2,
+      "ids": [
+        "widget_card_list",
+        "widget_data_grid"
+      ]
+    }
+  },
+  "review_boundary": {
+    "automation_class": "review_required",
+    "reasons": [
+      "ui_region_work_map"
+    ]
+  },
+  "slice_manifest": {
+    "detail_level": "compact",
+    "note": "Read must_read sections first; use reference sections only as needed; run proof commands before completing work.",
+    "proof_sections": [
+      "verification_targets"
+    ],
+    "read_order": [
+      "focus",
+      "summary",
+      "agent_guidance",
+      "terms",
+      "review_boundary",
+      "ownership_boundary",
+      "write_scope",
+      "ui_agent_packet"
+    ],
+    "sections": [
+      {
+        "field": "focus",
+        "id": "focus",
+        "item_count": 3,
+        "reason": "The selected graph surface this packet is scoped to.",
+        "tier": "must_read",
+        "title": "Focus"
+      },
+      {
+        "field": "summary",
+        "id": "summary",
+        "item_count": 5,
+        "reason": "The shortest human-readable description of the selected work or surface.",
+        "tier": "must_read",
+        "title": "Summary"
+      },
+      {
+        "field": "agent_guidance",
+        "id": "agent_guidance",
+        "item_count": 10,
+        "reason": "Mode, read order, follow-up queries, and required proof commands.",
+        "tier": "must_read",
+        "title": "Agent Guidance"
+      },
+      {
+        "field": "related.terms",
+        "id": "terms",
+        "item_count": 2,
+        "reason": "Canonical vocabulary needed to interpret this slice.",
+        "tier": "must_read",
+        "title": "Glossary Terms"
+      },
+      {
+        "field": "review_boundary",
+        "id": "review_boundary",
+        "item_count": 2,
+        "reason": "Automation and human-review expectations for this scope.",
+        "tier": "must_read",
+        "title": "Review Boundary"
+      },
+      {
+        "field": "ownership_boundary",
+        "id": "ownership_boundary",
+        "item_count": 4,
+        "reason": "Generated, maintained, and human-owned boundaries that constrain edits.",
+        "tier": "must_read",
+        "title": "Ownership Boundary"
+      },
+      {
+        "field": "write_scope",
+        "id": "write_scope",
+        "item_count": 4,
+        "reason": "Files and surfaces that are safe, risky, or out of bounds to edit.",
+        "tier": "must_read",
+        "title": "Write Scope"
+      },
+      {
+        "field": "ui_agent_packet",
+        "id": "ui_agent_packet",
+        "item_count": 12,
+        "reason": "Screen, layout, region, widget, accessibility, i18n, design-token, and UI proof context for UI slices.",
+        "tier": "must_read",
+        "title": "UI Agent Packet"
+      },
+      {
+        "field": "depends_on",
+        "id": "depends_on",
+        "item_count": 5,
+        "reason": "IDs that define the semantic closure without embedding every full record.",
+        "tier": "reference",
+        "title": "Depends On"
+      },
+      {
+        "field": "related",
+        "id": "related",
+        "item_count": 1,
+        "reason": "Summaries for directly related graph records.",
+        "tier": "reference",
+        "title": "Related Records"
+      },
+      {
+        "field": "related_summary",
+        "id": "related_summary",
+        "item_count": 3,
+        "reason": "Compact counts and IDs for related records omitted from compact detail.",
+        "tier": "reference",
+        "title": "Related Summary"
+      },
+      {
+        "field": "verification_targets",
+        "id": "verification_targets",
+        "item_count": 4,
+        "reason": "Smallest verification set recommended for this change.",
+        "tier": "proof",
+        "title": "Verification Targets"
+      }
+    ]
+  },
+  "standing_rules": [],
+  "summary": {
+    "description": "Prioritized review area for incoming or active work that needs triage, assignment, escalation, or resolution.",
+    "id": "region_work_queue",
+    "kind": "region_contract",
+    "name": "Work Queue",
+    "ownership_boundary": {
+      "canonical_topogram": {
+        "agent_mode": "propose_review_adopt",
+        "owner": "human"
+      },
+      "generated_artifacts": {
+        "agent_mode": "regenerate_or_compare",
+        "owner": "engine"
+      },
+      "maintained_code": {
+        "agent_mode": "bounded_edit_only",
+        "owner": "human"
+      },
+      "proposal_surfaces": {
+        "agent_mode": "stage_map_customize_reject",
+        "owner": "human"
+      }
+    }
+  },
+  "type": "context_slice",
+  "ui_agent_packet": {
+    "accessibility": {
+      "authoredObligations": [
+        {
+          "focus": "visible",
+          "keyboard": "standard",
+          "live": "off",
+          "nameFrom": {
+            "source": "message",
+            "value": "msg_operations_dashboard_title"
+          },
+          "role": "main",
+          "targetId": "operations_dashboard",
+          "targetKind": "screen"
+        },
+        {
+          "focus": "visible",
+          "keyboard": "standard",
+          "live": "off",
+          "nameFrom": {
+            "source": "message",
+            "value": "msg_intake_queue_title"
+          },
+          "role": "main",
+          "targetId": "intake_queue",
+          "targetKind": "screen"
+        },
+        {
+          "focus": "visible",
+          "keyboard": "standard",
+          "live": "off",
+          "nameFrom": {
+            "source": "message",
+            "value": "msg_incident_detail_title"
+          },
+          "role": "main",
+          "targetId": "incident_detail",
+          "targetKind": "screen"
+        },
+        {
+          "focus": "visible",
+          "keyboard": "standard",
+          "live": "off",
+          "nameFrom": {
+            "source": "message",
+            "value": "msg_assignment_board_title"
+          },
+          "role": "main",
+          "targetId": "assignment_board",
+          "targetKind": "screen"
+        },
+        {
+          "focus": "visible",
+          "keyboard": "standard",
+          "live": "off",
+          "nameFrom": {
+            "source": "message",
+            "value": "msg_schedule_calendar_title"
+          },
+          "role": "main",
+          "targetId": "schedule_calendar",
+          "targetKind": "screen"
+        },
+        {
+          "focus": "visible",
+          "keyboard": "standard",
+          "live": "off",
+          "nameFrom": {
+            "source": "message",
+            "value": "msg_field_team_directory_title"
+          },
+          "role": "main",
+          "targetId": "field_team_directory",
+          "targetKind": "screen"
+        },
+        {
+          "focus": "visible",
+          "keyboard": "standard",
+          "live": "off",
+          "nameFrom": {
+            "source": "message",
+            "value": "msg_audit_timeline_title"
+          },
+          "role": "main",
+          "targetId": "audit_timeline",
+          "targetKind": "screen"
+        },
+        {
+          "focus": "visible",
+          "keyboard": "standard",
+          "live": "off",
+          "nameFrom": {
+            "source": "message",
+            "value": "msg_settings_preferences_title"
+          },
+          "role": "main",
+          "targetId": "settings_preferences",
+          "targetKind": "screen"
+        },
+        {
+          "focus": "visible",
+          "keyboard": "standard",
+          "live": "off",
+          "nameFrom": {
+            "source": "message",
+            "value": "msg_widget_command_toolbar_label"
+          },
+          "role": "region",
+          "targetId": "widget_command_toolbar",
+          "targetKind": "widget"
+        },
+        {
+          "focus": "visible",
+          "keyboard": "standard",
+          "live": "off",
+          "nameFrom": {
+            "source": "message",
+            "value": "msg_widget_kpi_summary_cards_label"
+          },
+          "role": "region",
+          "targetId": "widget_kpi_summary_cards",
+          "targetKind": "widget"
+        },
+        {
+          "focus": "visible",
+          "keyboard": "standard",
+          "live": "polite",
+          "nameFrom": {
+            "source": "message",
+            "value": "msg_widget_alert_banner_label"
+          },
+          "role": "status",
+          "targetId": "widget_alert_banner",
+          "targetKind": "widget"
+        },
+        {
+          "focus": "visible",
+          "keyboard": "form",
+          "live": "off",
+          "nameFrom": {
+            "source": "message",
+            "value": "msg_widget_filter_panel_label"
+          },
+          "role": "search",
+          "targetId": "widget_filter_panel",
+          "targetKind": "widget"
+        },
+        {
+          "focus": "visible",
+          "keyboard": "standard",
+          "live": "off",
+          "nameFrom": {
+            "source": "message",
+            "value": "msg_widget_card_list_label"
+          },
+          "role": "list",
+          "targetId": "widget_card_list",
+          "targetKind": "widget"
+        },
+        {
+          "focus": "visible",
+          "keyboard": "standard",
+          "live": "off",
+          "nameFrom": {
+            "source": "message",
+            "value": "msg_widget_detail_panel_label"
+          },
+          "role": "region",
+          "targetId": "widget_detail_panel",
+          "targetKind": "widget"
+        },
+        {
+          "focus": "visible",
+          "keyboard": "standard",
+          "live": "off",
+          "nameFrom": {
+            "source": "message",
+            "value": "msg_widget_activity_timeline_label"
+          },
+          "role": "list",
+          "targetId": "widget_activity_timeline",
+          "targetKind": "widget"
+        },
+        {
+          "focus": "managed",
+          "keyboard": "form",
+          "live": "off",
+          "nameFrom": {
+            "source": "message",
+            "value": "msg_widget_assignment_form_label"
+          },
+          "role": "form",
+          "targetId": "widget_assignment_form",
+          "targetKind": "widget"
+        },
+        {
+          "focus": "roving_tabindex",
+          "keyboard": "roving_tabindex",
+          "live": "off",
+          "nameFrom": {
+            "source": "message",
+            "value": "msg_widget_status_board_label"
+          },
+          "role": "grid",
+          "targetId": "widget_status_board",
+          "targetKind": "widget"
+        },
+        {
+          "focus": "roving_tabindex",
+          "keyboard": "arrow_keys",
+          "live": "off",
+          "nameFrom": {
+            "source": "message",
+            "value": "msg_widget_schedule_calendar_label"
+          },
+          "role": "grid",
+          "targetId": "widget_schedule_calendar",
+          "targetKind": "widget"
+        },
+        {
+          "focus": "roving_tabindex",
+          "keyboard": "data_grid",
+          "live": "off",
+          "nameFrom": {
+            "source": "message",
+            "value": "msg_widget_data_grid_label"
+          },
+          "role": "grid",
+          "targetId": "widget_data_grid",
+          "targetKind": "widget"
+        },
+        {
+          "focus": "visible",
+          "keyboard": "button",
+          "live": "off",
+          "nameFrom": {
+            "source": "message",
+            "value": "msg_action_triage_incoming_work_label"
+          },
+          "role": "button",
+          "targetId": "cap_triage_incoming_work",
+          "targetKind": "action"
+        },
+        {
+          "focus": "visible",
+          "keyboard": "button",
+          "live": "off",
+          "nameFrom": {
+            "source": "message",
+            "value": "msg_action_assign_field_work_label"
+          },
+          "role": "button",
+          "targetId": "cap_assign_field_work",
+          "targetKind": "action"
+        },
+        {
+          "focus": "visible",
+          "keyboard": "button",
+          "live": "off",
+          "nameFrom": {
+            "source": "message",
+            "value": "msg_action_review_incident_label"
+          },
+          "role": "button",
+          "targetId": "cap_review_incident",
+          "targetKind": "action"
+        },
+        {
+          "focus": "visible",
+          "keyboard": "button",
+          "live": "off",
+          "nameFrom": {
+            "source": "message",
+            "value": "msg_action_resolve_incident_label"
+          },
+          "role": "button",
+          "targetId": "cap_resolve_incident",
+          "targetKind": "action"
+        },
+        {
+          "focus": "visible",
+          "keyboard": "button",
+          "live": "off",
+          "nameFrom": {
+            "source": "message",
+            "value": "msg_action_manage_field_teams_label"
+          },
+          "role": "button",
+          "targetId": "cap_manage_field_teams",
+          "targetKind": "action"
+        }
+      ],
+      "currentSignals": {
+        "authoredContract": {
+          "obligations": [
+            {
+              "focus": "visible",
+              "keyboard": "standard",
+              "live": "off",
+              "nameFrom": {
+                "source": "message",
+                "value": "msg_operations_dashboard_title"
+              },
+              "role": "main",
+              "targetId": "operations_dashboard",
+              "targetKind": "screen"
+            },
+            {
+              "focus": "visible",
+              "keyboard": "standard",
+              "live": "off",
+              "nameFrom": {
+                "source": "message",
+                "value": "msg_intake_queue_title"
+              },
+              "role": "main",
+              "targetId": "intake_queue",
+              "targetKind": "screen"
+            },
+            {
+              "focus": "visible",
+              "keyboard": "standard",
+              "live": "off",
+              "nameFrom": {
+                "source": "message",
+                "value": "msg_incident_detail_title"
+              },
+              "role": "main",
+              "targetId": "incident_detail",
+              "targetKind": "screen"
+            },
+            {
+              "focus": "visible",
+              "keyboard": "standard",
+              "live": "off",
+              "nameFrom": {
+                "source": "message",
+                "value": "msg_assignment_board_title"
+              },
+              "role": "main",
+              "targetId": "assignment_board",
+              "targetKind": "screen"
+            },
+            {
+              "focus": "visible",
+              "keyboard": "standard",
+              "live": "off",
+              "nameFrom": {
+                "source": "message",
+                "value": "msg_schedule_calendar_title"
+              },
+              "role": "main",
+              "targetId": "schedule_calendar",
+              "targetKind": "screen"
+            },
+            {
+              "focus": "visible",
+              "keyboard": "standard",
+              "live": "off",
+              "nameFrom": {
+                "source": "message",
+                "value": "msg_field_team_directory_title"
+              },
+              "role": "main",
+              "targetId": "field_team_directory",
+              "targetKind": "screen"
+            },
+            {
+              "focus": "visible",
+              "keyboard": "standard",
+              "live": "off",
+              "nameFrom": {
+                "source": "message",
+                "value": "msg_audit_timeline_title"
+              },
+              "role": "main",
+              "targetId": "audit_timeline",
+              "targetKind": "screen"
+            },
+            {
+              "focus": "visible",
+              "keyboard": "standard",
+              "live": "off",
+              "nameFrom": {
+                "source": "message",
+                "value": "msg_settings_preferences_title"
+              },
+              "role": "main",
+              "targetId": "settings_preferences",
+              "targetKind": "screen"
+            },
+            {
+              "focus": "visible",
+              "keyboard": "standard",
+              "live": "off",
+              "nameFrom": {
+                "source": "message",
+                "value": "msg_widget_command_toolbar_label"
+              },
+              "role": "region",
+              "targetId": "widget_command_toolbar",
+              "targetKind": "widget"
+            },
+            {
+              "focus": "visible",
+              "keyboard": "standard",
+              "live": "off",
+              "nameFrom": {
+                "source": "message",
+                "value": "msg_widget_kpi_summary_cards_label"
+              },
+              "role": "region",
+              "targetId": "widget_kpi_summary_cards",
+              "targetKind": "widget"
+            },
+            {
+              "focus": "visible",
+              "keyboard": "standard",
+              "live": "polite",
+              "nameFrom": {
+                "source": "message",
+                "value": "msg_widget_alert_banner_label"
+              },
+              "role": "status",
+              "targetId": "widget_alert_banner",
+              "targetKind": "widget"
+            },
+            {
+              "focus": "visible",
+              "keyboard": "form",
+              "live": "off",
+              "nameFrom": {
+                "source": "message",
+                "value": "msg_widget_filter_panel_label"
+              },
+              "role": "search",
+              "targetId": "widget_filter_panel",
+              "targetKind": "widget"
+            },
+            {
+              "focus": "visible",
+              "keyboard": "standard",
+              "live": "off",
+              "nameFrom": {
+                "source": "message",
+                "value": "msg_widget_card_list_label"
+              },
+              "role": "list",
+              "targetId": "widget_card_list",
+              "targetKind": "widget"
+            },
+            {
+              "focus": "visible",
+              "keyboard": "standard",
+              "live": "off",
+              "nameFrom": {
+                "source": "message",
+                "value": "msg_widget_detail_panel_label"
+              },
+              "role": "region",
+              "targetId": "widget_detail_panel",
+              "targetKind": "widget"
+            },
+            {
+              "focus": "visible",
+              "keyboard": "standard",
+              "live": "off",
+              "nameFrom": {
+                "source": "message",
+                "value": "msg_widget_activity_timeline_label"
+              },
+              "role": "list",
+              "targetId": "widget_activity_timeline",
+              "targetKind": "widget"
+            },
+            {
+              "focus": "managed",
+              "keyboard": "form",
+              "live": "off",
+              "nameFrom": {
+                "source": "message",
+                "value": "msg_widget_assignment_form_label"
+              },
+              "role": "form",
+              "targetId": "widget_assignment_form",
+              "targetKind": "widget"
+            },
+            {
+              "focus": "roving_tabindex",
+              "keyboard": "roving_tabindex",
+              "live": "off",
+              "nameFrom": {
+                "source": "message",
+                "value": "msg_widget_status_board_label"
+              },
+              "role": "grid",
+              "targetId": "widget_status_board",
+              "targetKind": "widget"
+            },
+            {
+              "focus": "roving_tabindex",
+              "keyboard": "arrow_keys",
+              "live": "off",
+              "nameFrom": {
+                "source": "message",
+                "value": "msg_widget_schedule_calendar_label"
+              },
+              "role": "grid",
+              "targetId": "widget_schedule_calendar",
+              "targetKind": "widget"
+            },
+            {
+              "focus": "roving_tabindex",
+              "keyboard": "data_grid",
+              "live": "off",
+              "nameFrom": {
+                "source": "message",
+                "value": "msg_widget_data_grid_label"
+              },
+              "role": "grid",
+              "targetId": "widget_data_grid",
+              "targetKind": "widget"
+            },
+            {
+              "focus": "visible",
+              "keyboard": "button",
+              "live": "off",
+              "nameFrom": {
+                "source": "message",
+                "value": "msg_action_triage_incoming_work_label"
+              },
+              "role": "button",
+              "targetId": "cap_triage_incoming_work",
+              "targetKind": "action"
+            },
+            {
+              "focus": "visible",
+              "keyboard": "button",
+              "live": "off",
+              "nameFrom": {
+                "source": "message",
+                "value": "msg_action_assign_field_work_label"
+              },
+              "role": "button",
+              "targetId": "cap_assign_field_work",
+              "targetKind": "action"
+            },
+            {
+              "focus": "visible",
+              "keyboard": "button",
+              "live": "off",
+              "nameFrom": {
+                "source": "message",
+                "value": "msg_action_review_incident_label"
+              },
+              "role": "button",
+              "targetId": "cap_review_incident",
+              "targetKind": "action"
+            },
+            {
+              "focus": "visible",
+              "keyboard": "button",
+              "live": "off",
+              "nameFrom": {
+                "source": "message",
+                "value": "msg_action_resolve_incident_label"
+              },
+              "role": "button",
+              "targetId": "cap_resolve_incident",
+              "targetKind": "action"
+            },
+            {
+              "focus": "visible",
+              "keyboard": "button",
+              "live": "off",
+              "nameFrom": {
+                "source": "message",
+                "value": "msg_action_manage_field_teams_label"
+              },
+              "role": "button",
+              "targetId": "cap_manage_field_teams",
+              "targetKind": "action"
+            }
+          ],
+          "totalObligations": 24
+        },
+        "designTokens": null
+      },
+      "decisions": [
+        {
+          "found": false,
+          "id": "decision_aria_attributes_are_implementation_evidence",
+          "kind": null,
+          "name": "decision_aria_attributes_are_implementation_evidence",
+          "status": null
+        }
+      ],
+      "diagnostics": [],
+      "obligations": [
+        "Prefer semantic role, accessible-name source, keyboard model, focus behavior, live-region need, and proof command over raw aria-* snapshots.",
+        "Treat raw aria-* attributes as generated or maintained implementation evidence, not the contract source."
+      ],
+      "proofCommands": [
+        "topogram widget check --json",
+        "topogram widget behavior --json",
+        "topogram emit ui-realization-report --projection proj_operations_ui_contract --json"
+      ],
+      "requirements": [
+        {
+          "found": false,
+          "id": "req_aria_accessibility_contract_v1",
+          "kind": null,
+          "name": "req_aria_accessibility_contract_v1",
+          "status": null
+        }
+      ],
+      "scope": {
+        "projectionId": "proj_operations_ui_contract",
+        "screenId": null,
+        "widgetId": null
+      },
+      "source": "ui_contract accessibility block, design-token evidence, terms, decisions, and requirements",
+      "status": "authored_contract",
+      "terms": [
+        {
+          "found": true,
+          "id": "term_accessibility_obligation",
+          "kind": "term",
+          "name": "Accessibility Obligation",
+          "status": "active"
+        },
+        {
+          "found": true,
+          "id": "term_accessible_name",
+          "kind": "term",
+          "name": "Accessible Name",
+          "status": "active"
+        },
+        {
+          "found": true,
+          "id": "term_semantic_role",
+          "kind": "term",
+          "name": "Semantic Role",
+          "status": "active"
+        },
+        {
+          "found": true,
+          "id": "term_keyboard_interaction",
+          "kind": "term",
+          "name": "Keyboard Interaction",
+          "status": "active"
+        },
+        {
+          "found": true,
+          "id": "term_live_region",
+          "kind": "term",
+          "name": "Live Region",
+          "status": "active"
+        }
+      ]
+    },
+    "designReview": {
+      "diagnostics": [
+        "Behavior 'filtering' is 'unsupported'.",
+        "Widget 'widget_card_list' has no authored accessibility obligation.",
+        "Widget 'widget_card_list' has no authored message key.",
+        "Realization 'card_list_android' does not declare 'error' state coverage.",
+        "Realization 'card_list_android' is 'unsupported'.",
+        "Widget 'widget_card_list' has no authored accessibility obligation.",
+        "Widget 'widget_card_list' has no authored message key.",
+        "Behavior 'filtering' is 'contract_only'.",
+        "Widget 'widget_card_list' has no authored accessibility obligation.",
+        "Widget 'widget_card_list' has no authored accessibility obligation.",
+        "Widget 'widget_card_list' has no authored message key.",
+        "Widget 'widget_card_list' has no authored message key.",
+        "Realization 'card_list_web_narrow' does not declare 'error' state coverage.",
+        "Realization 'card_list_web_narrow' is 'contract_only'.",
+        "Widget 'widget_data_grid' has no android design realization in 'design_operations_product_ui'.",
+        "Widget 'widget_data_grid' has no ios design realization in 'design_operations_product_ui'.",
+        "Behavior 'filtering' is 'contract_only'.",
+        "Behavior 'keyboard_navigation' is 'contract_only'.",
+        "Behavior 'sorting' is 'contract_only'.",
+        "Widget 'widget_data_grid' has no authored accessibility obligation.",
+        "Widget 'widget_data_grid' has no authored accessibility obligation.",
+        "Widget 'widget_data_grid' has no authored message key.",
+        "Widget 'widget_data_grid' has no authored message key.",
+        "Realization 'data_grid_web_narrow' does not declare 'error' state coverage.",
+        "Realization 'data_grid_web_narrow' is 'contract_only'."
+      ],
+      "gaps": {
+        "behavior_review_items": 8,
+        "missing_accessibility": 6,
+        "missing_i18n": 6,
+        "missing_platforms": 2,
+        "missing_states": 3,
+        "missing_token_mappings": 0
+      },
+      "matrix": {
+        "review_rows": [
+          {
+            "code": "design_behavior_review_required",
+            "component_ref": "ops.android.queueCards",
+            "message": "Behavior 'filtering' is 'unsupported'.",
+            "platform": "android",
+            "status": "unsupported",
+            "viewport": "any",
+            "widget": "widget_card_list"
+          },
+          {
+            "code": "design_missing_accessibility",
+            "component_ref": "ops.android.queueCards",
+            "message": "Widget 'widget_card_list' has no authored accessibility obligation.",
+            "platform": "android",
+            "status": "missing_accessibility",
+            "viewport": "any",
+            "widget": "widget_card_list"
+          },
+          {
+            "code": "design_missing_i18n",
+            "component_ref": "ops.android.queueCards",
+            "message": "Widget 'widget_card_list' has no authored message key.",
+            "platform": "android",
+            "status": "missing_i18n",
+            "viewport": "any",
+            "widget": "widget_card_list"
+          },
+          {
+            "code": "design_missing_state",
+            "component_ref": "ops.android.queueCards",
+            "message": "Realization 'card_list_android' does not declare 'error' state coverage.",
+            "platform": "android",
+            "status": "missing_state",
+            "viewport": "any",
+            "widget": "widget_card_list"
+          },
+          {
+            "code": "design_realization_status_review",
+            "component_ref": "ops.android.queueCards",
+            "message": "Realization 'card_list_android' is 'unsupported'.",
+            "platform": "android",
+            "status": "unsupported",
+            "viewport": "any",
+            "widget": "widget_card_list"
+          },
+          {
+            "code": "design_missing_accessibility",
+            "component_ref": "ops.ios.queueList",
+            "message": "Widget 'widget_card_list' has no authored accessibility obligation.",
+            "platform": "ios",
+            "status": "missing_accessibility",
+            "viewport": "any",
+            "widget": "widget_card_list"
+          },
+          {
+            "code": "design_missing_i18n",
+            "component_ref": "ops.ios.queueList",
+            "message": "Widget 'widget_card_list' has no authored message key.",
+            "platform": "ios",
+            "status": "missing_i18n",
+            "viewport": "any",
+            "widget": "widget_card_list"
+          },
+          {
+            "code": "design_behavior_review_required",
+            "component_ref": "ops.queue.mobileCards",
+            "message": "Behavior 'filtering' is 'contract_only'.",
+            "platform": "web",
+            "status": "contract_only",
+            "viewport": "narrow",
+            "widget": "widget_card_list"
+          },
+          {
+            "code": "design_missing_accessibility",
+            "component_ref": "ops.queue.mobileCards",
+            "message": "Widget 'widget_card_list' has no authored accessibility obligation.",
+            "platform": "web",
+            "status": "missing_accessibility",
+            "viewport": "narrow",
+            "widget": "widget_card_list"
+          },
+          {
+            "code": "design_missing_accessibility",
+            "component_ref": "ops.queue.priorityCards",
+            "message": "Widget 'widget_card_list' has no authored accessibility obligation.",
+            "platform": "web",
+            "status": "missing_accessibility",
+            "viewport": "wide",
+            "widget": "widget_card_list"
+          },
+          {
+            "code": "design_missing_i18n",
+            "component_ref": "ops.queue.mobileCards",
+            "message": "Widget 'widget_card_list' has no authored message key.",
+            "platform": "web",
+            "status": "missing_i18n",
+            "viewport": "narrow",
+            "widget": "widget_card_list"
+          },
+          {
+            "code": "design_missing_i18n",
+            "component_ref": "ops.queue.priorityCards",
+            "message": "Widget 'widget_card_list' has no authored message key.",
+            "platform": "web",
+            "status": "missing_i18n",
+            "viewport": "wide",
+            "widget": "widget_card_list"
+          },
+          {
+            "code": "design_missing_state",
+            "component_ref": "ops.queue.mobileCards",
+            "message": "Realization 'card_list_web_narrow' does not declare 'error' state coverage.",
+            "platform": "web",
+            "status": "missing_state",
+            "viewport": "narrow",
+            "widget": "widget_card_list"
+          },
+          {
+            "code": "design_realization_status_review",
+            "component_ref": "ops.queue.mobileCards",
+            "message": "Realization 'card_list_web_narrow' is 'contract_only'.",
+            "platform": "web",
+            "status": "contract_only",
+            "viewport": "narrow",
+            "widget": "widget_card_list"
+          },
+          {
+            "code": "design_missing_platform",
+            "message": "Widget 'widget_data_grid' has no android design realization in 'design_operations_product_ui'.",
+            "platform": "android",
+            "widget": "widget_data_grid"
+          },
+          {
+            "code": "design_missing_platform",
+            "message": "Widget 'widget_data_grid' has no ios design realization in 'design_operations_product_ui'.",
+            "platform": "ios",
+            "widget": "widget_data_grid"
+          },
+          {
+            "code": "design_behavior_review_required",
+            "component_ref": "ops.table.cardFallback",
+            "message": "Behavior 'filtering' is 'contract_only'.",
+            "platform": "web",
+            "status": "contract_only",
+            "viewport": "narrow",
+            "widget": "widget_data_grid"
+          },
+          {
+            "code": "design_behavior_review_required",
+            "component_ref": "ops.table.cardFallback",
+            "message": "Behavior 'keyboard_navigation' is 'contract_only'.",
+            "platform": "web",
+            "status": "contract_only",
+            "viewport": "narrow",
+            "widget": "widget_data_grid"
+          },
+          {
+            "code": "design_behavior_review_required",
+            "component_ref": "ops.table.cardFallback",
+            "message": "Behavior 'sorting' is 'contract_only'.",
+            "platform": "web",
+            "status": "contract_only",
+            "viewport": "narrow",
+            "widget": "widget_data_grid"
+          },
+          {
+            "code": "design_missing_accessibility",
+            "component_ref": "ops.table.cardFallback",
+            "message": "Widget 'widget_data_grid' has no authored accessibility obligation.",
+            "platform": "web",
+            "status": "missing_accessibility",
+            "viewport": "narrow",
+            "widget": "widget_data_grid"
+          },
+          {
+            "code": "design_missing_accessibility",
+            "component_ref": "ops.table.dataGrid",
+            "message": "Widget 'widget_data_grid' has no authored accessibility obligation.",
+            "platform": "web",
+            "status": "missing_accessibility",
+            "viewport": "wide",
+            "widget": "widget_data_grid"
+          },
+          {
+            "code": "design_missing_i18n",
+            "component_ref": "ops.table.cardFallback",
+            "message": "Widget 'widget_data_grid' has no authored message key.",
+            "platform": "web",
+            "status": "missing_i18n",
+            "viewport": "narrow",
+            "widget": "widget_data_grid"
+          },
+          {
+            "code": "design_missing_i18n",
+            "component_ref": "ops.table.dataGrid",
+            "message": "Widget 'widget_data_grid' has no authored message key.",
+            "platform": "web",
+            "status": "missing_i18n",
+            "viewport": "wide",
+            "widget": "widget_data_grid"
+          },
+          {
+            "code": "design_missing_state",
+            "component_ref": "ops.table.cardFallback",
+            "message": "Realization 'data_grid_web_narrow' does not declare 'error' state coverage.",
+            "platform": "web",
+            "status": "missing_state",
+            "viewport": "narrow",
+            "widget": "widget_data_grid"
+          },
+          {
+            "code": "design_realization_status_review",
+            "component_ref": "ops.table.cardFallback",
+            "message": "Realization 'data_grid_web_narrow' is 'contract_only'.",
+            "platform": "web",
+            "status": "contract_only",
+            "viewport": "narrow",
+            "widget": "widget_data_grid"
+          }
+        ],
+        "rows": [
+          {
+            "accessibility_status": "missing",
+            "behavior_statuses": [
+              {
+                "behavior": "filtering",
+                "status": "unsupported"
+              },
+              {
+                "behavior": "selection",
+                "status": "rendered"
+              }
+            ],
+            "component_ref": "ops.android.queueCards",
+            "density": "comfortable",
+            "i18n_status": "missing",
+            "missing_states": [
+              "error"
+            ],
+            "pattern": "resource_cards",
+            "platform": "android",
+            "review_status": "review_required",
+            "state_coverage": [
+              "loading",
+              "empty"
+            ],
+            "status": "unsupported",
+            "token_status": "mapped",
+            "viewport": "any",
+            "widget": "widget_card_list"
+          },
+          {
+            "accessibility_status": "missing",
+            "behavior_statuses": [
+              {
+                "behavior": "filtering",
+                "status": "implementation_owned"
+              },
+              {
+                "behavior": "selection",
+                "status": "rendered"
+              }
+            ],
+            "component_ref": "ops.ios.queueList",
+            "density": "comfortable",
+            "i18n_status": "missing",
+            "missing_states": [],
+            "pattern": "resource_cards",
+            "platform": "ios",
+            "review_status": "review_required",
+            "state_coverage": [
+              "loading",
+              "empty",
+              "error"
+            ],
+            "status": "implementation_owned",
+            "token_status": "mapped",
+            "viewport": "any",
+            "widget": "widget_card_list"
+          },
+          {
+            "accessibility_status": "missing",
+            "behavior_statuses": [
+              {
+                "behavior": "filtering",
+                "status": "contract_only"
+              },
+              {
+                "behavior": "selection",
+                "status": "rendered"
+              }
+            ],
+            "component_ref": "ops.queue.mobileCards",
+            "density": "comfortable",
+            "i18n_status": "missing",
+            "missing_states": [
+              "error"
+            ],
+            "pattern": "resource_cards",
+            "platform": "web",
+            "review_status": "review_required",
+            "state_coverage": [
+              "loading",
+              "empty"
+            ],
+            "status": "contract_only",
+            "token_status": "mapped",
+            "viewport": "narrow",
+            "widget": "widget_card_list"
+          },
+          {
+            "accessibility_status": "missing",
+            "behavior_statuses": [
+              {
+                "behavior": "filtering",
+                "status": "rendered"
+              },
+              {
+                "behavior": "selection",
+                "status": "rendered"
+              }
+            ],
+            "component_ref": "ops.queue.priorityCards",
+            "density": "comfortable",
+            "i18n_status": "missing",
+            "missing_states": [],
+            "pattern": "resource_cards",
+            "platform": "web",
+            "review_status": "review_required",
+            "state_coverage": [
+              "loading",
+              "empty",
+              "error"
+            ],
+            "status": "rendered",
+            "token_status": "mapped",
+            "viewport": "wide",
+            "widget": "widget_card_list"
+          },
+          {
+            "accessibility_status": "missing",
+            "behavior_statuses": [],
+            "component_ref": null,
+            "density": "unspecified",
+            "i18n_status": "missing",
+            "missing_states": [
+              "loading",
+              "empty",
+              "error"
+            ],
+            "pattern": null,
+            "platform": "android",
+            "review_status": "review_required",
+            "state_coverage": [],
+            "status": "missing_platform",
+            "token_status": "mapped",
+            "viewport": "any",
+            "widget": "widget_data_grid"
+          },
+          {
+            "accessibility_status": "missing",
+            "behavior_statuses": [],
+            "component_ref": null,
+            "density": "unspecified",
+            "i18n_status": "missing",
+            "missing_states": [
+              "loading",
+              "empty",
+              "error"
+            ],
+            "pattern": null,
+            "platform": "ios",
+            "review_status": "review_required",
+            "state_coverage": [],
+            "status": "missing_platform",
+            "token_status": "mapped",
+            "viewport": "any",
+            "widget": "widget_data_grid"
+          },
+          {
+            "accessibility_status": "missing",
+            "behavior_statuses": [
+              {
+                "behavior": "filtering",
+                "status": "contract_only"
+              },
+              {
+                "behavior": "keyboard_navigation",
+                "status": "contract_only"
+              },
+              {
+                "behavior": "selection",
+                "status": "rendered"
+              },
+              {
+                "behavior": "sorting",
+                "status": "contract_only"
+              }
+            ],
+            "component_ref": "ops.table.cardFallback",
+            "density": "comfortable",
+            "i18n_status": "missing",
+            "missing_states": [
+              "error"
+            ],
+            "pattern": "data_grid_view",
+            "platform": "web",
+            "review_status": "review_required",
+            "state_coverage": [
+              "loading",
+              "empty"
+            ],
+            "status": "contract_only",
+            "token_status": "mapped",
+            "viewport": "narrow",
+            "widget": "widget_data_grid"
+          },
+          {
+            "accessibility_status": "missing",
+            "behavior_statuses": [
+              {
+                "behavior": "filtering",
+                "status": "rendered"
+              },
+              {
+                "behavior": "keyboard_navigation",
+                "status": "rendered"
+              },
+              {
+                "behavior": "selection",
+                "status": "rendered"
+              },
+              {
+                "behavior": "sorting",
+                "status": "rendered"
+              }
+            ],
+            "component_ref": "ops.table.dataGrid",
+            "density": "compact",
+            "i18n_status": "missing",
+            "missing_states": [],
+            "pattern": "data_grid_view",
+            "platform": "web",
+            "review_status": "review_required",
+            "state_coverage": [
+              "loading",
+              "empty",
+              "error"
+            ],
+            "status": "rendered",
+            "token_status": "mapped",
+            "viewport": "wide",
+            "widget": "widget_data_grid"
+          }
+        ]
+      },
+      "proofCommands": [
+        "topogram query ui-design-coverage ./topo --projection proj_operations_ui_contract --json",
+        "topogram query ui-design-coverage ./topo --projection proj_operations_ui_contract --format markdown",
+        "topogram emit ui-realization-report ./topo --projection proj_operations_ui_contract --json"
+      ],
+      "scope": {
+        "projectionId": "proj_operations_ui_contract",
+        "screenId": null,
+        "widgetId": null
+      },
+      "source": "ui-design-coverage design_matrix rows from design_contract and design_realization_set records",
+      "status": "review_required"
+    },
+    "focus": {
+      "id": "region_work_queue",
+      "kind": "region_contract"
+    },
+    "internationalization": {
+      "currentSignals": {
+        "authoredContract": {
+          "messages": [
+            {
+              "actionId": null,
+              "context": "screen_title",
+              "defaultText": "Operations Dashboard",
+              "id": "msg_operations_dashboard_title",
+              "key": "operations.dashboard.title",
+              "screenId": "operations_dashboard",
+              "terms": [],
+              "variables": [],
+              "widgetId": null
+            },
+            {
+              "actionId": null,
+              "context": "screen_title",
+              "defaultText": "Intake Queue",
+              "id": "msg_intake_queue_title",
+              "key": "operations.intake.title",
+              "screenId": "intake_queue",
+              "terms": [],
+              "variables": [],
+              "widgetId": null
+            },
+            {
+              "actionId": null,
+              "context": "screen_title",
+              "defaultText": "Incident Detail",
+              "id": "msg_incident_detail_title",
+              "key": "operations.incident.title",
+              "screenId": "incident_detail",
+              "terms": [],
+              "variables": [],
+              "widgetId": null
+            },
+            {
+              "actionId": null,
+              "context": "screen_title",
+              "defaultText": "Assignment Board",
+              "id": "msg_assignment_board_title",
+              "key": "operations.assignments.title",
+              "screenId": "assignment_board",
+              "terms": [],
+              "variables": [],
+              "widgetId": null
+            },
+            {
+              "actionId": null,
+              "context": "screen_title",
+              "defaultText": "Schedule Calendar",
+              "id": "msg_schedule_calendar_title",
+              "key": "operations.schedule.title",
+              "screenId": "schedule_calendar",
+              "terms": [],
+              "variables": [],
+              "widgetId": null
+            },
+            {
+              "actionId": null,
+              "context": "screen_title",
+              "defaultText": "Field Team Directory",
+              "id": "msg_field_team_directory_title",
+              "key": "operations.teams.title",
+              "screenId": "field_team_directory",
+              "terms": [],
+              "variables": [],
+              "widgetId": null
+            },
+            {
+              "actionId": null,
+              "context": "screen_title",
+              "defaultText": "Audit Timeline",
+              "id": "msg_audit_timeline_title",
+              "key": "operations.audit.title",
+              "screenId": "audit_timeline",
+              "terms": [],
+              "variables": [],
+              "widgetId": null
+            },
+            {
+              "actionId": null,
+              "context": "screen_title",
+              "defaultText": "Settings And Preferences",
+              "id": "msg_settings_preferences_title",
+              "key": "operations.settings.title",
+              "screenId": "settings_preferences",
+              "terms": [],
+              "variables": [],
+              "widgetId": null
+            },
+            {
+              "actionId": null,
+              "context": "screen_empty_title",
+              "defaultText": "No intake work",
+              "id": "msg_intake_queue_empty_title",
+              "key": "operations.intake.empty.title",
+              "screenId": "intake_queue",
+              "terms": [],
+              "variables": [],
+              "widgetId": null
+            },
+            {
+              "actionId": null,
+              "context": "screen_empty_body",
+              "defaultText": "Incoming work that needs triage appears here.",
+              "id": "msg_intake_queue_empty_body",
+              "key": "operations.intake.empty.body",
+              "screenId": "intake_queue",
+              "terms": [],
+              "variables": [],
+              "widgetId": null
+            },
+            {
+              "actionId": null,
+              "context": "screen_empty_title",
+              "defaultText": "No assignments ready",
+              "id": "msg_assignment_board_empty_title",
+              "key": "operations.assignments.empty.title",
+              "screenId": "assignment_board",
+              "terms": [],
+              "variables": [],
+              "widgetId": null
+            },
+            {
+              "actionId": null,
+              "context": "screen_empty_body",
+              "defaultText": "Ready work appears after triage.",
+              "id": "msg_assignment_board_empty_body",
+              "key": "operations.assignments.empty.body",
+              "screenId": "assignment_board",
+              "terms": [],
+              "variables": [],
+              "widgetId": null
+            },
+            {
+              "actionId": null,
+              "context": "screen_empty_title",
+              "defaultText": "No scheduled work",
+              "id": "msg_schedule_calendar_empty_title",
+              "key": "operations.schedule.empty.title",
+              "screenId": "schedule_calendar",
+              "terms": [],
+              "variables": [],
+              "widgetId": null
+            },
+            {
+              "actionId": null,
+              "context": "screen_empty_body",
+              "defaultText": "Scheduled field work appears here.",
+              "id": "msg_schedule_calendar_empty_body",
+              "key": "operations.schedule.empty.body",
+              "screenId": "schedule_calendar",
+              "terms": [],
+              "variables": [],
+              "widgetId": null
+            },
+            {
+              "actionId": null,
+              "context": "screen_empty_title",
+              "defaultText": "No teams available",
+              "id": "msg_field_team_directory_empty_title",
+              "key": "operations.teams.empty.title",
+              "screenId": "field_team_directory",
+              "terms": [],
+              "variables": [],
+              "widgetId": null
+            },
+            {
+              "actionId": null,
+              "context": "screen_empty_body",
+              "defaultText": "Create or activate teams before assigning work.",
+              "id": "msg_field_team_directory_empty_body",
+              "key": "operations.teams.empty.body",
+              "screenId": "field_team_directory",
+              "terms": [],
+              "variables": [],
+              "widgetId": null
+            },
+            {
+              "actionId": null,
+              "context": "widget_label",
+              "defaultText": "Screen commands",
+              "id": "msg_widget_command_toolbar_label",
+              "key": "operations.widgets.command_toolbar.label",
+              "screenId": null,
+              "terms": [],
+              "variables": [],
+              "widgetId": "widget_command_toolbar"
+            },
+            {
+              "actionId": null,
+              "context": "widget_label",
+              "defaultText": "Operations summary cards",
+              "id": "msg_widget_kpi_summary_cards_label",
+              "key": "operations.widgets.kpi_summary_cards.label",
+              "screenId": null,
+              "terms": [],
+              "variables": [],
+              "widgetId": "widget_kpi_summary_cards"
+            },
+            {
+              "actionId": null,
+              "context": "widget_label",
+              "defaultText": "Live operations alerts",
+              "id": "msg_widget_alert_banner_label",
+              "key": "operations.widgets.alert_banner.label",
+              "screenId": null,
+              "terms": [],
+              "variables": [],
+              "widgetId": "widget_alert_banner"
+            },
+            {
+              "actionId": null,
+              "context": "widget_label",
+              "defaultText": "Filter controls",
+              "id": "msg_widget_filter_panel_label",
+              "key": "operations.widgets.filter_panel.label",
+              "screenId": null,
+              "terms": [],
+              "variables": [],
+              "widgetId": "widget_filter_panel"
+            },
+            {
+              "actionId": null,
+              "context": "widget_label",
+              "defaultText": "Work item cards",
+              "id": "msg_widget_card_list_label",
+              "key": "operations.widgets.card_list.label",
+              "screenId": null,
+              "terms": [],
+              "variables": [],
+              "widgetId": "widget_card_list"
+            },
+            {
+              "actionId": null,
+              "context": "widget_label",
+              "defaultText": "Selected work detail",
+              "id": "msg_widget_detail_panel_label",
+              "key": "operations.widgets.detail_panel.label",
+              "screenId": null,
+              "terms": [],
+              "variables": [],
+              "widgetId": "widget_detail_panel"
+            },
+            {
+              "actionId": null,
+              "context": "widget_label",
+              "defaultText": "Activity timeline",
+              "id": "msg_widget_activity_timeline_label",
+              "key": "operations.widgets.activity_timeline.label",
+              "screenId": null,
+              "terms": [],
+              "variables": [],
+              "widgetId": "widget_activity_timeline"
+            },
+            {
+              "actionId": null,
+              "context": "widget_label",
+              "defaultText": "Assignment form",
+              "id": "msg_widget_assignment_form_label",
+              "key": "operations.widgets.assignment_form.label",
+              "screenId": null,
+              "terms": [],
+              "variables": [],
+              "widgetId": "widget_assignment_form"
+            },
+            {
+              "actionId": null,
+              "context": "widget_label",
+              "defaultText": "Assignment status board",
+              "id": "msg_widget_status_board_label",
+              "key": "operations.widgets.status_board.label",
+              "screenId": null,
+              "terms": [],
+              "variables": [],
+              "widgetId": "widget_status_board"
+            },
+            {
+              "actionId": null,
+              "context": "widget_label",
+              "defaultText": "Schedule calendar",
+              "id": "msg_widget_schedule_calendar_label",
+              "key": "operations.widgets.schedule_calendar.label",
+              "screenId": null,
+              "terms": [],
+              "variables": [],
+              "widgetId": "widget_schedule_calendar"
+            },
+            {
+              "actionId": null,
+              "context": "widget_label",
+              "defaultText": "Team results table",
+              "id": "msg_widget_data_grid_label",
+              "key": "operations.widgets.data_grid.label",
+              "screenId": null,
+              "terms": [],
+              "variables": [],
+              "widgetId": "widget_data_grid"
+            },
+            {
+              "actionId": "cap_triage_incoming_work",
+              "context": "action_label",
+              "defaultText": "Triage incoming work",
+              "id": "msg_action_triage_incoming_work_label",
+              "key": "operations.actions.triage_incoming_work",
+              "screenId": null,
+              "terms": [],
+              "variables": [],
+              "widgetId": null
+            },
+            {
+              "actionId": "cap_assign_field_work",
+              "context": "action_label",
+              "defaultText": "Assign field work",
+              "id": "msg_action_assign_field_work_label",
+              "key": "operations.actions.assign_field_work",
+              "screenId": null,
+              "terms": [],
+              "variables": [],
+              "widgetId": null
+            },
+            {
+              "actionId": "cap_review_incident",
+              "context": "action_label",
+              "defaultText": "Review incident",
+              "id": "msg_action_review_incident_label",
+              "key": "operations.actions.review_incident",
+              "screenId": null,
+              "terms": [],
+              "variables": [],
+              "widgetId": null
+            },
+            {
+              "actionId": "cap_resolve_incident",
+              "context": "action_label",
+              "defaultText": "Resolve incident",
+              "id": "msg_action_resolve_incident_label",
+              "key": "operations.actions.resolve_incident",
+              "screenId": null,
+              "terms": [],
+              "variables": [],
+              "widgetId": null
+            },
+            {
+              "actionId": "cap_manage_field_teams",
+              "context": "action_label",
+              "defaultText": "Manage field teams",
+              "id": "msg_action_manage_field_teams_label",
+              "key": "operations.actions.manage_field_teams",
+              "screenId": null,
+              "terms": [],
+              "variables": [],
+              "widgetId": null
+            },
+            {
+              "actionId": null,
+              "context": "status",
+              "defaultText": "Urgent",
+              "id": "msg_status_urgent",
+              "key": "operations.status.urgent",
+              "screenId": null,
+              "terms": [],
+              "variables": [],
+              "widgetId": "widget_alert_banner"
+            },
+            {
+              "actionId": null,
+              "context": "status",
+              "defaultText": "In review",
+              "id": "msg_status_in_review",
+              "key": "operations.status.in_review",
+              "screenId": null,
+              "terms": [],
+              "variables": [],
+              "widgetId": "widget_card_list"
+            },
+            {
+              "actionId": null,
+              "context": "status",
+              "defaultText": "Resolved",
+              "id": "msg_status_resolved",
+              "key": "operations.status.resolved",
+              "screenId": null,
+              "terms": [],
+              "variables": [],
+              "widgetId": "widget_detail_panel"
+            },
+            {
+              "actionId": null,
+              "context": "aria_label",
+              "defaultText": "Live updates",
+              "id": "msg_alert_live_updates_label",
+              "key": "operations.alerts.live_updates.label",
+              "screenId": null,
+              "terms": [],
+              "variables": [],
+              "widgetId": "widget_alert_banner"
+            }
+          ],
+          "totalMessages": 36
+        },
+        "localePolicy": {
+          "defaultLocale": "en-US",
+          "direction": "ltr",
+          "fallbackLocale": "en-US",
+          "supportedLocales": [
+            "en-US"
+          ]
+        },
+        "messageKeys": [
+          "operations.dashboard.title",
+          "operations.intake.title",
+          "operations.incident.title",
+          "operations.assignments.title",
+          "operations.schedule.title",
+          "operations.teams.title",
+          "operations.audit.title",
+          "operations.settings.title",
+          "operations.intake.empty.title",
+          "operations.intake.empty.body",
+          "operations.assignments.empty.title",
+          "operations.assignments.empty.body",
+          "operations.schedule.empty.title",
+          "operations.schedule.empty.body",
+          "operations.teams.empty.title",
+          "operations.teams.empty.body",
+          "operations.widgets.command_toolbar.label",
+          "operations.widgets.kpi_summary_cards.label",
+          "operations.widgets.alert_banner.label",
+          "operations.widgets.filter_panel.label",
+          "operations.widgets.card_list.label",
+          "operations.widgets.detail_panel.label",
+          "operations.widgets.activity_timeline.label",
+          "operations.widgets.assignment_form.label",
+          "operations.widgets.status_board.label",
+          "operations.widgets.schedule_calendar.label",
+          "operations.widgets.data_grid.label",
+          "operations.actions.triage_incoming_work",
+          "operations.actions.assign_field_work",
+          "operations.actions.review_incident",
+          "operations.actions.resolve_incident",
+          "operations.actions.manage_field_teams",
+          "operations.status.urgent",
+          "operations.status.in_review",
+          "operations.status.resolved",
+          "operations.alerts.live_updates.label"
+        ]
+      },
+      "decisions": [
+        {
+          "found": false,
+          "id": "decision_i18n_messages_are_separate_from_glossary_terms",
+          "kind": null,
+          "name": "decision_i18n_messages_are_separate_from_glossary_terms",
+          "status": null
+        }
+      ],
+      "diagnostics": [],
+      "messages": [
+        {
+          "actionId": null,
+          "context": "screen_title",
+          "defaultText": "Operations Dashboard",
+          "id": "msg_operations_dashboard_title",
+          "key": "operations.dashboard.title",
+          "screenId": "operations_dashboard",
+          "terms": [],
+          "variables": [],
+          "widgetId": null
+        },
+        {
+          "actionId": null,
+          "context": "screen_title",
+          "defaultText": "Intake Queue",
+          "id": "msg_intake_queue_title",
+          "key": "operations.intake.title",
+          "screenId": "intake_queue",
+          "terms": [],
+          "variables": [],
+          "widgetId": null
+        },
+        {
+          "actionId": null,
+          "context": "screen_title",
+          "defaultText": "Incident Detail",
+          "id": "msg_incident_detail_title",
+          "key": "operations.incident.title",
+          "screenId": "incident_detail",
+          "terms": [],
+          "variables": [],
+          "widgetId": null
+        },
+        {
+          "actionId": null,
+          "context": "screen_title",
+          "defaultText": "Assignment Board",
+          "id": "msg_assignment_board_title",
+          "key": "operations.assignments.title",
+          "screenId": "assignment_board",
+          "terms": [],
+          "variables": [],
+          "widgetId": null
+        },
+        {
+          "actionId": null,
+          "context": "screen_title",
+          "defaultText": "Schedule Calendar",
+          "id": "msg_schedule_calendar_title",
+          "key": "operations.schedule.title",
+          "screenId": "schedule_calendar",
+          "terms": [],
+          "variables": [],
+          "widgetId": null
+        },
+        {
+          "actionId": null,
+          "context": "screen_title",
+          "defaultText": "Field Team Directory",
+          "id": "msg_field_team_directory_title",
+          "key": "operations.teams.title",
+          "screenId": "field_team_directory",
+          "terms": [],
+          "variables": [],
+          "widgetId": null
+        },
+        {
+          "actionId": null,
+          "context": "screen_title",
+          "defaultText": "Audit Timeline",
+          "id": "msg_audit_timeline_title",
+          "key": "operations.audit.title",
+          "screenId": "audit_timeline",
+          "terms": [],
+          "variables": [],
+          "widgetId": null
+        },
+        {
+          "actionId": null,
+          "context": "screen_title",
+          "defaultText": "Settings And Preferences",
+          "id": "msg_settings_preferences_title",
+          "key": "operations.settings.title",
+          "screenId": "settings_preferences",
+          "terms": [],
+          "variables": [],
+          "widgetId": null
+        },
+        {
+          "actionId": null,
+          "context": "screen_empty_title",
+          "defaultText": "No intake work",
+          "id": "msg_intake_queue_empty_title",
+          "key": "operations.intake.empty.title",
+          "screenId": "intake_queue",
+          "terms": [],
+          "variables": [],
+          "widgetId": null
+        },
+        {
+          "actionId": null,
+          "context": "screen_empty_body",
+          "defaultText": "Incoming work that needs triage appears here.",
+          "id": "msg_intake_queue_empty_body",
+          "key": "operations.intake.empty.body",
+          "screenId": "intake_queue",
+          "terms": [],
+          "variables": [],
+          "widgetId": null
+        },
+        {
+          "actionId": null,
+          "context": "screen_empty_title",
+          "defaultText": "No assignments ready",
+          "id": "msg_assignment_board_empty_title",
+          "key": "operations.assignments.empty.title",
+          "screenId": "assignment_board",
+          "terms": [],
+          "variables": [],
+          "widgetId": null
+        },
+        {
+          "actionId": null,
+          "context": "screen_empty_body",
+          "defaultText": "Ready work appears after triage.",
+          "id": "msg_assignment_board_empty_body",
+          "key": "operations.assignments.empty.body",
+          "screenId": "assignment_board",
+          "terms": [],
+          "variables": [],
+          "widgetId": null
+        },
+        {
+          "actionId": null,
+          "context": "screen_empty_title",
+          "defaultText": "No scheduled work",
+          "id": "msg_schedule_calendar_empty_title",
+          "key": "operations.schedule.empty.title",
+          "screenId": "schedule_calendar",
+          "terms": [],
+          "variables": [],
+          "widgetId": null
+        },
+        {
+          "actionId": null,
+          "context": "screen_empty_body",
+          "defaultText": "Scheduled field work appears here.",
+          "id": "msg_schedule_calendar_empty_body",
+          "key": "operations.schedule.empty.body",
+          "screenId": "schedule_calendar",
+          "terms": [],
+          "variables": [],
+          "widgetId": null
+        },
+        {
+          "actionId": null,
+          "context": "screen_empty_title",
+          "defaultText": "No teams available",
+          "id": "msg_field_team_directory_empty_title",
+          "key": "operations.teams.empty.title",
+          "screenId": "field_team_directory",
+          "terms": [],
+          "variables": [],
+          "widgetId": null
+        },
+        {
+          "actionId": null,
+          "context": "screen_empty_body",
+          "defaultText": "Create or activate teams before assigning work.",
+          "id": "msg_field_team_directory_empty_body",
+          "key": "operations.teams.empty.body",
+          "screenId": "field_team_directory",
+          "terms": [],
+          "variables": [],
+          "widgetId": null
+        },
+        {
+          "actionId": null,
+          "context": "widget_label",
+          "defaultText": "Screen commands",
+          "id": "msg_widget_command_toolbar_label",
+          "key": "operations.widgets.command_toolbar.label",
+          "screenId": null,
+          "terms": [],
+          "variables": [],
+          "widgetId": "widget_command_toolbar"
+        },
+        {
+          "actionId": null,
+          "context": "widget_label",
+          "defaultText": "Operations summary cards",
+          "id": "msg_widget_kpi_summary_cards_label",
+          "key": "operations.widgets.kpi_summary_cards.label",
+          "screenId": null,
+          "terms": [],
+          "variables": [],
+          "widgetId": "widget_kpi_summary_cards"
+        },
+        {
+          "actionId": null,
+          "context": "widget_label",
+          "defaultText": "Live operations alerts",
+          "id": "msg_widget_alert_banner_label",
+          "key": "operations.widgets.alert_banner.label",
+          "screenId": null,
+          "terms": [],
+          "variables": [],
+          "widgetId": "widget_alert_banner"
+        },
+        {
+          "actionId": null,
+          "context": "widget_label",
+          "defaultText": "Filter controls",
+          "id": "msg_widget_filter_panel_label",
+          "key": "operations.widgets.filter_panel.label",
+          "screenId": null,
+          "terms": [],
+          "variables": [],
+          "widgetId": "widget_filter_panel"
+        },
+        {
+          "actionId": null,
+          "context": "widget_label",
+          "defaultText": "Work item cards",
+          "id": "msg_widget_card_list_label",
+          "key": "operations.widgets.card_list.label",
+          "screenId": null,
+          "terms": [],
+          "variables": [],
+          "widgetId": "widget_card_list"
+        },
+        {
+          "actionId": null,
+          "context": "widget_label",
+          "defaultText": "Selected work detail",
+          "id": "msg_widget_detail_panel_label",
+          "key": "operations.widgets.detail_panel.label",
+          "screenId": null,
+          "terms": [],
+          "variables": [],
+          "widgetId": "widget_detail_panel"
+        },
+        {
+          "actionId": null,
+          "context": "widget_label",
+          "defaultText": "Activity timeline",
+          "id": "msg_widget_activity_timeline_label",
+          "key": "operations.widgets.activity_timeline.label",
+          "screenId": null,
+          "terms": [],
+          "variables": [],
+          "widgetId": "widget_activity_timeline"
+        },
+        {
+          "actionId": null,
+          "context": "widget_label",
+          "defaultText": "Assignment form",
+          "id": "msg_widget_assignment_form_label",
+          "key": "operations.widgets.assignment_form.label",
+          "screenId": null,
+          "terms": [],
+          "variables": [],
+          "widgetId": "widget_assignment_form"
+        },
+        {
+          "actionId": null,
+          "context": "widget_label",
+          "defaultText": "Assignment status board",
+          "id": "msg_widget_status_board_label",
+          "key": "operations.widgets.status_board.label",
+          "screenId": null,
+          "terms": [],
+          "variables": [],
+          "widgetId": "widget_status_board"
+        },
+        {
+          "actionId": null,
+          "context": "widget_label",
+          "defaultText": "Schedule calendar",
+          "id": "msg_widget_schedule_calendar_label",
+          "key": "operations.widgets.schedule_calendar.label",
+          "screenId": null,
+          "terms": [],
+          "variables": [],
+          "widgetId": "widget_schedule_calendar"
+        },
+        {
+          "actionId": null,
+          "context": "widget_label",
+          "defaultText": "Team results table",
+          "id": "msg_widget_data_grid_label",
+          "key": "operations.widgets.data_grid.label",
+          "screenId": null,
+          "terms": [],
+          "variables": [],
+          "widgetId": "widget_data_grid"
+        },
+        {
+          "actionId": "cap_triage_incoming_work",
+          "context": "action_label",
+          "defaultText": "Triage incoming work",
+          "id": "msg_action_triage_incoming_work_label",
+          "key": "operations.actions.triage_incoming_work",
+          "screenId": null,
+          "terms": [],
+          "variables": [],
+          "widgetId": null
+        },
+        {
+          "actionId": "cap_assign_field_work",
+          "context": "action_label",
+          "defaultText": "Assign field work",
+          "id": "msg_action_assign_field_work_label",
+          "key": "operations.actions.assign_field_work",
+          "screenId": null,
+          "terms": [],
+          "variables": [],
+          "widgetId": null
+        },
+        {
+          "actionId": "cap_review_incident",
+          "context": "action_label",
+          "defaultText": "Review incident",
+          "id": "msg_action_review_incident_label",
+          "key": "operations.actions.review_incident",
+          "screenId": null,
+          "terms": [],
+          "variables": [],
+          "widgetId": null
+        },
+        {
+          "actionId": "cap_resolve_incident",
+          "context": "action_label",
+          "defaultText": "Resolve incident",
+          "id": "msg_action_resolve_incident_label",
+          "key": "operations.actions.resolve_incident",
+          "screenId": null,
+          "terms": [],
+          "variables": [],
+          "widgetId": null
+        },
+        {
+          "actionId": "cap_manage_field_teams",
+          "context": "action_label",
+          "defaultText": "Manage field teams",
+          "id": "msg_action_manage_field_teams_label",
+          "key": "operations.actions.manage_field_teams",
+          "screenId": null,
+          "terms": [],
+          "variables": [],
+          "widgetId": null
+        },
+        {
+          "actionId": null,
+          "context": "status",
+          "defaultText": "Urgent",
+          "id": "msg_status_urgent",
+          "key": "operations.status.urgent",
+          "screenId": null,
+          "terms": [],
+          "variables": [],
+          "widgetId": "widget_alert_banner"
+        },
+        {
+          "actionId": null,
+          "context": "status",
+          "defaultText": "In review",
+          "id": "msg_status_in_review",
+          "key": "operations.status.in_review",
+          "screenId": null,
+          "terms": [],
+          "variables": [],
+          "widgetId": "widget_card_list"
+        },
+        {
+          "actionId": null,
+          "context": "status",
+          "defaultText": "Resolved",
+          "id": "msg_status_resolved",
+          "key": "operations.status.resolved",
+          "screenId": null,
+          "terms": [],
+          "variables": [],
+          "widgetId": "widget_detail_panel"
+        },
+        {
+          "actionId": null,
+          "context": "aria_label",
+          "defaultText": "Live updates",
+          "id": "msg_alert_live_updates_label",
+          "key": "operations.alerts.live_updates.label",
+          "screenId": null,
+          "terms": [],
+          "variables": [],
+          "widgetId": "widget_alert_banner"
+        }
+      ],
+      "obligations": [
+        "Use glossary terms for canonical meaning and message keys for translated wording.",
+        "Keep concrete locale catalogs in generated or maintained app code until a message contract DSL exists."
+      ],
+      "proofCommands": [
+        "topogram emit glossary ./topo --json"
+      ],
+      "requirements": [
+        {
+          "found": false,
+          "id": "req_i18n_message_contract_v1",
+          "kind": null,
+          "name": "req_i18n_message_contract_v1",
+          "status": null
+        }
+      ],
+      "scope": {
+        "projectionId": "proj_operations_ui_contract",
+        "screenId": null,
+        "widgetId": null
+      },
+      "source": "ui_contract messages block, glossary terms, decisions, and requirements",
+      "status": "authored_contract",
+      "terms": [
+        {
+          "found": true,
+          "id": "term_translatable_message",
+          "kind": "term",
+          "name": "Translatable Message",
+          "status": "active"
+        },
+        {
+          "found": true,
+          "id": "term_message_key",
+          "kind": "term",
+          "name": "Message Key",
+          "status": "active"
+        },
+        {
+          "found": true,
+          "id": "term_locale_policy",
+          "kind": "term",
+          "name": "Locale Policy",
+          "status": "active"
+        },
+        {
+          "found": true,
+          "id": "term_source_text",
+          "kind": "term",
+          "name": "Source Text",
+          "status": "active"
+        }
+      ]
+    },
+    "layoutUsages": [
+      {
+        "layoutId": "layout_queue_workspace",
+        "layoutName": "Queue Workspace Layout",
+        "regionId": "queue",
+        "slot": true,
+        "viewport": "any"
+      }
+    ],
+    "ownership": {
+      "layoutPlacement": "layout_contract",
+      "regionContract": "region_contract",
+      "widgetPlacement": "ui_contract"
+    },
+    "region": {
+      "accessibilityObligations": [
+        "labelled_region",
+        "keyboard_collection_navigation",
+        "status_announcements"
+      ],
+      "allowedWidgetPatterns": [
+        "resource_cards",
+        "data_grid_view",
+        "status_badge",
+        "empty_state_panel"
+      ],
+      "density": "comfortable",
+      "description": "Prioritized review area for incoming or active work that needs triage, assignment, escalation, or resolution.",
+      "i18nObligations": [
+        "queue_title",
+        "priority_labels",
+        "empty_state"
+      ],
+      "id": "region_work_queue",
+      "kind": "results",
+      "name": "Work Queue",
+      "pattern": "resource_cards",
+      "placement": "primary",
+      "states": [
+        "loading",
+        "empty",
+        "error",
+        "unauthorized"
+      ],
+      "status": "active",
+      "styleIntent": [
+        "prioritized",
+        "actionable",
+        "queue_focused"
+      ]
+    },
+    "related": {
+      "layouts": [
+        "layout_queue_workspace"
+      ],
+      "projections": [
+        "proj_operations_ui_contract"
+      ],
+      "widgets": [
+        "widget_card_list",
+        "widget_data_grid"
+      ]
+    },
+    "requiredGates": [
+      {
+        "command": "topogram check",
+        "reason": "Validate shared UI ownership, taxonomy, references, and topology."
+      },
+      {
+        "command": "topogram widget check --projection proj_operations_ui_contract",
+        "reason": "Validate widget placement, props, events, regions, and patterns."
+      },
+      {
+        "command": "topogram widget behavior --projection proj_operations_ui_contract",
+        "reason": "Inspect behavior realizations and partial bindings before code changes."
+      },
+      {
+        "command": "topogram emit ui-realization-report --projection proj_operations_ui_contract --json",
+        "reason": "Confirm screens, regions, widgets, display fields, behavior, and design tokens are realizable by the web generator."
+      }
+    ],
+    "screenUsages": [
+      {
+        "kind": "inbox",
+        "layout": {
+          "appShell": null,
+          "fills": "content",
+          "id": "layout_queue_workspace",
+          "inherited": [
+            {
+              "appShell": "workspace",
+              "fills": null,
+              "id": "layout_standard_app_shell",
+              "name": "Standard App Shell"
+            },
+            {
+              "appShell": null,
+              "fills": "content",
+              "id": "layout_queue_workspace",
+              "name": "Queue Workspace Layout"
+            }
+          ],
+          "name": "Queue Workspace Layout"
+        },
+        "projection": {
+          "id": "proj_operations_ui_contract",
+          "type": "ui_contract"
+        },
+        "regions": [
+          {
+            "accessibilityObligations": [
+              "labelled_region",
+              "keyboard_collection_navigation",
+              "status_announcements"
+            ],
+            "allowedWidgetPatterns": [
+              "resource_cards",
+              "data_grid_view",
+              "status_badge",
+              "empty_state_panel"
+            ],
+            "density": "comfortable",
+            "i18nObligations": [
+              "queue_title",
+              "priority_labels",
+              "empty_state"
+            ],
+            "kind": "results",
+            "layoutId": "layout_queue_workspace",
+            "name": "queue",
+            "pattern": "resource_cards",
+            "placement": "primary",
+            "region": "queue",
+            "regionContractId": "region_work_queue",
+            "slot": true,
+            "source": "layout",
+            "state": null,
+            "styleIntent": [
+              "prioritized",
+              "actionable",
+              "queue_focused"
+            ],
+            "title": "Work Queue",
+            "variant": null,
+            "viewport": "any"
+          }
+        ],
+        "route": null,
+        "screenId": "intake_queue",
+        "title": "Intake Queue",
+        "widgets": [
+          {
+            "behaviorRealizations": [
+              {
+                "actions": [],
+                "dataDependencies": [
+                  {
+                    "prop": "items",
+                    "source": {
+                      "id": "cap_triage_incoming_work",
+                      "kind": "capability"
+                    }
+                  }
+                ],
+                "directives": {
+                  "emits": "item_select",
+                  "mode": "single",
+                  "state": "selected_ids"
+                },
+                "effects": [
+                  {
+                    "event": "item_select",
+                    "target": {
+                      "id": "incident_detail",
+                      "kind": "screen"
+                    },
+                    "type": "navigation"
+                  }
+                ],
+                "emits": [
+                  {
+                    "bindings": [
+                      {
+                        "action": "navigate",
+                        "event": "item_select",
+                        "target": {
+                          "id": "incident_detail",
+                          "kind": "screen"
+                        }
+                      }
+                    ],
+                    "bound": true,
+                    "effects": [
+                      {
+                        "event": "item_select",
+                        "target": {
+                          "id": "incident_detail",
+                          "kind": "screen"
+                        },
+                        "type": "navigation"
+                      }
+                    ],
+                    "event": "item_select"
+                  }
+                ],
+                "kind": "selection",
+                "source": "structured",
+                "state": {
+                  "bound": false,
+                  "defaultValue": [],
+                  "prop": "selected_ids",
+                  "requiredness": "optional",
+                  "source": null
+                },
+                "status": "realized"
+              },
+              {
+                "actions": [],
+                "dataDependencies": [
+                  {
+                    "prop": "items",
+                    "source": {
+                      "id": "cap_triage_incoming_work",
+                      "kind": "capability"
+                    }
+                  }
+                ],
+                "directives": {
+                  "fields": [
+                    "priority",
+                    "status",
+                    "owner",
+                    "location"
+                  ]
+                },
+                "effects": [],
+                "emits": [],
+                "kind": "filtering",
+                "source": "structured",
+                "state": null,
+                "status": "realized"
+              }
+            ],
+            "dataBindings": [
+              {
+                "prop": "items",
+                "source": "cap_triage_incoming_work"
+              }
+            ],
+            "display": {
+              "diagnostics": [],
+              "fields": [
+                {
+                  "label": "Id",
+                  "name": "id",
+                  "required": true,
+                  "requiredness": "required",
+                  "role": "identifier",
+                  "sourceName": "id",
+                  "type": "string"
+                },
+                {
+                  "label": "Title",
+                  "name": "title",
+                  "required": true,
+                  "requiredness": "required",
+                  "role": "primary",
+                  "sourceName": "title",
+                  "type": "string"
+                },
+                {
+                  "label": "Priority",
+                  "name": "priority",
+                  "required": true,
+                  "requiredness": "required",
+                  "role": "metadata",
+                  "sourceName": "priority",
+                  "type": "string"
+                },
+                {
+                  "label": "Status",
+                  "name": "status",
+                  "required": true,
+                  "requiredness": "required",
+                  "role": "metadata",
+                  "sourceName": "status",
+                  "type": "string"
+                },
+                {
+                  "label": "Owner",
+                  "name": "owner",
+                  "required": false,
+                  "requiredness": "optional",
+                  "role": "metadata",
+                  "sourceName": "owner",
+                  "type": "string"
+                },
+                {
+                  "label": "Due At",
+                  "name": "due_at",
+                  "required": false,
+                  "requiredness": "optional",
+                  "role": "date",
+                  "sourceName": "due_at",
+                  "type": "datetime"
+                },
+                {
+                  "label": "Location",
+                  "name": "location",
+                  "required": false,
+                  "requiredness": "optional",
+                  "role": "metadata",
+                  "sourceName": "location",
+                  "type": "string"
+                }
+              ],
+              "prop": "items",
+              "source": {
+                "id": "cap_triage_incoming_work",
+                "kind": "capability"
+              },
+              "sourceShape": {
+                "id": "shape_work_queue_item",
+                "kind": "shape"
+              }
+            },
+            "displayFields": [
+              {
+                "label": "Id",
+                "name": "id",
+                "required": true,
+                "requiredness": "required",
+                "role": "identifier",
+                "sourceName": "id",
+                "type": "string"
+              },
+              {
+                "label": "Title",
+                "name": "title",
+                "required": true,
+                "requiredness": "required",
+                "role": "primary",
+                "sourceName": "title",
+                "type": "string"
+              },
+              {
+                "label": "Priority",
+                "name": "priority",
+                "required": true,
+                "requiredness": "required",
+                "role": "metadata",
+                "sourceName": "priority",
+                "type": "string"
+              },
+              {
+                "label": "Status",
+                "name": "status",
+                "required": true,
+                "requiredness": "required",
+                "role": "metadata",
+                "sourceName": "status",
+                "type": "string"
+              },
+              {
+                "label": "Owner",
+                "name": "owner",
+                "required": false,
+                "requiredness": "optional",
+                "role": "metadata",
+                "sourceName": "owner",
+                "type": "string"
+              },
+              {
+                "label": "Due At",
+                "name": "due_at",
+                "required": false,
+                "requiredness": "optional",
+                "role": "date",
+                "sourceName": "due_at",
+                "type": "datetime"
+              },
+              {
+                "label": "Location",
+                "name": "location",
+                "required": false,
+                "requiredness": "optional",
+                "role": "metadata",
+                "sourceName": "location",
+                "type": "string"
+              }
+            ],
+            "eventBindings": [
+              {
+                "action": "navigate",
+                "event": "item_select",
+                "target": "incident_detail"
+              }
+            ],
+            "region": "queue",
+            "regionContract": {
+              "accessibilityObligations": [
+                "labelled_region",
+                "keyboard_collection_navigation",
+                "status_announcements"
+              ],
+              "allowedWidgetPatterns": [
+                "resource_cards",
+                "data_grid_view",
+                "status_badge",
+                "empty_state_panel"
+              ],
+              "density": "comfortable",
+              "i18nObligations": [
+                "queue_title",
+                "priority_labels",
+                "empty_state"
+              ],
+              "kind": "results",
+              "layoutId": "layout_queue_workspace",
+              "name": "queue",
+              "pattern": "resource_cards",
+              "placement": "primary",
+              "regionContractId": "region_work_queue",
+              "source": "layout",
+              "state": null,
+              "styleIntent": [
+                "prioritized",
+                "actionable",
+                "queue_focused"
+              ],
+              "title": "Work Queue",
+              "variant": null
+            },
+            "route": null,
+            "screen": {
+              "id": "intake_queue",
+              "kind": "inbox",
+              "layout": {
+                "appShell": null,
+                "fills": "content",
+                "id": "layout_queue_workspace",
+                "inherited": [
+                  {
+                    "appShell": "workspace",
+                    "fills": null,
+                    "id": "layout_standard_app_shell",
+                    "name": "Standard App Shell"
+                  },
+                  {
+                    "appShell": null,
+                    "fills": "content",
+                    "id": "layout_queue_workspace",
+                    "name": "Queue Workspace Layout"
+                  }
+                ],
+                "name": "Queue Workspace Layout"
+              },
+              "title": "Intake Queue"
+            },
+            "screenId": "intake_queue",
+            "widgetId": "widget_card_list"
+          }
+        ]
+      },
+      {
+        "kind": "list",
+        "layout": {
+          "appShell": null,
+          "fills": "content",
+          "id": "layout_queue_workspace",
+          "inherited": [
+            {
+              "appShell": "workspace",
+              "fills": null,
+              "id": "layout_standard_app_shell",
+              "name": "Standard App Shell"
+            },
+            {
+              "appShell": null,
+              "fills": "content",
+              "id": "layout_queue_workspace",
+              "name": "Queue Workspace Layout"
+            }
+          ],
+          "name": "Queue Workspace Layout"
+        },
+        "projection": {
+          "id": "proj_operations_ui_contract",
+          "type": "ui_contract"
+        },
+        "regions": [
+          {
+            "accessibilityObligations": [
+              "labelled_region",
+              "keyboard_collection_navigation",
+              "status_announcements"
+            ],
+            "allowedWidgetPatterns": [
+              "resource_cards",
+              "data_grid_view",
+              "status_badge",
+              "empty_state_panel"
+            ],
+            "density": "comfortable",
+            "i18nObligations": [
+              "queue_title",
+              "priority_labels",
+              "empty_state"
+            ],
+            "kind": "results",
+            "layoutId": "layout_queue_workspace",
+            "name": "queue",
+            "pattern": "data_grid_view",
+            "placement": "primary",
+            "region": "queue",
+            "regionContractId": "region_work_queue",
+            "slot": true,
+            "source": "screen_override",
+            "state": null,
+            "styleIntent": [
+              "prioritized",
+              "actionable",
+              "queue_focused"
+            ],
+            "title": "Team Results",
+            "variant": null,
+            "viewport": "any"
+          }
+        ],
+        "route": null,
+        "screenId": "field_team_directory",
+        "title": "Field Team Directory",
+        "widgets": [
+          {
+            "behaviorRealizations": [
+              {
+                "actions": [],
+                "dataDependencies": [
+                  {
+                    "prop": "rows",
+                    "source": {
+                      "id": "cap_manage_field_teams",
+                      "kind": "capability"
+                    }
+                  }
+                ],
+                "directives": {
+                  "emits": "row_select",
+                  "mode": "single",
+                  "state": "selected_ids"
+                },
+                "effects": [
+                  {
+                    "capability": {
+                      "id": "cap_manage_field_teams",
+                      "kind": "capability"
+                    },
+                    "event": "row_select",
+                    "type": "command"
+                  }
+                ],
+                "emits": [
+                  {
+                    "bindings": [
+                      {
+                        "action": "action",
+                        "event": "row_select",
+                        "target": {
+                          "id": "cap_manage_field_teams",
+                          "kind": "capability"
+                        }
+                      }
+                    ],
+                    "bound": true,
+                    "effects": [
+                      {
+                        "capability": {
+                          "id": "cap_manage_field_teams",
+                          "kind": "capability"
+                        },
+                        "event": "row_select",
+                        "type": "command"
+                      }
+                    ],
+                    "event": "row_select"
+                  }
+                ],
+                "kind": "selection",
+                "source": "structured",
+                "state": {
+                  "bound": false,
+                  "defaultValue": [],
+                  "prop": "selected_ids",
+                  "requiredness": "optional",
+                  "source": null
+                },
+                "status": "realized"
+              },
+              {
+                "actions": [],
+                "dataDependencies": [
+                  {
+                    "prop": "rows",
+                    "source": {
+                      "id": "cap_manage_field_teams",
+                      "kind": "capability"
+                    }
+                  }
+                ],
+                "directives": {
+                  "default": [
+                    "priority",
+                    "desc"
+                  ],
+                  "fields": [
+                    "priority",
+                    "status",
+                    "due_at",
+                    "owner"
+                  ]
+                },
+                "effects": [],
+                "emits": [],
+                "kind": "sorting",
+                "source": "structured",
+                "state": null,
+                "status": "realized"
+              },
+              {
+                "actions": [],
+                "dataDependencies": [
+                  {
+                    "prop": "rows",
+                    "source": {
+                      "id": "cap_manage_field_teams",
+                      "kind": "capability"
+                    }
+                  }
+                ],
+                "directives": {
+                  "fields": [
+                    "priority",
+                    "status",
+                    "owner",
+                    "location"
+                  ]
+                },
+                "effects": [],
+                "emits": [],
+                "kind": "filtering",
+                "source": "structured",
+                "state": null,
+                "status": "realized"
+              },
+              {
+                "actions": [],
+                "dataDependencies": [
+                  {
+                    "prop": "rows",
+                    "source": {
+                      "id": "cap_manage_field_teams",
+                      "kind": "capability"
+                    }
+                  }
+                ],
+                "directives": {
+                  "scope": "collection",
+                  "shortcuts": [
+                    "enter",
+                    "open",
+                    "escape",
+                    "clear"
+                  ]
+                },
+                "effects": [],
+                "emits": [],
+                "kind": "keyboard_navigation",
+                "source": "structured",
+                "state": null,
+                "status": "realized"
+              }
+            ],
+            "dataBindings": [
+              {
+                "prop": "rows",
+                "source": "cap_manage_field_teams"
+              }
+            ],
+            "display": {
+              "diagnostics": [],
+              "fields": [
+                {
+                  "label": "Id",
+                  "name": "id",
+                  "required": true,
+                  "requiredness": "required",
+                  "role": "identifier",
+                  "sourceName": "id",
+                  "type": "string"
+                },
+                {
+                  "label": "Name",
+                  "name": "name",
+                  "required": true,
+                  "requiredness": "required",
+                  "role": "primary",
+                  "sourceName": "name",
+                  "type": "string"
+                },
+                {
+                  "label": "Status",
+                  "name": "status",
+                  "required": true,
+                  "requiredness": "required",
+                  "role": "metadata",
+                  "sourceName": "status",
+                  "type": "string"
+                },
+                {
+                  "label": "Coverage Area",
+                  "name": "coverage_area",
+                  "required": false,
+                  "requiredness": "optional",
+                  "role": "metadata",
+                  "sourceName": "coverage_area",
+                  "type": "string"
+                },
+                {
+                  "label": "Active Assignments",
+                  "name": "active_assignments",
+                  "required": true,
+                  "requiredness": "required",
+                  "role": "numeric",
+                  "sourceName": "active_assignments",
+                  "type": "integer"
+                }
+              ],
+              "prop": "rows",
+              "source": {
+                "id": "cap_manage_field_teams",
+                "kind": "capability"
+              },
+              "sourceShape": {
+                "id": "shape_field_team_card",
+                "kind": "shape"
+              }
+            },
+            "displayFields": [
+              {
+                "label": "Id",
+                "name": "id",
+                "required": true,
+                "requiredness": "required",
+                "role": "identifier",
+                "sourceName": "id",
+                "type": "string"
+              },
+              {
+                "label": "Name",
+                "name": "name",
+                "required": true,
+                "requiredness": "required",
+                "role": "primary",
+                "sourceName": "name",
+                "type": "string"
+              },
+              {
+                "label": "Status",
+                "name": "status",
+                "required": true,
+                "requiredness": "required",
+                "role": "metadata",
+                "sourceName": "status",
+                "type": "string"
+              },
+              {
+                "label": "Coverage Area",
+                "name": "coverage_area",
+                "required": false,
+                "requiredness": "optional",
+                "role": "metadata",
+                "sourceName": "coverage_area",
+                "type": "string"
+              },
+              {
+                "label": "Active Assignments",
+                "name": "active_assignments",
+                "required": true,
+                "requiredness": "required",
+                "role": "numeric",
+                "sourceName": "active_assignments",
+                "type": "integer"
+              }
+            ],
+            "eventBindings": [
+              {
+                "action": "action",
+                "event": "row_select",
+                "target": "cap_manage_field_teams"
+              }
+            ],
+            "region": "queue",
+            "regionContract": {
+              "accessibilityObligations": [
+                "labelled_region",
+                "keyboard_collection_navigation",
+                "status_announcements"
+              ],
+              "allowedWidgetPatterns": [
+                "resource_cards",
+                "data_grid_view",
+                "status_badge",
+                "empty_state_panel"
+              ],
+              "density": "comfortable",
+              "i18nObligations": [
+                "queue_title",
+                "priority_labels",
+                "empty_state"
+              ],
+              "kind": "results",
+              "layoutId": "layout_queue_workspace",
+              "name": "queue",
+              "pattern": "data_grid_view",
+              "placement": "primary",
+              "regionContractId": "region_work_queue",
+              "source": "screen_override",
+              "state": null,
+              "styleIntent": [
+                "prioritized",
+                "actionable",
+                "queue_focused"
+              ],
+              "title": "Team Results",
+              "variant": null
+            },
+            "route": null,
+            "screen": {
+              "id": "field_team_directory",
+              "kind": "list",
+              "layout": {
+                "appShell": null,
+                "fills": "content",
+                "id": "layout_queue_workspace",
+                "inherited": [
+                  {
+                    "appShell": "workspace",
+                    "fills": null,
+                    "id": "layout_standard_app_shell",
+                    "name": "Standard App Shell"
+                  },
+                  {
+                    "appShell": null,
+                    "fills": "content",
+                    "id": "layout_queue_workspace",
+                    "name": "Queue Workspace Layout"
+                  }
+                ],
+                "name": "Queue Workspace Layout"
+              },
+              "title": "Field Team Directory"
+            },
+            "screenId": "field_team_directory",
+            "widgetId": "widget_data_grid"
+          }
+        ]
+      }
+    ],
+    "type": "ui_agent_packet",
+    "version": 1
+  },
+  "verification": [],
+  "verification_targets": {
+    "generated_checks": [
+      "compile-check"
+    ],
+    "maintained_app_checks": [],
+    "rationale": "Region slices prove reusable semantic work areas, inherited screen placements, widget bindings, and design obligations.",
+    "verification_ids": []
+  },
+  "version": 1,
+  "write_scope": {
+    "generator_owned": [
+      "artifacts/**",
+      "apps/**"
+    ],
+    "human_owned_review_required": [
+      "examples/maintained/proof-app/**"
+    ],
+    "out_of_bounds": [
+      ".git/**",
+      "node_modules/**"
+    ],
+    "safe_to_edit": [
+      "topo/**",
+      "candidates/**"
+    ]
+  }
 }

@@ -3,7 +3,7 @@
     "completion_command": "topogram sdlc prep commit . --json",
     "mode": "implementation",
     "next_commands": [
-      "topogram query slice ./topo --mode implementation --projection proj_operations_ui_contract --screen intake_queue --json",
+      "topogram query slice ./topo --mode implementation --projection proj_operations_ui_contract --screen intake_queue --detail compact --json",
       "topogram query single-agent-plan ./topo --mode implementation --projection proj_operations_ui_contract --screen intake_queue --json",
       "topogram query sdlc-proof-gaps ./topo --json",
       "topogram check . --json",
@@ -11,7 +11,7 @@
       "topogram sdlc prep commit . --json"
     ],
     "next_queries": [
-      "topogram query slice ./topo --mode implementation --projection proj_operations_ui_contract --screen intake_queue --json",
+      "topogram query slice ./topo --mode implementation --projection proj_operations_ui_contract --screen intake_queue --detail compact --json",
       "topogram query single-agent-plan ./topo --mode implementation --projection proj_operations_ui_contract --screen intake_queue --json"
     ],
     "proof_commands": [
@@ -82,7 +82,7 @@
       "widget_filter_panel"
     ]
   },
-  "detail_level": "standard",
+  "detail_level": "compact",
   "focus": {
     "id": "intake_queue",
     "kind": "screen",
@@ -107,275 +107,6 @@
     }
   },
   "related": {
-    "capabilities": [
-      {
-        "actors": [
-          "actor_coding_agent",
-          "actor_dispatch_coordinator",
-          "actor_field_operator"
-        ],
-        "creates": [],
-        "deletes": [],
-        "description": "Match work items to available field operators based on urgency, location, and capacity.",
-        "id": "cap_assign_field_work",
-        "input": [],
-        "kind": "capability",
-        "name": "Assign Field Work",
-        "output": [],
-        "ownership_boundary": {
-          "canonical_topogram": {
-            "agent_mode": "propose_review_adopt",
-            "owner": "human"
-          },
-          "generated_artifacts": {
-            "agent_mode": "regenerate_or_compare",
-            "owner": "engine"
-          },
-          "maintained_code": {
-            "agent_mode": "bounded_edit_only",
-            "owner": "human"
-          },
-          "proposal_surfaces": {
-            "agent_mode": "stage_map_customize_reject",
-            "owner": "human"
-          }
-        },
-        "reads": [],
-        "reviewBoundary": {
-          "automation_class": "safe",
-          "reasons": [
-            "read_only_surface"
-          ]
-        },
-        "roles": [],
-        "updates": []
-      },
-      {
-        "actors": [
-          "actor_coding_agent",
-          "actor_dispatch_coordinator",
-          "actor_operations_manager"
-        ],
-        "creates": [],
-        "deletes": [],
-        "description": "Inspect an incident, its activity timeline, related work, status changes, and next available actions.",
-        "id": "cap_review_incident",
-        "input": [],
-        "kind": "capability",
-        "name": "Review Incident",
-        "output": [],
-        "ownership_boundary": {
-          "canonical_topogram": {
-            "agent_mode": "propose_review_adopt",
-            "owner": "human"
-          },
-          "generated_artifacts": {
-            "agent_mode": "regenerate_or_compare",
-            "owner": "engine"
-          },
-          "maintained_code": {
-            "agent_mode": "bounded_edit_only",
-            "owner": "human"
-          },
-          "proposal_surfaces": {
-            "agent_mode": "stage_map_customize_reject",
-            "owner": "human"
-          }
-        },
-        "reads": [],
-        "reviewBoundary": {
-          "automation_class": "safe",
-          "reasons": [
-            "read_only_surface"
-          ]
-        },
-        "roles": [],
-        "updates": []
-      },
-      {
-        "actors": [
-          "actor_coding_agent",
-          "actor_dispatch_coordinator"
-        ],
-        "creates": [],
-        "deletes": [],
-        "description": "Review incoming work, classify priority, request missing details, and move ready work into assignment.",
-        "id": "cap_triage_incoming_work",
-        "input": [],
-        "kind": "capability",
-        "name": "Triage Incoming Work",
-        "output": [],
-        "ownership_boundary": {
-          "canonical_topogram": {
-            "agent_mode": "propose_review_adopt",
-            "owner": "human"
-          },
-          "generated_artifacts": {
-            "agent_mode": "regenerate_or_compare",
-            "owner": "engine"
-          },
-          "maintained_code": {
-            "agent_mode": "bounded_edit_only",
-            "owner": "human"
-          },
-          "proposal_surfaces": {
-            "agent_mode": "stage_map_customize_reject",
-            "owner": "human"
-          }
-        },
-        "reads": [],
-        "reviewBoundary": {
-          "automation_class": "safe",
-          "reasons": [
-            "read_only_surface"
-          ]
-        },
-        "roles": [],
-        "updates": []
-      }
-    ],
-    "projections": [
-      {
-        "dbTables": [],
-        "description": "Shared UI contract for the operations-dashboard proof with reusable layouts, screens, navigation, and semantic widget bindings.",
-        "httpCapabilities": [],
-        "id": "proj_operations_ui_contract",
-        "kind": "projection",
-        "name": "Operations UI Contract",
-        "outputs": [
-          "ui_contract"
-        ],
-        "ownership_boundary": {
-          "canonical_topogram": {
-            "agent_mode": "propose_review_adopt",
-            "owner": "human"
-          },
-          "generated_artifacts": {
-            "agent_mode": "regenerate_or_compare",
-            "owner": "engine"
-          },
-          "maintained_code": {
-            "agent_mode": "bounded_edit_only",
-            "owner": "human"
-          },
-          "proposal_surfaces": {
-            "agent_mode": "stage_map_customize_reject",
-            "owner": "human"
-          }
-        },
-        "realizes": [
-          "cap_assign_field_work",
-          "cap_manage_field_teams",
-          "cap_monitor_operations_dashboard",
-          "cap_resolve_incident",
-          "cap_review_incident",
-          "cap_triage_incoming_work"
-        ],
-        "reviewBoundary": {
-          "automation_class": "manual_decision",
-          "reasons": [
-            "ui_surface"
-          ]
-        },
-        "type": "ui_contract",
-        "uiScreens": [
-          "assignment_board",
-          "audit_timeline",
-          "field_team_directory",
-          "incident_detail",
-          "intake_queue",
-          "operations_dashboard",
-          "schedule_calendar",
-          "settings_preferences"
-        ],
-        "widgetBindings": [
-          "widget_activity_timeline",
-          "widget_alert_banner",
-          "widget_assignment_form",
-          "widget_card_list",
-          "widget_command_toolbar",
-          "widget_data_grid",
-          "widget_detail_panel",
-          "widget_filter_panel",
-          "widget_kpi_summary_cards",
-          "widget_schedule_calendar",
-          "widget_status_board"
-        ]
-      }
-    ],
-    "shapes": [
-      {
-        "derivedFrom": [],
-        "description": "Compact queue row or card for triage and assignment screens.",
-        "exclude": [],
-        "fields": [
-          {
-            "defaultValue": null,
-            "name": "id",
-            "requiredness": "required",
-            "type": "string"
-          },
-          {
-            "defaultValue": null,
-            "name": "title",
-            "requiredness": "required",
-            "type": "string"
-          },
-          {
-            "defaultValue": null,
-            "name": "priority",
-            "requiredness": "required",
-            "type": "string"
-          },
-          {
-            "defaultValue": null,
-            "name": "status",
-            "requiredness": "required",
-            "type": "string"
-          },
-          {
-            "defaultValue": null,
-            "name": "owner",
-            "requiredness": "optional",
-            "type": "string"
-          },
-          {
-            "defaultValue": null,
-            "name": "due_at",
-            "requiredness": "optional",
-            "type": "datetime"
-          },
-          {
-            "defaultValue": null,
-            "name": "location",
-            "requiredness": "optional",
-            "type": "string"
-          }
-        ],
-        "id": "shape_work_queue_item",
-        "include": [],
-        "kind": "shape",
-        "name": "Work Queue Item",
-        "ownership_boundary": {
-          "canonical_topogram": {
-            "agent_mode": "propose_review_adopt",
-            "owner": "human"
-          },
-          "generated_artifacts": {
-            "agent_mode": "regenerate_or_compare",
-            "owner": "engine"
-          },
-          "maintained_code": {
-            "agent_mode": "bounded_edit_only",
-            "owner": "human"
-          },
-          "proposal_surfaces": {
-            "agent_mode": "stage_map_customize_reject",
-            "owner": "human"
-          }
-        }
-      }
-    ],
     "terms": [
       {
         "aliases": [
@@ -470,344 +201,38 @@
         "relatedTerms": [],
         "status": "active"
       }
-    ],
-    "widgets": [
-      {
-        "approvals": [],
-        "behavior": [
-          "filtering",
-          "selection"
-        ],
-        "behaviors": [
-          {
-            "directives": {
-              "emits": "item_select",
-              "mode": "single",
-              "state": "selected_ids"
-            },
-            "kind": "selection",
-            "source": "structured"
-          },
-          {
-            "directives": {
-              "fields": [
-                "priority",
-                "status",
-                "owner",
-                "location"
-              ]
-            },
-            "kind": "filtering",
-            "source": "structured"
-          }
-        ],
-        "category": "collection",
-        "dependencies": [],
-        "description": "Prioritized card list for queue-style operational work.",
-        "events": [
-          {
-            "id": "item_select",
-            "shape": "shape_work_queue_item"
-          }
-        ],
-        "id": "widget_card_list",
-        "kind": "widget",
-        "lookups": [],
-        "name": "Card List",
-        "ownership_boundary": {
-          "canonical_topogram": {
-            "agent_mode": "propose_review_adopt",
-            "owner": "human"
-          },
-          "generated_artifacts": {
-            "agent_mode": "regenerate_or_compare",
-            "owner": "engine"
-          },
-          "maintained_code": {
-            "agent_mode": "bounded_edit_only",
-            "owner": "human"
-          },
-          "proposal_surfaces": {
-            "agent_mode": "stage_map_customize_reject",
-            "owner": "human"
-          }
-        },
-        "patterns": [
-          "resource_cards",
-          "search_results"
-        ],
-        "props": [
-          {
-            "defaultValue": null,
-            "name": "items",
-            "requiredness": "required",
-            "type": "array"
-          },
-          {
-            "defaultValue": [],
-            "name": "selected_ids",
-            "requiredness": "optional",
-            "type": "array"
-          },
-          {
-            "defaultValue": false,
-            "name": "loading",
-            "requiredness": "optional",
-            "type": "boolean"
-          }
-        ],
-        "regions": [
-          "results"
-        ],
-        "slots": [],
-        "status": "active",
-        "version": "1.0"
-      },
-      {
-        "approvals": [],
-        "behavior": [
-          "bulk_action",
-          "keyboard_navigation"
-        ],
-        "behaviors": [
-          {
-            "directives": {
-              "actions": [
-                "primary_action"
-              ],
-              "emits": "primary_action",
-              "state": "selected_ids"
-            },
-            "kind": "bulk_action",
-            "source": "structured"
-          },
-          {
-            "directives": {
-              "scope": "toolbar",
-              "shortcuts": [
-                "tab",
-                "enter",
-                "escape"
-              ]
-            },
-            "kind": "keyboard_navigation",
-            "source": "structured"
-          }
-        ],
-        "category": "navigation",
-        "dependencies": [],
-        "description": "Compact screen command surface for assignment, refresh, export, and escalation actions.",
-        "events": [
-          {
-            "id": "primary_action",
-            "shape": "shape_work_queue_item"
-          }
-        ],
-        "id": "widget_command_toolbar",
-        "kind": "widget",
-        "lookups": [],
-        "name": "Command Toolbar",
-        "ownership_boundary": {
-          "canonical_topogram": {
-            "agent_mode": "propose_review_adopt",
-            "owner": "human"
-          },
-          "generated_artifacts": {
-            "agent_mode": "regenerate_or_compare",
-            "owner": "engine"
-          },
-          "maintained_code": {
-            "agent_mode": "bounded_edit_only",
-            "owner": "human"
-          },
-          "proposal_surfaces": {
-            "agent_mode": "stage_map_customize_reject",
-            "owner": "human"
-          }
-        },
-        "patterns": [
-          "action_bar",
-          "status_badge"
-        ],
-        "props": [
-          {
-            "defaultValue": null,
-            "name": "actions",
-            "requiredness": "required",
-            "type": "array"
-          },
-          {
-            "defaultValue": [],
-            "name": "selected_ids",
-            "requiredness": "optional",
-            "type": "array"
-          }
-        ],
-        "regions": [
-          "footer_actions",
-          "toolbar"
-        ],
-        "slots": [],
-        "status": "active",
-        "version": "1.0"
-      },
-      {
-        "approvals": [],
-        "behavior": [],
-        "behaviors": [],
-        "category": "display",
-        "dependencies": [],
-        "description": "Readable selected-record summary for incident, team, settings, and inspector contexts.",
-        "events": [
-          {
-            "id": "edit_requested",
-            "shape": "shape_incident_detail"
-          }
-        ],
-        "id": "widget_detail_panel",
-        "kind": "widget",
-        "lookups": [],
-        "name": "Detail Panel",
-        "ownership_boundary": {
-          "canonical_topogram": {
-            "agent_mode": "propose_review_adopt",
-            "owner": "human"
-          },
-          "generated_artifacts": {
-            "agent_mode": "regenerate_or_compare",
-            "owner": "engine"
-          },
-          "maintained_code": {
-            "agent_mode": "bounded_edit_only",
-            "owner": "human"
-          },
-          "proposal_surfaces": {
-            "agent_mode": "stage_map_customize_reject",
-            "owner": "human"
-          }
-        },
-        "patterns": [
-          "detail_panel",
-          "inspector_pane",
-          "settings_section"
-        ],
-        "props": [
-          {
-            "defaultValue": null,
-            "name": "item",
-            "requiredness": "required",
-            "type": "object"
-          },
-          {
-            "defaultValue": false,
-            "name": "loading",
-            "requiredness": "optional",
-            "type": "boolean"
-          }
-        ],
-        "regions": [
-          "aside",
-          "results",
-          "summary"
-        ],
-        "slots": [],
-        "status": "active",
-        "version": "1.0"
-      },
-      {
-        "approvals": [],
-        "behavior": [
-          "filtering",
-          "search"
-        ],
-        "behaviors": [
-          {
-            "directives": {
-              "fields": [
-                "priority",
-                "status",
-                "owner",
-                "team",
-                "location",
-                "due_at"
-              ]
-            },
-            "kind": "filtering",
-            "source": "structured"
-          },
-          {
-            "directives": {
-              "fields": [
-                "title",
-                "location",
-                "owner",
-                "team"
-              ]
-            },
-            "kind": "search",
-            "source": "structured"
-          }
-        ],
-        "category": "lookup",
-        "dependencies": [],
-        "description": "Filter and search controls for operational queues, boards, calendars, and directories.",
-        "events": [
-          {
-            "id": "filter_change",
-            "shape": "shape_work_queue_item"
-          }
-        ],
-        "id": "widget_filter_panel",
-        "kind": "widget",
-        "lookups": [],
-        "name": "Filter Panel",
-        "ownership_boundary": {
-          "canonical_topogram": {
-            "agent_mode": "propose_review_adopt",
-            "owner": "human"
-          },
-          "generated_artifacts": {
-            "agent_mode": "regenerate_or_compare",
-            "owner": "engine"
-          },
-          "maintained_code": {
-            "agent_mode": "bounded_edit_only",
-            "owner": "human"
-          },
-          "proposal_surfaces": {
-            "agent_mode": "stage_map_customize_reject",
-            "owner": "human"
-          }
-        },
-        "patterns": [
-          "filter_panel",
-          "lookup_select",
-          "primary_navigation",
-          "search_results"
-        ],
-        "props": [
-          {
-            "defaultValue": null,
-            "name": "filters",
-            "requiredness": "required",
-            "type": "array"
-          },
-          {
-            "defaultValue": [],
-            "name": "active_filters",
-            "requiredness": "optional",
-            "type": "array"
-          }
-        ],
-        "regions": [
-          "filters",
-          "search"
-        ],
-        "slots": [],
-        "status": "active",
-        "version": "1.0"
-      }
     ]
+  },
+  "related_summary": {
+    "capabilities": {
+      "count": 3,
+      "ids": [
+        "cap_assign_field_work",
+        "cap_review_incident",
+        "cap_triage_incoming_work"
+      ]
+    },
+    "projections": {
+      "count": 1,
+      "ids": [
+        "proj_operations_ui_contract"
+      ]
+    },
+    "shapes": {
+      "count": 1,
+      "ids": [
+        "shape_work_queue_item"
+      ]
+    },
+    "widgets": {
+      "count": 4,
+      "ids": [
+        "widget_card_list",
+        "widget_command_toolbar",
+        "widget_detail_panel",
+        "widget_filter_panel"
+      ]
+    }
   },
   "review_boundary": {
     "automation_class": "review_required",
@@ -816,7 +241,7 @@
     ]
   },
   "slice_manifest": {
-    "detail_level": "standard",
+    "detail_level": "compact",
     "note": "Read must_read sections first; use reference sections only as needed; run proof commands before completing work.",
     "proof_sections": [
       "verification_targets",
@@ -908,10 +333,18 @@
       {
         "field": "related",
         "id": "related",
-        "item_count": 5,
+        "item_count": 1,
         "reason": "Summaries for directly related graph records.",
         "tier": "reference",
         "title": "Related Records"
+      },
+      {
+        "field": "related_summary",
+        "id": "related_summary",
+        "item_count": 4,
+        "reason": "Compact counts and IDs for related records omitted from compact detail.",
+        "tier": "reference",
+        "title": "Related Summary"
       },
       {
         "field": "verification_targets",

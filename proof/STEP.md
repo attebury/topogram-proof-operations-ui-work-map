@@ -11,9 +11,9 @@ Use when: you want to inspect the actual slices and review artifacts an agent wo
 ## What Changed
 
 - Captured JSON and Markdown screen, widget, and projection slices.
-- Captured layout, region, and design-realization context cards from the projection/screen slice evidence.
-- Captured selector-attempt artifacts showing that layout, region, and design-realization-set slices are not yet first-class selectors.
-- Added an agent slice review artifact with useful signals, confusing gaps, and follow-up recommendations.
+- Captured direct layout, region, and design-realization-set slices with first-class selectors from `@topogram/cli@0.3.113`.
+- Captured selector-attempt artifacts showing that the layout, region, and design-realization-set selector gap is now resolved.
+- Updated the agent slice review artifact with useful signals, resolved gaps, and remaining follow-up recommendations.
 
 ## Verification
 
@@ -21,4 +21,4 @@ Use when: you want to inspect the actual slices and review artifacts an agent wo
 npm run verify
 ```
 
-The current step proves that screen and widget slices are useful, but it also records a real product gap: layout, region, and design realization sets need first-class slice selectors before this UI work-map story is as agent-friendly as it should be.
+The current step proves that screen, widget, layout, region, and design realization set slices are useful enough for focused UI work-map review without reading the whole repo.
